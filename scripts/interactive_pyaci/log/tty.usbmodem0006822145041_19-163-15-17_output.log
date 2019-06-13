@@ -1,0 +1,228 @@
+2019-06-12 15:17:25,800 - DEBUG - tty.usbmodem0006822145041: TX: 61697fc315c92db3b4a2e7ade276e33dba388be6dc30ebb1fe8d896a54200d7c470fa52045c9a19e881cef1aae39958710c4ceb721d9e3cdbee034e0bf7c7a3c0dc672c82f1c7ff941eaefadfd4b838d1b2d49795535f0d2744d9d59d300518b1012
+2019-06-12 15:17:25,813 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-12 15:17:25,813 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,814 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-12 15:17:25,814 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,815 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,816 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,816 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,816 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,816 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-12 15:17:25,816 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,817 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,817 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,818 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,818 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,818 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-12 15:17:25,818 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,819 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,819 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,819 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,819 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,819 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,820 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-12 15:17:25,820 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,820 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,821 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,821 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,821 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,821 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,821 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,821 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,821 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,822 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,822 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,823 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,824 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,824 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,824 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,824 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,825 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,825 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,825 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,825 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,825 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,826 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,826 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,826 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,826 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,826 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,826 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,826 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,827 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,827 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,827 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,827 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,827 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,827 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,827 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,827 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,828 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,828 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,828 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,828 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,828 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,828 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,829 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-12 15:17:25,829 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,829 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,829 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,829 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-12 15:17:25,830 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-06-12 15:17:25,830 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-06-12 15:17:25,830 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x10e0185c0>>
+2019-06-12 15:17:25,830 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 211, in __event_handler
+    message = AccessMessage(event)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 116, in __init__
+    self.opcode_raw = opcode_from_message_get(event._data["data"])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 101, in opcode_from_message_get
+    format_bits = (data[0] & Opcode.FORMAT_MASK)
+IndexError: bytearray index out of range
+
+2019-06-12 15:17:25,830 - INFO - tty.usbmodem0006822145041: Success
+2019-06-12 15:17:25,831 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-06-12 15:17:25,832 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-12 15:17:25,833 - DEBUG - tty.usbmodem0006822145041: Message recieved Opcode bytearray(b'\x00'), Data bytearray(b'\x00') for model <mesh.access.Access object at 0x10e0185c0>.
+2019-06-12 15:17:25,834 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-06-12 15:17:25,835 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-06-12 15:17:25,836 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-12 15:17:25,836 - DEBUG - tty.usbmodem0006822145041: Message recieved Opcode bytearray(b'\x00'), Data bytearray(b'\x00') for model <mesh.access.Access object at 0x10e0185c0>.
+2019-06-12 15:17:25,837 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-06-12 15:17:25,839 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-06-12 15:17:25,840 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-12 15:17:25,841 - DEBUG - tty.usbmodem0006822145041: Message recieved Opcode bytearray(b'\x01'), Data bytearray(b'\x00') for model <mesh.access.Access object at 0x10e0185c0>.
+2019-06-12 15:17:25,842 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-06-12 15:17:57,235 - DEBUG - tty.usbmodem0006822145041: exited read event

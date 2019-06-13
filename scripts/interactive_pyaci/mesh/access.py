@@ -208,6 +208,7 @@ class Access(object):
         self.elements[idx].model_add(model)
 
     def __event_handler(self, event):
+        
         if event._opcode == Event.MESH_MESSAGE_RECEIVED_UNICAST:
             message = AccessMessage(event)
             element_index = event._data["dst"] - self.elements[0].address

@@ -76,3 +76,30 @@ class GenericOnOffClient(Model):
             logstr += " Remaining time: %d ms" % (TransitionTime.decode(message.data[2]))
 
         self.logger.info(logstr)
+
+
+class GenericOnOffServer(Model):
+    GENERIC_ON_OFF_SET = Opcode(0x8202, None, "Generic OnOff Set")
+    GENERIC_ON_OFF_SET_UNACKNOWLEDGED = Opcode(0x8203, None, "Generic OnOff Set Unacknowledged")
+    GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
+    GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
+    
+    def __init__(self):
+        self.opcodes = [
+            (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_event_handler),
+            (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_event_handler),
+            (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_event_handler),
+            (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_server_event_handler)]
+        self.__tid = 0
+        super(GenericOnOffServer, self).__init__(self.opcodes)
+    
+    @property
+    def _tid(self):
+        tid = self.__tid
+        self.__tid += 1
+        if self.__tid >= 255:
+            self.__tid = 0
+        return tid
+
+    def __generic_on_off_server_event_handler(self, opcode, message):
+        self.logger.info("Server Event {} {}".format(opcode, message))

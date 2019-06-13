@@ -55,7 +55,7 @@ from mesh import types as mt                            # NOQA: ignore unused im
 from mesh.database import MeshDB                        # NOQA: ignore unused import
 from models.config import ConfigurationClient           # NOQA: ignore unused import
 from models.generic_on_off import GenericOnOffClient    # NOQA: ignore unused import
-
+from models.generic_on_off import GenericOnOffServer
 
 LOG_DIR = os.path.join(os.path.dirname(sys.argv[0]), "log")
 
@@ -269,7 +269,7 @@ if __name__ == '__main__':
                         dest="log_level",
                         type=int,
                         required=False,
-                        default=3,
+                        default=4,
                         help=("Set default logging level: "
                               + "1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
     options = parser.parse_args()
