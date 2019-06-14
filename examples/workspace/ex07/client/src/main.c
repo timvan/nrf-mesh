@@ -70,14 +70,14 @@
 #include "example_common.h"
 #include "ble_softdevice_support.h"
 
-#define APP_STATE_OFF                (0)
-#define APP_STATE_ON                 (1)
+#define APP_STATE_OFF                (0) // TVE include when doing messages
+#define APP_STATE_ON                 (1) // TVE include when doing messages
 
-#define APP_UNACK_MSG_REPEAT_COUNT   (2)
+#define APP_UNACK_MSG_REPEAT_COUNT   (2) // TVE include when doing messages
 
 static generic_onoff_client_t m_clients[CLIENT_MODEL_INSTANCE_COUNT];
 static bool                   m_device_provisioned;
-
+/* TVE TAKEN */
 /* Forward declaration */
 static void app_gen_onoff_client_publish_interval_cb(access_model_handle_t handle, void * p_self);
 static void app_generic_onoff_client_status_cb(const generic_onoff_client_t * p_self,
@@ -93,7 +93,7 @@ const generic_onoff_client_callbacks_t client_cbs =
     .ack_transaction_status_cb = app_gen_onoff_client_transaction_status_cb,
     .periodic_publish_cb = app_gen_onoff_client_publish_interval_cb
 };
-
+/* TVE TAKEN */
 static void device_identification_start_cb(uint8_t attention_duration_s)
 {
     hal_led_mask_set(LEDS_MASK, false);
@@ -101,12 +101,12 @@ static void device_identification_start_cb(uint8_t attention_duration_s)
                      LED_BLINK_ATTENTION_INTERVAL_MS,
                      LED_BLINK_ATTENTION_COUNT(attention_duration_s));
 }
-
+/* TVE TAKEN */
 static void provisioning_aborted_cb(void)
 {
     hal_led_blink_stop();
 }
-
+/* TVE TAKEN */
 static void provisioning_complete_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Successfully provisioned\n");
@@ -126,13 +126,13 @@ static void provisioning_complete_cb(void)
     hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
     hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
 }
-
+/* TVE TAKEN */
 /* This callback is called periodically if model is configured for periodic publishing */
 static void app_gen_onoff_client_publish_interval_cb(access_model_handle_t handle, void * p_self)
 {
      __LOG(LOG_SRC_APP, LOG_LEVEL_WARN, "Publish desired message here.\n");
 }
-
+/* TVE TAKEN */
 /* Acknowledged transaction status callback, if acknowledged transfer fails, application can
 * determine suitable course of action (e.g. re-initiate previous transaction) by using this
 * callback.
@@ -161,7 +161,7 @@ static void app_gen_onoff_client_transaction_status_cb(access_model_handle_t mod
             break;
     }
 }
-
+/* TVE TAKEN */
 /* Generic OnOff client model interface: Process the received status message in this callback */
 static void app_generic_onoff_client_status_cb(const generic_onoff_client_t * p_self,
                                                const access_message_rx_meta_t * p_meta,
@@ -178,7 +178,7 @@ static void app_generic_onoff_client_status_cb(const generic_onoff_client_t * p_
               p_meta->src.value, p_in->present_on_off);
     }
 }
-
+/* TVE TAKEN */
 static void node_reset(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- Node reset  -----\n");
@@ -186,7 +186,7 @@ static void node_reset(void)
     /* This function may return if there are ongoing flash operations. */
     mesh_stack_device_reset();
 }
-
+/* TVE TAKEN */
 static void config_server_evt_cb(const config_server_evt_t * p_evt)
 {
     if (p_evt->type == CONFIG_SERVER_EVT_NODE_RESET)
@@ -194,7 +194,7 @@ static void config_server_evt_cb(const config_server_evt_t * p_evt)
         node_reset();
     }
 }
-
+/* TVE TAKEN */
 static void button_event_handler(uint32_t button_number)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
@@ -283,7 +283,7 @@ static void rtt_input_handler(int key)
         button_event_handler(button_number);
     }
 }
-
+/* TVE TAKEN */
 static void models_init_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Initializing and adding models\n");
@@ -298,7 +298,7 @@ static void models_init_cb(void)
         ERROR_CHECK(generic_onoff_client_init(&m_clients[i], i + 1));
     }
 }
-
+/* TVE TAKEN */
 static void mesh_init(void)
 {
     mesh_stack_init_params_t init_params =
@@ -311,7 +311,7 @@ static void mesh_init(void)
     };
     ERROR_CHECK(mesh_stack_init(&init_params, &m_device_provisioned));
 }
-
+/* TVE TAKEN */
 static void initialize(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
@@ -333,7 +333,7 @@ static void initialize(void)
 
     mesh_init();
 }
-
+/* TVE TAKEN */
 static void start(void)
 {
     rtt_input_enable(rtt_input_handler, RTT_INPUT_POLL_PERIOD_MS);

@@ -73,21 +73,21 @@
 #include "ble_softdevice_support.h"
 
 #define ONOFF_SERVER_0_LED          (BSP_LED_0)
-#define APP_ONOFF_ELEMENT_INDEX     (0)
-
+#define APP_ONOFF_ELEMENT_INDEX     (0)/* TVE TAKEN */
+/* TVE TAKEN */
 static bool m_device_provisioned;
-
+/* TVE TAKEN */
 /*************************************************************************************************/
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff);
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff);
-
+/* TVE TAKEN */
 /* Generic OnOff server structure definition and initialization */
 APP_ONOFF_SERVER_DEF(m_onoff_server_0,
                      APP_CONFIG_FORCE_SEGMENTATION,
                      APP_CONFIG_MIC_SIZE,
                      app_onoff_server_set_cb,
                      app_onoff_server_get_cb)
-
+/* TVE TAKEN */
 /* Callback for updating the hardware state */
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff)
 {
@@ -97,7 +97,7 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 
     hal_led_pin_set(ONOFF_SERVER_0_LED, onoff);
 }
-
+/* TVE TAKEN */
 /* Callback for reading the hardware state */
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
@@ -105,7 +105,7 @@ static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * 
 
     *p_present_onoff = hal_led_pin_get(ONOFF_SERVER_0_LED);
 }
-
+/* TVE TAKEN */
 static void app_model_init(void)
 {
     /* Instantiate onoff server on element index APP_ONOFF_ELEMENT_INDEX */
@@ -114,7 +114,7 @@ static void app_model_init(void)
 }
 
 /*************************************************************************************************/
-
+/* TVE TAKEN */
 static void node_reset(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- Node reset  -----\n");
@@ -122,7 +122,7 @@ static void node_reset(void)
     /* This function may return if there are ongoing flash operations. */
     mesh_stack_device_reset();
 }
-
+/* TVE TAKEN */
 static void config_server_evt_cb(const config_server_evt_t * p_evt)
 {
     if (p_evt->type == CONFIG_SERVER_EVT_NODE_RESET)
@@ -130,7 +130,7 @@ static void config_server_evt_cb(const config_server_evt_t * p_evt)
         node_reset();
     }
 }
-
+/* TVE TAKEN */
 static void button_event_handler(uint32_t button_number)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
@@ -179,7 +179,7 @@ static void app_rtt_input_handler(int key)
         button_event_handler(button_number);
     }
 }
-
+/* TVE TAKEN */
 static void device_identification_start_cb(uint8_t attention_duration_s)
 {
     hal_led_mask_set(LEDS_MASK, false);
@@ -187,12 +187,12 @@ static void device_identification_start_cb(uint8_t attention_duration_s)
                      LED_BLINK_ATTENTION_INTERVAL_MS,
                      LED_BLINK_ATTENTION_COUNT(attention_duration_s));
 }
-
+/* TVE TAKEN */
 static void provisioning_aborted_cb(void)
 {
     hal_led_blink_stop();
 }
-
+/* TVE TAKEN */
 static void provisioning_complete_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Successfully provisioned\n");
@@ -212,13 +212,13 @@ static void provisioning_complete_cb(void)
     hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
     hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
 }
-
+/* TVE TAKEN */
 static void models_init_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Initializing and adding models\n");
     app_model_init();
 }
-
+/* TVE TAKEN */
 static void mesh_init(void)
 {
     mesh_stack_init_params_t init_params =
@@ -231,7 +231,7 @@ static void mesh_init(void)
     };
     ERROR_CHECK(mesh_stack_init(&init_params, &m_device_provisioned));
 }
-
+/* TVE TAKEN */
 static void initialize(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
