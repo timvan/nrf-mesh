@@ -209,7 +209,7 @@ class Access(object):
 
     def __event_handler(self, event):
         
-        if event._opcode == Event.MESH_MESSAGE_RECEIVED_UNICAST:
+        if event._opcode == Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             message = AccessMessage(event)
             element_index = event._data["dst"] - self.elements[0].address
             assert(element_index < len(self.elements) and element_index >= 0)

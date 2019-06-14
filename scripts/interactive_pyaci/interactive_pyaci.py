@@ -170,6 +170,9 @@ class Interactive(object):
             self.CONFIG.ACCESS_ELEMENT_COUNT))
 
     def __event_handler(self, event):
+        self.logger.info("Got " + str(event._opcode))
+        
+
         if self._event_filter_enabled and event._opcode in self._event_filter:
             # Ignore event
             return
@@ -186,6 +189,7 @@ class Interactive(object):
                 if text == "None":
                     text = "Success"
                 self.logger.info(text)
+                
         else:
             if self.PRINT_ALL_EVENTS and event is not None:
                 self.logger.info(str(event))
@@ -269,7 +273,7 @@ if __name__ == '__main__':
                         dest="log_level",
                         type=int,
                         required=False,
-                        default=4,
+                        default=3,
                         help=("Set default logging level: "
                               + "1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
     options = parser.parse_args()

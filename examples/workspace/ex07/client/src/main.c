@@ -275,6 +275,15 @@ static void button_event_handler(uint32_t button_number)
     }
 }
 
+static void rtt_input_handler(int key)
+{
+    if (key >= '0' && key <= '3')
+    {
+        uint32_t button_number = key - '0';
+        button_event_handler(button_number);
+    }
+}
+
 static void models_init_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Initializing and adding models\n");
@@ -306,17 +315,21 @@ static void mesh_init(void)
 static void initialize(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex07 Client with a in event -----\n");
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- BLE Mesh Light Switch Client Demo -----\n");
 
     ERROR_CHECK(app_timer_init());
-    
     hal_leds_init();
+
+#if BUTTON_BOARD
     ERROR_CHECK(hal_buttons_init(button_event_handler));
+#endif
 
     ble_stack_init();
 
+#if MESH_FEATURE_GATT_ENABLED
     gap_params_init();
     conn_params_init();
+#endif
 
     mesh_init();
 }

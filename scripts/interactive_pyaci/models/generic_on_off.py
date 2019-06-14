@@ -102,4 +102,4 @@ class GenericOnOffServer(Model):
         return tid
 
     def __generic_on_off_server_event_handler(self, opcode, message):
-        self.logger.info("Server Event {} {}".format(opcode, message))
+        self.logger.info("Server Event {} {}".format(opcode, message.data))
