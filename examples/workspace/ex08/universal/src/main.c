@@ -11,7 +11,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 
 /* HAL */
 #include "boards.h"
-#include "simple_hal.h"
+// #include "simple_hal.h"
 #include "app_timer.h"
 
 /* Core */
@@ -31,6 +31,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 /* Models */
 #include "generic_onoff_server.h"
 #include "generic_onoff_client.h"
+#include "simple_on_off_server.h"
 
 /* Logging and RTT */
 #include "log.h"
@@ -44,11 +45,18 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 #include "app_onoff.h"
 #include "ble_softdevice_support.h"
 
+#include "nrfx_gpiote.h"
+
 #define APP_ONOFF_ELEMENT_INDEX     (1)
 
 #define APP_STATE_OFF                (0)
 #define APP_STATE_ON                 (1)
 #define APP_UNACK_MSG_REPEAT_COUNT   (2)
+
+#define PIN_NUMBER 23
+#define P_INPUT true
+#define P_OUTPUT false
+#define P_STARTING_STATE P_OUTPUT
 
 static bool m_device_provisioned;
 
@@ -57,23 +65,27 @@ static app_onoff_server_t m_onoff_server_0;
 
 static generic_onoff_client_t m_client;
 
+static simple_on_off_server_t m_simple_on_off_server;
 
+static bool pin_state;
+static int pin_number;
 
 /*************************************************************************************************/
 /**** START  ****/
 
 static void provisioning_aborted_cb(void)
 {
-    hal_led_blink_stop();
+    // hal_led_blink_stop(); // TODO DELETE HAL
 }
 
 
 static void device_identification_start_cb(uint8_t attention_duration_s)
 {
-    hal_led_mask_set(LEDS_MASK, false);
-    hal_led_blink_ms(BSP_LED_2_MASK  | BSP_LED_3_MASK,
-                     LED_BLINK_ATTENTION_INTERVAL_MS,
-                     LED_BLINK_ATTENTION_COUNT(attention_duration_s));
+    // TODO DELETE HAL
+    // hal_led_mask_set(LEDS_MASK, false);
+    // hal_led_blink_ms(BSP_LED_2_MASK  | BSP_LED_3_MASK,
+    //                  LED_BLINK_ATTENTION_INTERVAL_MS,
+    //                  LED_BLINK_ATTENTION_COUNT(attention_duration_s));
 }
 
 static void provisioning_complete_cb(void)
@@ -91,11 +103,13 @@ static void provisioning_complete_cb(void)
     dsm_local_unicast_addresses_get(&node_address);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Node Address: 0x%04x \n", node_address.address_start);
 
-    hal_led_blink_stop();
-    hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
-    hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
+    // TODO DELETE HAL
+    // hal_led_blink_stop();
+    // hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
+    // hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
 }
 
+static bool app_simple_onoff_server_set_cb(const simple_on_off_server_t * p_self, bool on); // TODO SORT THIS FORWARD DECLERATION
 static void rtt_input_handler(int key)
 {
     key = key - '0';
@@ -105,6 +119,7 @@ static void rtt_input_handler(int key)
     generic_onoff_set_params_t set_params;
     model_transition_t transition_params;
     static uint8_t tid = 0;
+    bool new_state;
 
     /* Button 1: On, Button 2: Off, Client[0]
      * Button 2: On, Button 3: Off, Client[1]
@@ -136,7 +151,7 @@ static void rtt_input_handler(int key)
             /* In this examples, users will not be blocked if the model is busy */
             (void)access_model_reliable_cancel(m_client.model_handle);
             status = generic_onoff_client_set(&m_client, &set_params, &transition_params);
-            hal_led_pin_set(BSP_LED_0, set_params.on_off);
+            // hal_led_pin_set(BSP_LED_0, set_params.on_off); // TODO DELETE HAL
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET ACK %d\n", set_params.on_off);
             break;
 
@@ -145,13 +160,21 @@ static void rtt_input_handler(int key)
             /* Demonstrate un-acknowledged transaction, using 2nd client model instance */
             status = generic_onoff_client_set_unack(&m_client, &set_params,
                                                     &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
-            hal_led_pin_set(BSP_LED_1, set_params.on_off);
+            // hal_led_pin_set(BSP_LED_1, set_params.on_off); // TODO DELETE HAL
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET %d\n", set_params.on_off);
             break;
         case 4:
             status = generic_onoff_client_get(&m_client);
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF GET \n");
             break;
+        case 5:
+            new_state = P_INPUT;
+            if(pin_state == P_INPUT){
+              new_state = P_OUTPUT;
+            }
+            app_simple_onoff_server_set_cb(&m_simple_on_off_server, new_state);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "swapping gpio state \n");
+
     }
 
     switch (status)
@@ -163,7 +186,7 @@ static void rtt_input_handler(int key)
         case NRF_ERROR_BUSY:
         case NRF_ERROR_INVALID_STATE:
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
-            hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY);
+            // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY); // TODO DELETE HAL
             break;
 
         case NRF_ERROR_INVALID_PARAM:
@@ -206,8 +229,8 @@ static void start(void)
 
     ERROR_CHECK(mesh_stack_start());
 
-    hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
-    hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_START);
+    // hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF); // TODO DELETE HAL
+    // hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_START); // TODO DELETE HAL
 }
 
 /*************************************************************************************************/
@@ -262,7 +285,7 @@ static void app_gen_onoff_client_transaction_status_cb(access_model_handle_t mod
             break;
 
         case ACCESS_RELIABLE_TRANSFER_TIMEOUT:
-            hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY);
+            // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY); // TODO DELETE HAL
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client - Acknowledged transfer timeout.\n");
             break;
 
@@ -293,6 +316,38 @@ static void app_generic_onoff_client_status_cb(const generic_onoff_client_t * p_
     }
 }
 
+/**** SIMPLE SERVER CBS - FOR CHANGING PIN STATE ****/
+
+// forward declerations
+static void gpio_init_input();
+static void gpio_init_output();
+
+static bool app_simple_onoff_server_get_cb(const simple_on_off_server_t * p_self)
+{
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - get\n");
+    return pin_state;
+}
+
+static bool app_simple_onoff_server_set_cb(const simple_on_off_server_t * p_self, bool on)
+{
+    if(on){
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set as P_INPUT \n");
+    } else {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set as P_OUTPUT \n");
+    }
+    
+    if(pin_state != on){
+        if(on == P_INPUT){
+            gpio_init_input();
+        } else {
+            gpio_init_output();
+        }
+    }
+    
+    pin_state = on;
+    return pin_state;
+}
+
 /*** INIT CBS ****/
 
 static void models_init_cb(void)
@@ -319,16 +374,58 @@ static void models_init_cb(void)
     ERROR_CHECK(generic_onoff_client_init(&m_client, APP_ONOFF_ELEMENT_INDEX));
     
 
+    /* init config server */
+
+    m_simple_on_off_server.get_cb = &app_simple_onoff_server_get_cb;
+    m_simple_on_off_server.set_cb = &app_simple_onoff_server_set_cb;
+    ERROR_CHECK(simple_on_off_server_init(&m_simple_on_off_server, APP_ONOFF_ELEMENT_INDEX));
 }
 
 /*************************************************************************************************/
+
+/* TVE STUFF FOR GPIO PINS */
+
+static void in_pin_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "shit happened %d\n", action);
+}
+
+static void gpiote_init()
+{
+    pin_number = PIN_NUMBER;
+    pin_state = P_STARTING_STATE;
+
+    if(P_STARTING_STATE == P_INPUT){
+        gpio_init_input();
+    } else {
+        gpio_init_output();
+    }
+
+}
+
+static void gpio_init_input()
+{
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as input\n");
+    nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    in_config.pull = NRF_GPIO_PIN_PULLDOWN;
+    ERROR_CHECK(nrfx_gpiote_in_init(PIN_NUMBER, &in_config, in_pin_handler));
+    nrfx_gpiote_in_event_enable(PIN_NUMBER, true);
+}
+
+static void gpio_init_output()
+{
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as output\n");
+    nrfx_gpiote_out_uninit(PIN_NUMBER);
+    nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(true); // << TODO WHAT IS THIS TRUE
+    ERROR_CHECK(nrfx_gpiote_out_init(PIN_NUMBER, &out_config));
+}
 
 /* COMMON STUFF */
 
 static void node_reset(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- Node reset  -----\n");
-    hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_RESET);
+    // hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_RESET); // TODO DELETE HAL
     /* This function may return if there are ongoing flash operations. */
     mesh_stack_device_reset();
 }
@@ -354,6 +451,9 @@ static void mesh_init(void)
     ERROR_CHECK(mesh_stack_init(&init_params, &m_device_provisioned));
 }
 
+
+// TODO DELETE HAL
+/*
 static void button_event_handler(uint32_t button_number)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
@@ -375,16 +475,21 @@ static void button_event_handler(uint32_t button_number)
         break;
     }
 }
+*/
+
 
 static void initialise(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex07 Universal one element with client and server -----\n");
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex08 Universal with a simple onoff server to switch pin input/output -----\n");
+
+    ERROR_CHECK(nrfx_gpiote_init());
+    gpiote_init();
 
     ERROR_CHECK(app_timer_init());
-    hal_leds_init();
+    // hal_leds_init(); // TODO DELETE HAL
 
-    ERROR_CHECK(hal_buttons_init(button_event_handler));
+    // ERROR_CHECK(hal_buttons_init(button_event_handler)); // TODO DELETE HAL
 
     ble_stack_init();
 
