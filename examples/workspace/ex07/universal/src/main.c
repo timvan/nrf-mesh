@@ -46,6 +46,10 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 
 #define APP_ONOFF_ELEMENT_INDEX     (1)
 
+#define APP_STATE_OFF                (0)
+#define APP_STATE_ON                 (1)
+#define APP_UNACK_MSG_REPEAT_COUNT   (2)
+
 static bool m_device_provisioned;
 
 APP_TIMER_DEF(m_onoff_server_0_timer);
@@ -92,8 +96,96 @@ static void provisioning_complete_cb(void)
     hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
 }
 
+static void rtt_input_handler(int key)
+{
+    key = key - '0';
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
+
+    uint32_t status = NRF_SUCCESS;
+    generic_onoff_set_params_t set_params;
+    model_transition_t transition_params;
+    static uint8_t tid = 0;
+
+    /* Button 1: On, Button 2: Off, Client[0]
+     * Button 2: On, Button 3: Off, Client[1]
+     */
+
+    switch(key)
+    {
+        case 0:
+        case 2:
+            set_params.on_off = APP_STATE_ON;
+            break;
+
+        case 1:
+        case 3:
+            set_params.on_off = APP_STATE_OFF;
+            break;
+            
+    }
+
+    set_params.tid = tid++;
+    transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
+    transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
+
+    switch (key)
+    {
+        case 0:
+        case 1:
+            /* Demonstrate acknowledged transaction, using 1st client model instance */
+            /* In this examples, users will not be blocked if the model is busy */
+            (void)access_model_reliable_cancel(m_client.model_handle);
+            status = generic_onoff_client_set(&m_client, &set_params, &transition_params);
+            hal_led_pin_set(BSP_LED_0, set_params.on_off);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET ACK %d\n", set_params.on_off);
+            break;
+
+        case 2:
+        case 3:
+            /* Demonstrate un-acknowledged transaction, using 2nd client model instance */
+            status = generic_onoff_client_set_unack(&m_client, &set_params,
+                                                    &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+            hal_led_pin_set(BSP_LED_1, set_params.on_off);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET %d\n", set_params.on_off);
+            break;
+        case 4:
+            status = generic_onoff_client_get(&m_client);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF GET \n");
+            break;
+    }
+
+    switch (status)
+    {
+        case NRF_SUCCESS:
+            break;
+
+        case NRF_ERROR_NO_MEM:
+        case NRF_ERROR_BUSY:
+        case NRF_ERROR_INVALID_STATE:
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
+            hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY);
+            break;
+
+        case NRF_ERROR_INVALID_PARAM:
+            /* Publication not enabled for this client. One (or more) of the following is wrong:
+             * - An application key is missing, or there is no application key bound to the model
+             * - The client does not have its publication state set
+             *
+             * It is the provisioner that adds an application key, binds it to the model and sets
+             * the model's publication state.
+             */
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Publication not configured for client\n");
+            break;
+
+        default:
+            ERROR_CHECK(status);
+            break;
+    }
+}
+
 static void start(void)
 {
+    rtt_input_enable(rtt_input_handler, RTT_INPUT_POLL_PERIOD_MS);
 
     if (!m_device_provisioned)
     {
