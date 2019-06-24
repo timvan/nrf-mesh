@@ -70,6 +70,9 @@ static simple_on_off_server_t m_simple_on_off_server;
 static bool pin_state;
 static int pin_number;
 
+// fwd declerartions
+static void node_reset(void);
+
 /*************************************************************************************************/
 /**** START  ****/
 
@@ -174,6 +177,10 @@ static void rtt_input_handler(int key)
             }
             app_simple_onoff_server_set_cb(&m_simple_on_off_server, new_state);
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "swapping gpio state \n");
+            break;
+        case 6:
+            node_reset();
+            break;
 
     }
 

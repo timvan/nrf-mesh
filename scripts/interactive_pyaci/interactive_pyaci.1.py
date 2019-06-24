@@ -127,7 +127,7 @@ class Interactive(object):
         self._event_filter_enabled = True
         self._other_events = []
 
-        # self.logger = configure_logger(self.acidev.device_name)
+        self.logger = configure_logger(self.acidev.device_name)
         self.send = self.acidev.write_aci_cmd
 
         # Increment the local unicast address range
@@ -196,57 +196,75 @@ class Interactive(object):
                 self.logger.info(str(event))
             else:
                 self._other_events.append(event)
-                
 
-def start_ipython(options):
-    colorama.init()
-    comports = options.devices
-    d = list()
+class Manager(object):
 
-    # Print out a mini intro to the interactive session --
-    # Start with white and then magenta to keep the session white
-    # (workaround for a bug in ipython)
-    colors = {"c_default": colorama.Fore.WHITE + colorama.Style.BRIGHT,
-              "c_highlight": colorama.Fore.YELLOW + colorama.Style.BRIGHT,
-              "c_text": colorama.Fore.CYAN + colorama.Style.BRIGHT}
+    def __init__(self):
+        self.db_path = "database/example_database.json"
 
-    print(USAGE_STRING.format(**colors))
+    def start_ipython(self, options):
+        comports = options.devices
+        self.d = list()
 
-    if not options.no_logfile and not os.path.exists(LOG_DIR):
-        print("Creating log directory: {}".format(os.path.abspath(LOG_DIR)))
-        os.mkdir(LOG_DIR)
+        print("Start")
+        self.keep_running = True
 
-    for dev_com in comports:
-        d.append(Interactive(Uart(port=dev_com,
-                                  baudrate=options.baudrate,
-                                  device_name=dev_com.split("/")[-1])))
+        if not options.no_logfile and not os.path.exists(LOG_DIR):
+            print("Creating log directory: {}".format(os.path.abspath(LOG_DIR)))
+            os.mkdir(LOG_DIR)
 
-    device = d[0]
-    send = device.acidev.write_aci_cmd  # NOQA: Ignore unused variable
+        for dev_com in comports:
+            self.d.append(Interactive(Uart(port=dev_com,
+                                    baudrate=options.baudrate,
+                                    device_name=dev_com.split("/")[-1])))
 
-    # Set iPython configuration
-    ipython_config = traitlets.config.get_config()
-    if options.no_logfile:
-        ipython_config.TerminalInteractiveShell.logstart = False
-        ipython_config.InteractiveShellApp.db_log_output = False
-    else:
-        dt = DateTime.DateTime()
-        logfile = "{}/{}-{}-{}-{}_interactive_session.log".format(
-            LOG_DIR, dt.yy(), dt.dayOfYear(), dt.hour(), dt.minute())
+        self.device = self.d[0]
+        send = self.device.acidev.write_aci_cmd  # NOQA: Ignore unused variable
 
-        ipython_config.TerminalInteractiveShell.logstart = True
-        ipython_config.InteractiveShellApp.db_log_output = True
-        ipython_config.TerminalInteractiveShell.logfile = logfile
+        while self.keep_running:
+            self.process_stdin()
+            # self.process_stdout(line)
 
-    ipython_config.TerminalInteractiveShell.confirm_exit = False
-    ipython_config.InteractiveShellApp.multiline_history = True
-    ipython_config.InteractiveShellApp.log_level = logging.DEBUG
+        for dev in self.d:
+            dev.close()
+        raise SystemExit(0)
 
-    IPython.embed(config=ipython_config)
-    for dev in d:
-        dev.close()
-    raise SystemExit(0)
+    def process_stdout(self, line):
+        print("Sending:", line)
 
+    def process_stdin(self):
+        line = sys.stdin.readline().strip("\n")
+        self.process_stdout(line)
+        
+        if line == "setup":
+            self.setup()
+        
+        if line == "exit":
+            self.keep_running = False
+
+        if line == "provision":
+            self.provision()
+        
+        if line == "configure":
+            self.configure()
+
+    def setup(self):
+        self.db = MeshDB(self.db_path)
+        self.p = Provisioner(self.device, self.db)
+
+    def provision(self):
+        self.p.scan_start()
+        while not self.p.unprov_list:
+            pass
+        print("found device")
+        self.p.scan_stop()
+        self.p.provision(name="Client")
+
+        while not self.p.provisioning_open:
+            pass
+        
+    def configure(self):
+        pass
 
 if __name__ == '__main__':
     parser = ArgumentParser(
@@ -289,4 +307,5 @@ if __name__ == '__main__':
     else:
         options.log_level = logging.DEBUG
 
-    start_ipython(options)
+    m = Manager()
+    m.start_ipython(options)

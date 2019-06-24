@@ -16,27 +16,25 @@ ble.openSerialPort(COM_PORT, err => {
     console.log(err);
   }
 
-  const buf = new Buffer([0x01]);
-  
-  ble.echo(buf, (err, res) => {
-    console.log("Try echo");
-
+  console.log("Try echo");
+  const data = [68, 69, 69];
+  ble.echo(data, (err, res) => {
     if (err) {
-      console.log("Error in echo");
       console.log(err);
     }
+
     if (res) {
-      console.log("Res: ", res);
+      console.log("Res:", res);
     }
   });
 
-  ble.init(MESH_ACCESS_ADDR, MESH_INTERVAL_MIN_MS, MESH_CHANNEL, (res, err) => {
-    console.log("Try init");
-    
+  ble.provStartScan((err, res) => {
     if (err) {
-      console.log("Error in init");
       console.log(err);
     }
-  
-  })
+
+    if (res) {
+      console.log("Res:", res);
+    }
+  });
 });

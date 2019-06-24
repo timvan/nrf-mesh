@@ -1,0 +1,15 @@
+2019-06-19 18:07:21,637 - DEBUG - tty.usbmodem0006822145041: RX: 00
+2019-06-19 18:07:21,637 - DEBUG - tty.usbmodem0006822145041: RX: 03848403
+2019-06-19 18:07:21,642 - ERROR - tty.usbmodem0006822145041: Invalid packet: bytearray(b'\x00')
+2019-06-19 18:07:21,641 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 132, 'status': 3, 'data': bytearray(b'')}}
+2019-06-19 18:07:21,642 - INFO - tty.usbmodem0006822145041: Got 132
+2019-06-19 18:07:21,646 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Interactive.__event_handler of <__main__.Interactive object at 0x11174f470>>
+2019-06-19 18:07:21,650 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "interactive_pyaci.py", line 187, in __event_handler
+    STATUS_CODE_LUT[event._data["status"]]["code"]))
+KeyError: 3
+
+2019-06-19 18:07:29,649 - DEBUG - tty.usbmodem0006822145041: RX: 059200840097
+2019-06-19 18:07:29,650 - ERROR - tty.usbmodem0006822145041: Unable to deserialize 059200840097

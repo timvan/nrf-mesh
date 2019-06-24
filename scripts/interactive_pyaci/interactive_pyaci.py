@@ -127,7 +127,7 @@ class Interactive(object):
         self._event_filter_enabled = True
         self._other_events = []
 
-        # self.logger = configure_logger(self.acidev.device_name)
+        self.logger = configure_logger(self.acidev.device_name)
         self.send = self.acidev.write_aci_cmd
 
         # Increment the local unicast address range
@@ -254,7 +254,8 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--device",
                         dest="devices",
                         nargs="+",
-                        required=True,
+                        required=False,
+                        default=["/dev/tty.usbmodem0006822145041"],
                         help=("Device Communication port, e.g., COM216 or "
                               + "/dev/ttyACM0. You may connect to multiple "
                               + "devices. Separate devices by spaces, e.g., "
