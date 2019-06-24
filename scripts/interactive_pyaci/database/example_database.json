@@ -47,8 +47,8 @@
       ],
       "cid": "0059",
       "configComplete": false,
-      "crpl": 40,
-      "deviceKey": "d888af62525d5d61ab5cce3ee54aa1c4",
+      "crpl": "0028",
+      "deviceKey": "3c1e52fffdac389da86fa569f0c1e0cb",
       "elements": [
         {
           "index": 0,
@@ -105,6 +105,9 @@
               "subscribe": [
                 49153
               ]
+            },
+            {
+              "modelId": "00590000"
             }
           ]
         }
@@ -122,6 +125,80 @@
       "pid": "0000",
       "security": "low",
       "unicastAddress": 16,
+      "vid": "0000"
+    },
+    {
+      "UUID": "9db77a0526b8734988639509c242d107",
+      "configComplete": false,
+      "deviceKey": "600bcefd3efb6a384161e943604f9c73",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000"
+        },
+        {
+          "index": 1,
+          "location": "0000"
+        }
+      ],
+      "name": "Client",
+      "netKeys": [
+        0
+      ],
+      "security": "low",
+      "unicastAddress": 18
+    },
+    {
+      "UUID": "9db77a0526b8734988639509c242d107",
+      "appKeys": [
+        0
+      ],
+      "cid": "0059",
+      "configComplete": false,
+      "crpl": 40,
+      "deviceKey": "79bf576afb3ac23a8ae68f35f7c3f70e",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "0000"
+            },
+            {
+              "modelId": "0002"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        }
+      ],
+      "features": {
+        "friend": 2,
+        "lowPower": 2,
+        "proxy": 0,
+        "relay": 0
+      },
+      "name": "Client",
+      "netKeys": [
+        0
+      ],
+      "pid": "0000",
+      "security": "low",
+      "unicastAddress": 20,
       "vid": "0000"
     }
   ],
@@ -143,5 +220,5 @@
       "name": "BT Mesh Provisioner"
     }
   ],
-  "timestamp": "2019-06-18 11:40:36.285924"
+  "timestamp": "2019-06-19 10:20:23.314282"
 }

@@ -236,15 +236,20 @@ static void start(void)
 /*************************************************************************************************/
 /**** INIT  ****/
 
-
 /**** SERVER CBS ****/
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - Setting GPIO value: %d\n", onoff)
+    if(onoff){
+        nrfx_gpiote_out_set(pin_number);
+    } else {
+        nrfx_gpiote_out_clear(pin_number);
+    }
 }
 
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
+    *p_present_onoff = nrf_gpio_pin_read(pin_number);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - getting GPIO value: %d\n", p_present_onoff)
 }
 
@@ -387,7 +392,50 @@ static void models_init_cb(void)
 
 static void in_pin_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "shit happened %d\n", action);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", pin_state);
+    
+    generic_onoff_set_params_t p_params;
+    model_transition_t transition_params;
+    static uint8_t tid = 0;
+    uint32_t status = NRF_SUCCESS;
+    
+    p_params.on_off = pin_state;
+    p_params.tid = tid++;
+
+    transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
+    transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
+    
+    
+    status = generic_onoff_client_set_unack(&m_client, &p_params, &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+
+    
+    switch (status)
+    {
+        case NRF_SUCCESS:
+            break;
+
+        case NRF_ERROR_NO_MEM:
+        case NRF_ERROR_BUSY:
+        case NRF_ERROR_INVALID_STATE:
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
+            // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY);
+            break;
+
+        case NRF_ERROR_INVALID_PARAM:
+            /* Publication not enabled for this client. One (or more) of the following is wrong:
+             * - An application key is missing, or there is no application key bound to the model
+             * - The client does not have its publication state set
+             *
+             * It is the provisioner that adds an application key, binds it to the model and sets
+             * the model's publication state.
+             */
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Publication not configured for client\n");
+            break;
+
+        default:
+            ERROR_CHECK(status);
+            break;
+    }
 }
 
 static void gpiote_init()
@@ -406,6 +454,7 @@ static void gpiote_init()
 static void gpio_init_input()
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as input\n");
+    nrfx_gpiote_out_uninit(PIN_NUMBER);
     nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
     in_config.pull = NRF_GPIO_PIN_PULLDOWN;
     ERROR_CHECK(nrfx_gpiote_in_init(PIN_NUMBER, &in_config, in_pin_handler));
@@ -415,7 +464,7 @@ static void gpio_init_input()
 static void gpio_init_output()
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as output\n");
-    nrfx_gpiote_out_uninit(PIN_NUMBER);
+    nrfx_gpiote_in_uninit(PIN_NUMBER);
     nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(true); // << TODO WHAT IS THIS TRUE
     ERROR_CHECK(nrfx_gpiote_out_init(PIN_NUMBER, &out_config));
 }

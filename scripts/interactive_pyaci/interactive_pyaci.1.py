@@ -254,7 +254,8 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--device",
                         dest="devices",
                         nargs="+",
-                        required=True,
+                        required=False,
+                        default=["/dev/tty.usbmodem0006822145041"],
                         help=("Device Communication port, e.g., COM216 or "
                               + "/dev/ttyACM0. You may connect to multiple "
                               + "devices. Separate devices by spaces, e.g., "

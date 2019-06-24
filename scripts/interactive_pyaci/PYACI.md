@@ -10,6 +10,7 @@ cc.composition_data_get()
 
 cc.appkey_add(0)
 cc.model_app_bind(db.nodes[0].unicast_address + 1, 0, mt.ModelId(0x1001))
+cc.model_app_bind(db.nodes[0].unicast_address + 1, 0, mt.ModelId(0x1000))
 cc.model_app_bind(db.nodes[0].unicast_address + 2, 0, mt.ModelId(0x1001))
 
 device.event_filter_disable()
@@ -27,6 +28,10 @@ gs = GenericOnOffServer()
 device.model_add(gs)
 gs.publish_set(0, 1)
 
+
+gc = GenericOnOffClient()
+device.model_add(gc)
+gc.publish_set(0, 1)
 
 
 cc.model_publication_set(db.appKeys[0].key, mt.ModelId(0x1001), mt.Publish(db.groups[0].address, index=0, ttl=1))
