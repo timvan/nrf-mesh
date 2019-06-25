@@ -1,12 +1,14 @@
 <script type="text/javascript">
     RED.nodes.registerType('ble-mesh',{
-        category: 'function',
-        color: '#a6bbcf',
+        category: 'output',
+        color: '#4d94ff',
         defaults: {
             name: {value:""}
         },
         inputs:1,
-        outputs:1,
+        // outputs:1,
+        icon: 'bluetooth.png',
+        align: 'right',
         label: function() {
             return this.name||"ble-mesh";
         }

@@ -40,6 +40,7 @@ import DateTime
 import os
 import colorama
 import time
+import json
 
 from argparse import ArgumentParser
 import traitlets.config
@@ -201,12 +202,14 @@ class Manager(object):
 
     def __init__(self):
         self.db_path = "database/example_database.json"
+        self.n = 0
+        self.setup_received = False;
 
     def start_ipython(self, options):
         comports = options.devices
         self.d = list()
 
-        print("Start")
+        # print("Start")
         self.keep_running = True
 
         if not options.no_logfile and not os.path.exists(LOG_DIR):
@@ -229,31 +232,43 @@ class Manager(object):
             dev.close()
         raise SystemExit(0)
 
-    def process_stdout(self, line):
-        print("Sending:", line)
+    def process_stdout(self, op, data=None):
+        
+        msg = {
+            'op': op,
+            'id': self.n
+        }
+        if data:
+            msg['data'] = data
+        print(json.dumps(msg));
+        self.n += 1
+        sys.stdout.flush()
 
     def process_stdin(self):
-        line = sys.stdin.readline().strip("\n")
-        self.process_stdout(line)
-        
-        if line == "setup":
+        msg = sys.stdin.readline().strip("\n")
+        msg = json.loads(msg)
+        op = msg["op"]
+
+        if op == "SETUP":
             self.setup()
         
-        if line == "exit":
+        if op == "EXIT":
             self.keep_running = False
 
-        if line == "provision":
+        if op == "PROVISION":
             self.provision()
         
-        if line == "configure":
+        if op == "CONFIGURE":
             self.configure()
 
-        if line == "echo":
-            self.echo()
+        if op == "ECHO":
+            self.echo(msg)
 
     def setup(self):
-        self.db = MeshDB(self.db_path)
-        self.p = Provisioner(self.device, self.db)
+        if not self.setup_received:
+            self.db = MeshDB(self.db_path)
+            self.p = Provisioner(self.device, self.db)
+            self.setup_received = True;
 
     def provision(self):
         self.p.scan_start()
@@ -269,8 +284,9 @@ class Manager(object):
     def configure(self):
         pass
 
-    def echo(self):
-        process_stdout("hello")
+    def echo(self, msg):
+        op = "ECHO RCVD";
+        self.process_stdout(op, msg["data"])
 
 if __name__ == '__main__':
     parser = ArgumentParser(

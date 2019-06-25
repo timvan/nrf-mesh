@@ -4,6 +4,7 @@ class StdioTest(object):
 
     def __init__(self):
         self.keep_runing = True
+        self.n = 0
 
     def run(self):
         while self.keep_runing:
@@ -14,10 +15,13 @@ class StdioTest(object):
 
     def handle_message(self, msg):
         if msg == "echo":
-             print("Hii")
-        else:
-            print("other")
+            self.send_message("hiii")
 
+        sys.stdout.flush()
+
+    def send_message(self, msg):
+        print("Py TX{}: {}".format(self.n, msg))
+        self.n += 1
         sys.stdout.flush()
 
 if __name__ == "__main__":
