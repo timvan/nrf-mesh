@@ -1,20 +1,35 @@
 const { spawn } = require('child_process');
-
-const pyaci = spawn('python', ['interactive_pyaci.py']);
-
+const pyaci = spawn('python', ['interactive_pyaci.py'],
+    {
+        stdio: ['pipe', 'pipe', 2]
+    }
+);
 
 pyaci.stdout.on('data', (data) => {
     console.log(data.toString());
 });
 
+pyaci.on('exit', (code, signal) => {
+    console.log(`pyaci exited ${code} ${signal}`);
+});
+
+
+pyaci.on('error', (err) => {
+    console.log(`pyaci error ${err}`);
+});
+
+
+console.log(`>>> [BleMesh] Is Connected ${pyaci.connected}`);
+
 pyaci.stdin.write('db = MeshDB("database/example_database.json")\n');
 pyaci.stdin.write('p = Provisioner(device, db)\n');
+
 
 setTimeout(() => {
     pyaci.stdin.write('p.scan_start()\n')
     setTimeout(() => {pyaci.stdin.write('p.scan_stop()\n')}, 10000);
 
-}, 10000);
+}, 1000);
 
 
 

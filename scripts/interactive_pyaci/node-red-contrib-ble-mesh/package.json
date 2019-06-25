@@ -1,0 +1,16 @@
+{
+  "name": "node-red-contrib-ble-mesh",
+  "version": "1.0.0",
+  "description": "A node-RED node for serial communication with BLE Mesh nodes using Nordic'c Interactive PyACI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "node-red": {
+    "nodes": {
+      "ble-mesh": "ble-mesh.js"
+    }
+  }
+}
