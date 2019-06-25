@@ -172,7 +172,7 @@ class Interactive(object):
             self.CONFIG.ACCESS_ELEMENT_COUNT))
 
     def __event_handler(self, event):
-        self.logger.info("Got " + str(event._opcode))
+        # self.logger.info("Got " + str(event._opcode))
         
 
         if self._event_filter_enabled and event._opcode in self._event_filter:
@@ -200,37 +200,39 @@ class Interactive(object):
 
 class Manager(object):
 
-    def __init__(self):
+    def __init__(self, interactive_device):
+        self.keep_running = True
         self.db_path = "database/example_database.json"
+        self.iaci = interactive_device
         self.n = 0
         self.setup_received = False;
+        self.iaci.acidev.add_packet_recipient(self.__event_handler)
 
-    def start_ipython(self, options):
-        comports = options.devices
-        self.d = list()
-
-        # print("Start")
-        self.keep_running = True
-
-        if not options.no_logfile and not os.path.exists(LOG_DIR):
-            print("Creating log directory: {}".format(os.path.abspath(LOG_DIR)))
-            os.mkdir(LOG_DIR)
-
-        for dev_com in comports:
-            self.d.append(Interactive(Uart(port=dev_com,
-                                    baudrate=options.baudrate,
-                                    device_name=dev_com.split("/")[-1])))
-
-        self.device = self.d[0]
-        send = self.device.acidev.write_aci_cmd  # NOQA: Ignore unused variable
-
+    def run(self):
         while self.keep_running:
             self.process_stdin()
-            # self.process_stdout(line)
 
-        for dev in self.d:
-            dev.close()
-        raise SystemExit(0)
+    def __event_handler(self, event):
+
+        if event._opcode == evt.Event.PROV_UNPROVISIONED_RECEIVED:
+            uuid = event._data["uuid"]
+            rssi = event._data["rssi"]
+            
+            if uuid not in self.p.unprov_list:
+                self.newUnProvisionedDevice({
+                    "uuid": uuid.hex(),
+                    "rssi": rssi
+                    })
+
+        if event._opcode == event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
+            message = access.AccessMessage(event)
+            opcode = message.opcode_raw
+            if opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+                data = message.data[1:]
+                data = mt.CompositionData().unpack(data)
+                op = "CompositionDataStatus"
+                self.process_stdout(op, data)
+
 
     def process_stdout(self, op, data=None):
         
@@ -246,47 +248,98 @@ class Manager(object):
 
     def process_stdin(self):
         msg = sys.stdin.readline().strip("\n")
-        msg = json.loads(msg)
+
+        if(msg == "check"):
+            self.process_stdout("running")
+            self.exit()
+            return
+
+        try:
+            msg = json.loads(msg)
+        except:
+            print("Error parsing message: ", msg)
+            self.exit()
+            return
+        
         op = msg["op"]
 
-        if op == "SETUP":
+        if op == "Setup":
             self.setup()
         
-        if op == "EXIT":
+        if op == "Exit":
             self.keep_running = False
 
-        if op == "PROVISION":
+        if op == "ProvisionScanStart":
+            self.provisionScanStart()
+
+        if op == "Provision":
             self.provision()
         
-        if op == "CONFIGURE":
+        if op == "Configure":
             self.configure()
 
-        if op == "ECHO":
+        if op == "Echo":
             self.echo(msg)
 
     def setup(self):
         if not self.setup_received:
             self.db = MeshDB(self.db_path)
-            self.p = Provisioner(self.device, self.db)
+            self.p = Provisioner(self.iaci, self.db)
             self.setup_received = True;
+            self.process_stdout("SetupRsp")
+    
+    def exit(self):
+        self.keep_running = False
+
+    def provisionScanStart(self):
+        self.p.scan_start()
+
+    def newUnProvisionedDevice(self, data):
+        op = "NewUnProvisionedDevice";
+        self.process_stdout(op, data)
 
     def provision(self):
-        self.p.scan_start()
-        while not self.p.unprov_list:
-            pass
-        print("found device")
+
         self.p.scan_stop()
-        self.p.provision(name="Client")
+        self.p.provision(name="Server")
 
         while not self.p.provisioning_open:
             pass
+
+        self.process_stdout("ProvisionComplete")
         
     def configure(self):
-        pass
+        self.cc = ConfigurationClient(self.db)
+        self.iaci.model_add(self.cc)
+        self.cc.publish_set(8, 0)
+        self.cc.composition_data_get()
 
     def echo(self, msg):
-        op = "ECHO RCVD";
+        op = "EchoRsp"
         self.process_stdout(op, msg["data"])
+
+def start_ipython(options):
+    comports = options.devices
+    d = list()
+
+    if not options.no_logfile and not os.path.exists(LOG_DIR):
+        print("Creating log directory: {}".format(os.path.abspath(LOG_DIR)))
+        os.mkdir(LOG_DIR)
+
+    for dev_com in comports:
+        d.append(Interactive(Uart(port=dev_com,
+                                baudrate=options.baudrate,
+                                device_name=dev_com.split("/")[-1])))
+
+    device = d[0]
+    send = device.acidev.write_aci_cmd  # NOQA: Ignore unused variable
+
+    m = Manager(device)
+    m.run()
+
+    for dev in d:
+        dev.close()
+    raise SystemExit(0)
 
 if __name__ == '__main__':
     parser = ArgumentParser(
@@ -315,12 +368,14 @@ if __name__ == '__main__':
                         dest="log_level",
                         type=int,
                         required=False,
-                        default=3,
+                        default=4,
                         help=("Set default logging level: "
-                              + "1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
+                              + "0=Critical Only, 1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
     options = parser.parse_args()
 
-    if options.log_level == 1:
+    if options.log_level == 0:
+        options.log_level = logging.CRITICAL
+    elif options.log_level == 1:
         options.log_level = logging.ERROR
     elif options.log_level == 2:
         options.log_level = logging.WARNING
@@ -329,5 +384,4 @@ if __name__ == '__main__':
     else:
         options.log_level = logging.DEBUG
 
-    m = Manager()
-    m.start_ipython(options)
+    start_ipython(options)

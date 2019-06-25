@@ -1,0 +1,17 @@
+2019-06-25 17:16:58,233 - DEBUG - tty.usbmodem0006822145041: RX: 1ac09db77a0526b8734988639509c242d107cd0001c8639509c2c2
+2019-06-25 17:16:58,233 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07'), 'rssi': -51, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2')}}
+2019-06-25 17:16:58,233 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07'), 'rssi': -51, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2')}}
+2019-06-25 17:16:58,233 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x1044a3160>>
+2019-06-25 17:16:58,234 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "interactive_pyaci.py", line 221, in __event_handler
+    if uuid not in self.p.unprov_list:
+AttributeError: 'Manager' object has no attribute 'p'
+
+2019-06-25 17:16:58,747 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-06-25 17:16:58,747 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-06-25 17:16:58,747 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-06-25 17:16:59,427 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-06-25 17:16:59,427 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-06-25 17:16:59,427 - INFO - tty.usbmodem0006822145041: Device rebooted.

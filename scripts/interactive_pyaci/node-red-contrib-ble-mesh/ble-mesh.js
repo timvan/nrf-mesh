@@ -1,21 +1,19 @@
 const cp = require('child_process');
+
+const pyscript = {
+    filename: 'interactive_pyaci.py',
+    working_dir: '/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/'
+}
+
 const pyaci = cp.spawn('python'
-    , ['/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py']
-    , {stdio: ['pipe', 'pipe', 2]}
+    , [pyscript.working_dir + pyscript.filename]
+    , {
+        cwd: pyscript.working_dir,
+        stdio: ['pipe', 'pipe', 2]
+    }
 );
 
 var n = 0;
-
-pyaci.stdout.on('data', (data) => {
-    msgs = data.toString().trim().split("\n");
-    msgs.forEach((m) => {
-        // m = m.toJSON();
-        console.log(`[BleMesh] RX${n} ${m}`);
-        n += 1;
-        handle_message(m);
-        
-    })
-});
 
 handle_message = function(msg_in) {
 
@@ -26,6 +24,10 @@ handle_message = function(msg_in) {
         var data = msg.data;
         console.log(`ECHO RCVD: ${data}`);
     }
+
+    if(op == "SETUP RCVD"){
+        send_message({op: "PROVISION"});
+    }
 }
 
 send_message = function(msg_in) {
@@ -33,6 +35,7 @@ send_message = function(msg_in) {
     console.log(`Sending ${msg}`);
     pyaci.stdin.write(msg + '\n');
 }
+
 
 module.exports = function(RED) {
 

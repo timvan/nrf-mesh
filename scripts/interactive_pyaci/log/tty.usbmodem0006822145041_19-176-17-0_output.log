@@ -1,0 +1,198 @@
+2019-06-25 17:00:46,583 - DEBUG - tty.usbmodem0006822145041: exited read event
+2019-06-25 17:00:55,877 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xa0(\x83\x90Q\xc1]\x85L\xe6N\xe4\x0fKo\x93\xb4\t\xf8\x14\x13!?\x0b\x04\xa9\x086\xd2;\xab"M\xed\x85\x97LT\x05\xf9i\x17e|\x8d\x00\x99\x10\xd6\xb6#}\xbdc\x8c\x91\x07~\xa8\xf0\x92\x87\x19&\xd7\xcd6v\x04\x82\x99\xd1\xef\x98\xe4D\xc96x\xe3X\xad\xc9\xd0\x04\xbf\x86sKKN2sz\xfa\xbf')
+2019-06-25 17:00:55,877 - DEBUG - tty.usbmodem0006822145041: TX: 6169a028839051c15d854ce64ee40f4b6f93b409f81413213f0b04a90836d23bab224ded85974c5405f96917657c8d009910d6b6237dbd638c91077ea8f092871926d7cd3676048299d1ef98e444c93678e358adc9d004bf86734b4b4e32737afabf
+2019-06-25 17:00:55,887 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-25 17:00:55,887 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,887 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,887 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-25 17:00:55,887 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,888 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-25 17:00:55,889 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,890 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,890 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,890 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,891 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,891 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-25 17:00:55,891 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 17:00:55,891 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,892 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,892 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,896 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,896 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-25 17:00:55,897 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,897 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-25 17:00:55,897 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,897 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,898 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,898 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,898 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-25 17:00:55,898 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,898 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-25 17:00:55,898 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,899 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,899 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,899 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,899 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,899 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,899 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,899 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,899 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,900 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,900 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,900 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,900 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,900 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,900 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,900 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,900 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,901 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,901 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,901 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,901 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,901 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,901 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,901 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,902 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,902 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,902 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,902 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,902 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,902 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,918 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,918 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,919 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,919 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,919 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,919 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,920 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,922 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,923 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,924 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,925 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,925 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:00:55,925 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,926 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-06-25 17:00:55,926 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,926 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,927 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-06-25 17:00:55,927 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,927 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-06-25 17:00:55,927 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,927 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,927 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-06-25 17:00:55,927 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+
+2019-06-25 17:00:55,928 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-06-25 17:00:55,928 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10f66e4e0>>
+2019-06-25 17:00:55,928 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo(msg["data": event.__oopcode])
+NameError: name 'msg' is not defined
+

@@ -1,0 +1,26 @@
+2019-06-25 18:38:39,874 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-06-25 18:38:39,875 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-06-25 18:38:39,875 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-06-25 18:38:39,875 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x110ed62b0>>
+2019-06-25 18:38:39,877 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 18:38:40,334 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-06-25 18:38:40,335 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-06-25 18:38:40,335 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-06-25 18:38:40,335 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x110ed62b0>>
+2019-06-25 18:38:40,335 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+

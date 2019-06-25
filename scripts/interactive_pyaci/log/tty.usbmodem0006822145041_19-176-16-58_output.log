@@ -1,0 +1,232 @@
+2019-06-25 16:58:19,326 - DEBUG - tty.usbmodem0006822145041: exited read event
+2019-06-25 16:58:37,640 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b"\x10\xff\xd4+4Gi6{2H\xaf\xf5.\xfaoC\xd0\xf7\xc1`#CW4\xeb\xedd\t\xa7\xe6\'\x84\x00\xe1`\xa8\xcf\x88\xd2\xd1\xe62Q\xdfCs\x19\xeb\x94\x15\x8bE1\x92\xf9\x13\x08\xa6\x7f\xfc\xa8\x0c\xf8Z \xe1&\xff2\xee\xbc\xeeg:\xcf\xcbr\x9d\x99\x12H\xc3\xf7k\xa8\xadS\xf8!k\xb6L\xfe\xbe\xba")
+2019-06-25 16:58:37,640 - DEBUG - tty.usbmodem0006822145041: TX: 616910ffd42b344769367b3248aff52efa6f43d0f7c16023435734ebed6409a7e6278400e160a8cf88d2d1e63251df437319eb94158b453192f91308a67ffca80cf85a20e126ff32eebcee673acfcb729d991248c3f76ba8ad53f8216bb64cfebeba
+2019-06-25 16:58:37,650 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-25 16:58:37,650 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,650 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,650 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-25 16:58:37,650 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,651 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-25 16:58:37,652 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,656 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,657 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,657 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,657 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-25 16:58:37,658 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,659 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 16:58:37,661 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,662 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,663 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,665 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,665 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-25 16:58:37,666 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,668 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-25 16:58:37,669 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,669 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,669 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,682 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,682 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-25 16:58:37,682 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,683 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-25 16:58:37,683 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,699 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,700 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,700 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,700 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,701 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,719 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,719 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,719 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,719 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,720 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,726 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,726 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,727 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,727 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,727 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,727 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,728 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,728 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,728 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,728 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,729 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,729 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,729 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,729 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,729 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,730 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,730 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,730 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,730 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,731 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,732 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,732 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,732 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,732 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,752 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,752 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,753 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,753 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,753 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,755 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,757 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 16:58:37,758 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,759 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 16:58:37,759 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,759 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,760 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-06-25 16:58:37,760 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 16:58:37,760 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 16:58:37,760 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,760 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,760 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-06-25 16:58:37,761 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 16:58:37,761 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-06-25 16:58:37,761 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,761 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,761 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-06-25 16:58:37,761 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 16:58:37,761 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-06-25 16:58:37,761 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,762 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+
+2019-06-25 16:58:37,762 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-06-25 16:58:37,762 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-25 16:58:37,762 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-06-25 16:58:37,762 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x109d98518>>
+2019-06-25 16:58:37,764 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "./interactive_pyaci.py", line 217, in __event_handler
+    self.echo("Event")
+  File "./interactive_pyaci.py", line 314, in echo
+    self.process_stdout(op, msg["data"])
+TypeError: string indices must be integers
+

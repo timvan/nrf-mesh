@@ -1,0 +1,681 @@
+2019-06-25 17:46:10,757 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xeb\xfd\xe0\x12\x05\x0f\xbeFM\xd0\xfamW\xe6\x81\xe7\x00\xbdtO\xa3\x80g\xd0\xb5\xea\x95\xb8\xc0o \x8d\x8a\xd5-(rd\xd9\x86\x1f\x1b!\xdf\xf0\x99(u\x18\xbd\x95p\xf2\xf8U@\xb8fr\xf4\xbe\xd7\xa9\xc3\x8d\xfd\xa8SmQ\xae\x9e\x89\x90\x8b>\x07&\xa4\x13\xa55\xcbk\x87x\xd3\x83dW{\x96\xc6\xf5\xb3G')
+2019-06-25 17:46:10,758 - DEBUG - tty.usbmodem0006822145041: TX: 6169ebfde012050fbe464dd0fa6d57e681e700bd744fa38067d0b5ea95b8c06f208d8ad52d287264d9861f1b21dff099287518bd9570f2f85540b86672f4bed7a9c38dfda8536d51ae9e89908b3e0726a413a535cb6b8778d38364577b96c6f5b347
+2019-06-25 17:46:10,768 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-25 17:46:10,769 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,769 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,769 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,769 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-25 17:46:10,769 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-25 17:46:10,770 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,771 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,771 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,771 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,771 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-25 17:46:10,771 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,771 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 17:46:10,771 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,772 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,772 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,772 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,772 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,772 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-25 17:46:10,772 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-25 17:46:10,772 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,773 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,773 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,773 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,773 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-25 17:46:10,773 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,773 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-25 17:46:10,773 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,774 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,774 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,774 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,774 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,774 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,774 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,774 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,774 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,775 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,775 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,775 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,775 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,775 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,775 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,776 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,776 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,776 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,777 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,777 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,777 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,778 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,779 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,780 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,781 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,783 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,784 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,784 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,784 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,784 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,785 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,785 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,785 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,785 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,785 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,785 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,785 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,786 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,786 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:10,786 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,786 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,786 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-06-25 17:46:10,787 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:10,787 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:10,787 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,787 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,787 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-06-25 17:46:10,787 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 17:46:10,787 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-06-25 17:46:10,787 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,787 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,788 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-06-25 17:46:10,788 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 17:46:10,788 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-06-25 17:46:10,788 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,788 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:10,789 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-06-25 17:46:10,789 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-25 17:46:10,789 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-06-25 17:46:10,789 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:10,789 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:12,189 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-25 17:46:12,189 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-06-25 17:46:12,191 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-06-25 17:46:12,191 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:12,191 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:12,191 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:12,191 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:15,193 - DEBUG - tty.usbmodem0006822145041: Writing: 98 bytearray(b'')
+2019-06-25 17:46:15,193 - DEBUG - tty.usbmodem0006822145041: TX: 0162
+2019-06-25 17:46:15,195 - DEBUG - tty.usbmodem0006822145041: RX: 03846200
+2019-06-25 17:46:15,195 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 98, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:15,195 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:15,195 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x10e2223c8>>
+2019-06-25 17:46:15,196 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,403 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xbdm6\xe1+\xe2\xb3\x99\xeezYa\xe2\xf4\xf1\x08F\x89\x80\x99\xa7\xffq\xbf*g\xfe\xda\xfa\x98\xc7\x13>YS&\xb3\xe7\xbaV~\xff6<\xcf\xd2\xdbug`?|cI9\x8b\xa3\xf7H\xd5\xf0\xb2\x8e\xe0\x81\xe1\xc5\xe0Q\xf1\x9d\xf8!y\xc6l\xa8_W\xe8\x96UE\xdf\xb0]{N-\xa1\x98\xba\xfb\x95\xefs')
+2019-06-25 17:46:30,404 - DEBUG - tty.usbmodem0006822145041: TX: 6169bd6d36e12be2b399ee7a5961e2f4f10846898099a7ff71bf2a67fedafa98c7133e595326b3e7ba567eff363ccfd2db7567603f7c6349398ba3f748d5f0b28ee081e1c5e051f19df82179c66ca85f57e8965545dfb05d7b4e2da198bafb95ef73
+2019-06-25 17:46:30,415 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-25 17:46:30,416 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,416 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,416 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,417 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-25 17:46:30,417 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-25 17:46:30,418 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,418 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,418 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,418 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,418 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-25 17:46:30,418 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,419 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 17:46:30,419 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,419 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,419 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,419 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,419 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,419 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-25 17:46:30,419 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-25 17:46:30,420 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,420 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,420 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,420 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,420 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,420 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-25 17:46:30,420 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-25 17:46:30,420 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,421 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,421 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,421 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,421 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,421 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,422 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,422 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,422 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,422 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,422 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,422 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,422 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,423 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,423 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,423 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,423 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,423 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,423 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,423 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,424 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,424 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,424 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,424 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,424 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,424 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,424 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,424 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,425 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,425 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,425 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-25 17:46:30,425 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-25 17:46:30,425 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,426 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,426 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-06-25 17:46:30,426 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:30,426 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:30,426 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,426 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,426 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-06-25 17:46:30,426 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 17:46:30,427 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-06-25 17:46:30,427 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,427 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,428 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-06-25 17:46:30,428 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 17:46:30,428 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-06-25 17:46:30,428 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,428 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:30,428 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-06-25 17:46:30,428 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-25 17:46:30,428 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-06-25 17:46:30,429 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:30,429 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:31,691 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-25 17:46:31,692 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-06-25 17:46:31,693 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-06-25 17:46:31,693 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:31,693 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:31,693 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:31,694 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:33,663 - DEBUG - tty.usbmodem0006822145041: RX: 1ac09db77a0526b8734988639509c242d107d40001c8639509c2c2
+2019-06-25 17:46:33,664 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07'), 'rssi': -44, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2')}}
+2019-06-25 17:46:33,665 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:33,665 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:33,665 - INFO - tty.usbmodem0006822145041: Received UUID 9db77a0526b8734988639509c242d107 with RSSI: -44 dB
+2019-06-25 17:46:34,702 - DEBUG - tty.usbmodem0006822145041: Writing: 98 bytearray(b'')
+2019-06-25 17:46:34,707 - DEBUG - tty.usbmodem0006822145041: TX: 0162
+2019-06-25 17:46:34,720 - DEBUG - tty.usbmodem0006822145041: Writing: 99 bytearray(b'\x00\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12\x00\x00\x00\x00\x00\x00!\x00\x00\x00\x00')
+2019-06-25 17:46:34,726 - DEBUG - tty.usbmodem0006822145041: TX: 2d63009db77a0526b8734988639509c242d10718eed9c2a56add85049ffc3c59ad0e120000000000002100000000
+2019-06-25 17:46:34,744 - DEBUG - tty.usbmodem0006822145041: RX: 03846200
+2019-06-25 17:46:34,750 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 98, 'status': 0, 'data': bytearray(b'')}}
+2019-06-25 17:46:34,750 - INFO - tty.usbmodem0006822145041: Success
+2019-06-25 17:46:34,750 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,773 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,773 - DEBUG - tty.usbmodem0006822145041: RX: 0484630000
+2019-06-25 17:46:34,773 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 99, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-25 17:46:34,774 - INFO - tty.usbmodem0006822145041: Provision: {'context': 0}
+2019-06-25 17:46:34,774 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,785 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,815 - DEBUG - tty.usbmodem0006822145041: RX: 02c100
+2019-06-25 17:46:34,821 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkEstablished, data: {'context_id': 0}}
+2019-06-25 17:46:34,821 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,826 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,826 - INFO - tty.usbmodem0006822145041: Link established
+2019-06-25 17:46:34,827 - DEBUG - tty.usbmodem0006822145041: RX: 0bc300010001000000000000
+2019-06-25 17:46:34,827 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvCapsReceived, data: {'context_id': 0, 'num_elements': 1, 'public_key_type': 0, 'static_oob_types': 1, 'output_oob_size': 0, 'output_oob_actions': 0, 'input_oob_size': 0, 'input_oob_actions': 0}}
+2019-06-25 17:46:34,827 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,827 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,827 - INFO - tty.usbmodem0006822145041: Received capabilities
+2019-06-25 17:46:34,827 - INFO - tty.usbmodem0006822145041: Number of elements: 1
+2019-06-25 17:46:34,827 - DEBUG - tty.usbmodem0006822145041: Writing: 102 bytearray(b'\x00\x00\x00\x00')
+2019-06-25 17:46:34,827 - DEBUG - tty.usbmodem0006822145041: TX: 056600000000
+2019-06-25 17:46:34,829 - DEBUG - tty.usbmodem0006822145041: RX: 0484660000
+2019-06-25 17:46:34,829 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 102, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-25 17:46:34,829 - INFO - tty.usbmodem0006822145041: OobUse: {'context': 0}
+2019-06-25 17:46:34,829 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,830 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,996 - DEBUG - tty.usbmodem0006822145041: RX: 62c70016bca8e90f064b0441bede520fd0ae874a70b2f9686ecad005a2a1e234d50ded99ba15e13ce0dea7518321cabb7f8d963de6268309d6a35eeadec030a3b1a791604207a554244c255af174ac4fae736ad3455408ecf1ed5802c6e08c08433841
+2019-06-25 17:46:34,996 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvEcdhRequest, data: {'context_id': 0, 'peer_public': bytearray(b'\x16\xbc\xa8\xe9\x0f\x06K\x04A\xbe\xdeR\x0f\xd0\xae\x87Jp\xb2\xf9hn\xca\xd0\x05\xa2\xa1\xe24\xd5\r\xed\x99\xba\x15\xe1<\xe0\xde\xa7Q\x83!\xca\xbb\x7f\x8d\x96=\xe6&\x83\t\xd6\xa3^\xea\xde\xc00\xa3\xb1\xa7\x91'), 'node_private': bytearray(b'`B\x07\xa5T$L%Z\xf1t\xacO\xaesj\xd3ET\x08\xec\xf1\xedX\x02\xc6\xe0\x8c\x08C8A')}}
+2019-06-25 17:46:34,996 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:34,997 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:34,997 - INFO - tty.usbmodem0006822145041: ECDH request received
+2019-06-25 17:46:34,997 - DEBUG - tty.usbmodem0006822145041: Writing: 104 bytearray(b'\x00\xd9\xd6Pta\x9f\xa7\xfd\x05\xbd*\xe2\x7f\x96^\xa6\x97P\xd4\x06\xde\xe1\x9b\x93\xb2\x14)~\x1b\xa3\x11 ')
+2019-06-25 17:46:34,998 - DEBUG - tty.usbmodem0006822145041: TX: 226800d9d65074619fa7fd05bd2ae27f965ea69750d406dee19b93b214297e1ba31120
+2019-06-25 17:46:35,003 - DEBUG - tty.usbmodem0006822145041: RX: 0484680000
+2019-06-25 17:46:35,003 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 104, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-25 17:46:35,003 - INFO - tty.usbmodem0006822145041: EcdhSecret: {'context': 0}
+2019-06-25 17:46:35,003 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:35,004 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:37,356 - DEBUG - tty.usbmodem0006822145041: RX: 2cc50000000000000021000000e4cb16844e8155aff66658175afef0b718eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 17:46:37,356 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvComplete, data: {'context_id': 0, 'iv_index': 0, 'net_key_index': 0, 'address': 33, 'iv_update_flag': 0, 'key_refresh_flag': 0, 'device_key': bytearray(b'\xe4\xcb\x16\x84N\x81U\xaf\xf6fX\x17Z\xfe\xf0\xb7'), 'net_key': bytearray(b'\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')}}
+2019-06-25 17:46:37,357 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:37,357 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: Provisioning complete
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: 	Address(es): 0x21-0x21
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: 	Device key: e4cb16844e8155aff66658175afef0b7
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: 	Network key: 18eed9c2a56add85049ffc3c59ad0e12
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: Adding device key to subnet 0
+2019-06-25 17:46:37,357 - INFO - tty.usbmodem0006822145041: Adding publication address of root element
+2019-06-25 17:46:37,357 - DEBUG - tty.usbmodem0006822145041: Writing: 156 bytearray(b'!\x00\x00\x00\xe4\xcb\x16\x84N\x81U\xaf\xf6fX\x17Z\xfe\xf0\xb7')
+2019-06-25 17:46:37,358 - DEBUG - tty.usbmodem0006822145041: TX: 159c21000000e4cb16844e8155aff66658175afef0b7
+2019-06-25 17:46:37,358 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'!\x00')
+2019-06-25 17:46:37,358 - DEBUG - tty.usbmodem0006822145041: TX: 03a42100
+2019-06-25 17:46:37,361 - DEBUG - tty.usbmodem0006822145041: RX: 05849c000800
+2019-06-25 17:46:37,361 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-06-25 17:46:37,362 - INFO - tty.usbmodem0006822145041: DevkeyAdd: {'devkey_handle': 8}
+2019-06-25 17:46:37,362 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:37,362 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:37,362 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-06-25 17:46:37,362 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-25 17:46:37,363 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-06-25 17:46:37,363 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:37,363 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:37,455 - DEBUG - tty.usbmodem0006822145041: RX: 03c20000
+2019-06-25 17:46:37,455 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkClosed, data: {'context_id': 0, 'close_reason': 0}}
+2019-06-25 17:46:37,455 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.__event_handler of <__main__.Manager object at 0x108682320>>
+2019-06-25 17:46:37,456 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 227, in __event_handler
+    if event._opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'int' object has no attribute 'serialize'
+
+2019-06-25 17:46:37,456 - INFO - tty.usbmodem0006822145041: Provisioning link closed

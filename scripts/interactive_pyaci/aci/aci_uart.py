@@ -104,6 +104,7 @@ class Device(object):
             if cmd is None:
                 return
             cmd.logger = self.logger
+            self.logger.debug('Writing: %s %s', cmd._opcode, cmd._data)
             self.write_data(cmd.serialize())
             retval = self.__wait()
             if retval == None:
