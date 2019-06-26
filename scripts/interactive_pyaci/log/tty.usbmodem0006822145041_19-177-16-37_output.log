@@ -1,0 +1,34 @@
+2019-06-26 16:37:07,842 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'X\x8e\xb3vW;{M\xfa\xdc\xea\x94\xf6\xe2ND\xf0\x001k\xda\xecA\x1b\xa9R\xa5"\xb3\xc3Z\xb1\xa6\xc4\x80J\xff\xa5\xf0\xdc8\x11\x06b\xeb\xbd`\xed\xc9fv\xe0\xa8\x90\xfai[\xffY`VY2DF\xe64\xde[\x8c2\xe9\xaf\x18\x15\x83]D?\x1e\xa4\xdb\xcdZ\xfe\x00M\xb2q\xc9\xa0\x9f\xf1\xe3\xb4x')
+2019-06-26 16:37:07,842 - DEBUG - tty.usbmodem0006822145041: TX: 6169588eb376573b7b4dfadcea94f6e24e44f000316bdaec411ba952a522b3c35ab1a6c4804affa5f0dc38110662ebbd60edc96676e0a890fa695bff59605659324446e634de5b8c32e9af1815835d443f1ea4dbcd5afe004db271c9a09ff1e3b478
+2019-06-26 16:37:09,846 - INFO - tty.usbmodem0006822145041: cmd KeypairSet, timeout waiting for event
+2019-06-26 16:37:09,846 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-26 16:37:09,846 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-26 16:37:11,847 - INFO - tty.usbmodem0006822145041: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-06-26 16:37:11,848 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-26 16:37:11,848 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-26 16:37:13,849 - INFO - tty.usbmodem0006822145041: cmd SubnetAdd, timeout waiting for event
+2019-06-26 16:37:13,850 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-26 16:37:13,850 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-26 16:37:15,855 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-26 16:37:15,858 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-26 16:37:15,858 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-26 16:37:17,861 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-26 16:37:17,861 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-26 16:37:17,861 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-06-26 16:37:19,866 - INFO - tty.usbmodem0006822145041: cmd ScanStart, timeout waiting for event
+2019-06-26 16:37:25,029 - DEBUG - tty.usbmodem0006822145041: RX: 8484840384848484848403000384030084840300030003000300849f059200058497000000058497000100038461001ac09db77a0526b8734988639509c242d107cb0001c8639509c2c21ac09db77a0526b8734988639509c242d107b90001c8639509c2c21ac09db77a0526b8734988639509c242d107ca0001c8639509c2c21ac09db77a
+2019-06-26 16:37:25,029 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 132, 'status': 3, 'data': bytearray(b'\x84\x84\x84\x84\x84\x84\x03\x00\x03\x84\x03\x00\x84\x84\x03\x00\x03\x00\x03\x00\x03\x00\x84\x9f\x05\x92\x00\x05\x84\x97\x00\x00\x00\x05\x84\x97\x00\x01\x00\x03\x84a\x00\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\xcb\x00\x01\xc8c\x95\t\xc2\xc2\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\xb9\x00\x01\xc8c\x95\t\xc2\xc2\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\xca\x00\x01\xc8c\x95\t\xc2\xc2\x1a\xc0\x9d\xb7z')}}
+2019-06-26 16:37:25,030 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Interactive.__event_handler of <__main__.Interactive object at 0x10f26db70>>
+2019-06-26 16:37:25,032 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 88, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 188, in __event_handler
+    STATUS_CODE_LUT[event._data["status"]]["code"]))
+KeyError: 3
+
+2019-06-26 16:37:25,033 - DEBUG - tty.usbmodem0006822145041: RX: 0526b8734988
+2019-06-26 16:37:25,033 - ERROR - tty.usbmodem0006822145041: Unable to deserialize 0526b8734988
+2019-06-26 16:37:33,043 - DEBUG - tty.usbmodem0006822145041: RX: 639509c242d107ca0001c8639509c2c21ac09db77a0526b8734988639509c242d107ba0001c8639509c2c21ac09db77a0526b8734988639509c242d107cb0001c8639509c2c21ac09db77a0526b8734988639509c242d107ca0001c8639509c2c21ac09d
+2019-06-26 16:37:33,043 - ERROR - tty.usbmodem0006822145041: Unable to deserialize 639509c242d107ca0001c8639509c2c21ac09db77a0526b8734988639509c242d107ba0001c8639509c2c21ac09db77a0526b8734988639509c242d107cb0001c8639509c2c21ac09db77a0526b8734988639509c242d107ca0001c8639509c2c21ac09d
+2019-06-26 16:37:45,079 - DEBUG - tty.usbmodem0006822145041: RX: b77a0526b8734988639509c242d107be0001c8639509c2c21ac09db77a0526b8734988639509c242d107c60001c8639509c2c21ac09db77a0526b8734988639509c242d107ca0001c8639509c2c21ac09db77a0526b8734988639509c242d107bb0001c8639509c2c21ac09db77a0526b8734988639509c242d107bf0001c8639509c2c21ac09db77a0526b8734988639509c242d107c90001c8639509c2c21ac09db77a0526b8734988639509c242d107c00001c8639509
+2019-06-26 16:37:45,080 - ERROR - tty.usbmodem0006822145041: Unable to deserialize b77a0526b8734988639509c242d107be0001c8639509c2c21ac09db77a0526b8734988639509c242d107c60001c8639509c2c21ac09db77a0526b8734988639509c242d107ca0001c8639509c2c21ac09db77a0526b8734988639509c242d107bb0001c8639509c2c21ac09db77a0526b8734988639509c242d107bf0001c8639509c2c21ac09db77a0526b8734988639509c242d107c90001c8639509c2c21ac09db77a0526b8734988639509c242d107c00001c8639509

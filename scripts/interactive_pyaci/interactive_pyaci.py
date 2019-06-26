@@ -72,7 +72,7 @@ USAGE_STRING = \
 USAGE_STRING += colorama.Style.RESET_ALL
 
 FILE_LOG_FORMAT = "%(asctime)s - %(levelname)s - %(name)s: %(message)s"
-STREAM_LOG_FORMAT = "%(asctime)s - %(levelname)s - %(name)s: %(message)s"
+STREAM_LOG_FORMAT = "PYACILOG %(asctime)s - %(levelname)s - %(name)s: %(message)s"
 COLOR_LIST = [colorama.Fore.MAGENTA, colorama.Fore.CYAN,
               colorama.Fore.GREEN, colorama.Fore.YELLOW,
               colorama.Fore.BLUE, colorama.Fore.RED]
@@ -207,6 +207,7 @@ class Manager(object):
         self.n = 0
         self.setup_received = False;
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
+        self.genericClients = []
 
     def run(self):
         while self.keep_running:
@@ -224,14 +225,16 @@ class Manager(object):
                     "rssi": rssi
                     })
 
-        if event._opcode == event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
+
+        if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             message = access.AccessMessage(event)
-            opcode = message.opcode_raw
-            if opcode == ConfigurationClient._COMPOSITION_DATA_STATUS:
+            opcode = message.opcode_raw.hex()
+        
+
+            if opcode == str(ConfigurationClient._COMPOSITION_DATA_STATUS):
                 data = message.data[1:]
                 data = mt.CompositionData().unpack(data)
-                op = "CompositionDataStatus"
-                self.process_stdout(op, data)
+                self.compositionDataStatus(data)
 
 
     def process_stdout(self, op, data=None):
@@ -253,6 +256,9 @@ class Manager(object):
             self.process_stdout("running")
             self.exit()
             return
+        
+        if(msg == "\n"):
+            return
 
         try:
             msg = json.loads(msg)
@@ -262,6 +268,9 @@ class Manager(object):
             return
         
         op = msg["op"]
+        
+        if op == "Echo":
+            self.echo(msg)
 
         if op == "Setup":
             self.setup()
@@ -272,14 +281,31 @@ class Manager(object):
         if op == "ProvisionScanStart":
             self.provisionScanStart()
 
+        if op == "ProvisionScanStop":
+            self.provisionScanStop()
+
         if op == "Provision":
             self.provision()
         
         if op == "Configure":
             self.configure()
 
-        if op == "Echo":
-            self.echo(msg)
+        if op == "AddAppKeys":
+            self.addAppKeys()
+
+        if op == "AddGroupAddress":
+            self.addGroupAddress()
+
+        if op == "AddGenericModels":            
+            self.addGenericModels()
+
+        if op == "GenericClientSet":            
+            self.genericClientSet(value = msg["data"]["value"])
+
+
+    def echo(self, msg):
+        op = "EchoRsp"
+        self.process_stdout(op, msg["data"])
 
     def setup(self):
         if not self.setup_received:
@@ -293,6 +319,10 @@ class Manager(object):
 
     def provisionScanStart(self):
         self.p.scan_start()
+
+    def provisionScanStop(self):
+        self.p.scan_stop()
+
 
     def newUnProvisionedDevice(self, data):
         op = "NewUnProvisionedDevice";
@@ -313,10 +343,45 @@ class Manager(object):
         self.iaci.model_add(self.cc)
         self.cc.publish_set(8, 0)
         self.cc.composition_data_get()
+        self.cc.publish_set(8, 0)
+        self.cc.appkey_add(0)
 
-    def echo(self, msg):
-        op = "EchoRsp"
-        self.process_stdout(op, msg["data"])
+    def compositionDataStatus(self, data):
+        op = "CompositionDataStatus"
+        self.process_stdout(op, data)
+        
+    def addAppKeys(self, node=0):
+
+        for e, element in enumerate(self.db.nodes[node].elements):
+            for model in element.models:
+                if str(model.model_id) == "1000":
+                    self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1000))
+                if str(model.model_id) == "1001":
+                    self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1001))
+                
+                time.sleep(1)
+
+    def addGroupAddress(self, node=0, groupAddrId=0):
+        self.iaci.send(cmd.AddrPublicationAdd(self.db.groups[groupAddrId].address))
+
+        for e, element in enumerate(self.db.nodes[node].elements):
+            for model in element.models:
+                if str(model.model_id) == "1000":
+                    self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))
+                
+                time.sleep(1)
+
+    def addGenericModels(self):
+        self.gc = GenericOnOffClient()
+        self.iaci.model_add(self.gc)
+        # self.genericClients.append(gc)
+    
+    def genericClientSet(self, value, id=0):
+        # self.gc = self.genericClients[id]
+        self.gc.publish_set(0, 1)
+        # print("Setting {}".format(value))
+        self.gc.set(value)
+
 
 def start_ipython(options):
     comports = options.devices

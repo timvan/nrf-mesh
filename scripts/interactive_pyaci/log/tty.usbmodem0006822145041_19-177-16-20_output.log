@@ -1,0 +1,25 @@
+2019-06-26 16:20:29,934 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b"\xb7`\xc8 \xae\xe4\x0c\xf5y.\x93)\xe5\x88\x04$\x95\x8a\x0bW4\xee\x04g{\x88\x99\xbd\xfdp\x96K\xde\xbff\x9d\xe9o\x8a\xcb(y\xc4\xa0\'LG\xc1=\xa1\x0e6\x83\x02\xa6\x1c\x90\x1d?\xc9\xf1M\x91pd\xa90m\x002<\x02\xf9U\xde\xa0d\x07\xea*\xf5dIWWf\x98\x985\x88\xc6\x15\xa0\xfb\x07\x15")
+2019-06-26 16:20:29,935 - DEBUG - tty.usbmodem0006822145041.GenericOnOffClient: Sending opcode: 8202, data: 0100
+2019-06-26 16:20:29,935 - DEBUG - tty.usbmodem0006822145041: TX: 6169b760c820aee40cf5792e9329e5880424958a0b5734ee04677b8899bdfd70964bdebf669de96f8acb2879c4a0274c47c13da10e368302a61c901d3fc9f14d917064a9306d00323c02f955dea06407ea2af5644957576698983588c615a0fb0715
+2019-06-26 16:20:31,939 - INFO - tty.usbmodem0006822145041: cmd KeypairSet, timeout waiting for event
+2019-06-26 16:20:31,939 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-26 16:20:31,940 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-26 16:20:33,944 - INFO - tty.usbmodem0006822145041: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-06-26 16:20:33,945 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-26 16:20:33,945 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-26 16:20:35,950 - INFO - tty.usbmodem0006822145041: cmd SubnetAdd, timeout waiting for event
+2019-06-26 16:20:35,950 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-26 16:20:35,950 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-26 16:20:37,955 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-26 16:20:37,956 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-26 16:20:37,956 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-26 16:20:39,961 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-26 16:20:39,961 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x00\x00\x01\x00\x01\x00\x08\x00\x00\x00\x82\x02\x01\x00')
+2019-06-26 16:20:39,961 - DEBUG - tty.usbmodem0006822145041: TX: 0fab0000010001000800000082020100
+2019-06-26 16:20:41,966 - INFO - tty.usbmodem0006822145041: cmd PacketSend, timeout waiting for event
+2019-06-26 16:20:41,966 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-26 16:20:41,967 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-06-26 16:20:43,971 - INFO - tty.usbmodem0006822145041: cmd ScanStart, timeout waiting for event
+2019-06-26 16:20:46,622 - DEBUG - tty.usbmodem0006822145041: RX: 848403008403008403840084038400840384008403840084848484000300038484840300840300059200000584970000000584970001000384ab8e038461001ac09db77a0526b8734988639509c242d107cc0001c8639509c2c21ac09db77a0526b8734988639509c242d107ce0001c8639509c2c21ac09db77a0526b8734988639509c242
+2019-06-26 16:20:46,622 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 3, 'status': 0, 'data': bytearray(b'\x84\x03\x00\x84\x03\x84\x00\x84\x03\x84\x00\x84\x03\x84\x00\x84\x03\x84\x00\x84\x84\x84\x84\x00\x03\x00\x03\x84\x84\x84\x03\x00\x84\x03\x00\x05\x92\x00\x00\x05\x84\x97\x00\x00\x00\x05\x84\x97\x00\x01\x00\x03\x84\xab\x8e\x03\x84a\x00\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\xcc\x00\x01\xc8c\x95\t\xc2\xc2\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\xce\x00\x01\xc8c\x95\t\xc2\xc2\x1a\xc0\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B')}}
+2019-06-26 16:20:46,622 - INFO - tty.usbmodem0006822145041: Success

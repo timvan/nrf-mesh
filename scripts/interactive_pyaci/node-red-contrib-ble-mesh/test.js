@@ -1,50 +1,18 @@
-const { spawn } = require('child_process');
-function run() {
+var PyAci = require('./PyAci')
+var pyaci = new PyAci().getInstance();
 
-    const process = spawn('python', ['--version']);
+process.on('SIGINT', () => {pyaci.exit()});
 
-    process.stdout.on(
-      'data', (data) => {console.log(data.toString())}
-    );
-  
-    process.stderr.on(
-      'err', (err) => {console.log(err.toString())}
-    );
+pyaci.setup();
 
-    
-    const pyaci = spawn('python'
-        , ['stdio-test.py']
-        , {stdio: ['pipe', 'pipe', 2]}
-        
-    );
+const bleNodes = [];
+const unprovisionedBleNodes = [];
 
-    pyaci.stdout.on(
-      'data', (data) => {console.log(data.toString())}
-    );
-
-    pyaci.stdout.on('close', () => {
-        console.log(`stdout close`);
-    });
-
-    pyaci.on('exit', (code, signal) => {
-        console.log(`pyaci exited ${code} ${signal}`);
-    });
-
-    pyaci.stdin.write("echo\n");
-
-    console.log("fin")
-    console.log(pyaci.connected);
-
-    // pyaci.kill()
-
+function onDiscover(data) {
+    unprovisionedBleNodes.push(data);
+    console.log(`Nodes ${unprovisionedBleNodes}`, unprovisionedBleNodes)
 }
 
-(() => {
-    try {
-        run()
-        // process.exit(0)
-    } catch (e) {
-        console.error(e.stack);
-        process.exit(1);
-    }
-})();
+setTimeout(() => {
+    pyaci.provisionScanStart(onDiscover);
+}, 10000);

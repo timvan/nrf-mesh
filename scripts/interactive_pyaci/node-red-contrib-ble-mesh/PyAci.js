@@ -9,7 +9,7 @@ class PyAci {
         }
 
         this.child = cp.spawn('python'
-            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "0"]
+            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "4"]
             , {
                 cwd: this.pyscript.working_dir,
                 stdio: ['pipe', 'pipe', 2]
@@ -27,6 +27,10 @@ class PyAci {
                 this.handle_message(m);  
             })
         });
+
+        /* callbacks */
+        this.onDiscover;
+        this.onCompositionDataStatus;
     };
 
     /* COMMANDS */
@@ -57,7 +61,9 @@ class PyAci {
         });
     };
 
-    provisionScanStart() {
+    provisionScanStart(onDiscoverCb) {
+        this.onDiscover = onDiscoverCb;
+        
         this.send({
             op: "ProvisionScanStart"
         });
@@ -75,19 +81,56 @@ class PyAci {
         });
     }
 
-    configure() {
+    configure(onCompositionDataStatusCb) {
+        this.onCompositionDataStatus = onCompositionDataStatusCb;
         this.send({
             op: "Configure",
         });
-
     }
 
+    addAppKeys() {
+        this.send({
+            op: "AddAppKeys",
+        });
+    }
+
+    addGroupAddress() {
+        this.send({
+            op: "AddGroupAddress",
+        });
+    }
+
+    addGenericModels() {
+        this.send({
+            op: "AddGenericModels",
+        });
+    }
+
+    genericClientSet(onoff) {
+        this.send({
+            op: "GenericClientSet",
+            data : {
+                value: onoff
+            }
+        });
+    }
+    
     /* RECEIVED */
 
     handle_message(msg_in) {
 
-        var msg = JSON.parse(msg_in);
-        var op = msg.op;
+        if("PYA" == msg_in.split(0,3)){
+            // console.log(msg_in);
+            return;
+        }
+
+        try {
+            var msg = JSON.parse(msg_in);
+            var op = msg.op;
+        } catch(err) {
+            console.log("Failed passing message: ", msg_in)
+            return;
+        }
 
         if(op == "EchoRsp"){
             this.echoRsp(msg)
@@ -104,6 +147,10 @@ class PyAci {
         if(op == "ProvisionComplete"){
             this.provisionComplete();
         }
+
+        if(op == "CompositionDataStatus"){
+            this.compositionDataStatus(msg.data);
+        }
     }
 
     echoRsp(msg) {
@@ -116,27 +163,34 @@ class PyAci {
     }
 
     newUnProvisionedDevice(msg) {
-        var data = msg.data.toString();
-        console.log(`NewUnProvisionedDevice: ${data}`);
+        var data = msg.data;
+        console.log(`NewUnProvisionedDevice: ${data}`, data.toString());
+        this.onDiscover(data);
     }
 
     provisionComplete() {
         console.log(`ProvisionComplete`);
-        pyaci.configure();
+    }
+
+    compositionDataStatus(data) {
+        console.log(`CompositionDataStatus: ${data}`, data.toString());
+        this.onCompositionDataStatus(data);
     }
 }
 
+class Singleton {
 
+    constructor() {
+        if (!Singleton.instance) {
+            Singleton.instance = new PyAci();
+        }
+    }
+  
+    getInstance() {
+        return Singleton.instance;
+    }
+  
+  }
+  
 
-pyaci = new PyAci();
-process.on('exit', () => {pyaci.exit()});
-process.on('SIGINT', () => {pyaci.exit()});
-pyaci.echo("hi")
-pyaci.setup();
-setTimeout(() => {
-    pyaci.provisionScanStart();
-    setTimeout(() => {
-        pyaci.provision();
-    }, 3000);
-}, 3000);
-// pyaci.provision();
+module.exports = Singleton;

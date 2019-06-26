@@ -1,0 +1,39 @@
+process.on('exit', () => {pyaci.exit()});
+process.on('SIGINT', () => {pyaci.exit()});
+pyaci.echo("hi")
+pyaci.setup();
+setTimeout(() => {
+    pyaci.provisionScanStart();
+    setTimeout(() => {
+        pyaci.provision();
+        setTimeout(() => {
+            pyaci.configure();
+            setTimeout(() => {
+                pyaci.addAppKeys();
+                setTimeout(() => {
+                    pyaci.addGroupAddress();
+                    setTimeout(() => {
+                        pyaci.addGenericModels();
+                        var onoff = true;
+
+                        var i = 0;
+                        while(true){
+                            if(i >= 100000000){
+                                pyaci.genericClientSet(onoff);
+                                onoff = !onoff;
+                                i = 0;
+                            }
+                            i++;
+                        }
+
+                    }, 10000);
+                }, 10000);
+            }, 10000);
+        }, 10000);
+    }, 10000);
+}, 3000);
+// pyaci.provision();
+
+
+
+
