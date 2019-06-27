@@ -22,8 +22,6 @@ class PyAci {
         this.child.stdout.on('data', (data) => {
             var msgs = data.toString().trim().split("\n");
             msgs.forEach((m) => {
-                console.log(`[BleMesh] RX${this.messages_received} ${m}`);
-                this.messages_received += 1;
                 this.handle_message(m);  
             })
         });
@@ -98,15 +96,28 @@ class PyAci {
         });
     }
 
-    addGroupAddress() {
+    addGroupSubscriptionAddresses() {
         this.send({
-            op: "AddGroupAddress",
+            op: "AddGroupSubscriptionAddresses",
         });
     }
 
-    addGenericModels() {
+    addGroupPublicationAddresses() {
         this.send({
-            op: "AddGenericModels",
+            op: "AddGroupPublicationAddresses",
+        });
+    }
+
+    addGenericClientModel() {
+        this.send({
+            op: "AddGenericClientModel",
+        });
+    }
+
+    addGenericServerModel(onGenericOnOffServerSetUnackCb) {
+        this.onGenericOnOffServerSetUnack = onGenericOnOffServerSetUnackCb;
+        this.send({
+            op: "AddGenericServerModel",
         });
     }
 
@@ -131,8 +142,10 @@ class PyAci {
         try {
             var msg = JSON.parse(msg_in);
             var op = msg.op;
+            console.log(`[BleMesh] RX${this.messages_received} ${msg_in}`);
+            this.messages_received += 1;
         } catch(err) {
-            // console.log("Failed passing message: ", msg_in)
+            console.log("Failed passing message: ", msg_in)
             return;
         }
 
@@ -153,7 +166,11 @@ class PyAci {
         }
 
         if(op == "CompositionDataStatus"){
-            this.compositionDataStatus(msg.data);
+            this.compositionDataStatus(msg);
+        }
+
+        if(op == "GenericOnOffServerSetUnack"){
+            this.genericOnOffServerSetUnack(msg);
         }
     }
 
@@ -176,9 +193,16 @@ class PyAci {
         console.log(`ProvisionComplete`);
     }
 
-    compositionDataStatus(data) {
-        console.log(`CompositionDataStatus: ${data}`, data.toString());
+    compositionDataStatus(msg) {
+        var data = msg.data
+        console.log(`CompositionDataStatus: ${data}`);
         this.onCompositionDataStatus(data);
+    }
+
+    genericOnOffServerSetUnack(msg) {
+        var data = msg.data;
+        console.log(`GenericOnOffServerSetUnack: ${data}`);
+        this.onGenericOnOffServerSetUnack(data)
     }
 }
 

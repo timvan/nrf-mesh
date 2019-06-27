@@ -208,7 +208,6 @@ class Manager(object):
         self.n = 0
         self.setup_received = False;
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
-        self.genericClients = []
 
     def run(self):
         while self.keep_running:
@@ -295,11 +294,17 @@ class Manager(object):
         if op == "AddAppKeys":
             self.addAppKeys()
 
-        if op == "AddGroupAddress":
-            self.addGroupAddress()
+        if op == "AddGroupSubscriptionAddresses":
+            self.addGroupSubscriptionAddresses()
 
-        if op == "AddGenericModels":            
-            self.addGenericModels()
+        if op == "AddGroupPublicationAddresses":
+            self.addGroupPublicationAddresses()
+
+        if op == "AddGenericClientModel":            
+            self.addGenericClientModel()
+        
+        if op == "AddGenericServerModel":            
+            self.addGenericServerModel()
 
         if op == "GenericClientSet":            
             self.genericClientSet(value = msg["data"]["value"])
@@ -318,7 +323,6 @@ class Manager(object):
             self.process_stdout("SetupRsp")
     
     def exit(self):
-        print("Exitititing")
         self.keep_running = False
         raise SystemExit(0)
 
@@ -355,7 +359,6 @@ class Manager(object):
         self.process_stdout(op, data)
         
     def addAppKeys(self, node=0):
-
         for e, element in enumerate(self.db.nodes[node].elements):
             for model in element.models:
                 if str(model.model_id) == "1000":
@@ -365,9 +368,8 @@ class Manager(object):
                 
                 time.sleep(1)
 
-    def addGroupAddress(self, node=0, groupAddrId=0):
+    def addGroupSubscriptionAddresses(self, node=0, groupAddrId=0):
         self.iaci.send(cmd.AddrPublicationAdd(self.db.groups[groupAddrId].address))
-
         for e, element in enumerate(self.db.nodes[node].elements):
             for model in element.models:
                 if str(model.model_id) == "1000":
@@ -375,16 +377,31 @@ class Manager(object):
                 
                 time.sleep(1)
 
-    def addGenericModels(self):
+    def addGroupPublicationAddresses(self, node=0, groupAddrId=0):
+        self.iaci.send(cmd.AddrSubscriptionAdd(self.db.groups[groupAddrId].address))
+
+        for e, element in enumerate(self.db.nodes[node].elements):
+            for model in element.models:
+                if str(model.model_id) == "1001":
+                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
+                time.sleep(1)
+
+    def addGenericClientModel(self):
         self.gc = GenericOnOffClient()
         self.iaci.model_add(self.gc)
-        # self.genericClients.append(gc)
     
-    def genericClientSet(self, value, id=0):
-        # self.gc = self.genericClients[id]
+    def genericClientSet(self, value):
         self.gc.publish_set(0, 0)
-        # print("Setting {}".format(value))
         self.gc.set(value)
+
+    def addGenericServerModel(self):
+        self.gs = GenericOnOffServer()
+        self.gs.set_generic_on_off_server_set_unack_cb(self.genericOnOffServerSetUnackEvent)
+        self.iaci.model_add(self.gs)
+
+    def genericOnOffServerSetUnackEvent(self, message):
+        value = message[1]
+        self.process_stdout("GenericOnOffServerSetUnack", value)
 
 
 def start_ipython(options):

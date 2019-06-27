@@ -86,11 +86,12 @@ class GenericOnOffServer(Model):
     
     def __init__(self):
         self.opcodes = [
-            (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_event_handler),
-            (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_event_handler),
+            (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_set_unack_event_handler),
+            (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_set_unack_event_handler),
             (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_event_handler),
             (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_server_event_handler)]
         self.__tid = 0
+        self.__generic_on_off_server_set_unack_cb = None
         super(GenericOnOffServer, self).__init__(self.opcodes)
     
     @property
@@ -103,3 +104,13 @@ class GenericOnOffServer(Model):
 
     def __generic_on_off_server_event_handler(self, opcode, message):
         self.logger.info("Server Event {} {}".format(opcode, message.data))
+
+    def __generic_on_off_server_set_unack_event_handler(self, opcode, message):
+        try:
+            self.__generic_on_off_server_set_unack_cb(message.data.hex())
+        except:
+            self.logger.error("Failed trying generic on off server set unack callback: ", self.__generic_on_off_server_set_unack_cb)
+
+    def set_generic_on_off_server_set_unack_cb(self, cb):
+        self.__generic_on_off_server_set_unack_cb = cb
+    

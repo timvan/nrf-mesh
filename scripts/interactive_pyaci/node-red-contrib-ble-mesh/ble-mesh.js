@@ -13,7 +13,7 @@ function onCompositionDataStatus(data) {
     console.log(`Node configuration `, JSON.stringify(data));
     pyaci.addAppKeys();
     setTimeout(() => {
-        pyaci.addGroupAddress();
+        pyaci.addGroupPublicationAddresses();
     }, 10000);
 }
 
@@ -25,26 +25,35 @@ function onDiscover(data) {
     
     setTimeout(() => {
         pyaci.configure(onCompositionDataStatus);
-    }, 10000);
+    }, 20000);
 };
 
 setTimeout(() => {
     pyaci.provisionScanStart(onDiscover);
 }, 10000);
 
+/*************************************/
+/*                                   */
+/*************************************/
+
 module.exports = function(RED) {
+
+    /*************************************/
+    /* OUTPUT NODE                       */
+    /*************************************/
 
     function BleMeshNodeOutput(config) {
 
         RED.nodes.createNode(this, config);
 
+        var node = this;
         // this.localName = config.localName;
         // this.uuid = config.uuid;
         // this.pin = config.pin;
 
-        pyaci.addGenericModels();
+        pyaci.addGenericClientModel();
 
-        this.on('input', function(msg) {    
+        node.on('input', function(msg) {    
             
             console.log(msg);
             var value = msg.payload.value;
@@ -59,7 +68,57 @@ module.exports = function(RED) {
             pyaci.genericClientSet(value)
         });
     }
-    RED.nodes.registerType("ble-mesh",BleMeshNodeOutput);
+    RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
+
+    /*************************************/
+    /* INPUT NODE                        */
+    /*************************************/
+
+    function BleMeshNodeInput(config) {
+
+        RED.nodes.createNode(this, config);
+
+        var node = this;
+        // this.localName = config.localName;
+        // this.uuid = config.uuid;
+        // this.pin = config.pin;
+
+        this.onGenericOnOffServerSetUnack = function(data) {
+            node.send({
+                payload: data
+            });
+        };
+
+        pyaci.addGenericServerModel(this.onGenericOnOffServerSetUnack);
+
+        node.on('input', function(msg) {    
+            
+            console.log(msg);
+            // var value = msg.payload.value;
+
+            // pyaci.genericClientSet(value)
+        });
+
+        pyaci.set
+    }
+
+    RED.nodes.registerType("ble-mesh-input", BleMeshNodeInput);
+
+    /*************************************/
+    /* GENERIC NODE                      */
+    /*************************************/
+
+    function BleMeshNode(config) {
+
+        RED.nodes.createNode(this, config);
+    }
+
+    RED.nodes.registerType("ble-mesh", BleMeshNode);
+
+
+    /*************************************/
+    /* NODE-RED                          */
+    /*************************************/
 
     RED.events.on('runtime-event', (ev) => {
         RED.log.info(`[BleMesh] <runtime-event> ${JSON.stringify(ev)}`);

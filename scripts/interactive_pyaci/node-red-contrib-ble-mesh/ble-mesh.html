@@ -1,5 +1,7 @@
+<!-- OUTPUT -->
+
 <script type="text/javascript">
-    RED.nodes.registerType('ble-mesh',{
+    RED.nodes.registerType('ble-mesh-output',{
         category: 'output',
         color: '#4d94ff',
         defaults: {
@@ -9,6 +11,82 @@
         // outputs:1,
         icon: 'bluetooth.png',
         align: 'right',
+        label: function() {
+            return this.name||"ble-mesh-output";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ble-mesh-output">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-random"></i> BLE</label>
+        <input type="text" id="node-input-name" placeholder="Device">
+    </div>
+
+    
+</script>
+
+<script type="text/x-red" data-help-name="ble-mesh-output">
+    <p>A ble-mesh ouptut node</p>
+</script>
+
+<!-- INPUT -->
+
+<script type="text/javascript">
+    RED.nodes.registerType('ble-mesh-input',{
+        category: 'input',
+        color: '#4d94ff',
+        defaults: {
+            name: {value:""}
+        },
+        // inputs:1,
+        outputs:1,
+        icon: 'bluetooth.png',
+        align: 'left',
+        label: function() {
+            return this.name||"ble-mesh-input";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ble-mesh-input">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-random"></i> BLE</label>
+        <input type="text" id="node-input-name" placeholder="Device">
+    </div>
+
+    
+</script>
+
+<script type="text/x-red" data-help-name="ble-mesh-input">
+    <p>A ble-mesh input node</p>
+</script>
+
+
+
+<!-- GENERIC -->
+
+<script type="text/javascript">
+    RED.nodes.registerType('ble-mesh',{
+        category: 'input',
+        color: '#4d94ff',
+        defaults: {
+            name: {value:""}
+        },
+        // inputs:1,
+        // outputs:1,
+        icon: 'bluetooth.png',
+        align: 'left',
         label: function() {
             return this.name||"ble-mesh";
         }

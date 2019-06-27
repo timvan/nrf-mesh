@@ -244,6 +244,21 @@ static void button_event_handler(uint32_t button_number)
                                                     &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
             hal_led_pin_set(BSP_LED_1, set_params.on_off);
             break;
+        case 4:
+            /* Clear all the states to reset the node. */
+            if (mesh_stack_is_device_provisioned())
+            {
+#if MESH_FEATURE_GATT_PROXY_ENABLED
+                (void) proxy_stop();
+#endif
+                mesh_stack_config_clear();
+                node_reset();
+            }
+            else
+            {
+                __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "The device is unprovisioned. Resetting has no effect.\n");
+            }
+            break;
     }
 
     switch (status)
@@ -277,7 +292,7 @@ static void button_event_handler(uint32_t button_number)
 
 static void rtt_input_handler(int key)
 {
-    if (key >= '0' && key <= '3')
+    if (key >= '0' && key <= '4')
     {
         uint32_t button_number = key - '0';
         button_event_handler(button_number);

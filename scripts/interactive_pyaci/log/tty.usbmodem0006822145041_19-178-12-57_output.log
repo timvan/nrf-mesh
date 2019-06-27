@@ -1,0 +1,40 @@
+2019-06-27 12:57:57,333 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\x99\xc3\xac\x16\xbb\xf3\x00U\x90\xe1\xc9>d\xd1\xae\nW\xaa\xfb\xd2V\xe3|\xd1\x0e+\x01 F\x96\xed\x03D>-\xb0\xd0M>\x16\xb3\x1c\x13\xbe\x9c\xa3\x8e\x92\xec*\x1er\x03\xf6 \x809;k\xe3\xc9\xe4Q\x04W\xfeL\x13\x10\xd2\x1d#\xbf\xb2\x10$\x13\x90<\xd5T\xc9q\xfc \x84z\xe7\xe6\x96\x1a\xbe.\xb3\xd7\x9b')
+2019-06-27 12:57:57,334 - DEBUG - tty.usbmodem0006822145041: TX: 616999c3ac16bbf3005590e1c93e64d1ae0a57aafbd256e37cd10e2b01204696ed03443e2db0d04d3e16b31c13be9ca38e92ec2a1e7203f62080393b6be3c9e4510457fe4c1310d21d23bfb2102413903cd554c971fc20847ae7e6961abe2eb3d79b
+2019-06-27 12:57:57,343 - DEBUG - tty.usbmodem0006822145041: RX: 03538403
+2019-06-27 12:57:57,344 - ERROR - tty.usbmodem0006822145041: Unable to deserialize 03538403
+2019-06-27 12:57:57,344 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-27 12:57:57,344 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-27 12:57:57,345 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-27 12:57:57,345 - DEBUG - tty.usbmodem0006822145041: RX: 00
+2019-06-27 12:57:57,346 - ERROR - tty.usbmodem0006822145041: Invalid packet: bytearray(b'\x00')
+2019-06-27 12:57:57,346 - DEBUG - tty.usbmodem0006822145041: RX: 00
+2019-06-27 12:57:57,347 - ERROR - tty.usbmodem0006822145041: Invalid packet: bytearray(b'\x00')
+2019-06-27 12:57:57,347 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-27 12:57:57,347 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-27 12:57:57,347 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-27 12:57:57,348 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-27 12:57:57,349 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-27 12:57:57,349 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-27 12:57:57,350 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-27 12:57:57,350 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-06-27 12:57:57,350 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-06-27 12:57:57,351 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-06-27 12:57:57,351 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-27 12:57:57,351 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-27 12:57:57,355 - DEBUG - tty.usbmodem0006822145041: RX: 03810397
+2019-06-27 12:57:57,356 - ERROR - tty.usbmodem0006822145041: Exception with packet 03810397
+2019-06-27 12:57:57,358 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 171, in run
+    parsed_packet = event_deserialize(pkt)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_evt.py", line 793, in event_deserialize
+    return EVENT_LUT[data[1]](data[2:])
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_evt.py", line 71, in __init__
+    __data["data_credit_available"], = struct.unpack("<B", raw_data[2:3])
+struct.error: unpack requires a buffer of 1 bytes
+
+2019-06-27 12:57:59,353 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-27 12:57:59,354 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-27 12:57:59,354 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-27 12:58:01,356 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-06-27 12:58:05,087 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-27 12:58:05,087 - DEBUG - tty.usbmodem0006822145041: TX: 0161
