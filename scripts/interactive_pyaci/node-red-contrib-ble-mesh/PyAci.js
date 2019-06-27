@@ -43,6 +43,10 @@ class PyAci {
         this.child.stdin.write(msg + '\n');
     };
 
+    kill() {
+        this.child.kill();
+    }
+
     exit() {
         this.send({op: "Exit"})
     }
@@ -128,7 +132,7 @@ class PyAci {
             var msg = JSON.parse(msg_in);
             var op = msg.op;
         } catch(err) {
-            console.log("Failed passing message: ", msg_in)
+            // console.log("Failed passing message: ", msg_in)
             return;
         }
 

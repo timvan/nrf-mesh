@@ -1,7 +1,8 @@
 var PyAci = require('./PyAci')
 var pyaci = new PyAci().getInstance();
 
-process.on('SIGINT', () => {pyaci.exit()});
+var p = require('process')
+p.on('SIGINT', () => {pyaci.kill()});
 
 pyaci.setup();
 

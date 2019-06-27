@@ -41,6 +41,7 @@ import os
 import colorama
 import time
 import json
+import subprocess
 
 from argparse import ArgumentParser
 import traitlets.config
@@ -251,6 +252,7 @@ class Manager(object):
 
     def process_stdin(self):
         msg = sys.stdin.readline().strip("\n")
+        print("got ", msg)
 
         if(msg == "check"):
             self.process_stdout("running")
@@ -276,7 +278,7 @@ class Manager(object):
             self.setup()
         
         if op == "Exit":
-            self.keep_running = False
+            self.exit()
 
         if op == "ProvisionScanStart":
             self.provisionScanStart()
@@ -309,13 +311,16 @@ class Manager(object):
 
     def setup(self):
         if not self.setup_received:
+            subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
             self.db = MeshDB(self.db_path)
             self.p = Provisioner(self.iaci, self.db)
             self.setup_received = True;
             self.process_stdout("SetupRsp")
     
     def exit(self):
+        print("Exitititing")
         self.keep_running = False
+        raise SystemExit(0)
 
     def provisionScanStart(self):
         self.p.scan_start()
@@ -343,7 +348,6 @@ class Manager(object):
         self.iaci.model_add(self.cc)
         self.cc.publish_set(8, 0)
         self.cc.composition_data_get()
-        self.cc.publish_set(8, 0)
         self.cc.appkey_add(0)
 
     def compositionDataStatus(self, data):
@@ -378,7 +382,7 @@ class Manager(object):
     
     def genericClientSet(self, value, id=0):
         # self.gc = self.genericClients[id]
-        self.gc.publish_set(0, 1)
+        self.gc.publish_set(0, 0)
         # print("Setting {}".format(value))
         self.gc.set(value)
 
