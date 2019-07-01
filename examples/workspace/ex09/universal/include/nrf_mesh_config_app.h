@@ -86,6 +86,8 @@
  */
 #define ACCESS_DEFAULT_TTL (NRF_MESH_TTL_MAX)
 
+#define UNIVERSAL_ELEMENET_COUNT 13
+
 /**
  * The number of models in the application.
  *
@@ -94,10 +96,7 @@
  */
 #define ACCESS_MODEL_COUNT (1 + /* Configuration server */  \
                             1 + /* Health server */  \
-                            1 + /* Generic OnOff server*/ \
-                            1 + /* Generic OnOff client*/ \
-                            1   /* Simple OnOff server*/\
-                            )
+                            3 * UNIVERSAL_ELEMENET_COUNT)
 
 /**
  * The number of elements in the application.
@@ -105,7 +104,7 @@
  * @warning If the application is to support _multiple instances_ of the _same_ model, these instances
  * cannot be in the same element and a separate element is needed for each new instance of the same model.
  */
-#define ACCESS_ELEMENT_COUNT (2)
+#define ACCESS_ELEMENT_COUNT (1 + UNIVERSAL_ELEMENET_COUNT)
 
 /**
  * The number of allocated subscription lists for the application.

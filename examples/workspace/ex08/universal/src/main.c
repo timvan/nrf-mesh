@@ -56,7 +56,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 #define PIN_NUMBER 23
 #define P_INPUT true
 #define P_OUTPUT false
-#define P_STARTING_STATE P_OUTPUT
+#define P_STARTING_STATE P_INPUT
 
 static bool m_device_provisioned;
 
@@ -399,7 +399,7 @@ static void models_init_cb(void)
 
 static void in_pin_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", pin_state);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", nrf_gpio_pin_read(pin_number));
     
     generic_onoff_set_params_t p_params;
     model_transition_t transition_params;

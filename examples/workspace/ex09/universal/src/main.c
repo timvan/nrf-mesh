@@ -8,10 +8,10 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h> 
 
 /* HAL */
 #include "boards.h"
-// #include "simple_hal.h"
 #include "app_timer.h"
 
 /* Core */
@@ -31,7 +31,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 /* Models */
 #include "generic_onoff_server.h"
 #include "generic_onoff_client.h"
-#include "simple_on_off_server.h"
+#include "simple_on_off_server.1.h"
 
 /* Logging and RTT */
 #include "log.h"
@@ -42,43 +42,83 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 #include "example_common.h"
 #include "nrf_mesh_config_examples.h"
 #include "light_switch_example_common.h"
-#include "app_onoff.h"
+#include "app_onoff.1.h"
 #include "ble_softdevice_support.h"
 
 #include "nrfx_gpiote.h"
 
-#define APP_ONOFF_ELEMENT_INDEX     (1)
+#define N_ELEMS(x) (sizeof(x) / sizeof((x)[0]))
+
+#define APP_STARTING_INDEX     (1)
 
 #define APP_STATE_OFF                (0)
 #define APP_STATE_ON                 (1)
 #define APP_UNACK_MSG_REPEAT_COUNT   (2)
 
-#define PINS [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25];
+#define PINS {12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25}
+// #define PINS_STARTING_STATE [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25];
+
 #define PIN_NUMBER 23
 #define P_INPUT true
 #define P_OUTPUT false
 #define P_STARTING_STATE P_OUTPUT
 
+// #define NEW_TIMER(_name, timer_id) APP_TIMER_DEF( _name ## timer_id ## _timer);
+
+// TODO sort this temp
+#define TEMP_PIN 12
+
 static bool m_device_provisioned;
 
-APP_TIMER_DEF(m_onoff_server_0_timer);
-static app_onoff_server_t m_onoff_server_0;
+// OLD START
+// APP_TIMER_DEF(m_onoff_server_0_timer);
+// static app_onoff_server_t m_onoff_server_0;
 
-static generic_onoff_client_t m_client;
+// static generic_onoff_client_t m_client; 
 
-static simple_on_off_server_t m_simple_on_off_server;
+// static simple_on_off_server_t m_simple_on_off_server;
 
 static bool pin_state;
-static int pin_number;
+// static int pin_number;
+// OLD END
 
+typedef enum {Output, Input} io;
 
+typedef struct
+{
+    app_onoff_server_t m_onoff_server;
+    generic_onoff_client_t m_client;
+    simple_on_off_server_t m_simple_on_off_server;
+    uint8_t pin_number;
+    io pin_purpose;
+} universal_app;
+
+static uint8_t gpio_pins[] = PINS;
+static universal_app u_apps[N_ELEMS(gpio_pins)];
+int temp = TEMP_PIN;
+
+APP_TIMER_DEF(m_onoff_server_12_timer);
+APP_TIMER_DEF(m_onoff_server_13_timer);
+APP_TIMER_DEF(m_onoff_server_14_timer);
+APP_TIMER_DEF(m_onoff_server_15_timer);
+APP_TIMER_DEF(m_onoff_server_16_timer);
+APP_TIMER_DEF(m_onoff_server_17_timer);
+APP_TIMER_DEF(m_onoff_server_18_timer);
+APP_TIMER_DEF(m_onoff_server_19_timer);
+APP_TIMER_DEF(m_onoff_server_20_timer);
+APP_TIMER_DEF(m_onoff_server_22_timer);
+APP_TIMER_DEF(m_onoff_server_23_timer);
+APP_TIMER_DEF(m_onoff_server_24_timer);
+APP_TIMER_DEF(m_onoff_server_25_timer);
+
+const app_timer_id_t* timers[] = {&m_onoff_server_12_timer, &m_onoff_server_13_timer, &m_onoff_server_14_timer, &m_onoff_server_15_timer, &m_onoff_server_16_timer, &m_onoff_server_17_timer, &m_onoff_server_18_timer, &m_onoff_server_19_timer, &m_onoff_server_20_timer, &m_onoff_server_22_timer, &m_onoff_server_23_timer, &m_onoff_server_24_timer, &m_onoff_server_25_timer};
 
 // fwd declerartions
 static void initialise(void);
 static void gpiote_init(void);
-static void gpio_init_input(void);
-static void gpio_init_output(void);
-static void in_pin_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+static void gpio_init_input(uint8_t pin_number);
+static void gpio_init_output(uint8_t pin_number);
+static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 
 static void mesh_init(void);
 static void models_init_cb(void);
@@ -103,7 +143,7 @@ static bool app_simple_onoff_server_set_cb(const simple_on_off_server_t * p_self
 static void config_server_evt_cb(const config_server_evt_t * p_evt);
 static void node_reset(void);
 
-static void start(void)
+static void start(void);
 
 static void provision(void);
 static void provisioning_complete_cb(void);
@@ -111,7 +151,7 @@ static void device_identification_start_cb(uint8_t attention_duration_s);
 static void provisioning_aborted_cb(void);
 
 static void rtt_input_handler(int key);
-
+int pin_to_index(uint8_t pin_number);
 
 int main(void)
 {
@@ -151,59 +191,64 @@ static void initialise(void)
 
 static void gpiote_init(void)
 {
-    // TODO - do this for each pins
-    pin_number = PIN_NUMBER;
-    pin_state = P_STARTING_STATE;
+    uint8_t pin_number;
+    for(int i = 0; i < N_ELEMS(gpio_pins); i++)
+    {
+        pin_number = gpio_pins[i];
 
-    // TODO - add starting state for each pin
-    if(P_STARTING_STATE == P_INPUT){
-        gpio_init_input();
-    } else {
-        gpio_init_output();
+        // TODO set this to a reasonable method not just board based
+        // splits i/o based on board connector block - just for dev purposes
+        if(pin_number <= 18){
+            gpio_init_input(pin_number);
+        } else {
+            gpio_init_output(pin_number);
+        }
     }
 }
 
-static void gpio_init_input()
+static void gpio_init_input(uint8_t pin_number)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as input\n");
-    nrfx_gpiote_out_uninit(PIN_NUMBER);
-    nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as input\n", pin_number);
+    nrfx_gpiote_out_uninit(pin_number);
+    nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true); // TODO - this should be configurable - i.e set up/down/toggle
     in_config.pull = NRF_GPIO_PIN_PULLDOWN;
-    ERROR_CHECK(nrfx_gpiote_in_init(PIN_NUMBER, &in_config, in_pin_handler));
-    nrfx_gpiote_in_event_enable(PIN_NUMBER, true);
+    ERROR_CHECK(nrfx_gpiote_in_init(pin_number, &in_config, gpiote_input_handler));
+    nrfx_gpiote_in_event_enable(pin_number, true);
 }
 
-static void gpio_init_output()
+static void gpio_init_output(uint8_t pin_number)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio as output\n");
-    nrfx_gpiote_in_uninit(PIN_NUMBER);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as output\n", pin_number);
+    nrfx_gpiote_in_uninit(pin_number);
     nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(true); // << TODO WHAT IS THIS TRUE
-    ERROR_CHECK(nrfx_gpiote_out_init(PIN_NUMBER, &out_config));
+    ERROR_CHECK(nrfx_gpiote_out_init(pin_number, &out_config));
 }
 
 /***************************************************/
 /* INPUT HANDLER                                   */
 /***************************************************/
 
-static void in_pin_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", pin_state);
-    
-    generic_onoff_set_params_t p_params;
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", nrf_gpio_pin_read(pin));
+    uint8_t element_index = pin_to_index(pin);
+
+    generic_onoff_client_t *m_client = &(u_apps[element_index].m_client);
+
+    generic_onoff_set_params_t set_params;
     model_transition_t transition_params;
     static uint8_t tid = 0;
     uint32_t status = NRF_SUCCESS;
     
-    p_params.on_off = pin_state;
-    p_params.tid = tid++;
+    set_params.on_off = nrf_gpio_pin_read(pin);
+    set_params.tid = tid++;
 
     transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
     transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
     
-    
-    status = generic_onoff_client_set_unack(&m_client, &p_params, &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+    // TODO - this is only unack atm
+    status = generic_onoff_client_set_unack(m_client, &set_params, &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
 
-    
     switch (status)
     {
         case NRF_SUCCESS:
@@ -258,31 +303,42 @@ static void models_init_cb(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Initializing and adding models\n");
 
-    /* init server */
+    uint8_t pin_number;
 
-    m_onoff_server_0.server.settings.force_segmented = APP_CONFIG_FORCE_SEGMENTATION;
-    m_onoff_server_0.server.settings.transmic_size = APP_CONFIG_MIC_SIZE;
-    m_onoff_server_0.p_timer_id = &m_onoff_server_0_timer;
-    m_onoff_server_0.onoff_set_cb = app_onoff_server_set_cb;
-    m_onoff_server_0.onoff_get_cb = app_onoff_server_get_cb;
+    for(int i = 0; i < N_ELEMS(gpio_pins); i++)
+    {
+        pin_number = gpio_pins[i];
 
-    ERROR_CHECK(app_onoff_init(&m_onoff_server_0, APP_ONOFF_ELEMENT_INDEX));
+        u_apps[i].pin_number = pin_number;
+
+        /* init server */
+
+        u_apps[i].m_onoff_server.server.settings.force_segmented = APP_CONFIG_FORCE_SEGMENTATION;
+        u_apps[i].m_onoff_server.server.settings.transmic_size = APP_CONFIG_MIC_SIZE;
+        u_apps[i].m_onoff_server.p_timer_id = timers[i];
+        u_apps[i].m_onoff_server.onoff_set_cb = app_onoff_server_set_cb;
+        u_apps[i].m_onoff_server.onoff_get_cb = app_onoff_server_get_cb;
+        u_apps[i].m_onoff_server.pin_number = pin_number;
+
+        ERROR_CHECK(app_onoff_init(&u_apps[i].m_onoff_server, APP_STARTING_INDEX + i));
 
 
-    /* init client */
+        /* init client */
 
-    m_client.settings.p_callbacks = &client_cbs;
-    m_client.settings.timeout = 0;
-    m_client.settings.force_segmented = APP_CONFIG_FORCE_SEGMENTATION;
-    m_client.settings.transmic_size = APP_CONFIG_MIC_SIZE;
-    ERROR_CHECK(generic_onoff_client_init(&m_client, APP_ONOFF_ELEMENT_INDEX));
-    
+        u_apps[i].m_client.settings.p_callbacks = &client_cbs;
+        u_apps[i].m_client.settings.timeout = 0;
+        u_apps[i].m_client.settings.force_segmented = APP_CONFIG_FORCE_SEGMENTATION;
+        u_apps[i].m_client.settings.transmic_size = APP_CONFIG_MIC_SIZE;
+        ERROR_CHECK(generic_onoff_client_init(&u_apps[i].m_client, APP_STARTING_INDEX + i));
+        
 
-    /* init config server */
+        /* init config server */
 
-    m_simple_on_off_server.get_cb = &app_simple_onoff_server_get_cb;
-    m_simple_on_off_server.set_cb = &app_simple_onoff_server_set_cb;
-    ERROR_CHECK(simple_on_off_server_init(&m_simple_on_off_server, APP_ONOFF_ELEMENT_INDEX));
+        u_apps[i].m_simple_on_off_server.get_cb = &app_simple_onoff_server_get_cb;
+        u_apps[i].m_simple_on_off_server.set_cb = &app_simple_onoff_server_set_cb;
+        u_apps[i].m_simple_on_off_server.pin_number = pin_number;
+        ERROR_CHECK(simple_on_off_server_init(&u_apps[i].m_simple_on_off_server, APP_STARTING_INDEX + i));
+    }
 }
 
 /***************************************************/
@@ -293,15 +349,15 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - Setting GPIO value: %d\n", onoff)
     if(onoff){
-        nrfx_gpiote_out_set(pin_number);
+        nrfx_gpiote_out_set(p_server->pin_number);
     } else {
-        nrfx_gpiote_out_clear(pin_number);
+        nrfx_gpiote_out_clear(p_server->pin_number);
     }
 }
 
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
-    *p_present_onoff = nrf_gpio_pin_read(pin_number);
+    *p_present_onoff = nrf_gpio_pin_read(p_server->pin_number);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - getting GPIO value: %d\n", p_present_onoff)
 }
 
@@ -381,9 +437,9 @@ static bool app_simple_onoff_server_set_cb(const simple_on_off_server_t * p_self
     
     if(pin_state != on){
         if(on == P_INPUT){
-            gpio_init_input();
+            gpio_init_input(TEMP_PIN);
         } else {
-            gpio_init_output();
+            gpio_init_output(TEMP_PIN);
         }
     }
     
@@ -406,7 +462,6 @@ static void config_server_evt_cb(const config_server_evt_t * p_evt)
 static void node_reset(void)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- Node reset  -----\n");
-    // hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_RESET); // TODO DELETE HAL
     /* This function may return if there are ongoing flash operations. */
     mesh_stack_device_reset();
 }
@@ -471,16 +526,12 @@ static void provisioning_complete_cb(void)
 
 static void device_identification_start_cb(uint8_t attention_duration_s)
 {
-    // TODO DELETE HAL
-    // hal_led_mask_set(LEDS_MASK, false);
-    // hal_led_blink_ms(BSP_LED_2_MASK  | BSP_LED_3_MASK,
-    //                  LED_BLINK_ATTENTION_INTERVAL_MS,
-    //                  LED_BLINK_ATTENTION_COUNT(attention_duration_s));
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Provisioning - start device identification \n");
 }
 
 static void provisioning_aborted_cb(void)
 {
-    // hal_led_blink_stop(); // TODO DELETE HAL
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Provisioning aborted\n");
 }
 
 /***************************************************/
@@ -489,103 +540,112 @@ static void provisioning_aborted_cb(void)
 
 static void rtt_input_handler(int key)
 {
-    key = key - '0';
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
+//     key = key - '0';
+//     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
 
-    uint32_t status = NRF_SUCCESS;
-    generic_onoff_set_params_t set_params;
-    model_transition_t transition_params;
-    static uint8_t tid = 0;
-    bool new_state;
+//     uint32_t status = NRF_SUCCESS;
+//     generic_onoff_set_params_t set_params;
+//     model_transition_t transition_params;
+//     static uint8_t tid = 0;
+//     bool new_state;
 
-    /* Button 1: On, Button 2: Off, Client[0]
-     * Button 2: On, Button 3: Off, Client[1]
-     */
+//     /* Button 1: On, Button 2: Off, Client[0]
+//      * Button 2: On, Button 3: Off, Client[1]
+//      */
 
-    switch(key)
-    {
-        case 0:
-        case 2:
-            set_params.on_off = APP_STATE_ON;
-            break;
+//     switch(key)
+//     {
+//         case 0:
+//         case 2:
+//             set_params.on_off = APP_STATE_ON;
+//             break;
 
-        case 1:
-        case 3:
-            set_params.on_off = APP_STATE_OFF;
-            break;
+//         case 1:
+//         case 3:
+//             set_params.on_off = APP_STATE_OFF;
+//             break;
             
-    }
+//     }
 
-    set_params.tid = tid++;
-    transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
-    transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
+//     set_params.tid = tid++;
+//     transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
+//     transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
 
-    switch (key)
-    {
-        case 0:
-        case 1:
-            /* Demonstrate acknowledged transaction, using 1st client model instance */
-            /* In this examples, users will not be blocked if the model is busy */
-            (void)access_model_reliable_cancel(m_client.model_handle);
-            status = generic_onoff_client_set(&m_client, &set_params, &transition_params);
-            // hal_led_pin_set(BSP_LED_0, set_params.on_off); // TODO DELETE HAL
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET ACK %d\n", set_params.on_off);
-            break;
+//     switch (key)
+//     {
+//         case 0:
+//         case 1:
+//             /* Demonstrate acknowledged transaction, using 1st client model instance */
+//             /* In this examples, users will not be blocked if the model is busy */
+//             (void)access_model_reliable_cancel(m_client.model_handle);
+//             status = generic_onoff_client_set(&m_client, &set_params, &transition_params);
+//             // hal_led_pin_set(BSP_LED_0, set_params.on_off); // TODO DELETE HAL
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET ACK %d\n", set_params.on_off);
+//             break;
 
-        case 2:
-        case 3:
-            /* Demonstrate un-acknowledged transaction, using 2nd client model instance */
-            status = generic_onoff_client_set_unack(&m_client, &set_params,
-                                                    &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
-            // hal_led_pin_set(BSP_LED_1, set_params.on_off); // TODO DELETE HAL
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET %d\n", set_params.on_off);
-            break;
-        case 4:
-            status = generic_onoff_client_get(&m_client);
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF GET \n");
-            break;
-        case 5:
-            new_state = P_INPUT;
-            if(pin_state == P_INPUT){
-              new_state = P_OUTPUT;
-            }
-            app_simple_onoff_server_set_cb(&m_simple_on_off_server, new_state);
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "swapping gpio state \n");
-            break;
-        case 6:
-            node_reset();
-            break;
+//         case 2:
+//         case 3:
+//             /* Demonstrate un-acknowledged transaction, using 2nd client model instance */
+//             status = generic_onoff_client_set_unack(&m_client, &set_params,
+//                                                     &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+//             // hal_led_pin_set(BSP_LED_1, set_params.on_off); // TODO DELETE HAL
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF SET %d\n", set_params.on_off);
+//             break;
+//         case 4:
+//             status = generic_onoff_client_get(&m_client);
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending msg: ONOFF GET \n");
+//             break;
+//         case 5:
+//             new_state = P_INPUT;
+//             if(pin_state == P_INPUT){
+//               new_state = P_OUTPUT;
+//             }
+//             app_simple_onoff_server_set_cb(&m_simple_on_off_server, new_state);
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "swapping gpio state \n");
+//             break;
+//         case 6:
+//             node_reset();
+//             break;
 
-    }
+//     }
 
-    switch (status)
-    {
-        case NRF_SUCCESS:
-            break;
+//     switch (status)
+//     {
+//         case NRF_SUCCESS:
+//             break;
 
-        case NRF_ERROR_NO_MEM:
-        case NRF_ERROR_BUSY:
-        case NRF_ERROR_INVALID_STATE:
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
-            // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY); // TODO DELETE HAL
-            break;
+//         case NRF_ERROR_NO_MEM:
+//         case NRF_ERROR_BUSY:
+//         case NRF_ERROR_INVALID_STATE:
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
+//             // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY); // TODO DELETE HAL
+//             break;
 
-        case NRF_ERROR_INVALID_PARAM:
-            /* Publication not enabled for this client. One (or more) of the following is wrong:
-             * - An application key is missing, or there is no application key bound to the model
-             * - The client does not have its publication state set
-             *
-             * It is the provisioner that adds an application key, binds it to the model and sets
-             * the model's publication state.
-             */
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Publication not configured for client\n");
-            break;
+//         case NRF_ERROR_INVALID_PARAM:
+//             /* Publication not enabled for this client. One (or more) of the following is wrong:
+//              * - An application key is missing, or there is no application key bound to the model
+//              * - The client does not have its publication state set
+//              *
+//              * It is the provisioner that adds an application key, binds it to the model and sets
+//              * the model's publication state.
+//              */
+//             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Publication not configured for client\n");
+//             break;
 
-        default:
-            ERROR_CHECK(status);
-            break;
-    }
+//         default:
+//             ERROR_CHECK(status);
+//             break;
+//     }
 }
 
-
-
+int pin_to_index(uint8_t pin_number){
+    
+    for(int i = 0; i < N_ELEMS(gpio_pins); i++)
+    {
+        if(pin_number == gpio_pins[i]){
+            return i;
+        }
+    }
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Error - pin %d not found\n", pin_number);
+    exit(EXIT_FAILURE);
+}
