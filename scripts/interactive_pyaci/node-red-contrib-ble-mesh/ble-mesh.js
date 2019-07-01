@@ -12,9 +12,9 @@ const unProvisionedBleNodes = [];
 function onCompositionDataStatus(data) {
     console.log(`Node configuration `, JSON.stringify(data));
     pyaci.addAppKeys();
-    setTimeout(() => {
-        pyaci.addGroupPublicationAddresses();
-    }, 10000);
+    // setTimeout(() => {
+    //     pyaci.addGroupPublicationAddresses();
+    // }, 10000);
 }
 
 

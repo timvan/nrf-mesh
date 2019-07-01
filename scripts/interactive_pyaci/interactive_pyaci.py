@@ -347,29 +347,39 @@ class Manager(object):
 
         self.process_stdout("ProvisionComplete")
         
-    def configure(self):
+    def configure(self, groupAddrId=0):
         self.cc = ConfigurationClient(self.db)
         self.iaci.model_add(self.cc)
         self.cc.publish_set(8, 0)
         self.cc.composition_data_get()
         self.cc.appkey_add(0)
+        self.iaci.send(cmd.AddrPublicationAdd(self.db.groups[groupAddrId].address))
 
     def compositionDataStatus(self, data):
         op = "CompositionDataStatus"
         self.process_stdout(op, data)
         
-    def addAppKeys(self, node=0):
+    def addAppKeys(self, node=0, groupAddrId=0):
         for e, element in enumerate(self.db.nodes[node].elements):
+            
+            # Add each element to the serial device's pubusb list
+            # TODO here I should log each device into address book
+            self.iaci.send(cmd.AddrPublicationAdd(self.db.nodes[node].unicast_address + e))
+            self.iaci.send(cmd.AddrSubscriptionAdd(self.db.nodes[node].unicast_address + e))
+
             for model in element.models:
                 if str(model.model_id) == "1000":
                     self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1000))
+                    # self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))
                 if str(model.model_id) == "1001":
                     self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1001))
-                
+                    time.sleep(1)
+                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
                 time.sleep(1)
 
+
+
     def addGroupSubscriptionAddresses(self, node=0, groupAddrId=0):
-        self.iaci.send(cmd.AddrPublicationAdd(self.db.groups[groupAddrId].address))
         for e, element in enumerate(self.db.nodes[node].elements):
             for model in element.models:
                 if str(model.model_id) == "1000":

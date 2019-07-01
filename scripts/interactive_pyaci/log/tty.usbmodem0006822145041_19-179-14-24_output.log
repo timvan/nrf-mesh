@@ -1,0 +1,486 @@
+2019-06-28 14:24:06,465 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b"\xd5\x04\xf3\xc6\xc3\xbc1\xad\xe7\xbcXZ\xd4\xee\xcb\xdc\xc7Y\xd9\x9cj\x81\x88\xbb\xc9\xab?\xe1,\xe0\xd7\xff\xae\xc6\x0f\x98.\xda\'\x9f\x18 \xdc\xf5>\x061\xbe\xfa!!\xb3\xf5\xfa\xb3m\xbc\xb1\xbf\t\x04B\x07\xee\xfd\xe3;5h\xc4\x81\x94\xb0\xf8%\xe4-]CZ\xc5\x98\x1e\xae\xd3\xa9}\xab\x8a\x05\xa7\xdd\xf2\xd6\xee\x8c")
+2019-06-28 14:24:06,466 - DEBUG - tty.usbmodem0006822145041: TX: 6169d504f3c6c3bc31ade7bc585ad4eecbdcc759d99c6a8188bbc9ab3fe12ce0d7ffaec60f982eda279f1820dcf53e0631befa2121b3f5fab36dbcb1bf09044207eefde33b3568c48194b0f825e42d5d435ac5981eaed3a97dab8a05a7ddf2d6ee8c
+2019-06-28 14:24:06,476 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-06-28 14:24:06,476 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,477 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,477 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-06-28 14:24:06,477 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-06-28 14:24:06,478 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,479 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,479 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,479 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,479 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,480 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,480 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,481 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,481 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,482 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-06-28 14:24:06,483 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-06-28 14:24:06,483 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,484 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,484 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,484 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,485 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,485 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,486 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,487 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,488 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,488 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,489 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,489 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,489 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,489 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-28 14:24:06,490 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,490 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-28 14:24:06,490 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,491 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,491 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,491 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,491 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,492 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,490 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-06-28 14:24:06,492 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,492 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-06-28 14:24:06,493 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,493 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,493 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,493 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-06-28 14:24:06,494 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,494 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-06-28 14:24:06,494 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-06-28 14:24:06,494 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-06-28 14:24:06,495 - INFO - tty.usbmodem0006822145041: Success
+2019-06-28 14:24:06,495 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-06-28 14:24:06,495 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-28 14:24:06,495 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-06-28 14:24:06,496 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-06-28 14:24:06,497 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-28 14:24:06,497 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-06-28 14:24:06,498 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-06-28 14:24:06,498 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-28 14:24:06,498 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-06-28 14:24:12,471 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-06-28 14:24:12,471 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-06-28 14:24:12,473 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-06-28 14:24:12,473 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-06-28 14:24:12,474 - INFO - tty.usbmodem0006822145041: Success
+2019-06-28 14:24:56,657 - DEBUG - tty.usbmodem0006822145041: RX: 1ac09db77a0526b8734988639509c242d107c90001c8639509c2c2
+2019-06-28 14:24:56,659 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07'), 'rssi': -55, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2')}}
+2019-06-28 14:24:56,660 - INFO - tty.usbmodem0006822145041: Received UUID 9db77a0526b8734988639509c242d107 with RSSI: -55 dB
+2019-06-28 14:24:56,670 - DEBUG - tty.usbmodem0006822145041: Writing: 98 bytearray(b'')
+2019-06-28 14:24:56,670 - DEBUG - tty.usbmodem0006822145041: TX: 0162
+2019-06-28 14:24:56,671 - DEBUG - tty.usbmodem0006822145041: Writing: 99 bytearray(b'\x00\x9d\xb7z\x05&\xb8sI\x88c\x95\t\xc2B\xd1\x07\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12\x00\x00\x00\x00\x00\x00\x10\x00\x00\x00\x00')
+2019-06-28 14:24:56,680 - DEBUG - tty.usbmodem0006822145041: TX: 2d63009db77a0526b8734988639509c242d10718eed9c2a56add85049ffc3c59ad0e120000000000001000000000
+2019-06-28 14:24:56,701 - DEBUG - tty.usbmodem0006822145041: RX: 03846200
+2019-06-28 14:24:56,702 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 98, 'status': 0, 'data': bytearray(b'')}}
+2019-06-28 14:24:56,702 - INFO - tty.usbmodem0006822145041: Success
+2019-06-28 14:24:56,702 - DEBUG - tty.usbmodem0006822145041: RX: 0484630000
+2019-06-28 14:24:56,703 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 99, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-28 14:24:56,718 - INFO - tty.usbmodem0006822145041: Provision: {'context': 0}
+2019-06-28 14:24:56,728 - DEBUG - tty.usbmodem0006822145041: RX: 02c100
+2019-06-28 14:24:56,729 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkEstablished, data: {'context_id': 0}}
+2019-06-28 14:24:56,730 - INFO - tty.usbmodem0006822145041: Link established
+2019-06-28 14:24:56,773 - DEBUG - tty.usbmodem0006822145041: RX: 0bc300030001000000000000
+2019-06-28 14:24:56,774 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvCapsReceived, data: {'context_id': 0, 'num_elements': 3, 'public_key_type': 0, 'static_oob_types': 1, 'output_oob_size': 0, 'output_oob_actions': 0, 'input_oob_size': 0, 'input_oob_actions': 0}}
+2019-06-28 14:24:56,775 - INFO - tty.usbmodem0006822145041: Received capabilities
+2019-06-28 14:24:56,775 - INFO - tty.usbmodem0006822145041: Number of elements: 3
+2019-06-28 14:24:56,777 - DEBUG - tty.usbmodem0006822145041: Writing: 102 bytearray(b'\x00\x00\x00\x00')
+2019-06-28 14:24:56,777 - DEBUG - tty.usbmodem0006822145041: TX: 056600000000
+2019-06-28 14:24:56,780 - DEBUG - tty.usbmodem0006822145041: RX: 0484660000
+2019-06-28 14:24:56,780 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 102, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-28 14:24:56,781 - INFO - tty.usbmodem0006822145041: OobUse: {'context': 0}
+2019-06-28 14:24:59,021 - DEBUG - tty.usbmodem0006822145041: RX: 62c7002e651d409126220ad63e66764b1129de630a60345c9d10f36b872b803a725bc66e3c2a5593ea7a7e2e740c8783d4e3e8fdbd9f8af7c6304699f89ae31488a9279286bcaa850cc00661c29fc7f95787b2af30328aef2e569179b12cfc14f36eb5
+2019-06-28 14:24:59,022 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvEcdhRequest, data: {'context_id': 0, 'peer_public': bytearray(b'.e\x1d@\x91&"\n\xd6>fvK\x11)\xdec\n`4\\\x9d\x10\xf3k\x87+\x80:r[\xc6n<*U\x93\xeaz~.t\x0c\x87\x83\xd4\xe3\xe8\xfd\xbd\x9f\x8a\xf7\xc60F\x99\xf8\x9a\xe3\x14\x88\xa9\''), 'node_private': bytearray(b'\x92\x86\xbc\xaa\x85\x0c\xc0\x06a\xc2\x9f\xc7\xf9W\x87\xb2\xaf02\x8a\xef.V\x91y\xb1,\xfc\x14\xf3n\xb5')}}
+2019-06-28 14:24:59,022 - INFO - tty.usbmodem0006822145041: ECDH request received
+2019-06-28 14:24:59,027 - DEBUG - tty.usbmodem0006822145041: Writing: 104 bytearray(b'\x00\x1c\x8b\xef\xef\xdbg\xda\xe8u\xba\x00V"z\xe0>\xa9\x7f\x06\x17\xc3\xd4\x1e\xf0y\x9fT\x0c\x9a[E5')
+2019-06-28 14:24:59,027 - DEBUG - tty.usbmodem0006822145041: TX: 2268001c8befefdb67dae875ba0056227ae03ea97f0617c3d41ef0799f540c9a5b4535
+2019-06-28 14:24:59,032 - DEBUG - tty.usbmodem0006822145041: RX: 0484680000
+2019-06-28 14:24:59,033 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 104, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-06-28 14:24:59,033 - INFO - tty.usbmodem0006822145041: EcdhSecret: {'context': 0}
+2019-06-28 14:25:01,375 - DEBUG - tty.usbmodem0006822145041: RX: 2cc500000000000000100000000fa3da7eedcf20dd979c968c7ec7873418eed9c2a56add85049ffc3c59ad0e12
+2019-06-28 14:25:01,375 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvComplete, data: {'context_id': 0, 'iv_index': 0, 'net_key_index': 0, 'address': 16, 'iv_update_flag': 0, 'key_refresh_flag': 0, 'device_key': bytearray(b'\x0f\xa3\xda~\xed\xcf \xdd\x97\x9c\x96\x8c~\xc7\x874'), 'net_key': bytearray(b'\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')}}
+2019-06-28 14:25:01,376 - INFO - tty.usbmodem0006822145041: Provisioning complete
+2019-06-28 14:25:01,376 - INFO - tty.usbmodem0006822145041: 	Address(es): 0x10-0x12
+2019-06-28 14:25:01,377 - INFO - tty.usbmodem0006822145041: 	Device key: 0fa3da7eedcf20dd979c968c7ec78734
+2019-06-28 14:25:01,377 - INFO - tty.usbmodem0006822145041: 	Network key: 18eed9c2a56add85049ffc3c59ad0e12
+2019-06-28 14:25:01,377 - INFO - tty.usbmodem0006822145041: Adding device key to subnet 0
+2019-06-28 14:25:01,377 - INFO - tty.usbmodem0006822145041: Adding publication address of root element
+2019-06-28 14:25:01,377 - DEBUG - tty.usbmodem0006822145041: Writing: 156 bytearray(b'\x10\x00\x00\x00\x0f\xa3\xda~\xed\xcf \xdd\x97\x9c\x96\x8c~\xc7\x874')
+2019-06-28 14:25:01,378 - DEBUG - tty.usbmodem0006822145041: TX: 159c100000000fa3da7eedcf20dd979c968c7ec78734
+2019-06-28 14:25:01,379 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-06-28 14:25:01,380 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-06-28 14:25:01,383 - DEBUG - tty.usbmodem0006822145041: RX: 05849c000800
+2019-06-28 14:25:01,383 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-06-28 14:25:01,384 - INFO - tty.usbmodem0006822145041: DevkeyAdd: {'devkey_handle': 8}
+2019-06-28 14:25:01,384 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-06-28 14:25:01,384 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-28 14:25:01,384 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-06-28 14:25:01,490 - DEBUG - tty.usbmodem0006822145041: RX: 03c20000
+2019-06-28 14:25:01,491 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkClosed, data: {'context_id': 0, 'close_reason': 0}}
+2019-06-28 14:25:01,491 - INFO - tty.usbmodem0006822145041: Provisioning link closed
+2019-06-28 14:25:16,669 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 8008, data: 00
+2019-06-28 14:25:16,670 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 00, data: 0000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-28 14:25:16,670 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x80\x08\x00')
+2019-06-28 14:25:16,670 - DEBUG - tty.usbmodem0006822145041: TX: 0eab08000100000008000000800800
+2019-06-28 14:25:16,670 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-06-28 14:25:16,671 - DEBUG - tty.usbmodem0006822145041: TX: 1fab08000100000008000000000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-06-28 14:25:16,674 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0001000000
+2019-06-28 14:25:16,674 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x01\x00\x00\x00')}}
+2019-06-28 14:25:16,674 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 1}
+2019-06-28 14:25:16,674 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x01\xc0')
+2019-06-28 14:25:16,675 - DEBUG - tty.usbmodem0006822145041: TX: 03a401c0
+2019-06-28 14:25:16,677 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0002000000
+2019-06-28 14:25:16,677 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x02\x00\x00\x00')}}
+2019-06-28 14:25:16,677 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 2}
+2019-06-28 14:25:16,678 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-06-28 14:25:16,678 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-28 14:25:16,678 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-06-28 14:25:16,690 - DEBUG - tty.usbmodem0006822145041: RX: 05d201000000
+2019-06-28 14:25:16,691 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 1}}
+2019-06-28 14:25:16,691 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 1}}
+2019-06-28 14:25:16,973 - DEBUG - tty.usbmodem0006822145041: RX: 34d010000100080000001e01c8639509c2c2c420000200590000000000280003000000020000000200000001000110000001000110
+2019-06-28 14:25:16,974 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -60, 'actual_length': 32, 'data': bytearray(b'\x02\x00Y\x00\x00\x00\x00\x00(\x00\x03\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x01\x00\x01\x10\x00\x00\x01\x00\x01\x10')}}
+2019-06-28 14:25:16,977 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Received composition data (page 0x00): {
+  "cid": "0059",
+  "pid": "0000",
+  "vid": "0000",
+  "crpl": 40,
+  "features": {
+    "relay": 0,
+    "proxy": 0,
+    "friend": 2,
+    "low_power": 2
+  },
+  "elements": [
+    {
+      "index": 0,
+      "location": "0000",
+      "models": [
+        {
+          "modelId": "0000"
+        },
+        {
+          "modelId": "0002"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "location": "0000",
+      "models": [
+        {
+          "modelId": "1001"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "location": "0000",
+      "models": [
+        {
+          "modelId": "1001"
+        }
+      ]
+    }
+  ]
+}
+2019-06-28 14:25:16,993 - DEBUG - tty.usbmodem0006822145041: RX: 05d202000000
+2019-06-28 14:25:16,994 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 2}}
+2019-06-28 14:25:16,994 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 2}}
+2019-06-28 14:25:17,023 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-06-28 14:25:17,023 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-06-28 14:25:17,024 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x10\x00')
+2019-06-28 14:25:17,024 - DEBUG - tty.usbmodem0006822145041: TX: 03a11000
+2019-06-28 14:25:17,025 - DEBUG - tty.usbmodem0006822145041: RX: 1ad010000100080000001e01c8639509c2c2c30600800300000000
+2019-06-28 14:25:17,026 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -61, 'actual_length': 6, 'data': bytearray(b'\x80\x03\x00\x00\x00\x00')}}
+2019-06-28 14:25:17,026 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Appkey status: AccessStatus.SUCCESS
+2019-06-28 14:25:17,029 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Appkey add 0 succeded for subnet 0 at node 0010
+2019-06-28 14:25:17,030 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-06-28 14:25:17,030 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-06-28 14:25:17,030 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-06-28 14:25:17,030 - DEBUG - tty.usbmodem0006822145041: RX: 0384a187
+2019-06-28 14:25:17,031 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 135, 'data': bytearray(b'')}}
+2019-06-28 14:25:17,031 - ERROR - tty.usbmodem0006822145041: AddrSubscriptionAdd: ERROR_INVALID_DATA
+2019-06-28 14:25:19,026 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 803d, data: 110000000110
+2019-06-28 14:25:19,026 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x11\x00')
+2019-06-28 14:25:19,027 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 03, data: 110001c000000100000110
+2019-06-28 14:25:19,027 - DEBUG - tty.usbmodem0006822145041: TX: 03a41100
+2019-06-28 14:25:19,028 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x11\x00')
+2019-06-28 14:25:19,028 - DEBUG - tty.usbmodem0006822145041: TX: 03a11100
+2019-06-28 14:25:19,030 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-06-28 14:25:19,030 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-06-28 14:25:19,030 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-06-28 14:25:19,031 - DEBUG - tty.usbmodem0006822145041: RX: 0384a187
+2019-06-28 14:25:19,031 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 135, 'data': bytearray(b'')}}
+2019-06-28 14:25:19,031 - ERROR - tty.usbmodem0006822145041: AddrSubscriptionAdd: ERROR_INVALID_DATA
+2019-06-28 14:25:19,031 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x80=\x11\x00\x00\x00\x01\x10')
+2019-06-28 14:25:19,032 - DEBUG - tty.usbmodem0006822145041: TX: 13ab08000100000008000000803d110000000110
+2019-06-28 14:25:19,036 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0003000000
+2019-06-28 14:25:19,037 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x03\x00\x00\x00')}}
+2019-06-28 14:25:19,037 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 3}
+2019-06-28 14:25:19,037 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x03\x11\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')
+2019-06-28 14:25:19,037 - DEBUG - tty.usbmodem0006822145041: TX: 17ab0800010000000800000003110001c000000100000110
+2019-06-28 14:25:19,040 - DEBUG - tty.usbmodem0006822145041: RX: 05d203000000
+2019-06-28 14:25:19,040 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 3}}
+2019-06-28 14:25:19,041 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 3}}
+2019-06-28 14:25:19,042 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0004000000
+2019-06-28 14:25:19,042 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x04\x00\x00\x00')}}
+2019-06-28 14:25:19,043 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 4}
+2019-06-28 14:25:19,045 - DEBUG - tty.usbmodem0006822145041: RX: 1dd010000100080000001e01c8639509c2c2c70900803e00110000000110
+2019-06-28 14:25:19,045 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -57, 'actual_length': 9, 'data': bytearray(b'\x80>\x00\x11\x00\x00\x00\x01\x10')}}
+2019-06-28 14:25:19,045 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model app bind status: AccessStatus.SUCCESS
+2019-06-28 14:25:19,047 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Appkey bind 0 to model 1001 at 0011
+2019-06-28 14:25:19,092 - DEBUG - tty.usbmodem0006822145041: RX: 05d204000000
+2019-06-28 14:25:19,093 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 4}}
+2019-06-28 14:25:19,093 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 4}}
+2019-06-28 14:25:19,147 - DEBUG - tty.usbmodem0006822145041: RX: 22d010000100080000001e01c8639509c2c2c90e00801900110001c000000100000110
+2019-06-28 14:25:19,147 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 14, 'data': bytearray(b'\x80\x19\x00\x11\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')}}
+2019-06-28 14:25:19,147 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model publication status: AccessStatus.SUCCESS
+2019-06-28 14:25:19,151 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Publication status for model 1001 at element 17 to {'address': c001, 'index': 0, 'ttl': 1, 'period': 0, 'retransmit': {'count': 0, 'interval_steps': 0, 'interval': 50}, 'credentials': <FriendshipCredentials.DISABLED: 0>}
+2019-06-28 14:25:20,031 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 803d, data: 120000000110
+2019-06-28 14:25:20,032 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x12\x00')
+2019-06-28 14:25:20,033 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 03, data: 120001c000000100000110
+2019-06-28 14:25:20,034 - DEBUG - tty.usbmodem0006822145041: TX: 03a41200
+2019-06-28 14:25:20,034 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x12\x00')
+2019-06-28 14:25:20,034 - DEBUG - tty.usbmodem0006822145041: TX: 03a11200
+2019-06-28 14:25:20,035 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-06-28 14:25:20,036 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-06-28 14:25:20,036 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-06-28 14:25:20,036 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x80=\x12\x00\x00\x00\x01\x10')
+2019-06-28 14:25:20,037 - DEBUG - tty.usbmodem0006822145041: RX: 0384a187
+2019-06-28 14:25:20,037 - DEBUG - tty.usbmodem0006822145041: TX: 13ab08000100000008000000803d120000000110
+2019-06-28 14:25:20,037 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 135, 'data': bytearray(b'')}}
+2019-06-28 14:25:20,038 - ERROR - tty.usbmodem0006822145041: AddrSubscriptionAdd: ERROR_INVALID_DATA
+2019-06-28 14:25:20,038 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x03\x12\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')
+2019-06-28 14:25:20,038 - DEBUG - tty.usbmodem0006822145041: TX: 17ab0800010000000800000003120001c000000100000110
+2019-06-28 14:25:20,041 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0005000000
+2019-06-28 14:25:20,042 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x05\x00\x00\x00')}}
+2019-06-28 14:25:20,042 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 5}
+2019-06-28 14:25:20,044 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0006000000
+2019-06-28 14:25:20,045 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x06\x00\x00\x00')}}
+2019-06-28 14:25:20,045 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 6}
+2019-06-28 14:25:20,045 - DEBUG - tty.usbmodem0006822145041: RX: 05d205000000
+2019-06-28 14:25:20,046 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 5}}
+2019-06-28 14:25:20,046 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 5}}
+2019-06-28 14:25:20,059 - DEBUG - tty.usbmodem0006822145041: RX: 1dd010000100080000001e01c8639509c2c2ca0900803e00120000000110
+2019-06-28 14:25:20,060 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 9, 'data': bytearray(b'\x80>\x00\x12\x00\x00\x00\x01\x10')}}
+2019-06-28 14:25:20,060 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model app bind status: AccessStatus.SUCCESS
+2019-06-28 14:25:20,064 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Appkey bind 0 to model 1001 at 0012
+2019-06-28 14:25:20,098 - DEBUG - tty.usbmodem0006822145041: RX: 05d206000000
+2019-06-28 14:25:20,098 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 6}}
+2019-06-28 14:25:20,099 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 6}}
+2019-06-28 14:25:20,153 - DEBUG - tty.usbmodem0006822145041: RX: 22d010000100080000001e01c8639509c2c2ca0e00801900120001c000000100000110
+2019-06-28 14:25:20,154 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 14, 'data': bytearray(b'\x80\x19\x00\x12\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')}}
+2019-06-28 14:25:20,154 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model publication status: AccessStatus.SUCCESS
+2019-06-28 14:25:20,156 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Publication status for model 1001 at element 18 to {'address': c001, 'index': 0, 'ttl': 1, 'period': 0, 'retransmit': {'count': 0, 'interval_steps': 0, 'interval': 50}, 'credentials': <FriendshipCredentials.DISABLED: 0>}
+2019-06-28 14:25:27,023 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-06-28 14:25:27,024 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-06-28 14:25:27,026 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-06-28 14:25:27,026 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-06-28 14:25:27,026 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-06-28 14:25:29,030 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 03, data: 110001c000000100000110
+2019-06-28 14:25:29,031 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x03\x11\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')
+2019-06-28 14:25:29,031 - DEBUG - tty.usbmodem0006822145041: TX: 17ab0800010000000800000003110001c000000100000110
+2019-06-28 14:25:29,036 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0007000000
+2019-06-28 14:25:29,036 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x07\x00\x00\x00')}}
+2019-06-28 14:25:29,036 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 7}
+2019-06-28 14:25:29,080 - DEBUG - tty.usbmodem0006822145041: RX: 05d207000000
+2019-06-28 14:25:29,081 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 7}}
+2019-06-28 14:25:29,081 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 7}}
+2019-06-28 14:25:29,134 - DEBUG - tty.usbmodem0006822145041: RX: 22d010000100080000001e01c8639509c2c2c90e00801900110001c000000100000110
+2019-06-28 14:25:29,134 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 14, 'data': bytearray(b'\x80\x19\x00\x11\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')}}
+2019-06-28 14:25:29,134 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model publication status: AccessStatus.SUCCESS
+2019-06-28 14:25:29,138 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Publication status for model 1001 at element 17 to {'address': c001, 'index': 0, 'ttl': 1, 'period': 0, 'retransmit': {'count': 0, 'interval_steps': 0, 'interval': 50}, 'credentials': <FriendshipCredentials.DISABLED: 0>}
+2019-06-28 14:25:30,036 - DEBUG - tty.usbmodem0006822145041.ConfigurationClient: Sending opcode: 03, data: 120001c000000100000110
+2019-06-28 14:25:30,037 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x03\x12\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')
+2019-06-28 14:25:30,037 - DEBUG - tty.usbmodem0006822145041: TX: 17ab0800010000000800000003120001c000000100000110
+2019-06-28 14:25:30,042 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0008000000
+2019-06-28 14:25:30,042 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x08\x00\x00\x00')}}
+2019-06-28 14:25:30,044 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 8}
+2019-06-28 14:25:30,069 - DEBUG - tty.usbmodem0006822145041: RX: 05d208000000
+2019-06-28 14:25:30,069 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 8}}
+2019-06-28 14:25:30,071 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 8}}
+2019-06-28 14:25:30,121 - DEBUG - tty.usbmodem0006822145041: RX: 22d010000100080000001e01c8639509c2c2c80e00801900120001c000000100000110
+2019-06-28 14:25:30,121 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 30, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 14, 'data': bytearray(b'\x80\x19\x00\x12\x00\x01\xc0\x00\x00\x01\x00\x00\x01\x10')}}
+2019-06-28 14:25:30,122 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Model publication status: AccessStatus.SUCCESS
+2019-06-28 14:25:30,126 - INFO - tty.usbmodem0006822145041.ConfigurationClient: Publication status for model 1001 at element 18 to {'address': c001, 'index': 0, 'ttl': 1, 'period': 0, 'retransmit': {'count': 0, 'interval_steps': 0, 'interval': 50}, 'credentials': <FriendshipCredentials.DISABLED: 0>}
+2019-06-28 14:26:24,064 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c9060082020100010a
+2019-06-28 14:26:24,065 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:24,066 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x00\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:24,067 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:24,274 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2ca060082020100010a
+2019-06-28 14:26:24,274 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:24,274 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x00\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:24,275 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:24,492 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cd060082020100010a
+2019-06-28 14:26:24,492 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:24,492 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x00\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:24,492 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x00\x01\n')}}
+2019-06-28 14:26:25,473 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c8060082020001010a
+2019-06-28 14:26:25,473 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:25,474 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:25,474 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:25,688 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c8060082020001010a
+2019-06-28 14:26:25,688 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:25,688 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:25,689 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:25,913 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c6060082020001010a
+2019-06-28 14:26:25,914 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -58, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:25,915 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:25,916 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -58, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:26,342 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c9060082020001010a
+2019-06-28 14:26:26,342 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:26,342 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:26,342 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:26,693 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2c8060082030002010a
+2019-06-28 14:26:26,693 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:26,693 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x02\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:26,694 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:26,717 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2c8060082030002010a
+2019-06-28 14:26:26,718 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:26,719 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x02\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:26,719 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:26,737 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2c8060082030002010a
+2019-06-28 14:26:26,737 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:26,738 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x02\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:26,738 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -56, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x02\x01\n')}}
+2019-06-28 14:26:27,221 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cd060082020001010a
+2019-06-28 14:26:27,221 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:27,221 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:27,221 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:27,450 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cc060082030103010a
+2019-06-28 14:26:27,450 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:27,451 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x03\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:27,451 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:27,477 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cc060082030103010a
+2019-06-28 14:26:27,477 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:27,477 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x03\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:27,477 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:27,505 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cd060082030103010a
+2019-06-28 14:26:27,505 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:27,505 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x03\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:27,506 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x03\x01\n')}}
+2019-06-28 14:26:28,982 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c1060082020001010a
+2019-06-28 14:26:28,983 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -63, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:28,983 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:28,983 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -63, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:32,516 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2bb060082020001010a
+2019-06-28 14:26:32,517 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -69, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:32,518 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x01\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:32,518 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -69, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x01\x01\n')}}
+2019-06-28 14:26:44,901 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cb060082020104010a
+2019-06-28 14:26:44,901 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -53, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:44,902 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x04\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:44,902 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -53, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,122 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2ca060082020104010a
+2019-06-28 14:26:45,122 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,123 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x04\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:45,123 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,336 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c9060082020104010a
+2019-06-28 14:26:45,336 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,337 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x04\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:45,337 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -55, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,769 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2ce060082020104010a
+2019-06-28 14:26:45,769 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:45,770 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x04\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:45,770 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:46,646 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cd060082020104010a
+2019-06-28 14:26:46,647 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:46,647 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\x04\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:46,647 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\x04\x01\n')}}
+2019-06-28 14:26:51,677 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2d2060082020005010a
+2019-06-28 14:26:51,677 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:51,678 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:51,678 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:51,886 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cf060082020005010a
+2019-06-28 14:26:51,887 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:51,887 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:51,887 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:52,107 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cd060082020005010a
+2019-06-28 14:26:52,108 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:52,108 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:52,108 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:52,555 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cc060082020005010a
+2019-06-28 14:26:52,556 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:52,556 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:52,556 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -52, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:53,433 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2ca060082020005010a
+2019-06-28 14:26:53,434 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:53,434 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:53,434 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:53,521 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ca060082030006010a
+2019-06-28 14:26:53,522 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:53,522 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x06\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:53,522 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:53,552 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cb060082030006010a
+2019-06-28 14:26:53,552 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -53, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:53,553 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x06\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:53,553 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -53, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:53,573 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ca060082030006010a
+2019-06-28 14:26:53,574 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:53,574 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x00\x06\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:53,574 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x00\x06\x01\n')}}
+2019-06-28 14:26:54,730 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ce060082030107010a
+2019-06-28 14:26:54,731 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:54,731 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x07\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:54,731 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:54,751 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cd060082030107010a
+2019-06-28 14:26:54,751 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:54,751 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x07\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:54,751 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:54,771 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2cf060082030107010a
+2019-06-28 14:26:54,772 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:54,772 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x07\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:54,772 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x07\x01\n')}}
+2019-06-28 14:26:55,190 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2cf060082020005010a
+2019-06-28 14:26:55,190 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:55,190 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:55,190 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:58,717 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2d3060082020005010a
+2019-06-28 14:26:58,717 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:26:58,718 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\x05\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:26:58,718 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\x05\x01\n')}}
+2019-06-28 14:27:10,088 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ba060082030108010a
+2019-06-28 14:27:10,089 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:10,089 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x08\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:10,089 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:10,110 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ba060082030108010a
+2019-06-28 14:27:10,111 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:10,111 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x08\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:10,111 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:10,133 - DEBUG - tty.usbmodem0006822145041: RX: 1ad112000100000000000101c8639509c2c2ba060082030108010a
+2019-06-28 14:27:10,133 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:10,133 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x03'), Data bytearray(b'\x01\x08\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:10,133 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 18, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -70, 'actual_length': 6, 'data': bytearray(b'\x82\x03\x01\x08\x01\n')}}
+2019-06-28 14:27:11,830 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c1060082020109010a
+2019-06-28 14:27:11,830 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -63, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:11,830 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\t\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:11,830 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -63, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:12,052 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c5060082020109010a
+2019-06-28 14:27:12,052 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -59, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:12,052 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\t\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:12,053 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -59, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:12,283 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c0060082020109010a
+2019-06-28 14:27:12,283 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -64, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:12,283 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x01\t\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:12,283 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -64, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x01\t\x01\n')}}
+2019-06-28 14:27:12,335 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2bf06008202000a010a
+2019-06-28 14:27:12,335 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -65, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:12,335 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\n\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:12,336 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -65, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:13,220 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2bd06008202000a010a
+2019-06-28 14:27:13,220 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -67, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:13,220 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\n\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:13,221 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -67, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:14,107 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2b806008202000a010a
+2019-06-28 14:27:14,108 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -72, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:14,110 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\n\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:14,112 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -72, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:15,888 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c706008202000a010a
+2019-06-28 14:27:15,889 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -57, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:15,889 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\n\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:15,889 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -57, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:19,376 - DEBUG - tty.usbmodem0006822145041: RX: 1ad111000100000000000101c8639509c2c2c506008202000a010a
+2019-06-28 14:27:19,376 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -59, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
+2019-06-28 14:27:19,377 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x02'), Data bytearray(b'\x00\n\x01\n') unknown for model <mesh.access.Access object at 0x108f55f28>.
+2019-06-28 14:27:19,382 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedSubscription, data: {'src': 17, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 1, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -59, 'actual_length': 6, 'data': bytearray(b'\x82\x02\x00\n\x01\n')}}
