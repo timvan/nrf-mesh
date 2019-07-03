@@ -9,7 +9,7 @@ class PyAci {
         }
 
         this.child = cp.spawn('python'
-            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "4"]
+            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "0"]
             , {
                 cwd: this.pyscript.working_dir,
                 stdio: ['pipe', 'pipe', 2]
@@ -71,15 +71,21 @@ class PyAci {
         });
     }
 
-    provisionScanStop() {
-        this.send({
-            op: "ProvisionScanStop"
-        });
-    }
+    // provisionScanStop() {
+    //     this.send({
+    //         op: "ProvisionScanStop"
+    //     });
+    // }
 
-    provision() {
+    provision(onProvisionCompleteCb, uuid) {
+
+        this.onProvisionComplete = onProvisionCompleteCb;
+
         this.send({
             op: "Provision",
+            data: {
+                uuid: uuid
+            }
         });
     }
 
@@ -96,36 +102,58 @@ class PyAci {
         });
     }
 
-    addGroupSubscriptionAddresses() {
+    // addGroupSubscriptionAddresses() {
+    //     this.send({
+    //         op: "AddGroupSubscriptionAddresses",
+    //     });
+    // }
+
+    // addGroupPublicationAddresses() {
+    //     this.send({
+    //         op: "AddGroupPublicationAddresses",
+    //     });
+    // }
+
+    // addGenericClientModel() {
+    //     this.send({
+    //         op: "AddGenericClientModel",
+    //     });
+    // }
+
+    // addGenericServerModel(onGenericOnOffServerSetUnackCb) {
+    //     this.onGenericOnOffServerSetUnack = onGenericOnOffServerSetUnackCb;
+    //     this.send({
+    //         op: "AddGenericServerModel",
+    //     });
+    // }
+
+    // genericClientSet(onoff) {
+    //     this.send({
+    //         op: "GenericClientSet",
+    //         data : {
+    //             value: onoff
+    //         }
+    //     });
+    // }
+
+    configureGPIO(asInput, pin, uuid) {
         this.send({
-            op: "AddGroupSubscriptionAddresses",
+            op: "ConfigureGPIO",
+            data: {
+                value: asInput,
+                pin: pin,
+                uuid: uuid               
+            }
         });
     }
 
-    addGroupPublicationAddresses() {
+    setGPIO(onoff, pin, uuid) {
         this.send({
-            op: "AddGroupPublicationAddresses",
-        });
-    }
-
-    addGenericClientModel() {
-        this.send({
-            op: "AddGenericClientModel",
-        });
-    }
-
-    addGenericServerModel(onGenericOnOffServerSetUnackCb) {
-        this.onGenericOnOffServerSetUnack = onGenericOnOffServerSetUnackCb;
-        this.send({
-            op: "AddGenericServerModel",
-        });
-    }
-
-    genericClientSet(onoff) {
-        this.send({
-            op: "GenericClientSet",
-            data : {
-                value: onoff
+            op: "SetGPIO",
+            data: {
+                value: onoff,
+                pin: pin,
+                uuid: uuid
             }
         });
     }
@@ -169,8 +197,16 @@ class PyAci {
             this.compositionDataStatus(msg);
         }
 
-        if(op == "GenericOnOffServerSetUnack"){
-            this.genericOnOffServerSetUnack(msg);
+        if(op == "AddAppKeysComplete"){
+            this.addAppKeysComplete();
+        }
+
+        // if(op == "GenericOnOffServerSetUnack"){
+        //     this.genericOnOffServerSetUnack(msg);
+        // }
+
+        if(op == "SetEventGPIO"){
+            this.setEventGPIO(msg);
         }
     }
 
@@ -191,6 +227,7 @@ class PyAci {
 
     provisionComplete() {
         console.log(`ProvisionComplete`);
+        this.onProvisionComplete();
     }
 
     compositionDataStatus(msg) {
@@ -199,10 +236,33 @@ class PyAci {
         this.onCompositionDataStatus(data);
     }
 
-    genericOnOffServerSetUnack(msg) {
+    addAppKeysComplete() {
+        console.log(`AddAppKeysComplete`);
+    }
+
+    // genericOnOffServerSetUnack(msg) {
+    //     var data = msg.data;
+    //     console.log(`GenericOnOffServerSetUnack: ${data}`);
+    //     this.onGenericOnOffServerSetUnack(data)
+    // }
+
+    setEventGPIO(msg) {
         var data = msg.data;
-        console.log(`GenericOnOffServerSetUnack: ${data}`);
-        this.onGenericOnOffServerSetUnack(data)
+        console.log(`SetEventGPIO: ${data}`);
+        this.onSetEventGPIO(data)
+    }
+
+    onSetEventGPIO(data) {
+        var uuid = data.uuid;
+        var pin = data.pin;
+
+        try {
+            var fcn = this.setEventsCbs[uuid][pin];
+            fcn(data.value);
+        } catch (error) {
+            console.log(this.setEventsCbs);
+            console.log("Error onSetEventGPIO ", error);
+        }
     }
 }
 

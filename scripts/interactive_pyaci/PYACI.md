@@ -35,3 +35,31 @@ gc.publish_set(0, 1)
 
 
 cc.model_publication_set(db.appKeys[0].key, mt.ModelId(0x1001), mt.Publish(db.groups[0].address, index=0, ttl=1))
+
+
+<!--  -->
+
+from interactive_pyaci import Manager
+m = Manager(d[0])
+m.provisionScanStart()
+m.provision("9db77a0526b8734988639509c242d107")
+m.configure()
+m.addAppKeys()
+m.addModels()
+
+m.iaci.send(cmd.AddrPublicationAdd(m.db.nodes[0].unicast_address + e))
+m.cc.model_app_bind(m.db.nodes[0].unicast_address + e, 0, mt.ModelId(0x1000))
+m.cc.model_app_bind(m.db.nodes[0].unicast_address + e, 0, mt.ModelId(0x1001))
+m.cc.model_publication_set(m.db.nodes[0].unicast_address + e, mt.ModelId(0x1001), mt.Publish(#prov-unicast-address#, index=0, ttl=1))
+
+m.addGenericServerModel()
+m.addGenericClientModel()
+m.addSimpleServer()
+
+# 2 is 12
+m.genericClientSet(True, 0, 2)
+m.simpleServerSet(True, 0, 2)
+
+{"op": "ConfigureGPIO", "data": {"value": "0", "uuid": "9db77a0526b8734988639509c242d107", "pin": 12}}
+
+{"op": "SetGPIO", "data": {"value": "1", "uuid": "9db77a0526b8734988639509c242d107", "pin": 12}}

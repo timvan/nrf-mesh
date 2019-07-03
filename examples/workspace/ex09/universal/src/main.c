@@ -152,7 +152,7 @@ static void provisioning_aborted_cb(void);
 
 static void rtt_input_handler(int key);
 int pin_to_index(uint8_t pin_number);
-
+  
 int main(void)
 {
     initialise();
@@ -220,7 +220,7 @@ static void gpio_init_output(uint8_t pin_number)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as output\n", pin_number);
     nrfx_gpiote_in_uninit(pin_number);
-    nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(true); // << TODO WHAT IS THIS TRUE
+    nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(false); // << TODO WHAT IS THIS TRUE
     ERROR_CHECK(nrfx_gpiote_out_init(pin_number, &out_config));
 }
 
@@ -230,7 +230,7 @@ static void gpio_init_output(uint8_t pin_number)
 
 static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sending ONOFF set %d", nrf_gpio_pin_read(pin));
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Input on GPIO %d sending ONOFF set %d\n", pin, nrf_gpio_pin_read(pin));
     uint8_t element_index = pin_to_index(pin);
 
     generic_onoff_client_t *m_client = &(u_apps[element_index].m_client);
@@ -258,7 +258,6 @@ static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t ac
         case NRF_ERROR_BUSY:
         case NRF_ERROR_INVALID_STATE:
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client cannot send\n");
-            // hal_led_blink_ms(LEDS_MASK, LED_BLINK_SHORT_INTERVAL_MS, LED_BLINK_CNT_NO_REPLY);
             break;
 
         case NRF_ERROR_INVALID_PARAM:
@@ -347,18 +346,20 @@ static void models_init_cb(void)
 
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - Setting GPIO value: %d\n", onoff)
+    int pin_number = p_server->pin_number;
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - Setting GPIO %d to value: %d\n", pin_number, onoff);
     if(onoff){
-        nrfx_gpiote_out_set(p_server->pin_number);
+        nrfx_gpiote_out_set(pin_number);
     } else {
-        nrfx_gpiote_out_clear(p_server->pin_number);
+        nrfx_gpiote_out_clear(pin_number);
     }
 }
 
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
-    *p_present_onoff = nrf_gpio_pin_read(p_server->pin_number);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - getting GPIO value: %d\n", p_present_onoff)
+    int pin_number = p_server->pin_number;
+    *p_present_onoff = nrf_gpio_pin_read(pin_number);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - getting GPIO %d value: %d\n", pin_number, p_present_onoff)
 }
 
 /***************************************************/
@@ -424,31 +425,31 @@ static void app_generic_onoff_client_status_cb(const generic_onoff_client_t * p_
 static bool app_simple_onoff_server_get_cb(const simple_on_off_server_t * p_self)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - get\n");
-    return pin_state;
+    return false; // TODO - need to return server state
 }
 
 static bool app_simple_onoff_server_set_cb(const simple_on_off_server_t * p_self, bool on)
 {
+
+    int pin_number = p_self->pin_number;
+
     if(on){
-        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set as P_INPUT \n");
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set GPIO %d as P_INPUT \n", pin_number);
     } else {
-        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set as P_OUTPUT \n");
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Simple server-on-off - set GPIO %d as P_OUTPUT \n", pin_number);
     }
     
-    if(pin_state != on){
-        if(on == P_INPUT){
-            gpio_init_input(TEMP_PIN);
-        } else {
-            gpio_init_output(TEMP_PIN);
-        }
+    if(on == P_INPUT){
+        gpio_init_input(pin_number);
+    } else {
+        gpio_init_output(pin_number);
     }
     
-    pin_state = on;
-    return pin_state;
+    return on;
 }
 
 /***************************************************/
-/* CONFIG SERVER CALLBACKS - CHANGES PIN CONFIG    */
+/* CONFIG SERVER CALLBACKS                         */
 /***************************************************/
 
 static void config_server_evt_cb(const config_server_evt_t * p_evt)
@@ -505,8 +506,7 @@ static void provision(void)
 
 static void provisioning_complete_cb(void)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Successfully provisioned\n");
-
+    
 #if MESH_FEATURE_GATT_ENABLED
     /* Restores the application parameters after switching from the Provisioning
      * service to the Proxy  */
@@ -517,11 +517,7 @@ static void provisioning_complete_cb(void)
     dsm_local_unicast_address_t node_address;
     dsm_local_unicast_addresses_get(&node_address);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Node Address: 0x%04x \n", node_address.address_start);
-
-    // TODO DELETE HAL
-    // hal_led_blink_stop();
-    // hal_led_mask_set(LEDS_MASK, LED_MASK_STATE_OFF);
-    // hal_led_blink_ms(LEDS_MASK, LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Successfully provisioned\n");
 }
 
 static void device_identification_start_cb(uint8_t attention_duration_s)
@@ -540,10 +536,21 @@ static void provisioning_aborted_cb(void)
 
 static void rtt_input_handler(int key)
 {
-//     key = key - '0';
-//     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
+    key = key - '0';
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
 
-//     uint32_t status = NRF_SUCCESS;
+    if(key == 0){
+        if (mesh_stack_is_device_provisioned()) {
+#if MESH_FEATURE_GATT_PROXY_ENABLED
+            (void) proxy_stop();
+#endif
+            mesh_stack_config_clear();
+                
+        }
+        node_reset();
+    }
+
+//    uint32_t status = NRF_SUCCESS;
 //     generic_onoff_set_params_t set_params;
 //     model_transition_t transition_params;
 //     static uint8_t tid = 0;

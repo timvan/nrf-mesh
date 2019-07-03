@@ -59,6 +59,7 @@ from mesh.database import MeshDB                        # NOQA: ignore unused im
 from models.config import ConfigurationClient           # NOQA: ignore unused import
 from models.generic_on_off import GenericOnOffClient    # NOQA: ignore unused import
 from models.generic_on_off import GenericOnOffServer
+from models.simple_on_off import SimpleOnOffClient
 
 LOG_DIR = os.path.join(os.path.dirname(sys.argv[0]), "log")
 
@@ -205,9 +206,15 @@ class Manager(object):
         self.keep_running = True
         self.db_path = "database/example_database.json"
         self.iaci = interactive_device
+        self.logger = self.iaci.logger
         self.n = 0
-        self.setup_received = False;
+
+        self.iaci.event_filter_disable() 
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
+        self.address_handles = {}
+        self.address_stack = list()
+
+        self.setup()
 
     def run(self):
         while self.keep_running:
@@ -225,17 +232,36 @@ class Manager(object):
                     "rssi": rssi
                     })
 
+        if event._opcode == evt.Event.PROV_COMPLETE:
+            time.sleep(6)
+            self.process_stdout("ProvisionComplete")
 
         if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             message = access.AccessMessage(event)
             opcode = message.opcode_raw.hex()
         
-
             if opcode == str(ConfigurationClient._COMPOSITION_DATA_STATUS):
                 data = message.data[1:]
-                data = mt.CompositionData().unpack(data)
-                self.compositionDataStatus(data)
+                compositionData = mt.CompositionData().unpack(data)
 
+                src = message.meta["src"]
+                node, element = self.src_to_address(src)
+                uuid = self.db.nodes[node].UUID
+
+                self.compositionDataStatus(uuid, compositionData)
+
+        if event._opcode == evt.Event.CMD_RSP:
+            
+            opcode = event._data["opcode"]
+            
+            if opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+                try:
+                    address_handle = event._data["data"][0]
+                    address = self.address_stack.pop(0)
+                    self.address_handles[address] = address_handle
+                    self.logger.info("Address handles: {}".format(self.address_handles))
+                except Exception as e:
+                    self.logger.error("Error storing address handle: {}".format(e))
 
     def process_stdout(self, op, data=None):
         
@@ -286,7 +312,7 @@ class Manager(object):
             self.provisionScanStop()
 
         if op == "Provision":
-            self.provision()
+            self.provision(msg["data"]["uuid"])
         
         if op == "Configure":
             self.configure()
@@ -306,21 +332,36 @@ class Manager(object):
         if op == "AddGenericServerModel":            
             self.addGenericServerModel()
 
-        if op == "GenericClientSet":            
+        if op == "GenericClientSet":
             self.genericClientSet(value = msg["data"]["value"])
 
+        if op == "SetGPIO":
+            value = int(msg["data"]["value"])
+            pin = int(msg["data"]["pin"])
+            uuid = msg["data"]["uuid"]
+            self.setGPIO(value, pin, uuid)
+        
+        if op == "ConfigureGPIO":
+            value = int(msg["data"]["value"])
+            pin = int(msg["data"]["pin"])
+            uuid = msg["data"]["uuid"]
+            self.configureGPIO(value, pin, uuid)
 
     def echo(self, msg):
         op = "EchoRsp"
         self.process_stdout(op, msg["data"])
 
     def setup(self):
-        if not self.setup_received:
-            subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
-            self.db = MeshDB(self.db_path)
-            self.p = Provisioner(self.iaci, self.db)
-            self.setup_received = True;
-            self.process_stdout("SetupRsp")
+        subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
+        self.db = MeshDB(self.db_path)
+        self.p = Provisioner(self.iaci, self.db)
+        
+        self.cc = ConfigurationClient(self.db)
+        self.iaci.model_add(self.cc)
+
+        self.addModels()
+
+        self.process_stdout("SetupRsp")
     
     def exit(self):
         self.keep_running = False
@@ -332,31 +373,26 @@ class Manager(object):
     def provisionScanStop(self):
         self.p.scan_stop()
 
-
     def newUnProvisionedDevice(self, data):
-        op = "NewUnProvisionedDevice";
+        op = "NewUnProvisionedDevice"
         self.process_stdout(op, data)
 
-    def provision(self):
-
+    def provision(self, uuid, name="Server"):
         self.p.scan_stop()
-        self.p.provision(name="Server")
-
-        while not self.p.provisioning_open:
-            pass
-
-        self.process_stdout("ProvisionComplete")
+        self.p.provision(uuid=uuid, name=name)
         
-    def configure(self, groupAddrId=0):
-        self.cc = ConfigurationClient(self.db)
-        self.iaci.model_add(self.cc)
-        self.cc.publish_set(8, 0)
+    def configure(self, device_handle=8, address_handle=0, groupAddrId=0):
+        self.cc.publish_set(device_handle, address_handle)
         self.cc.composition_data_get()
         self.cc.appkey_add(0)
-        self.iaci.send(cmd.AddrPublicationAdd(self.db.groups[groupAddrId].address))
+        self.addAddress(cmd.AddrSubscriptionAdd , self.db.groups[groupAddrId].address)
 
-    def compositionDataStatus(self, data):
+    def compositionDataStatus(self, uuid, compositionData):
         op = "CompositionDataStatus"
+        data = {
+            "uuid": uuid,
+            "compositionData": compositionData
+        }
         self.process_stdout(op, data)
         
     def addAppKeys(self, node=0, groupAddrId=0):
@@ -364,44 +400,73 @@ class Manager(object):
             
             # Add each element to the serial device's pubusb list
             # TODO here I should log each device into address book
-            self.iaci.send(cmd.AddrPublicationAdd(self.db.nodes[node].unicast_address + e))
-            self.iaci.send(cmd.AddrSubscriptionAdd(self.db.nodes[node].unicast_address + e))
+            element_address = self.db.nodes[node].unicast_address + e
+            self.addAddress(cmd.AddrPublicationAdd, element_address)
 
             for model in element.models:
+                
+                # Generic OnOff Server
                 if str(model.model_id) == "1000":
-                    self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1000))
-                    # self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))
-                if str(model.model_id) == "1001":
-                    self.cc.model_app_bind(self.db.nodes[node].unicast_address + e, 0, mt.ModelId(0x1001))
+                    
+                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1000))
                     time.sleep(1)
-                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
-                time.sleep(1)
+                    
+                # Generic OnOff Client
+                if str(model.model_id) == "1001":
+                    
+                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1001))
+                    time.sleep(1)
+                    
+                    self.cc.model_publication_set(element_address, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
+                    time.sleep(1)
 
+                # Simple OnOff Server
+                if str(model.model_id) == "00590000":
 
+                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
+                    time.sleep(1)
+
+        self.addAppKeysComplete()
+    
+    def addAppKeysComplete(self):
+        self.process_stdout("AddAppKeysComplete")
+
+    def addAddress(self, command, address):
+        self.logger.info("Adding address {}".format(address))
+        self.address_stack.append(address)
+        self.iaci.send(command(address))
+        time.sleep(1)
 
     def addGroupSubscriptionAddresses(self, node=0, groupAddrId=0):
         for e, element in enumerate(self.db.nodes[node].elements):
             for model in element.models:
                 if str(model.model_id) == "1000":
-                    self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))
-                
-                time.sleep(1)
+                    self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))                
+                    time.sleep(1)
 
     def addGroupPublicationAddresses(self, node=0, groupAddrId=0):
-        self.iaci.send(cmd.AddrSubscriptionAdd(self.db.groups[groupAddrId].address))
+        
+        group_address = self.db.groups[groupAddrId].address
+        self.addAddress(cmd.AddrSubscriptionAdd, group_address)
 
         for e, element in enumerate(self.db.nodes[node].elements):
             for model in element.models:
                 if str(model.model_id) == "1001":
-                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
+                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(group_address, index=0, ttl=1))
                 time.sleep(1)
+
+    def addModels(self):
+        self.addGenericClientModel()
+        self.addGenericServerModel()
+        self.addSimpleClientModel()
 
     def addGenericClientModel(self):
         self.gc = GenericOnOffClient()
         self.iaci.model_add(self.gc)
     
-    def genericClientSet(self, value):
-        self.gc.publish_set(0, 0)
+    def genericClientSet(self, value, key_handle=0, address_handle=0):
+        # key_handle is app key 
+        self.gc.publish_set(key_handle, address_handle)
         self.gc.set(value)
 
     def addGenericServerModel(self):
@@ -410,9 +475,73 @@ class Manager(object):
         self.iaci.model_add(self.gs)
 
     def genericOnOffServerSetUnackEvent(self, message):
-        value = message[1]
-        self.process_stdout("GenericOnOffServerSetUnack", value)
+        value = message.data.hex()[1]
+        src = message.meta["src"]
+        node, element = self.src_to_address(src)
+        uuid = self.db.nodes[node].UUID
+        self.setEventGPIO(value, self.element_to_pin(element), uuid)
 
+    def setEventGPIO(self, value, pin, uuid):
+        self.logger.info("Sending value:{} uuid:{} pin:{}".format(value, uuid, pin))
+        data = {
+            "value": value,
+            "uuid": uuid,
+            "pin": pin
+        }
+        self.process_stdout("SetEventGPIO", data)
+
+    def addSimpleClientModel(self):
+        self.sc = SimpleOnOffClient()
+        self.iaci.model_add(self.sc)
+
+    def simpleClientSet(self, value, key_handle=0, address_handle=0):
+        # key_handle is app key 
+        # False is output
+        self.sc.publish_set(key_handle, address_handle)
+        self.sc.set(value)
+
+    def configureGPIO(self, asInput, pin, uuid):
+        element = self.pin_to_element(pin)
+        node = self.uuid_to_node_index(uuid)
+        address_handle = self.address_handles[self.db.nodes[node].unicast_address + element]
+        self.simpleClientSet(asInput, address_handle=address_handle)
+
+    def setGPIO(self, value, pin, uuid):
+        element = self.pin_to_element(pin)
+        node = self.uuid_to_node_index(uuid)
+        address_handle = self.address_handles[self.db.nodes[node].unicast_address + element]
+        self.genericClientSet(value, address_handle=address_handle)
+
+    def pin_to_element(self, pin):
+        # element 0 = configuration element
+        # element 1-9 = pin 12 - 20
+        # element 10-13  = pin 22-25
+        self.logger.info("Setting pin {}".format(pin))
+        if pin >= 12 and pin <= 20:
+            return pin - 11
+        
+        if pin >= 22 and pin <= 25:
+            return pin - 12
+
+    def element_to_pin(self, element):
+        e = element + 11
+        if e >= 21:
+            e += 1
+
+        return e
+
+    def src_to_address(self, src_address):
+        # TODO - this is a bad way.... 
+        for n, node in enumerate(self.db.nodes):
+            for e, element in enumerate(node.elements):
+                
+                if int(node.unicast_address + e) == src_address:
+                    return n, e
+
+    def uuid_to_node_index(self, uuid):
+        for n, node in enumerate(self.db.nodes):
+            if uuid == node.UUID.hex():
+                return n
 
 def start_ipython(options):
     comports = options.devices

@@ -107,7 +107,7 @@ class GenericOnOffServer(Model):
 
     def __generic_on_off_server_set_unack_event_handler(self, opcode, message):
         try:
-            self.__generic_on_off_server_set_unack_cb(message.data.hex())
+            self.__generic_on_off_server_set_unack_cb(message)
         except:
             self.logger.error("Failed trying generic on off server set unack callback: ", self.__generic_on_off_server_set_unack_cb)
 

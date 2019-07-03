@@ -145,8 +145,6 @@ class ProvDevice(object):
                                         Event.PROV_FAILED])
         self.set_key_pair()
 
-        self.provisioning_open = False
-
     def set_key_pair(self):
         """Generates a new private-public key pair and sets it for the device.
         """
@@ -185,11 +183,9 @@ class ProvDevice(object):
 
         elif event._opcode == Event.PROV_LINK_ESTABLISHED:
             self.logger.info("Link established")
-            self.provisioning_open = True
 
         elif event._opcode == Event.PROV_LINK_CLOSED:
             self.logger.info("Provisioning link closed")
-            self.provisioning_open = False
 
         elif event._opcode == Event.PROV_LINK_ESTABLISHED:
             self.logger.info("Provisioning link established")

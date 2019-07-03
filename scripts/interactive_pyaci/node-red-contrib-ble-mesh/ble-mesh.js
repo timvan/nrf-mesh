@@ -4,28 +4,30 @@ var pyaci = new PyAci().getInstance();
 var p = require('process')
 p.on('SIGINT', () => {pyaci.kill()});
 
-pyaci.setup();
 
-const bleNodes = [];
-const unProvisionedBleNodes = [];
+var bleNodes = {};
+var unProvisionedBleNodes = [];
+
+pyaci.setEventsCbs = bleNodes;
 
 function onCompositionDataStatus(data) {
     console.log(`Node configuration `, JSON.stringify(data));
+    bleNodes[data.uuid] = {};
+    console.log(bleNodes);
     pyaci.addAppKeys();
-    // setTimeout(() => {
-    //     pyaci.addGroupPublicationAddresses();
-    // }, 10000);
-}
+};
 
+function onProvisionComplete() {
+    pyaci.configure(onCompositionDataStatus);
+    var nodeId = 0;
+};
 
 function onDiscover(data) {
     unProvisionedBleNodes.push(data);
     console.log(`Nodes ${unProvisionedBleNodes}`, JSON.stringify(unProvisionedBleNodes));
-    pyaci.provision();
-    
-    setTimeout(() => {
-        pyaci.configure(onCompositionDataStatus);
-    }, 20000);
+
+    var uuid = unProvisionedBleNodes.pop().uuid;
+    pyaci.provision(onProvisionComplete, uuid);
 };
 
 setTimeout(() => {
@@ -47,25 +49,15 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-        // this.localName = config.localName;
-        // this.uuid = config.uuid;
-        // this.pin = config.pin;
+        this.uuid = "9db77a0526b8734988639509c242d107";
+        this.pin = 12;
+        
+        pyaci.configureGPIO(false, this.pin, this.uuid);
 
-        pyaci.addGenericClientModel();
-
-        node.on('input', function(msg) {    
-            
+        node.on('input', function(msg) {
             console.log(msg);
-            var value = msg.payload.value;
-
-            // var msg_out = {
-            //     op: "SET",
-            //     uuid: this.uuid,
-            //     pin: this.pin,
-            //     value: this.value
-            // };
-
-            pyaci.genericClientSet(value)
+            var value = msg.payload;
+            pyaci.setGPIO(value, this.pin, this.uuid);
         });
     }
     RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
@@ -79,27 +71,22 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-        // this.localName = config.localName;
-        // this.uuid = config.uuid;
-        // this.pin = config.pin;
+        this.uuid = "9db77a0526b8734988639509c242d107";
+        this.pin = 13;
 
-        this.onGenericOnOffServerSetUnack = function(data) {
+        pyaci.configureGPIO(true, this.pin, this.uuid);
+
+        bleNodes[this.uuid][this.pin] = function(value) {
             node.send({
-                payload: data
+                payload: value
             });
         };
+        console.log(bleNodes);
 
-        pyaci.addGenericServerModel(this.onGenericOnOffServerSetUnack);
-
-        node.on('input', function(msg) {    
-            
+        node.on('input', function(msg) {
             console.log(msg);
-            // var value = msg.payload.value;
-
-            // pyaci.genericClientSet(value)
         });
 
-        pyaci.set
     }
 
     RED.nodes.registerType("ble-mesh-input", BleMeshNodeInput);
@@ -108,12 +95,12 @@ module.exports = function(RED) {
     /* GENERIC NODE                      */
     /*************************************/
 
-    function BleMeshNode(config) {
+    // function BleMeshNode(config) {
 
-        RED.nodes.createNode(this, config);
-    }
+    //     RED.nodes.createNode(this, config);
+    // }
 
-    RED.nodes.registerType("ble-mesh", BleMeshNode);
+    // RED.nodes.registerType("ble-mesh", BleMeshNode);
 
 
     /*************************************/
