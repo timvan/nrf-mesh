@@ -5,7 +5,15 @@
         category: 'output',
         color: '#4d94ff',
         defaults: {
-            name: {value:""}
+            name: {value:""},
+            uuid: {
+                value:"", 
+                required: false
+            },
+            pin: {
+                value:"", 
+                required: true
+            }
         },
         inputs:1,
         // outputs:1,
@@ -24,8 +32,13 @@
     </div>
 
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-random"></i> BLE</label>
-        <input type="text" id="node-input-name" placeholder="Device">
+        <label for="node-input-uuid"><i class="fa fa-random"></i> BLE UUID</label>
+        <select type="text" id="node-input-uuid"></select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-pin"><i class="fa fa-random"></i> Pin</label>
+        <input type="text" id="node-input-pin" placeholder="Pin Number">
     </div>
 
     
@@ -42,7 +55,15 @@
         category: 'input',
         color: '#4d94ff',
         defaults: {
-            name: {value:""}
+            name: {value:""},
+            uuid: {
+                value:"", 
+                required: false
+            },
+            pin: {
+                value:"", 
+                required: true
+            }
         },
         // inputs:1,
         outputs:1,
@@ -50,6 +71,14 @@
         align: 'left',
         label: function() {
             return this.name||"ble-mesh-input";
+        },
+        oneditprepare: function() {
+            $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
+                $.each(bleDevices, function(i ,v) {
+                    var option = $('<option></option>').attr('value', v.uuid);
+                    $('#node-input-uuid').append(option)
+                })
+            })
         }
     });
 </script>
@@ -60,12 +89,17 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 
+
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-random"></i> BLE</label>
-        <input type="text" id="node-input-name" placeholder="Device">
+        <label for="node-input-uuid"><i class="fa fa-random"></i> BLE UUID</label>
+        <select type="text" id="node-input-uuid"></select>
     </div>
 
-    
+    <div class="form-row">
+        <label for="node-input-pin"><i class="fa fa-random"></i> Pin</label>
+        <input type="text" id="node-input-pin" placeholder="Pin Number">
+    </div>
+
 </script>
 
 <script type="text/x-red" data-help-name="ble-mesh-input">
@@ -75,6 +109,7 @@
 
 
 <!-- GENERIC -->
+<!-- 
 
 <script type="text/javascript">
     RED.nodes.registerType('ble-mesh',{
@@ -109,4 +144,6 @@
 
 <script type="text/x-red" data-help-name="ble-mesh">
     <p>A ble-mesh node</p>
-</script>
+</script> 
+
+-->
