@@ -30,7 +30,7 @@
 from mesh.access import Model, Opcode
 from models.common import TransitionTime
 import struct
-
+import json
 
 class GenericOnOffClient(Model):
     GENERIC_ON_OFF_SET = Opcode(0x8202, None, "Generic OnOff Set")
@@ -77,6 +77,12 @@ class GenericOnOffClient(Model):
 
         self.logger.info(logstr)
 
+    
+    def __str__(self):
+        return json.dumps({"model": "GenericOnOffClient", "tid": self.__tid})
+
+    def to_json(self):
+        return {"model": "GenericOnOffClient", "tid": self.__tid}
 
 class GenericOnOffServer(Model):
     GENERIC_ON_OFF_SET = Opcode(0x8202, None, "Generic OnOff Set")
@@ -114,3 +120,8 @@ class GenericOnOffServer(Model):
     def set_generic_on_off_server_set_unack_cb(self, cb):
         self.__generic_on_off_server_set_unack_cb = cb
     
+    def __str__(self):
+        return json.dumps({"model": "GenericOnOffServer", "tid": self.__tid})
+
+    def to_json(self):
+        return {"model": "GenericOnOffServer", "tid": self.__tid}

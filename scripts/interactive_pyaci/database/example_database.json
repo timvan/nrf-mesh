@@ -1,5 +1,17 @@
 {
   "$schema": "",
+  "addressHandles": [
+    {
+      "address": 49153,
+      "address_handle": 1,
+      "opcode": 161
+    },
+    {
+      "address": 16,
+      "address_handle": 0,
+      "opcode": 164
+    }
+  ],
   "appKeys": [
     {
       "boundNetKey": 0,
@@ -17,12 +29,7 @@
   "groups": [
     {
       "address": 49153,
-      "name": "Room 1",
-      "parentAddress": 0
-    },
-    {
-      "address": 49154,
-      "name": "Room 2",
+      "name": "Pub To Serial Address",
       "parentAddress": 0
     }
   ],
@@ -30,6 +37,20 @@
   "ivUpdate": 0,
   "meshName": "BT Mesh",
   "meshUUID": "01020304050607080102030405060708",
+  "models": [
+    {
+      "model": "GenericOnOffClient",
+      "tid": 1
+    },
+    {
+      "model": "GenericOnOffServer",
+      "tid": 0
+    },
+    {
+      "model": "SimpleOnOffClient",
+      "tid": 0
+    }
+  ],
   "netKeys": [
     {
       "index": 0,
@@ -47,8 +68,8 @@
       ],
       "cid": "0059",
       "configComplete": false,
-      "crpl": 40,
-      "deviceKey": "8b97b1622b2e3b70b930399581e6fccc",
+      "crpl": "0028",
+      "deviceKey": "953eba7fd21033c03b0ada86d07b61e1",
       "elements": [
         {
           "index": 0,
@@ -103,5 +124,5 @@
       "name": "BT Mesh Provisioner"
     }
   ],
-  "timestamp": "2019-07-08 10:47:12.912049"
+  "timestamp": "2019-07-08 16:18:14.111134"
 }

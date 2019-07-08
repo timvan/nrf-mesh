@@ -267,3 +267,23 @@
 2019-07-08 10:47:56,759 - INFO - tty.usbmodem0006822145041.GenericOnOffServer: Server Event bytearray(b'\x82\x04') bytearray(b'\x00')
 2019-07-08 10:47:56,759 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x04'), Data bytearray(b'\x00') unknown for model <mesh.access.Access object at 0x112a6d4e0>.
 2019-07-08 10:47:56,759 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 4, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -51, 'actual_length': 3, 'data': bytearray(b'\x82\x04\x00')}}
+2019-07-08 10:49:46,966 - DEBUG - tty.usbmodem0006822145041.GenericOnOffClient: Sending opcode: 8202, data: 0002
+2019-07-08 10:49:46,968 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x00\x00\x01\x00\x00\x00\x08\x00\x00\x00\x82\x02\x00\x02')
+2019-07-08 10:49:46,975 - DEBUG - tty.usbmodem0006822145041: TX: 0fab0000010000000800000082020002
+2019-07-08 10:49:46,978 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0006000000
+2019-07-08 10:49:46,979 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x06\x00\x00\x00')}}
+2019-07-08 10:49:46,979 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 6}
+2019-07-08 10:49:46,994 - DEBUG - tty.usbmodem0006822145041: RX: 05d206000000
+2019-07-08 10:49:46,994 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 6}}
+2019-07-08 10:49:46,994 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 6}}
+2019-07-08 10:49:47,008 - DEBUG - tty.usbmodem0006822145041: RX: 17d010000100000000000401c8639509c2c2ca0300820400
+2019-07-08 10:49:47,008 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 4, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 3, 'data': bytearray(b'\x82\x04\x00')}}
+2019-07-08 10:49:47,009 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x04'), Data bytearray(b'\x00') unknown for model <mesh.access.Access object at 0x112a6d4e0>.
+2019-07-08 10:49:47,009 - INFO - tty.usbmodem0006822145041.GenericOnOffClient: off
+2019-07-08 10:49:47,009 - INFO - tty.usbmodem0006822145041.GenericOnOffServer: Server Event bytearray(b'\x82\x04') bytearray(b'\x00')
+2019-07-08 10:49:47,010 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x04'), Data bytearray(b'\x00') unknown for model <mesh.access.Access object at 0x112a6d4e0>.
+2019-07-08 10:49:47,029 - INFO - tty.usbmodem0006822145041.GenericOnOffClient: off
+2019-07-08 10:49:47,030 - INFO - tty.usbmodem0006822145041.GenericOnOffServer: Server Event bytearray(b'\x82\x04') bytearray(b'\x00')
+2019-07-08 10:49:47,030 - DEBUG - tty.usbmodem0006822145041: Message Opcode bytearray(b'\x82\x04'), Data bytearray(b'\x00') unknown for model <mesh.access.Access object at 0x112a6d4e0>.
+2019-07-08 10:49:47,030 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 4, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -54, 'actual_length': 3, 'data': bytearray(b'\x82\x04\x00')}}
+2019-07-08 13:03:59,514 - DEBUG - tty.usbmodem0006822145041: exited read event

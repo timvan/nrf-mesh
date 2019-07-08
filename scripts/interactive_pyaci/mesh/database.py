@@ -33,6 +33,10 @@ import re
 
 from mesh import types as mt
 
+from models.generic_on_off import GenericOnOffClient
+from models.generic_on_off import GenericOnOffServer
+from models.simple_on_off import SimpleOnOffClient
+
 
 def snakeify(name):
     all_cap_re = re.compile('([a-z0-9])([A-Z]+)')
@@ -66,6 +70,10 @@ class MeshDB(object):
         self.groups = []
         self.iv_index = 0
         self.iv_update = 0
+
+        self.address_handles = []
+        self.models = []
+
         self.load()
 
     @property
@@ -84,6 +92,7 @@ class MeshDB(object):
         self.net_keys = [mt.Netkey(**key) for key in data["net_keys"]]
         self.app_keys = [mt.Appkey(**key) for key in data["app_keys"]]
         self.provisioners = [mt.Provisioner(**p) for p in data["provisioners"]]
+
         if "nodes" in data:
             self.nodes = [mt.Node(**n) for n in data["nodes"]]
         if "groups" in data:
@@ -92,6 +101,12 @@ class MeshDB(object):
             self.iv_index = data["iv_index"]
         if "iv_update" in data:
             self.iv_update = data["iv_update"]
+        
+        if "address_handles" in data:
+            self.address_handles = data["address_handles"]
+
+        if "models" in data:
+            self.models = data["models"]
 
     def store(self, path=None):
         data = mt.camelify_object(self)
@@ -116,3 +131,12 @@ class MeshDB(object):
                 return key
 
         return None
+
+    def find_address_handle(self, address):
+        
+        for item in self.address_handles:
+            if item["address"] == address:
+                return item["address_handle"]
+
+        return None
+

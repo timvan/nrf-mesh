@@ -45,7 +45,8 @@ m.provisionScanStart()
 m.provision("9db77a0526b8734988639509c242d107")
 m.configure()
 m.addAppKeys()
-m.addModels()
+<!-- m.addModels() -->
+m.genericClientSet(True, 0)
 
 m.iaci.send(cmd.AddrPublicationAdd(m.db.nodes[0].unicast_address + e))
 m.cc.model_app_bind(m.db.nodes[0].unicast_address + e, 0, mt.ModelId(0x1000))

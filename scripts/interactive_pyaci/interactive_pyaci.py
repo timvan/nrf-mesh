@@ -50,6 +50,7 @@ from aci.aci_uart import Uart
 from aci.aci_utils import STATUS_CODE_LUT
 from aci.aci_config import ApplicationConfig
 import aci.aci_cmd as cmd
+from aci.aci_cmd import RESPONSE_LUT
 import aci.aci_evt as evt
 
 from mesh import access
@@ -213,7 +214,6 @@ class Manager(object):
 
         self.iaci.event_filter_disable() 
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
-        self.address_handles = {}
         self.address_stack = list()
 
         self.setup()
@@ -258,13 +258,23 @@ class Manager(object):
             
             if opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
                 try:
-                    address_handle = event._data["data"][0]
-                    address = self.address_stack.pop(0)
-                    self.address_handles[address] = address_handle
-                    self.logger.info("Address handles: {}".format(self.address_handles))
+                    new_address = self.address_stack.pop(0)
+
+                    # assert(new_address["opcode"] is opcode)
+                    # assert(new_address["address_handle"] is event._data["data"][0])
+
+                    address_handle = {
+                        "address": new_address["address"]
+                        , "address_handle": event._data["data"][0]
+                        , "opcode": opcode
+                    }
+                    
+                    self.db.address_handles.append(address_handle)
+                    self.logger.info("Address handles: {}".format(self.db.address_handles))
+                    
                 except Exception as e:
                     self.logger.error("Error storing address handle: {}".format(e))
-
+                    
     def process_stdout(self, op, data=None):
         
         msg = {
@@ -397,17 +407,63 @@ class Manager(object):
         self.process_stdout(op, msg["data"])
 
     def setup(self):
-        subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
+        # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         self.db = MeshDB(self.db_path)
         self.p = Provisioner(self.iaci, self.db)
         
         self.cc = ConfigurationClient(self.db)
         self.iaci.model_add(self.cc)
 
-        self.addModels()
+        self.load_address_handles()
+
+        if len(self.db.models) > 0:
+            self.load_models()
+        else:
+            self.addModels()
 
         self.process_stdout("SetupRsp")
-    
+
+    def load_address_handles(self):
+        sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
+        for i, item in enumerate(sortedList):
+
+            assert(i == item["address_handle"])
+
+            address = item["address"]
+            opcode = item["opcode"]
+
+            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAdd":
+                command = cmd.AddrSubscriptionAdd
+            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAddVirtual":
+                command = cmd.AddrSubscriptionAddVirtual
+            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAdd":
+                command = cmd.AddrPublicationAdd
+            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAddVirtual":
+                command = cmd.AddrPublicationAddVirtual
+            
+            self.iaci.send(command(address))
+            time.sleep(1)
+
+    def load_models(self):
+
+        db_models = self.db.models.copy()
+        self.db.models = []
+
+        for model in db_models:
+                
+            if model["model"] == "GenericOnOffClient":
+                self.addGenericClientModel()
+                self.gc.__tid = model["tid"]
+            
+            if model["model"] == "GenericOnOffServer":
+                self.addGenericServerModel()
+                self.gs.__tid = model["tid"]
+                
+            if model["model"] == "SimpleOnOffClient":
+                self.addSimpleClientModel()
+                self.sc.__tid = model["tid"]
+
+
     def exit(self):
         self.keep_running = False
         raise SystemExit(0)
@@ -478,7 +534,14 @@ class Manager(object):
 
     def addAddress(self, command, address):
         self.logger.info("Adding address {}".format(address))
-        self.address_stack.append(address)
+        
+        new_address = {
+            "address": address
+            , "opcode": command
+        }
+
+        self.address_stack.append(new_address)
+        
         self.iaci.send(command(address))
         time.sleep(1)
 
@@ -508,16 +571,18 @@ class Manager(object):
     def addGenericClientModel(self):
         self.gc = GenericOnOffClient()
         self.iaci.model_add(self.gc)
+        self.db.models.append(self.gc)
     
     def genericClientSet(self, value, key_handle=0, address_handle=0):
         # key_handle is app key 
         self.gc.publish_set(key_handle, address_handle)
         self.gc.set(value)
-
+        
     def addGenericServerModel(self):
         self.gs = GenericOnOffServer()
         self.gs.set_generic_on_off_server_set_unack_cb(self.genericOnOffServerSetUnackEvent)
         self.iaci.model_add(self.gs)
+        self.db.models.append(self.gs)
 
     def genericOnOffServerSetUnackEvent(self, message):
         value = int(message.data.hex()[1])
@@ -538,6 +603,7 @@ class Manager(object):
     def addSimpleClientModel(self):
         self.sc = SimpleOnOffClient()
         self.iaci.model_add(self.sc)
+        self.db.models.append(self.sc)
 
     def simpleClientSet(self, value, key_handle=0, address_handle=0):
         # key_handle is app key 
@@ -556,8 +622,9 @@ class Manager(object):
     def get_address_handle(self, pin, uuid):
         element = self.pin_to_element(pin)
         node = self.uuid_to_node_index(uuid)
-        address_handle = self.address_handles[self.db.nodes[node].unicast_address + element]
-        return address_handle
+        address = self.db.nodes[node].unicast_address + element
+
+        return self.db.find_address_handle(address)
 
     def pin_to_element(self, pin):
         # element 0 = configuration element
@@ -589,6 +656,8 @@ class Manager(object):
         for n, node in enumerate(self.db.nodes):
             if uuid == node.UUID.hex():
                 return n
+
+
 
 def start_ipython(options):
     comports = options.devices

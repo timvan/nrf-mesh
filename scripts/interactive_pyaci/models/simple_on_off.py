@@ -29,7 +29,7 @@
 
 from mesh.access import Model, Opcode
 import struct
-
+import json
 
 class SimpleOnOffClient(Model):
     SIMPLE_ON_OFF_STATUS = Opcode(0xc4, 0x59, "Simple OnOff Status")
@@ -67,3 +67,9 @@ class SimpleOnOffClient(Model):
     def __simple_on_off_status_handler(self, opcode, message):
         on_off = "on" if message.data[0] > 0 else "off"
         self.logger.info("Present value is %s", on_off)
+
+    def __str__(self):
+        return json.dumps({"model": "SimpleOnOffClient", "tid": self.__tid})
+
+    def to_json(self):
+        return {"model": "SimpleOnOffClient", "tid": self.__tid}
