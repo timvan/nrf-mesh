@@ -52,18 +52,16 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-        this.uuid = "9db77a0526b8734988639509c242d107";
-        
-        // this.pin = 18;
-        if(config.pin){
-            this.pin = config.pin;
+        this.uuid = String(config.uuid);
+        this.pin = config.pin;
+
+        if(this.pin != "" && this.uuid != ""){
+            pyaci.configureGPIO(false, this.pin, this.uuid);
         }
-        
-        pyaci.configureGPIO(false, this.pin, this.uuid);
 
         node.on('input', function(msg) {
             console.log(msg);
-            var value = msg.payload;
+            var value = msg.payload.value;
             pyaci.setGPIO(value, this.pin, this.uuid);
         });
     }
@@ -76,23 +74,23 @@ module.exports = function(RED) {
     function BleMeshNodeInput(config) {
 
         RED.nodes.createNode(this, config);
-
-        var node = this;
-        this.uuid = "9db77a0526b8734988639509c242d107";
         
-        // this.pin = 12;
-        if(config.pin){
-            this.pin = config.pin;
-        }
-
-        pyaci.configureGPIO(true, this.pin, this.uuid);
-
-        bleNodes[this.uuid][this.pin] = function(value) {
-            node.send({
-                payload: value
-            });
+        var node = this;    
+        this.uuid = String(config.uuid);
+        this.pin = config.pin;
+        
+        if(this.pin != "" && this.uuid != ""){
+            pyaci.configureGPIO(true, this.pin, this.uuid);
+            bleNodes[this.uuid][this.pin] = function(value, address) {
+                node.send({
+                    payload: {
+                        address: address,
+                        value: parseInt(value)
+                    }
+                });
+            };
+            console.log(bleNodes);
         };
-        console.log(bleNodes);
 
         node.on('input', function(msg) {
             console.log(msg);
@@ -106,12 +104,12 @@ module.exports = function(RED) {
     /* GENERIC NODE                      */
     /*************************************/
 
-    // function BleMeshNode(config) {
+    function BleMeshNode(config) {
 
-    //     RED.nodes.createNode(this, config);
-    // }
+        RED.nodes.createNode(this, config);
+    }
 
-    // RED.nodes.registerType("ble-mesh", BleMeshNode);
+    RED.nodes.registerType("ble-mesh-config", BleMeshNode);
 
 
     /*************************************/

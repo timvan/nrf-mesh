@@ -11,8 +11,9 @@
                 required: false
             },
             pin: {
-                value:"", 
-                required: true
+                value: null, 
+                required: true,
+                validate: RED.validators.number()
             }
         },
         inputs:1,
@@ -21,11 +22,31 @@
         align: 'right',
         label: function() {
             return this.name||"ble-mesh-output";
+        },
+        oneditprepare: function() {
+            getUnProvDevices = function () {
+                $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
+                    $.each(bleDevices, function(i ,v) {
+                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
+                        $('#node-input-uuid').append(option)
+                    })
+                })
+            }; 
+            getProvDevices = function () {
+                $.getJSON('__bleMeshDevList', function(bleDevices) {
+                    $.each(bleDevices, function(i ,v) {
+                        var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
+                        $('#node-input-uuid').append(option)
+                    })
+                })
+            };
+            getProvDevices();
         }
     });
 </script>
 
 <script type="text/x-red" data-template-name="ble-mesh-output">
+
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -41,7 +62,10 @@
         <input type="text" id="node-input-pin" placeholder="Pin Number">
     </div>
 
-    
+    <style>
+        .
+    </style>
+
 </script>
 
 <script type="text/x-red" data-help-name="ble-mesh-output">
@@ -61,8 +85,9 @@
                 required: false
             },
             pin: {
-                value:"", 
-                required: true
+                value: null, 
+                required: true,
+                validate: RED.validators.number()
             }
         },
         // inputs:1,
@@ -73,12 +98,23 @@
             return this.name||"ble-mesh-input";
         },
         oneditprepare: function() {
-            $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
-                $.each(bleDevices, function(i ,v) {
-                    var option = $('<option></option>').attr('value', v.uuid);
-                    $('#node-input-uuid').append(option)
+            getUnProvDevices = function () {
+                $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
+                    $.each(bleDevices, function(i ,v) {
+                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
+                        $('#node-input-uuid').append(option)
+                    })
                 })
-            })
+            }; 
+            getProvDevices = function () {
+                $.getJSON('__bleMeshDevList', function(bleDevices) {
+                    $.each(bleDevices, function(i ,v) {
+                        var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
+                        $('#node-input-uuid').append(option)
+                    })
+                })
+            };
+            getProvDevices();
         }
     });
 </script>
@@ -88,7 +124,6 @@
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-
 
     <div class="form-row">
         <label for="node-input-uuid"><i class="fa fa-random"></i> BLE UUID</label>

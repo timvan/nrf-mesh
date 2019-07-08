@@ -230,7 +230,7 @@ static void gpio_init_output(uint8_t pin_number)
 
 static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Input on GPIO %d sending ONOFF set %d\n", pin, nrf_gpio_pin_read(pin));
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Client - SEND GPIO %d is [%d]\n", pin, nrf_gpio_pin_read(pin));
     uint8_t element_index = pin_to_index(pin);
 
     generic_onoff_client_t *m_client = &(u_apps[element_index].m_client);
@@ -347,7 +347,7 @@ static void models_init_cb(void)
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff)
 {
     int pin_number = p_server->pin_number;
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - Setting GPIO %d to value: %d\n", pin_number, onoff);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - SET GPIO %d to [%d]\n", pin_number, onoff);
     if(onoff){
         nrfx_gpiote_out_set(pin_number);
     } else {
@@ -359,7 +359,7 @@ static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * 
 {
     int pin_number = p_server->pin_number;
     *p_present_onoff = nrf_gpio_pin_read(pin_number);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - getting GPIO %d value: %d\n", pin_number, p_present_onoff)
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GPIO %d is [%d]\n", pin_number, p_present_onoff)
 }
 
 /***************************************************/

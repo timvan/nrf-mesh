@@ -9,7 +9,7 @@ class PyAci {
         }
 
         this.child = cp.spawn('python'
-            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "0"]
+            , [this.pyscript.working_dir + this.pyscript.filename, "--log-level", "3"]
             , {
                 cwd: this.pyscript.working_dir,
                 stdio: ['pipe', 'pipe', 2]
@@ -78,9 +78,7 @@ class PyAci {
     // }
 
     provision(onProvisionCompleteCb, uuid) {
-
         this.onProvisionComplete = onProvisionCompleteCb;
-
         this.send({
             op: "Provision",
             data: {
@@ -137,6 +135,15 @@ class PyAci {
     // }
 
     configureGPIO(asInput, pin, uuid) {
+        if(pin == "" || pin == null){
+            console.log("Input error configureGPIO - pin");
+            return;
+        }
+        if(uuid == "" || uuid == null){
+            console.log("Input error configureGPIO - uuid");
+            return; 
+        }
+        
         this.send({
             op: "ConfigureGPIO",
             data: {
@@ -148,6 +155,17 @@ class PyAci {
     }
 
     setGPIO(onoff, pin, uuid) {
+        
+        if(pin == "" || pin == null){
+            console.log("Input error setGPIO - pin");
+            return;
+        }
+        if(uuid == "" || uuid == null){
+            console.log("Input error setGPIO - uuid");
+            return; 
+        }
+        
+
         this.send({
             op: "SetGPIO",
             data: {
@@ -258,7 +276,7 @@ class PyAci {
 
         try {
             var fcn = this.setEventsCbs[uuid][pin];
-            fcn(data.value);
+            fcn(data.value, `${uuid}_${pin}`);
         } catch (error) {
             console.log(this.setEventsCbs);
             console.log("Error onSetEventGPIO ", error);

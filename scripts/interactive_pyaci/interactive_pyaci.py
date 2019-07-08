@@ -202,6 +202,8 @@ class Interactive(object):
 
 class Manager(object):
 
+    NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
+
     def __init__(self, interactive_device):
         self.keep_running = True
         self.db_path = "database/example_database.json"
@@ -336,16 +338,59 @@ class Manager(object):
             self.genericClientSet(value = msg["data"]["value"])
 
         if op == "SetGPIO":
-            value = int(msg["data"]["value"])
-            pin = int(msg["data"]["pin"])
-            uuid = msg["data"]["uuid"]
-            self.setGPIO(value, pin, uuid)
+            try:
+                value = int(msg["data"]["value"])
+                pin = int(msg["data"]["pin"])
+                uuid = msg["data"]["uuid"]
+
+                if not self.check_pin(pin):
+                    self.process_stdout("PinError")
+                    return
+                if not self.check_uuid(uuid):
+                    self.process_stdout("UUIDError")
+                    return
+                if not self.check_value(value):
+                    self.process_stdout("ValueError")
+                    return
+
+                self.setGPIO(value, pin, uuid)
+            except Exception as e:
+                self.logger.error("Error in SetGPIO ", e)
         
         if op == "ConfigureGPIO":
-            value = int(msg["data"]["value"])
-            pin = int(msg["data"]["pin"])
-            uuid = msg["data"]["uuid"]
-            self.configureGPIO(value, pin, uuid)
+            try:
+                value = int(msg["data"]["value"])
+                pin = int(msg["data"]["pin"])
+                uuid = msg["data"]["uuid"]
+
+                if not self.check_pin(pin):
+                    self.process_stdout("PinError")
+                    return
+                if not self.check_uuid(uuid):
+                    self.process_stdout("UUIDError")
+                    return
+                if not self.check_value(value):
+                    self.process_stdout("ValueError")
+                    return
+
+                self.configureGPIO(value, pin, uuid)
+            except Exception as e:
+                self.logger.error("Error in ConfigureGPIO ", e)
+
+    def check_pin(self, pin):
+        return pin in self.NRF52_DEV_BOARD_GPIO_PINS
+    
+    def check_uuid(self, uuid):
+        if len(self.db.nodes) == 0:
+            return False
+
+        for node in self.db.nodes:
+            if node.UUID.hex() == uuid:
+                return True
+        return False
+    
+    def check_value(self, value):
+        return value == 1 or value == 0
 
     def echo(self, msg):
         op = "EchoRsp"
@@ -475,7 +520,7 @@ class Manager(object):
         self.iaci.model_add(self.gs)
 
     def genericOnOffServerSetUnackEvent(self, message):
-        value = message.data.hex()[1]
+        value = int(message.data.hex()[1])
         src = message.meta["src"]
         node, element = self.src_to_address(src)
         uuid = self.db.nodes[node].UUID
@@ -501,16 +546,18 @@ class Manager(object):
         self.sc.set(value)
 
     def configureGPIO(self, asInput, pin, uuid):
-        element = self.pin_to_element(pin)
-        node = self.uuid_to_node_index(uuid)
-        address_handle = self.address_handles[self.db.nodes[node].unicast_address + element]
+        address_handle = self.get_address_handle(pin, uuid)
         self.simpleClientSet(asInput, address_handle=address_handle)
 
     def setGPIO(self, value, pin, uuid):
+        address_handle = self.get_address_handle(pin, uuid)
+        self.genericClientSet(value, address_handle=address_handle)
+
+    def get_address_handle(self, pin, uuid):
         element = self.pin_to_element(pin)
         node = self.uuid_to_node_index(uuid)
         address_handle = self.address_handles[self.db.nodes[node].unicast_address + element]
-        self.genericClientSet(value, address_handle=address_handle)
+        return address_handle
 
     def pin_to_element(self, pin):
         # element 0 = configuration element
