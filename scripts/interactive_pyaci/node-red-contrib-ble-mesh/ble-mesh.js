@@ -27,6 +27,10 @@ function provision() {
     pyaci.provision(onProvisionComplete, uuid);
 };
 
+function provision_by_uuid(uuid) {
+    pyaci.provision(onProvisionComplete, uuid);
+}
+
 function onDiscover(data) {
     unProvisionedBleNodes.push(data);
     console.log(`Nodes ${unProvisionedBleNodes}`, JSON.stringify(unProvisionedBleNodes));
@@ -118,12 +122,15 @@ module.exports = function(RED) {
     /* GENERIC NODE                      */
     /*************************************/
 
-    function BleMeshNode(config) {
+    function BleMeshNodeConfig(config) {
 
         RED.nodes.createNode(this, config);
+        this.uuid = config;
+        this.registered_pins = [];
+
     }
 
-    RED.nodes.registerType("ble-mesh-config", BleMeshNode);
+    RED.nodes.registerType("ble-mesh-config", BleMeshNodeConfig);
 
 
     /*************************************/
@@ -135,14 +142,21 @@ module.exports = function(RED) {
     });
 
     RED.httpAdmin.get('/__bleMeshUnProveDevList', (req, res) => {
-        body = unProvisionedBleNodes;
+        var body = unProvisionedBleNodes;
         RED.log.info('/__bleMeshUnProveDevList', JSON.stringify(body));
         res.json(body);
     });
 
     RED.httpAdmin.get('/__bleMeshDevList', (req, res) => {
-        body = bleNodes;
+        var body = bleNodes;
         RED.log.info('/__bleMeshDevList', JSON.stringify(body));
         res.json(body);
     });
+
+    RED.httpAdmin.get('/__bleMeshProvision', (req, res) => {
+        var uuid  = req.body.uuid;
+        console.log(req.body);
+        // provision_by_uuid(uuid);
+        res.send();
+    })
 }
