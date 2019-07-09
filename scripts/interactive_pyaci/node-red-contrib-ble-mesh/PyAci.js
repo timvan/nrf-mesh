@@ -165,7 +165,6 @@ class PyAci {
             return; 
         }
         
-
         this.send({
             op: "SetGPIO",
             data: {
@@ -173,6 +172,13 @@ class PyAci {
                 pin: pin,
                 uuid: uuid
             }
+        });
+    }
+
+    getProvisionedDevices(getProvisionedDevicesCb){
+        this.onGetProvisionedDevices = getProvisionedDevicesCb;
+        this.send({
+            op: "GetProvisionedDevices"
         });
     }
     
@@ -225,6 +231,10 @@ class PyAci {
 
         if(op == "SetEventGPIO"){
             this.setEventGPIO(msg);
+        }
+
+        if(op == "GetProvisionedDevicesRsp"){
+            this.getProvisionedDevicesRsp(msg);
         }
     }
 
@@ -280,6 +290,14 @@ class PyAci {
         } catch (error) {
             console.log(this.setEventsCbs);
             console.log("Error onSetEventGPIO ", error);
+        }
+    }
+
+    getProvisionedDevicesRsp(msg){
+        try{
+            this.onGetProvisionedDevices(msg.data);
+        } catch (error) {
+            console.log("Error onGetProvisionedDevices cb", error)
         }
     }
 }

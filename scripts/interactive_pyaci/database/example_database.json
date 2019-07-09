@@ -10,6 +10,71 @@
       "address": 16,
       "address_handle": 0,
       "opcode": 164
+    },
+    {
+      "address": 17,
+      "address_handle": 2,
+      "opcode": 164
+    },
+    {
+      "address": 18,
+      "address_handle": 3,
+      "opcode": 164
+    },
+    {
+      "address": 19,
+      "address_handle": 4,
+      "opcode": 164
+    },
+    {
+      "address": 20,
+      "address_handle": 5,
+      "opcode": 164
+    },
+    {
+      "address": 21,
+      "address_handle": 6,
+      "opcode": 164
+    },
+    {
+      "address": 22,
+      "address_handle": 7,
+      "opcode": 164
+    },
+    {
+      "address": 23,
+      "address_handle": 8,
+      "opcode": 164
+    },
+    {
+      "address": 24,
+      "address_handle": 9,
+      "opcode": 164
+    },
+    {
+      "address": 25,
+      "address_handle": 10,
+      "opcode": 164
+    },
+    {
+      "address": 26,
+      "address_handle": 11,
+      "opcode": 164
+    },
+    {
+      "address": 27,
+      "address_handle": 12,
+      "opcode": 164
+    },
+    {
+      "address": 28,
+      "address_handle": 13,
+      "opcode": 164
+    },
+    {
+      "address": 29,
+      "address_handle": 14,
+      "opcode": 164
     }
   ],
   "appKeys": [
@@ -40,7 +105,7 @@
   "models": [
     {
       "model": "GenericOnOffClient",
-      "tid": 1
+      "tid": 0
     },
     {
       "model": "GenericOnOffServer",
@@ -68,8 +133,8 @@
       ],
       "cid": "0059",
       "configComplete": false,
-      "crpl": "0028",
-      "deviceKey": "953eba7fd21033c03b0ada86d07b61e1",
+      "crpl": 40,
+      "deviceKey": "126fef65f920aed2c992348b90a2dc81",
       "elements": [
         {
           "index": 0,
@@ -80,12 +145,201 @@
             },
             {
               "modelId": "0002"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
             },
             {
-              "bind": [
-                0
-              ],
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "location": "0000",
+          "models": [
+            {
               "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "1000"
+            },
+            {
+              "modelId": "1001"
+            },
+            {
+              "modelId": "00590000"
             }
           ]
         }
@@ -124,5 +378,5 @@
       "name": "BT Mesh Provisioner"
     }
   ],
-  "timestamp": "2019-07-08 16:18:14.111134"
+  "timestamp": "2019-07-09 14:21:23.516817"
 }

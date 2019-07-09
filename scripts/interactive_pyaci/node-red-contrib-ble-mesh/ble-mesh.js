@@ -30,11 +30,17 @@ function provision() {
 function onDiscover(data) {
     unProvisionedBleNodes.push(data);
     console.log(`Nodes ${unProvisionedBleNodes}`, JSON.stringify(unProvisionedBleNodes));
-    provision();
+    // provision();
 };
+
+function getProvisionedDevicesRsp(data) {
+    console.log("Recevied devices:", JSON.stringify(data));
+    bleNodes[data.uuid] = {};
+}
 
 setTimeout(() => {
     pyaci.provisionScanStart(onDiscover);
+    pyaci.getProvisionedDevices(getProvisionedDevicesRsp);
 }, 10000);
 
 /*************************************/
@@ -54,15 +60,21 @@ module.exports = function(RED) {
         var node = this;
         this.uuid = String(config.uuid);
         this.pin = config.pin;
-
-        if(this.pin != "" && this.uuid != ""){
-            pyaci.configureGPIO(false, this.pin, this.uuid);
+        
+        if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
+            
+            if(this.pin != ""){
+                pyaci.configureGPIO(false, this.pin, this.uuid);
+            }
         }
 
         node.on('input', function(msg) {
             console.log(msg);
             var value = msg.payload.value;
-            pyaci.setGPIO(value, this.pin, this.uuid);
+            
+            if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
+                pyaci.setGPIO(value, this.pin, this.uuid);
+            }
         });
     }
     RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
@@ -78,18 +90,20 @@ module.exports = function(RED) {
         var node = this;    
         this.uuid = String(config.uuid);
         this.pin = config.pin;
-        
-        if(this.pin != "" && this.uuid != ""){
-            pyaci.configureGPIO(true, this.pin, this.uuid);
-            bleNodes[this.uuid][this.pin] = function(value, address) {
-                node.send({
-                    payload: {
-                        address: address,
-                        value: parseInt(value)
-                    }
-                });
+        if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
+            
+            if(this.pin != ""){
+                pyaci.configureGPIO(true, this.pin, this.uuid);
+                bleNodes[this.uuid][this.pin] = function(value, address) {
+                    node.send({
+                        payload: {
+                            address: address,
+                            value: parseInt(value)
+                        }
+                    });
+                };
+                console.log(bleNodes);
             };
-            console.log(bleNodes);
         };
 
         node.on('input', function(msg) {

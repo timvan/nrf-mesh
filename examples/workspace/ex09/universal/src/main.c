@@ -195,14 +195,7 @@ static void gpiote_init(void)
     for(int i = 0; i < N_ELEMS(gpio_pins); i++)
     {
         pin_number = gpio_pins[i];
-
-        // TODO set this to a reasonable method not just board based
-        // splits i/o based on board connector block - just for dev purposes
-        if(pin_number <= 18){
-            gpio_init_input(pin_number);
-        } else {
-            gpio_init_output(pin_number);
-        }
+        gpio_init_output(pin_number);
     }
 }
 

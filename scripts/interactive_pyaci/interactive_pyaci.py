@@ -204,6 +204,7 @@ class Interactive(object):
 class Manager(object):
 
     NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
+    STARTING_ELEMENT_INDEX = 1
 
     def __init__(self, interactive_device):
         self.keep_running = True
@@ -247,10 +248,10 @@ class Manager(object):
                 compositionData = mt.CompositionData().unpack(data)
 
                 src = message.meta["src"]
-                node, element = self.src_to_address(src)
+                node, element = self.src_address_to_node_element_index(src)
                 uuid = self.db.nodes[node].UUID
 
-                self.compositionDataStatus(uuid, compositionData)
+                self.compositionDataStatusRsp(uuid, compositionData)
 
         if event._opcode == evt.Event.CMD_RSP:
             
@@ -387,6 +388,9 @@ class Manager(object):
             except Exception as e:
                 self.logger.error("Error in ConfigureGPIO ", e)
 
+        if op =="GetProvisionedDevices":
+            self.getProvisionedDevices();
+
     def check_pin(self, pin):
         return pin in self.NRF52_DEV_BOARD_GPIO_PINS
     
@@ -463,7 +467,6 @@ class Manager(object):
                 self.addSimpleClientModel()
                 self.sc.__tid = model["tid"]
 
-
     def exit(self):
         self.keep_running = False
         raise SystemExit(0)
@@ -486,9 +489,9 @@ class Manager(object):
         self.cc.publish_set(device_handle, address_handle)
         self.cc.composition_data_get()
         self.cc.appkey_add(0)
-        self.addAddress(cmd.AddrSubscriptionAdd , self.db.groups[groupAddrId].address)
+        
 
-    def compositionDataStatus(self, uuid, compositionData):
+    def compositionDataStatusRsp(self, uuid, compositionData):
         op = "CompositionDataStatus"
         data = {
             "uuid": uuid,
@@ -497,10 +500,23 @@ class Manager(object):
         self.process_stdout(op, data)
         
     def addAppKeys(self, node=0, groupAddrId=0):
+        """ Used to:
+            - subscribes the serial device to the group address
+            - add publication address of each element to the serial device
+            - bind app_key to each model on each element
+            - set the client to publish to the group address
+        
+        Parameters
+        ----------
+            node : index of node in db
+            groupAddrId : index of group address in db
+
+        """
+        self.addAddress(cmd.AddrSubscriptionAdd , self.db.groups[groupAddrId].address)
+
         for e, element in enumerate(self.db.nodes[node].elements):
             
             # Add each element to the serial device's pubusb list
-            # TODO here I should log each device into address book
             element_address = self.db.nodes[node].unicast_address + e
             self.addAddress(cmd.AddrPublicationAdd, element_address)
 
@@ -508,22 +524,18 @@ class Manager(object):
                 
                 # Generic OnOff Server
                 if str(model.model_id) == "1000":
-                    
                     self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1000))
                     time.sleep(1)
                     
                 # Generic OnOff Client
                 if str(model.model_id) == "1001":
-                    
                     self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1001))
                     time.sleep(1)
-                    
                     self.cc.model_publication_set(element_address, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
                     time.sleep(1)
 
                 # Simple OnOff Server
                 if str(model.model_id) == "00590000":
-
                     self.cc.model_app_bind(element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
                     time.sleep(1)
 
@@ -587,9 +599,9 @@ class Manager(object):
     def genericOnOffServerSetUnackEvent(self, message):
         value = int(message.data.hex()[1])
         src = message.meta["src"]
-        node, element = self.src_to_address(src)
+        node, element = self.src_address_to_node_element_index(src)
         uuid = self.db.nodes[node].UUID
-        self.setEventGPIO(value, self.element_to_pin(element), uuid)
+        self.setEventGPIO(value, self.element_index_to_pin(element), uuid)
 
     def setEventGPIO(self, value, pin, uuid):
         self.logger.info("Sending value:{} uuid:{} pin:{}".format(value, uuid, pin))
@@ -606,7 +618,7 @@ class Manager(object):
         self.db.models.append(self.sc)
 
     def simpleClientSet(self, value, key_handle=0, address_handle=0):
-        # key_handle is app key 
+        # key_handle is app key
         # False is output
         self.sc.publish_set(key_handle, address_handle)
         self.sc.set(value)
@@ -619,40 +631,65 @@ class Manager(object):
         address_handle = self.get_address_handle(pin, uuid)
         self.genericClientSet(value, address_handle=address_handle)
 
+    def getProvisionedDevices(self):
+        for node in self.db.nodes:
+            self.process_stdout("GetProvisionedDevicesRsp", {
+                "uuid" : node.UUID,
+                "compositionData": node
+            })
+
+    """""""""""""""""""""""""""""""""""""""""""""
+    HELPERS / CONVERTERS
+    """""""""""""""""""""""""""""""""""""""""""""
+
     def get_address_handle(self, pin, uuid):
-        element = self.pin_to_element(pin)
+        element = self.pin_to_element_index(pin)
         node = self.uuid_to_node_index(uuid)
-        address = self.db.nodes[node].unicast_address + element
 
-        return self.db.find_address_handle(address)
-
-    def pin_to_element(self, pin):
-        # element 0 = configuration element
-        # element 1-9 = pin 12 - 20
-        # element 10-13  = pin 22-25
-        self.logger.info("Setting pin {}".format(pin))
-        if pin >= 12 and pin <= 20:
-            return pin - 11
+        if node != None and element != None:
+            address = self.db.nodes[node].unicast_address + element
+            return self.db.find_address_handle(address)
         
-        if pin >= 22 and pin <= 25:
-            return pin - 12
+        return None
 
-    def element_to_pin(self, element):
-        e = element + 11
-        if e >= 21:
-            e += 1
+    def pin_to_element_index(self, pin):        
+        if pin in self.NRF52_DEV_BOARD_GPIO_PINS:
+            element_index = self.NRF52_DEV_BOARD_GPIO_PINS.index(pin)
+            element_index += self.STARTING_ELEMENT_INDEX
+            return element_index
+        
+        return None
 
-        return e
+    def element_index_to_pin(self, element_index):
+        element_index -= self.STARTING_ELEMENT_INDEX
+        if element_index < len(self.NRF52_DEV_BOARD_GPIO_PINS) and element_index >= 0:
+            return self.NRF52_DEV_BOARD_GPIO_PINS[element_index]
 
-    def src_to_address(self, src_address):
-        # TODO - this is a bad way.... 
-        for n, node in enumerate(self.db.nodes):
-            for e, element in enumerate(node.elements):
+        return None
+
+
+    def src_address_to_node_element_index(self, src_address):
+        """ Used to find the node and element index in the db from an address
+        
+        Parameters
+        ----------
+            src_address : unicast address of an element or node
+
+        """
+        for node_index, node in enumerate(self.db.nodes):
+            for element_index, element in enumerate(node.elements):
                 
-                if int(node.unicast_address + e) == src_address:
-                    return n, e
+                if int(node.unicast_address + element_index) == src_address:
+                    return node_index, element_index
 
     def uuid_to_node_index(self, uuid):
+        """ Uses to find the index of the device in the db from it's uuid
+
+        Parameters
+        ----------
+            uuid : device uuid
+
+        """
         for n, node in enumerate(self.db.nodes):
             if uuid == node.UUID.hex():
                 return n
