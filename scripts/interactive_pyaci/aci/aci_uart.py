@@ -105,7 +105,7 @@ class Device(object):
                 return
             cmd.logger = self.logger
             self.logger.debug('Writing: %s %s', cmd._opcode, cmd._data)
-            self.write_data(cmd.serialize())
+            self.write_data(cmd)
             retval = self.__wait()
             if retval == None:
                 self.logger.info('cmd %s, timeout waiting for event' % (cmd.__class__.__name__))
@@ -185,12 +185,13 @@ class Uart(threading.Thread, Device):
         self.serial.close()
         self.logger.debug("exited read event")
 
-    def write_data(self, data):
+    def write_data(self, cmd):
         with self._write_lock:
             if self.keep_running:
+                data = cmd.serialize()
                 self.logger.debug("TX: %s", bytearray(data).hex())
                 self.serial.write(bytearray(data))
-                self.process_command(data)
+                self.process_command(cmd)
 
     def __repr__(self):
         return '%s(port="%s", baudrate=%s, device_name="%s")' % (self.__class__.__name__, self.serial.port, self.serial.baudrate, self.device_name)

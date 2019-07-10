@@ -1,0 +1,439 @@
+2019-07-10 17:02:07,918 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xc2=o\xa2\xa7\x1c\xc9/\xad>\xc9lODK\x8f\x91x\xc3\xe7\xb6\xba\xc6\x92Wh3\xa3\xb52\xba\x05[-\xb6\xb5P\xfaXM\x91,\x11ey\x8f\xc5\x16\xae\xf3\x87<H3\x1d`x\xa6\xc3@\xe5\xd7\x80\x9fT\xf2\xaa6t3E\xa9>\x90\x11\t,^\x0bf\x82\xdb\xde+\xa3\xda\xe16\x98\x00!\x88,\xdf \x10')
+2019-07-10 17:02:07,918 - DEBUG - tty.usbmodem0006822145041: TX: 6169c23d6fa2a71cc92fad3ec96c4f444b8f9178c3e7b6bac692576833a3b532ba055b2db6b550fa584d912c1165798fc516aef3873c48331d6078a6c340e5d7809f54f2aa36743345a93e9011092c5e0b6682dbde2ba3dae136980021882cdf2010
+2019-07-10 17:02:07,918 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,919 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'KeypairSet' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,927 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-07-10 17:02:07,928 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,928 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,928 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-10 17:02:07,930 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,931 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-07-10 17:02:07,931 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,932 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,933 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,933 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,933 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,934 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,934 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrLocalUnicastSet' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,934 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,935 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,935 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,934 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-10 17:02:07,936 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-10 17:02:07,936 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,937 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,937 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,938 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'SubnetAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,938 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,955 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-10 17:02:07,956 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-10 17:02:07,956 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,956 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,957 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AppkeyAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,957 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,957 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,958 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-10 17:02:07,958 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-10 17:02:07,959 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,959 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,959 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,959 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,960 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,974 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,975 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,973 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AppkeyAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,976 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,977 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc6\x00')
+2019-07-10 17:02:07,977 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,978 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c600
+2019-07-10 17:02:07,978 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,978 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:07,979 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,979 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,979 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:07,980 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,981 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,981 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,982 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,982 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,982 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,982 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,982 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:07,982 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,982 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:07,982 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-07-10 17:02:07,983 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,983 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-07-10 17:02:07,983 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-07-10 17:02:07,983 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,983 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-07-10 17:02:07,983 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:07,983 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,983 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:07,984 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:07,984 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:07,984 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:07,984 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-07-10 17:02:07,984 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-10 17:02:07,984 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-07-10 17:02:08,919 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-10 17:02:08,919 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-07-10 17:02:08,919 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:08,920 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrSubscriptionAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:08,921 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-07-10 17:02:08,922 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-10 17:02:08,922 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-10 17:02:09,924 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc7\x00')
+2019-07-10 17:02:09,924 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c700
+2019-07-10 17:02:09,924 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:09,925 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:09,926 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-07-10 17:02:09,927 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-10 17:02:09,927 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-07-10 17:02:10,924 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc8\x00')
+2019-07-10 17:02:10,924 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c800
+2019-07-10 17:02:10,924 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:10,925 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:10,926 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-07-10 17:02:10,927 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-07-10 17:02:10,927 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-07-10 17:02:11,927 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc9\x00')
+2019-07-10 17:02:11,927 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c900
+2019-07-10 17:02:11,927 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:11,927 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:11,929 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000400
+2019-07-10 17:02:11,929 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-07-10 17:02:11,930 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 4}
+2019-07-10 17:02:12,931 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xca\x00')
+2019-07-10 17:02:12,931 - DEBUG - tty.usbmodem0006822145041: TX: 03a4ca00
+2019-07-10 17:02:12,931 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:12,932 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:12,933 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000500
+2019-07-10 17:02:12,933 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-07-10 17:02:12,934 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 5}
+2019-07-10 17:02:13,936 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xcb\x00')
+2019-07-10 17:02:13,936 - DEBUG - tty.usbmodem0006822145041: TX: 03a4cb00
+2019-07-10 17:02:13,936 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:13,937 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:13,938 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000600
+2019-07-10 17:02:13,938 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-07-10 17:02:13,939 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 6}
+2019-07-10 17:02:14,941 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xcc\x00')
+2019-07-10 17:02:14,941 - DEBUG - tty.usbmodem0006822145041: TX: 03a4cc00
+2019-07-10 17:02:14,941 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:14,942 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd.__opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:14,943 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000700
+2019-07-10 17:02:14,944 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-07-10 17:02:14,944 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 7}
+2019-07-10 17:02:15,944 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xcd\x00')
+2019-07-10 17:02:15,945 - DEBUG - tty.usbmodem0006822145041: TX: 03a4cd00
+2019-07-10 17:02:15,945 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x10f69f7f0>>
+2019-07-10 17:02:15,946 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 287, in cmd_handler
+    if cmd._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+AttributeError: 'AddrPublicationAdd' object has no attribute '_Manager__opcode'
+
+2019-07-10 17:02:15,946 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000800
+2019-07-10 17:02:15,947 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-10 17:02:15,947 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 8}
+2019-07-10 17:02:18,220 - DEBUG - tty.usbmodem0006822145041: exited read event
+2019-07-10 17:02:21,554 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'@\x19\xbb\x02\xa3\x88\xc6\x07@\x07\x80Zc\x97,\x91\xee7\x94\x80\xf2\xb8Z\xc9h\xd3\xf8\xb1\x86\xf6\x14\xcb;\xcd\xcd\xae\xbf\x89\xcc\xe31\x8ef\x0e\xaa\xd8\xf8\x85}B\xc4m\xcc\xbf\xd3\xcf4\x93_~9\xe0$\x06z\x19\x93,\xdaL\xe0\x91\x1cPF\xec\xff\x01\x14ei\x91l\xef$\xe2\x07\x04\xb3p\xff\xb8z\xffP\x9b')
+2019-07-10 17:02:21,555 - DEBUG - tty.usbmodem0006822145041: TX: 61694019bb02a388c6074007805a63972c91ee379480f2b85ac968d3f8b186f614cb3bcdcdaebf89cce3318e660eaad8f8857d42c46dccbfd3cf34935f7e39e024067a19932cda4ce0911c5046ecff01146569916cef24e20704b370ffb87aff509b
+2019-07-10 17:02:21,565 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-07-10 17:02:21,566 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,567 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,567 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-10 17:02:21,568 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-07-10 17:02:21,568 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,568 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,568 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,569 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-10 17:02:21,569 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-10 17:02:21,569 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,569 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,570 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,570 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,571 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,571 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-10 17:02:21,571 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,571 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-10 17:02:21,572 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-10 17:02:21,572 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,572 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-10 17:02:21,572 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,572 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,573 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc6\x00')
+2019-07-10 17:02:21,573 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,573 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c600
+2019-07-10 17:02:21,573 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,573 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,573 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:21,588 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,590 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,590 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,591 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,591 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,592 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:21,594 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,595 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,595 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,611 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,612 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,612 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,613 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,613 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,613 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,613 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,614 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,614 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,615 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,615 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:21,616 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,616 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:21,616 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-07-10 17:02:21,616 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,616 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-07-10 17:02:21,616 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-07-10 17:02:21,616 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,617 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-07-10 17:02:21,617 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:21,617 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,617 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:21,617 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:21,617 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:21,618 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:21,618 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-07-10 17:02:21,618 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-10 17:02:21,618 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-07-10 17:02:22,559 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-10 17:02:22,559 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-07-10 17:02:22,559 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:22,560 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:22,561 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-07-10 17:02:22,562 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-10 17:02:22,562 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-10 17:02:23,565 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc7\x00')
+2019-07-10 17:02:23,565 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c700
+2019-07-10 17:02:23,566 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:23,566 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:23,569 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-07-10 17:02:23,569 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-10 17:02:23,570 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-07-10 17:02:24,563 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc8\x00')
+2019-07-10 17:02:24,564 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c800
+2019-07-10 17:02:24,564 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:24,564 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:24,566 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-07-10 17:02:24,566 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-07-10 17:02:24,566 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-07-10 17:02:25,568 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc9\x00')
+2019-07-10 17:02:25,570 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c900
+2019-07-10 17:02:25,570 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:25,571 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:25,572 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000400
+2019-07-10 17:02:25,573 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-07-10 17:02:25,589 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 4}
+2019-07-10 17:02:26,569 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xca\x00')
+2019-07-10 17:02:26,569 - DEBUG - tty.usbmodem0006822145041: TX: 03a4ca00
+2019-07-10 17:02:26,569 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Manager.cmd_handler of <interactive_pyaci.Manager object at 0x1062c16d8>>
+2019-07-10 17:02:26,569 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 96, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 288, in cmd_handler
+    self.logger.log("CMD Handler {}".format(cmd._data))
+TypeError: log() missing 1 required positional argument: 'msg'
+
+2019-07-10 17:02:26,571 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000500
+2019-07-10 17:02:26,571 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-07-10 17:02:26,571 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 5}
+2019-07-10 17:02:40,977 - DEBUG - tty.usbmodem0006822145041: exited read event
+2019-07-10 17:02:45,499 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\n\xf9|=\x1bv\x0b\xbbo\xf3]\xe4\xe7?\x82\xf6w\xb2a\x8e%\xc6yZ\xbe\x14hq\xb7=\x9c\x87 \xb0\xa0\x89\x83\xd0\x12u\xaf\xee\x8aZ\xdd\x92d\xb4bY\xd9\x9e5\xd9s\x19\x92q\xc1Q\xf4\xd3\x18\x8d\xa1\xd9\xfdjf\x8a\x07\x03\x1c\xd9|\x9c]\x949)\x1e\xb8[yn-\x9ew\xb5{\xae\x9c\xd5N\xea\xd4')
+2019-07-10 17:02:45,500 - DEBUG - tty.usbmodem0006822145041: TX: 61690af97c3d1b760bbb6ff35de4e73f82f677b2618e25c6795abe146871b73d9c8720b0a08983d01275afee8a5add9264b46259d99e35d973199271c151f4d3188da1d9fd6a668a07031cd97c9c5d9439291eb85b796e2d9e77b57bae9cd54eead4
+2019-07-10 17:02:45,510 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-07-10 17:02:45,511 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,511 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,512 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,512 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,512 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,512 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,513 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,513 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,513 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-10 17:02:45,516 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-07-10 17:02:45,517 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,517 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,518 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,518 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-10 17:02:45,518 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-10 17:02:45,519 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,519 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,519 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,519 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-10 17:02:45,520 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,520 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-10 17:02:45,520 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,521 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,521 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-10 17:02:45,522 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-10 17:02:45,521 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,522 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,523 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,523 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,523 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,523 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,524 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,524 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,525 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,525 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc6\x00')
+2019-07-10 17:02:45,526 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c600
+2019-07-10 17:02:45,526 - INFO - tty.usbmodem0006822145041: bytearray(b'\xc6\x00')
+2019-07-10 17:02:45,525 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,526 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,527 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,527 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,527 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,545 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,547 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,547 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,548 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,548 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-10 17:02:45,548 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,548 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-10 17:02:45,549 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-07-10 17:02:45,549 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,549 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-07-10 17:02:45,550 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-07-10 17:02:45,550 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,550 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-07-10 17:02:45,550 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:45,551 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,551 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:45,551 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-10 17:02:45,551 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-10 17:02:45,551 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-10 17:02:45,552 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-07-10 17:02:45,552 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-10 17:02:45,552 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-07-10 17:02:46,501 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-10 17:02:46,502 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-07-10 17:02:46,502 - INFO - tty.usbmodem0006822145041: bytearray(b'\x01\xc0')
+2019-07-10 17:02:46,504 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-07-10 17:02:46,504 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-10 17:02:46,504 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-10 17:02:47,502 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\xc7\x00')
+2019-07-10 17:02:47,503 - DEBUG - tty.usbmodem0006822145041: TX: 03a4c700
+2019-07-10 17:02:47,503 - INFO - tty.usbmodem0006822145041: bytearray(b'\xc7\x00')
+2019-07-10 17:02:47,505 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-07-10 17:02:47,505 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-10 17:02:47,505 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-07-10 17:05:07,003 - DEBUG - tty.usbmodem0006822145041: exited read event

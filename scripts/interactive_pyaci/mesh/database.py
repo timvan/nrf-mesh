@@ -72,6 +72,7 @@ class MeshDB(object):
         self.iv_update = 0
 
         self.address_handles = []
+        self.device_handles = []
         self.models = []
 
         self.load()
@@ -104,6 +105,8 @@ class MeshDB(object):
         
         if "address_handles" in data:
             self.address_handles = data["address_handles"]
+        if "device_handles" in data:
+            self.devie_handles = data["device_handles"]
 
         if "models" in data:
             self.models = data["models"]
@@ -137,6 +140,13 @@ class MeshDB(object):
         for item in self.address_handles:
             if item["address"] == address:
                 return item["address_handle"]
+
+        return None
+    
+    def find_device_handle(self, address):
+        for item in self.device_handles:
+            if item["device_address"] == address:
+                return item["devkey_handle"]
 
         return None
 

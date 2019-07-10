@@ -166,7 +166,7 @@
         },
         oneditprepare: function() {
 
-            getProvDevices = function () {
+            function getProvDevices () {
                 $.getJSON('__bleMeshDevList', function(bleDevices) {
                     $.each(bleDevices, function(i ,v) {
                         var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
@@ -175,21 +175,28 @@
                 })
             };
 
-            getUnProvDevices = function () {
+            function getUnProvDevices () {
                 $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
                     $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
+                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid)
                         
-                        option.select = function(){
-                            $.getJSON('__bleMeshProvision', {uuid: v.uuid});
-                        };
+                        // option.bind("click", provision);
+                        // option.select(provision);
 
                         $('#node-config-unprov').append(option)
-                    })
+                    });
                 })
             };
-            getUnProvDevices();
-            getProvDevices();
+
+            $('#node-config-unprov').click(getUnProvDevices());
+            $('#node-config-prov').click(getProvDevices());
+
+            $('#provision-device').click("sumbit", function(e){
+                e.preventDefault();
+                var uuid = $('#node-config-unprov')[0].value;
+                console.log(uuid);
+                $.getJSON('__bleMeshProvision', {"uuid": uuid});
+            });
         }
     });
 </script>
@@ -209,6 +216,7 @@
     <div class="form-row">
         <label for="node-config-unprov"><i class="fa fa-random"></i> BLE UUID</label>
         <select type="text" id="node-config-unprov"></select>
+        <input type="submit" id="provision-device" value="Provision">
     </div>
     
 </script>

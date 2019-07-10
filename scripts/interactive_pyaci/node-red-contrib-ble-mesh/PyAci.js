@@ -42,6 +42,7 @@ class PyAci {
     };
 
     kill() {
+        this.provisionScanStop
         this.child.kill();
     }
 
@@ -71,11 +72,11 @@ class PyAci {
         });
     }
 
-    // provisionScanStop() {
-    //     this.send({
-    //         op: "ProvisionScanStop"
-    //     });
-    // }
+    provisionScanStop() {
+        this.send({
+            op: "ProvisionScanStop"
+        });
+    }
 
     provision(onProvisionCompleteCb, uuid) {
         this.onProvisionComplete = onProvisionCompleteCb;
@@ -94,9 +95,12 @@ class PyAci {
         });
     }
 
-    addAppKeys() {
+    addAppKeys(uuid) {
         this.send({
             op: "AddAppKeys",
+            data: {
+                uuid: uuid
+            }
         });
     }
 

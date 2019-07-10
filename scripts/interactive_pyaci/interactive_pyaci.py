@@ -42,6 +42,7 @@ import colorama
 import time
 import json
 import subprocess
+import struct
 
 from argparse import ArgumentParser
 import traitlets.config
@@ -111,7 +112,6 @@ def configure_logger(device_name):
         fh.setFormatter(file_formatter)
         logger.addHandler(fh)
     return logger
-
 
 class Interactive(object):
     DEFAULT_APP_KEY = bytearray([0xAA] * 16)
@@ -211,13 +211,16 @@ class Manager(object):
         self.db_path = "database/example_database.json"
         self.iaci = interactive_device
         self.logger = self.iaci.logger
-        self.n = 0
+        self.address_stack = list()
+        self.device_handle_stack = list()
 
         self.iaci.event_filter_disable() 
-        self.iaci.acidev.add_packet_recipient(self.__event_handler)
-        self.address_stack = list()
-
+        
+        self.iaci.acidev.add_command_recipient(self.cmd_handler)
         self.setup()
+
+        self.iaci.acidev.add_packet_recipient(self.__event_handler)
+
 
     def run(self):
         while self.keep_running:
@@ -229,15 +232,19 @@ class Manager(object):
             uuid = event._data["uuid"]
             rssi = event._data["rssi"]
             
-            if uuid not in self.p.unprov_list:
+            if uuid in self.p.unprov_list:
                 self.newUnProvisionedDevice({
                     "uuid": uuid.hex(),
                     "rssi": rssi
                     })
 
         if event._opcode == evt.Event.PROV_COMPLETE:
-            time.sleep(6)
-            self.process_stdout("ProvisionComplete")
+            address = int(event._data["address"])
+            node, element = self.src_address_to_node_element_index(address)
+            uuid = self.db.nodes[node].UUID.hex()
+            time.sleep(10)
+            self.process_stdout("ProvisionComplete", {"uuid": uuid})
+
 
         if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             message = access.AccessMessage(event)
@@ -253,39 +260,80 @@ class Manager(object):
 
                 self.compositionDataStatusRsp(uuid, compositionData)
 
-        if event._opcode == evt.Event.CMD_RSP:
+        if event._opcode == evt.Event.CMD_RSP:            
             
-            opcode = event._data["opcode"]
-            
-            if opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
-                try:
-                    new_address = self.address_stack.pop(0)
+            if event._data["status"] == 0:
 
-                    # assert(new_address["opcode"] is opcode)
-                    # assert(new_address["address_handle"] is event._data["data"][0])
+                rsp_packet = cmd.response_deserialize(event)
 
-                    address_handle = {
-                        "address": new_address["address"]
-                        , "address_handle": event._data["data"][0]
-                        , "opcode": opcode
-                    }
+                if rsp_packet is None or isinstance(rsp_packet, str):
+                    return
+                
+                if rsp_packet._command_name in ["AddrSubscriptionAdd", "AddrSubscriptionAddVirtual", "AddrPublicationAddVirtual", "AddrPublicationAdd"]:
                     
-                    self.db.address_handles.append(address_handle)
-                    self.logger.info("Address handles: {}".format(self.db.address_handles))
+                    try:
+                        
+                        new_address = self.address_stack.pop(0)
+                        address_handle = {
+                            "address": new_address["address"]
+                            , "address_handle": rsp_packet._data["address_handle"]
+                            , "opcode": rsp_packet._opcode
+                        }
+                        
+                        dups = [a for a in self.db.address_handles if a["address_handle"] == address_handle["address_handle"]]
+                        if len(dups) > 0:
+                            for dup in dups:
+                                if dup != address_handle:
+                                    raise Exception("Address handle already exists")
+
+                            self.logger.debug("Got duplicate of address handle {}".format(address_handle))
+                        else:
+                            self.db.address_handles.append(address_handle)
+                        
+                    except Exception as e:
+                        self.logger.error("Error storing address handle: {}".format(e))
+                
+                if rsp_packet._command_name in ["DevkeyAdd"]:
+                    try:
+                        new_device_address = self.device_handle_stack.pop(0)
+                        devkey_handle = rsp_packet._data["devkey_handle"]
+                        new_device_address["devkey_handle"] = devkey_handle
+                        self.db.device_handles.append(new_device_address)
                     
-                except Exception as e:
-                    self.logger.error("Error storing address handle: {}".format(e))
+                    except Exception as e:
+                        self.logger.error("Error storing device handle: {}".format(e))
                     
+    def cmd_handler(self, cmd):
+    
+        if cmd._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+            # self.logger.info("CMD Address Handle Handler {}".format(cmd._data.hex()))
+
+            address = struct.unpack("<H", cmd._data[0:2])[0]
+            self.address_stack.append({
+                "address": address,
+                "opcode": cmd._opcode
+            })
+        
+        if cmd._opcode == 0x9C:
+            # self.logger.info("Adding device key {}".format(cmd._data))
+
+            self.device_handle_stack.append({
+                "device_address": struct.unpack("<H", cmd._data[0:2])[0]
+                , "subnet_handle": struct.unpack("<H", cmd._data[2:4])[0]
+                , "key": cmd._data[4:].hex()
+
+            })
+    
     def process_stdout(self, op, data=None):
         
         msg = {
             'op': op,
-            'id': self.n
         }
+
         if data:
             msg['data'] = data
+
         print(json.dumps(msg));
-        self.n += 1
         sys.stdout.flush()
 
     def process_stdin(self):
@@ -328,10 +376,11 @@ class Manager(object):
             self.provision(msg["data"]["uuid"])
         
         if op == "Configure":
-            self.configure()
+            self.configure(msg["data"]["uuid"])
 
         if op == "AddAppKeys":
-            self.addAppKeys()
+            node = self.uuid_to_node_index(msg["data"]["uuid"])
+            self.addAppKeys(node=node)
 
         if op == "AddGroupSubscriptionAddresses":
             self.addGroupSubscriptionAddresses()
@@ -448,6 +497,8 @@ class Manager(object):
             self.iaci.send(command(address))
             time.sleep(1)
 
+    # TODO load device handles
+
     def load_models(self):
 
         db_models = self.db.models.copy()
@@ -482,15 +533,40 @@ class Manager(object):
         self.process_stdout(op, data)
 
     def provision(self, uuid, name="Server"):
+        
+        if len([n for n in self.db.nodes if n.UUID.hex() == uuid]) > 0:
+            self.logger.error("uuid {} already in database".format(uuid))
+            self.remove_node(uuid)
+
         self.p.scan_stop()
         self.p.provision(uuid=uuid, name=name)
+
+    def remove_node(self, uuid):
+        self.logger.error("Remove node {} from database".format(uuid))
+        self.db.nodes = [n for n in self.db.nodes if n.UUID.hex() != uuid]
+        # TODO need to remove unused address handles
+        # for node in self.db.nodes:
+        #     if node.UUID.hex() == uuid:
+        #         self.remove_address_handle
         
-    def configure(self, device_handle=8, address_handle=0, groupAddrId=0):
+    def remove_address_handle(self, opcode, address_handle):
+        index, handle = next((i, d) for (i, d) in enumerate(self.db.address_handles) if d["address_handle"] == address_handle) 
+        if handle["opcode"] == 0xA4:
+            self.iaci.send(cmd.AddrPublicationRemove(address_handle))
+            self.db.address_handles.pop(index)
+        
+    def configure(self, uuid):
+        
+        node = self.uuid_to_node_index(uuid)
+        address = self.db.nodes[node].unicast_address
+        address_handle = self.db.find_address_handle(address)
+        device_handle = self.db.find_device_handle(address)
+        self.logger.info("Configer {} {}".format(device_handle, address_handle))
+
         self.cc.publish_set(device_handle, address_handle)
         self.cc.composition_data_get()
         self.cc.appkey_add(0)
         
-
     def compositionDataStatusRsp(self, uuid, compositionData):
         op = "CompositionDataStatus"
         data = {
@@ -546,14 +622,6 @@ class Manager(object):
 
     def addAddress(self, command, address):
         self.logger.info("Adding address {}".format(address))
-        
-        new_address = {
-            "address": address
-            , "opcode": command
-        }
-
-        self.address_stack.append(new_address)
-        
         self.iaci.send(command(address))
         time.sleep(1)
 
@@ -693,6 +761,8 @@ class Manager(object):
         for n, node in enumerate(self.db.nodes):
             if uuid == node.UUID.hex():
                 return n
+        
+        return None
 
 
 
