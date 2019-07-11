@@ -6,46 +6,23 @@
         color: '#4d94ff',
         defaults: {
             name: {value:""},
-            uuid: {
-                value:"", 
-                required: false
+            confignode: {
+                value: null,
+                type: "ble-mesh-config",
+                required: true
             },
             pin: {
                 value: null, 
                 required: true,
                 validate: RED.validators.number()
-            },
-            confignode: {
-                value: null,
-                type: "ble-mesh-config"
             }
         },
         inputs:1,
-        // outputs:1,
         icon: 'bluetooth.png',
         align: 'right',
         label: function() {
-            return this.name||"ble-mesh-output";
+            return this.name||"Mesh Output";
         },
-        oneditprepare: function() {
-            getUnProvDevices = function () {
-                $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
-                        $('#node-input-uuid').append(option)
-                    })
-                })
-            }; 
-            getProvDevices = function () {
-                $.getJSON('__bleMeshDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
-                        $('#node-input-uuid').append(option)
-                    })
-                })
-            };
-            getProvDevices();
-        }
     });
 </script>
 
@@ -57,13 +34,8 @@
     </div>
 
     <div class="form-row">
-        <label for="node-input-uuid"><i class="fa fa-random"></i> BLE UUID</label>
-        <select type="text" id="node-input-uuid"></select>
-    </div>
-
-    <div class="form-row">
-        <label for="node-input-confignode"><i class="fa fa-random"></i> Config</label>
-        <select type="text" id="node-input-confignode"></select>
+        <label for="node-input-confignode"><i class="fa fa-random"></i> Mesh Node</label>
+        <input type="text" id="node-input-confignode"></input>
     </div>
 
     <div class="form-row">
@@ -88,9 +60,10 @@
         color: '#4d94ff',
         defaults: {
             name: {value:""},
-            uuid: {
-                value:"", 
-                required: false
+            confignode: {
+                value: null,
+                type: "ble-mesh-config",
+                required: true
             },
             pin: {
                 value: null, 
@@ -98,31 +71,11 @@
                 validate: RED.validators.number()
             }
         },
-        // inputs:1,
         outputs:1,
         icon: 'bluetooth.png',
         align: 'left',
         label: function() {
-            return this.name||"ble-mesh-input";
-        },
-        oneditprepare: function() {
-            getUnProvDevices = function () {
-                $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
-                        $('#node-input-uuid').append(option)
-                    })
-                })
-            }; 
-            getProvDevices = function () {
-                $.getJSON('__bleMeshDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
-                        $('#node-input-uuid').append(option)
-                    })
-                })
-            };
-            getProvDevices();
+            return this.name || "Mesh Input";
         }
     });
 </script>
@@ -134,9 +87,9 @@
     </div>
 
     <div class="form-row">
-        <label for="node-input-uuid"><i class="fa fa-random"></i> BLE UUID</label>
-        <select type="text" id="node-input-uuid"></select>
-    </div>
+        <label for="node-input-confignode"><i class="fa fa-random"></i> Mesh Node</label>
+        <input type="text" id="node-input-confignode"></input>
+    </div>    
 
     <div class="form-row">
         <label for="node-input-pin"><i class="fa fa-random"></i> Pin</label>
@@ -158,67 +111,66 @@
         category: 'config',
         color: '#4d94ff',
         defaults: {
-            name: {value:"", required: false },
-            uuid: {value:"", required: false}
+            name: {value:"", required: false},
+            uuid: {value:"", required: true}
         },
         label: function() {
-            return this.name||"ble-mesh-config";
+            return this.name || this.uuid || "ble-mesh-config";
         },
         oneditprepare: function() {
 
             function getProvDevices () {
+                $('#node-config-input-uuid option').remove();
                 $.getJSON('__bleMeshDevList', function(bleDevices) {
                     $.each(bleDevices, function(i ,v) {
                         var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
-                        $('#node-config-prov').append(option)
+                        $('#node-config-input-uuid').append(option)
                     })
                 })
             };
 
             function getUnProvDevices () {
+                $('#node-config-input-unprov option').remove();
                 $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
                     $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid)
-                        
-                        // option.bind("click", provision);
-                        // option.select(provision);
-
-                        $('#node-config-unprov').append(option)
+                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
+                        $('#node-config-input-unprov').append(option)
                     });
                 })
             };
 
-            $('#node-config-unprov').click(getUnProvDevices());
-            $('#node-config-prov').click(getProvDevices());
+            $('#node-config-input-unprov').click(getUnProvDevices);
+            $('#node-config-input-uuid').click(getProvDevices);
 
             $('#provision-device').click("sumbit", function(e){
                 e.preventDefault();
-                var uuid = $('#node-config-unprov')[0].value;
-                console.log(uuid);
-                $.getJSON('__bleMeshProvision', {"uuid": uuid});
+                var uuid = $('#node-config-input-unprov')[0].value;
+                if(uuid != "" && uuid != null){
+                    $.getJSON('__bleMeshProvision', {"uuid": uuid});
+                }
             });
         }
     });
 </script>
 
 <script type="text/x-red" data-template-name="ble-mesh-config">
-    
     <div class="form-row">
-        <label for="node-config-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-config-name" placeholder="Name">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
     </div>
 
     <div class="form-row">
-        <label for="node-config-uuid"><i class="fa fa-random"></i> BLE UUID</label>
-        <select type="text" id="node-config-prov"></select>
+        <label for="node-config-input-uuid"><i class="fa fa-random"></i> Provisioned Device</label>
+        <select type="text" id="node-config-input-uuid"></select>
     </div>
 
     <div class="form-row">
-        <label for="node-config-unprov"><i class="fa fa-random"></i> BLE UUID</label>
-        <select type="text" id="node-config-unprov"></select>
-        <input type="submit" id="provision-device" value="Provision">
+        <label for="node-config-input-unprov"><i class="fa fa-random"></i> New Devices
+        <select type="text" id="node-config-input-unprov"></select>
+        <button type="submit" id="provision-device" value="Provision">Provision </button
     </div>
-    
+
+
 </script>
 
 <script type="text/x-red" data-help-name="ble-mesh-config">

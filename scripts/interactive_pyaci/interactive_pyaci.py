@@ -75,8 +75,8 @@ USAGE_STRING = \
 """ # NOQA: Ignore long line
 USAGE_STRING += colorama.Style.RESET_ALL
 
-FILE_LOG_FORMAT = "%(asctime)s - %(levelname)s - %(name)s: %(message)s"
-STREAM_LOG_FORMAT = "PYACILOG %(asctime)s - %(levelname)s - %(name)s: %(message)s"
+FILE_LOG_FORMAT = "%(asctime)s - %(levelname)s: %(message)s"
+STREAM_LOG_FORMAT = "%(asctime)s - %(levelname)s: %(message)s"
 COLOR_LIST = [colorama.Fore.MAGENTA, colorama.Fore.CYAN,
               colorama.Fore.GREEN, colorama.Fore.YELLOW,
               colorama.Fore.BLUE, colorama.Fore.RED]
@@ -289,6 +289,7 @@ class Manager(object):
                             self.logger.debug("Got duplicate of address handle {}".format(address_handle))
                         else:
                             self.db.address_handles.append(address_handle)
+                            self.db.store()
                         
                     except Exception as e:
                         self.logger.error("Error storing address handle: {}".format(e))
@@ -299,6 +300,7 @@ class Manager(object):
                         devkey_handle = rsp_packet._data["devkey_handle"]
                         new_device_address["devkey_handle"] = devkey_handle
                         self.db.device_handles.append(new_device_address)
+                        self.db.store()
                     
                     except Exception as e:
                         self.logger.error("Error storing device handle: {}".format(e))
@@ -338,7 +340,7 @@ class Manager(object):
 
     def process_stdin(self):
         msg = sys.stdin.readline().strip("\n")
-        print("got ", msg)
+        self.logger.info("Received from node-red: {}".format(json.dumps(msg)))
 
         if(msg == "check"):
             self.process_stdout("running")
@@ -365,6 +367,9 @@ class Manager(object):
         
         if op == "Exit":
             self.exit()
+        
+        if op == "Kill":
+            self.kill()
 
         if op == "ProvisionScanStart":
             self.provisionScanStart()
@@ -519,7 +524,11 @@ class Manager(object):
                 self.sc.__tid = model["tid"]
 
     def exit(self):
+        self.p.scan_stop()
         self.keep_running = False
+
+    def kill(self):
+        self.p.scan_stop()
         raise SystemExit(0)
 
     def provisionScanStart(self):
@@ -657,6 +666,7 @@ class Manager(object):
         # key_handle is app key 
         self.gc.publish_set(key_handle, address_handle)
         self.gc.set(value)
+        self.db.store()
         
     def addGenericServerModel(self):
         self.gs = GenericOnOffServer()
@@ -670,6 +680,7 @@ class Manager(object):
         node, element = self.src_address_to_node_element_index(src)
         uuid = self.db.nodes[node].UUID
         self.setEventGPIO(value, self.element_index_to_pin(element), uuid)
+        self.db.store()
 
     def setEventGPIO(self, value, pin, uuid):
         self.logger.info("Sending value:{} uuid:{} pin:{}".format(value, uuid, pin))
@@ -690,6 +701,7 @@ class Manager(object):
         # False is output
         self.sc.publish_set(key_handle, address_handle)
         self.sc.set(value)
+        self.db.store()
 
     def configureGPIO(self, asInput, pin, uuid):
         address_handle = self.get_address_handle(pin, uuid)

@@ -47,7 +47,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 
 #include "nrfx_gpiote.h"
 
-#define N_ELEMS(x) (sizeof(x) / sizeof((x)[0]))
+#define N_ELEMS(x) (sizeof(x) / sizeof(x[0]))
 
 #define APP_STARTING_INDEX     (1)
 
@@ -167,7 +167,11 @@ int main(void)
 static void initialise(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n\n");
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "------------------------------------------------------------------------------------\n");
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex09 Multi Universal - GClients, GServers and Simple Server for each pin -----\n");
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "------------------------------------------------------------------------------------\n");
+
 
     ERROR_CHECK(nrfx_gpiote_init());
     gpiote_init();
@@ -191,17 +195,19 @@ static void initialise(void)
 
 static void gpiote_init(void)
 {
+    int i;
     uint8_t pin_number;
-    for(int i = 0; i < N_ELEMS(gpio_pins); i++)
+    for(i = 0; i < N_ELEMS(gpio_pins); i++)
     {
         pin_number = gpio_pins[i];
         gpio_init_output(pin_number);
     }
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "gpiote_init - %d elements\n", i);
 }
 
 static void gpio_init_input(uint8_t pin_number)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as input\n", pin_number);
+//    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as input\n", pin_number);
     nrfx_gpiote_out_uninit(pin_number);
     nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true); // TODO - this should be configurable - i.e set up/down/toggle
     in_config.pull = NRF_GPIO_PIN_PULLDOWN;
@@ -211,7 +217,7 @@ static void gpio_init_input(uint8_t pin_number)
 
 static void gpio_init_output(uint8_t pin_number)
 {
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as output\n", pin_number);
+//    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as output\n", pin_number);
     nrfx_gpiote_in_uninit(pin_number);
     nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(false); // << TODO WHAT IS THIS TRUE
     ERROR_CHECK(nrfx_gpiote_out_init(pin_number, &out_config));
@@ -539,6 +545,8 @@ static void rtt_input_handler(int key)
 #endif
             mesh_stack_config_clear();
                 
+        } else {
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Device is already provisioned");
         }
         node_reset();
     }

@@ -26,9 +26,12 @@ class PyAci {
             })
         });
 
-        /* callbacks */
-        this.onDiscover;
-        this.onCompositionDataStatus;
+        // forward declare callbacks
+        this.onDiscover = null;
+        this.onProvisionComplete = null;
+        this.onCompositionDataStatus = null;
+        this.onGetProvisionedDevices = null;
+
     };
 
     /* COMMANDS */
@@ -37,12 +40,12 @@ class PyAci {
         cmd["nodeMessageId"] = this.messages_sent
         this.messages_sent += 1
         var msg = JSON.stringify(cmd)
-        console.log(`Sending ${msg}`);
+        console.log(`[pyaci.js] TX: ${msg}`);
         this.child.stdin.write(msg + '\n');
     };
 
     kill() {
-        this.provisionScanStop
+        this.exit();
         this.child.kill();
     }
 
@@ -65,7 +68,9 @@ class PyAci {
     };
 
     provisionScanStart(onDiscoverCb) {
-        this.onDiscover = onDiscoverCb;
+        if(onDiscoverCb != null){
+            this.onDiscover = onDiscoverCb;
+        }
         
         this.send({
             op: "ProvisionScanStart"
@@ -78,8 +83,15 @@ class PyAci {
         });
     }
 
-    provision(onProvisionCompleteCb, uuid) {
-        this.onProvisionComplete = onProvisionCompleteCb;
+    provision(uuid, onProvisionCompleteCb) {
+        if(uuid == "" || uuid == null){
+            console.log(`[pyaci.js] provision - error uuid cannot be empty `)
+            return;
+        }
+        if(onProvisionCompleteCb){
+            this.onProvisionComplete = onProvisionCompleteCb;
+        }
+
         this.send({
             op: "Provision",
             data: {
@@ -88,14 +100,29 @@ class PyAci {
         });
     }
 
-    configure(onCompositionDataStatusCb) {
-        this.onCompositionDataStatus = onCompositionDataStatusCb;
+    configure(uuid, onCompositionDataStatusCb) {
+        if(uuid == "" || uuid == null){
+            console.log(`[pyaci.js] configure - error uuid cannot be empty `)
+            return;
+        }
+        if(onCompositionDataStatusCb){
+            this.onCompositionDataStatus = onCompositionDataStatusCb;
+        }
+
         this.send({
             op: "Configure",
+            data : {
+                uuid: uuid
+            }
         });
     }
 
     addAppKeys(uuid) {
+        if(uuid == "" || uuid == null){
+            console.log(`[pyaci.js] addAppKeys - error uuid cannot be empty `);
+            return;
+        }
+
         this.send({
             op: "AddAppKeys",
             data: {
@@ -140,11 +167,11 @@ class PyAci {
 
     configureGPIO(asInput, pin, uuid) {
         if(pin == "" || pin == null){
-            console.log("Input error configureGPIO - pin");
+            console.log("[pyaci.js] Input error configureGPIO - pin");
             return;
         }
         if(uuid == "" || uuid == null){
-            console.log("Input error configureGPIO - uuid");
+            console.log("[pyaci.js] Input error configureGPIO - uuid");
             return; 
         }
         
@@ -160,12 +187,12 @@ class PyAci {
 
     setGPIO(onoff, pin, uuid) {
         
-        if(pin == "" || pin == null){
-            console.log("Input error setGPIO - pin");
+        if(pin === "" || pin == null){
+            console.log("[pyaci.js] Input error setGPIO - pin");
             return;
         }
-        if(uuid == "" || uuid == null){
-            console.log("Input error setGPIO - uuid");
+        if(uuid === "" || uuid == null){
+            console.log("[pyaci.js] Input error setGPIO - uuid");
             return; 
         }
         
@@ -198,10 +225,10 @@ class PyAci {
         try {
             var msg = JSON.parse(msg_in);
             var op = msg.op;
-            console.log(`[BleMesh] RX${this.messages_received} ${msg_in}`);
+            console.log(`[pyaci.js] RX${this.messages_received} ${msg_in}`);
             this.messages_received += 1;
         } catch(err) {
-            console.log("Failed passing message: ", msg_in)
+            console.log(`[pyaci.js] RX Parse Failed: ${msg_in}`)
             return;
         }
 
@@ -218,7 +245,7 @@ class PyAci {
         }
 
         if(op == "ProvisionComplete"){
-            this.provisionComplete();
+            this.provisionComplete(msg);
         }
 
         if(op == "CompositionDataStatus"){
@@ -244,32 +271,42 @@ class PyAci {
 
     echoRsp(msg) {
         var data = msg.data;
-        console.log(`EchoRsp: ${data}`);
+        console.log(`[pyaci.js] EchoRsp: ${data}`);
     }
 
     setupRsp() {
-        console.log(`SetupRsp`);
+        console.log(`[pyaci.js] SetupRsp`);
     }
 
     newUnProvisionedDevice(msg) {
         var data = msg.data;
-        console.log(`NewUnProvisionedDevice: ${data}`, data.toString());
-        this.onDiscover(data);
+        console.log(`[pyaci.js] NewUnProvisionedDevice`);
+        
+        if(this.onDiscover){
+            this.onDiscover(data);
+        }
     }
 
-    provisionComplete() {
-        console.log(`ProvisionComplete`);
-        this.onProvisionComplete();
+    provisionComplete(msg) {
+        console.log(`[pyaci.js] ProvisionComplete`);
+        var uuid = msg.data.uuid;
+        
+        if(this.onProvisionComplete){
+            this.onProvisionComplete(uuid);
+        }
     }
 
     compositionDataStatus(msg) {
         var data = msg.data
-        console.log(`CompositionDataStatus: ${data}`);
-        this.onCompositionDataStatus(data);
+        console.log(`[pyaci.js] CompositionDataStatus`);
+        
+        if(this.onCompositionDataStatus){
+            this.onCompositionDataStatus(data);
+        }
     }
 
     addAppKeysComplete() {
-        console.log(`AddAppKeysComplete`);
+        console.log(`[pyaci.js] AddAppKeysComplete`);
     }
 
     // genericOnOffServerSetUnack(msg) {
@@ -280,8 +317,11 @@ class PyAci {
 
     setEventGPIO(msg) {
         var data = msg.data;
-        console.log(`SetEventGPIO: ${data}`);
-        this.onSetEventGPIO(data)
+        console.log(`[pyaci.js] SetEventGPIO: ${data}`);
+
+        if(this.onSetEventGPIO){
+            this.onSetEventGPIO(data)
+        }
     }
 
     onSetEventGPIO(data) {
@@ -292,16 +332,13 @@ class PyAci {
             var fcn = this.setEventsCbs[uuid][pin];
             fcn(data.value, `${uuid}_${pin}`);
         } catch (error) {
-            console.log(this.setEventsCbs);
-            console.log("Error onSetEventGPIO ", error);
+            console.log(`[pyaci.js] Error onSetEventGPIO: ${error} `);
         }
     }
 
     getProvisionedDevicesRsp(msg){
-        try{
+        if(this.onGetProvisionedDevices){
             this.onGetProvisionedDevices(msg.data);
-        } catch (error) {
-            console.log("Error onGetProvisionedDevices cb", error)
         }
     }
 }

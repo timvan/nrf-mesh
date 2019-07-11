@@ -216,8 +216,9 @@ class Access(object):
             for model in self.elements[element_index].models:
                 try:
                     opcode = message.opcode_raw
-                    handler = model.handlers[opcode.hex()]
-                    handler(opcode, message)
+                    if opcode.hex() in model.handlers:
+                        handler = model.handlers[opcode.hex()]
+                        handler(opcode, message)
                 except KeyError:
                     self.aci.logger.debug("Message {} unknown for model {}.".format(message, self))
                     pass

@@ -3,62 +3,63 @@ var pyaci = new PyAci().getInstance();
 
 var p = require('process')
 p.on('SIGINT', () => {pyaci.kill()});
-
+p.on('uncaughtException', () => {pyaci.kill()});
 
 var bleNodes = {};
 var unProvisionedBleNodes = [];
 
-unProvisionedBleNodes.push({
-    uuid: "test1", rssi: -10
-});
-unProvisionedBleNodes.push({
-    uuid: "test2", rssi: -10
-});
-
 pyaci.setEventsCbs = bleNodes;
 
 function onCompositionDataStatus(data) {
-    console.log(`Node configuration `, JSON.stringify(data));
+    console.log(`[ble-mesh.js] Recevied Node composition `, JSON.stringify(data));
     uuid = data.uuid;
     bleNodes[uuid] = {};
-    console.log(bleNodes);
     pyaci.addAppKeys(uuid);
 };
 
-function onProvisionComplete() {
-    pyaci.configure(onCompositionDataStatus);
-    var nodeId = 0;
+function onProvisionComplete(uuid) {
+    setTimeout(() => {
+        pyaci.configure(uuid, onCompositionDataStatus);
+    }, 2000);
 };
 
 function provision() {
     var uuid = unProvisionedBleNodes.pop().uuid;
-    pyaci.provision(onProvisionComplete, uuid);
+    pyaci.provision(uuid, onProvisionComplete);
 };
 
 function provision_by_uuid(uuid) {
     
-    unProvisionedBleNodes = unProvisionedBleNodes.filter((value) => {
-        value.uuid != uuid;
+    unProvisionedBleNodes = unProvisionedBleNodes.filter(o => {
+        o.uuid != uuid;
     })
 
-    pyaci.provision(onProvisionComplete, uuid);
+    pyaci.provision(uuid, onProvisionComplete);
 }
 
 function onDiscover(data) {
-    unProvisionedBleNodes.push(data);
-    console.log(`Nodes ${unProvisionedBleNodes}`, JSON.stringify(unProvisionedBleNodes));
-    // provision();
+
+    var inList = unProvisionedBleNodes.filter(o => {return o.uuid === data.uuid});
+    if(inList.length === 0){
+        unProvisionedBleNodes.push(data);
+    }
+
+    if(Object.keys(bleNodes).includes(data.uuid)){
+        console.log(`[ble-mesh.js] ERROR Deivce is unprovisioned but in node is provisioned `)
+    }
+    
+    console.log(`[ble-mesh.js] Current Unprovisioned Nodes:`, JSON.stringify(unProvisionedBleNodes));
 };
 
 function getProvisionedDevicesRsp(data) {
-    console.log("Recevied devices:", JSON.stringify(data));
+    console.log(`[ble-mesh.js] Recevied provisioned devices:`, JSON.stringify(data.uuid));
     bleNodes[data.uuid] = {};
 }
 
 setTimeout(() => {
     pyaci.provisionScanStart(onDiscover);
     pyaci.getProvisionedDevices(getProvisionedDevicesRsp);
-}, 10000);
+}, 1000);
 
 /*************************************/
 /*                                   */
@@ -75,7 +76,8 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-        this.uuid = String(config.uuid);
+        this.confignode = RED.nodes.getNode(config.confignode);
+        this.uuid = String(this.confignode.uuid);
         this.pin = config.pin;
         
         if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
@@ -86,13 +88,14 @@ module.exports = function(RED) {
         }
 
         node.on('input', function(msg) {
-            console.log(msg);
             var value = msg.payload.value;
             
             if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
                 pyaci.setGPIO(value, this.pin, this.uuid);
             }
         });
+        
+        
     }
     RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
 
@@ -104,9 +107,11 @@ module.exports = function(RED) {
 
         RED.nodes.createNode(this, config);
         
-        var node = this;    
-        this.uuid = String(config.uuid);
+        var node = this;
+        this.confignode = RED.nodes.getNode(config.confignode);
+        this.uuid = String(this.confignode.uuid);
         this.pin = config.pin;
+        
         if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
             
             if(this.pin != ""){
@@ -119,13 +124,8 @@ module.exports = function(RED) {
                         }
                     });
                 };
-                console.log(bleNodes);
             };
         };
-
-        node.on('input', function(msg) {
-            console.log(msg);
-        });
 
     }
 
@@ -138,9 +138,9 @@ module.exports = function(RED) {
     function BleMeshNodeConfig(config) {
 
         RED.nodes.createNode(this, config);
-        this.uuid = config;
+        var node = this;
+        this.uuid = String(config.uuid);
         this.registered_pins = [];
-
     }
 
     RED.nodes.registerType("ble-mesh-config", BleMeshNodeConfig);
@@ -166,13 +166,17 @@ module.exports = function(RED) {
         res.json(body);
     });
 
+    RED.httpAdmin.get('/__bleMeshAvailableDevices', (req, res) => {
+
+    })
+
     RED.httpAdmin.get('/__bleMeshProvision', (req, res) => {
         
         RED.log.info(`/__bleMeshProvision ${JSON.stringify(req.query)}`);
         
         var uuid  = req.query.uuid;
         
-        if(uuid != "" || uuid != null){    
+        if(uuid != "" && uuid != null){    
             provision_by_uuid(uuid);
         }
 
