@@ -117,10 +117,14 @@ class PyAci {
         });
     }
 
-    addAppKeys(uuid) {
+    addAppKeys(uuid, onAppKeysCompleteCb) {
         if(uuid == "" || uuid == null){
             console.log(`[pyaci.js] addAppKeys - error uuid cannot be empty `);
             return;
+        }
+
+        if(onAppKeysCompleteCb){
+            this.onAppKeysComplete = onAppKeysCompleteCb;
         }
 
         this.send({
@@ -253,7 +257,7 @@ class PyAci {
         }
 
         if(op == "AddAppKeysComplete"){
-            this.addAppKeysComplete();
+            this.addAppKeysComplete(msg);
         }
 
         // if(op == "GenericOnOffServerSetUnack"){
@@ -305,8 +309,13 @@ class PyAci {
         }
     }
 
-    addAppKeysComplete() {
+    addAppKeysComplete(msg) {
         console.log(`[pyaci.js] AddAppKeysComplete`);
+        var uuid = msg.data.uuid;
+
+        if(this.onAppKeysComplete){
+            this.onAppKeysComplete(uuid);
+        }
     }
 
     // genericOnOffServerSetUnack(msg) {

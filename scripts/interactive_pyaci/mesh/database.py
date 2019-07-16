@@ -106,7 +106,7 @@ class MeshDB(object):
         if "address_handles" in data:
             self.address_handles = data["address_handles"]
         if "device_handles" in data:
-            self.devie_handles = data["device_handles"]
+            self.device_handles = data["device_handles"]
 
         if "models" in data:
             self.models = data["models"]

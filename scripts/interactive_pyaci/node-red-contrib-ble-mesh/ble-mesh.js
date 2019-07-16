@@ -10,17 +10,22 @@ var unProvisionedBleNodes = [];
 
 pyaci.setEventsCbs = bleNodes;
 
+function onAddAppKeysComplete(uuid) {
+    unProvisionedBleNodes = unProvisionedBleNodes.filter(o => {
+        o.uuid != uuid;
+    })
+}
+
 function onCompositionDataStatus(data) {
     console.log(`[ble-mesh.js] Recevied Node composition `, JSON.stringify(data));
     uuid = data.uuid;
     bleNodes[uuid] = {};
-    pyaci.addAppKeys(uuid);
 };
 
 function onProvisionComplete(uuid) {
-    setTimeout(() => {
-        pyaci.configure(uuid, onCompositionDataStatus);
-    }, 2000);
+    // setTimeout(() => {
+    //     pyaci.configure(uuid, onCompositionDataStatus);
+    // }, 2000);
 };
 
 function provision() {
@@ -29,11 +34,6 @@ function provision() {
 };
 
 function provision_by_uuid(uuid) {
-    
-    unProvisionedBleNodes = unProvisionedBleNodes.filter(o => {
-        o.uuid != uuid;
-    })
-
     pyaci.provision(uuid, onProvisionComplete);
 }
 
@@ -178,6 +178,33 @@ module.exports = function(RED) {
         
         if(uuid != "" && uuid != null){    
             provision_by_uuid(uuid);
+        }
+
+        res.send();
+    })
+
+    RED.httpAdmin.get('/__bleMeshConfigure', (req, res) => {
+        
+        RED.log.info(`/__bleMeshConfigure ${JSON.stringify(req.query)}`);
+        
+        var uuid  = req.query.uuid;
+        
+        if(uuid != "" && uuid != null){    
+            pyaci.configure(uuid, onCompositionDataStatus);
+        }
+
+        res.send();
+    })
+
+
+    RED.httpAdmin.get('/__bleMeshAddAppKeys', (req, res) => {
+        
+        RED.log.info(`/__bleMeshAddAppKeys ${JSON.stringify(req.query)}`);
+        
+        var uuid  = req.query.uuid;
+        
+        if(uuid != "" && uuid != null){    
+            pyaci.addAppKeys(uuid, onAddAppKeysComplete);
         }
 
         res.send();

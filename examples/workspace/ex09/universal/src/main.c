@@ -58,7 +58,7 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 #define PINS {12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25}
 // #define PINS_STARTING_STATE [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25];
 
-#define PIN_NUMBER 23
+#define UNPROVISION_PIN 11
 #define P_INPUT true
 #define P_OUTPUT false
 #define P_STARTING_STATE P_OUTPUT
@@ -119,6 +119,7 @@ static void gpiote_init(void);
 static void gpio_init_input(uint8_t pin_number);
 static void gpio_init_output(uint8_t pin_number);
 static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+static void unprovision_gpio_init(void);
 
 static void mesh_init(void);
 static void models_init_cb(void);
@@ -149,6 +150,7 @@ static void provision(void);
 static void provisioning_complete_cb(void);
 static void device_identification_start_cb(uint8_t attention_duration_s);
 static void provisioning_aborted_cb(void);
+static void unprovision(void);
 
 static void rtt_input_handler(int key);
 int pin_to_index(uint8_t pin_number);
@@ -168,7 +170,7 @@ static void initialise(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS | LOG_SRC_BEARER, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n\n");
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "------------------------------------------------------------------------------------\n");
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----------------------------------------------------------------------------------- -\n");
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex09 Multi Universal - GClients, GServers and Simple Server for each pin -----\n");
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "------------------------------------------------------------------------------------\n");
 
@@ -203,6 +205,8 @@ static void gpiote_init(void)
         gpio_init_output(pin_number);
     }
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "gpiote_init - %d elements\n", i);
+
+    unprovision_gpio_init();
 }
 
 static void gpio_init_input(uint8_t pin_number)
@@ -210,7 +214,7 @@ static void gpio_init_input(uint8_t pin_number)
 //    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as input\n", pin_number);
     nrfx_gpiote_out_uninit(pin_number);
     nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true); // TODO - this should be configurable - i.e set up/down/toggle
-    in_config.pull = NRF_GPIO_PIN_PULLDOWN;
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
     ERROR_CHECK(nrfx_gpiote_in_init(pin_number, &in_config, gpiote_input_handler));
     nrfx_gpiote_in_event_enable(pin_number, true);
 }
@@ -223,9 +227,27 @@ static void gpio_init_output(uint8_t pin_number)
     ERROR_CHECK(nrfx_gpiote_out_init(pin_number, &out_config));
 }
 
+static void unprovision_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    unprovision();
+}
+
+static void unprovision_gpio_init(void)
+{
+  int pin_number = UNPROVISION_PIN;
+  
+  __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Init gpio %d as unprovision pin (input)\n", pin_number);
+  nrfx_gpiote_out_uninit(pin_number);
+  nrfx_gpiote_in_config_t in_config = NRFX_GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+  in_config.pull = NRF_GPIO_PIN_PULLUP;
+  ERROR_CHECK(nrfx_gpiote_in_init(pin_number, &in_config, unprovision_handler));
+  nrfx_gpiote_in_event_enable(pin_number, true);
+
+}
+
 /***************************************************/
 /* INPUT HANDLER                                   */
-/***************************************************/
+/***************************  ************************/
 
 static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
@@ -529,6 +551,21 @@ static void provisioning_aborted_cb(void)
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Provisioning aborted\n");
 }
 
+static void unprovision(void)
+{
+
+    if (mesh_stack_is_device_provisioned()) {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Unprovisioning device\n");
+#if MESH_FEATURE_GATT_PROXY_ENABLED
+        (void) proxy_stop();
+#endif
+        mesh_stack_config_clear();
+        node_reset();
+    } else {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Device is not provisioned\n");
+    }
+}
+
 /***************************************************/
 /* RTT                                             */
 /***************************************************/
@@ -539,16 +576,7 @@ static void rtt_input_handler(int key)
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "rtt %u pressed\n", key);
 
     if(key == 0){
-        if (mesh_stack_is_device_provisioned()) {
-#if MESH_FEATURE_GATT_PROXY_ENABLED
-            (void) proxy_stop();
-#endif
-            mesh_stack_config_clear();
-                
-        } else {
-            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Device is already provisioned");
-        }
-        node_reset();
+        unprovision();
     }
 
 //    uint32_t status = NRF_SUCCESS;

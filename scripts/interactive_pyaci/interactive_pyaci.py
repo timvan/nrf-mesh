@@ -217,10 +217,9 @@ class Manager(object):
         self.iaci.event_filter_disable() 
         
         self.iaci.acidev.add_command_recipient(self.cmd_handler)
-        self.setup()
-
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
 
+        self.setup()
 
     def run(self):
         while self.keep_running:
@@ -247,6 +246,7 @@ class Manager(object):
 
 
         if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
+            
             message = access.AccessMessage(event)
             opcode = message.opcode_raw.hex()
         
@@ -384,8 +384,7 @@ class Manager(object):
             self.configure(msg["data"]["uuid"])
 
         if op == "AddAppKeys":
-            node = self.uuid_to_node_index(msg["data"]["uuid"])
-            self.addAppKeys(node=node)
+            self.addAppKeys(msg["data"]["uuid"])
 
         if op == "AddGroupSubscriptionAddresses":
             self.addGroupSubscriptionAddresses()
@@ -473,6 +472,7 @@ class Manager(object):
         self.iaci.model_add(self.cc)
 
         self.load_address_handles()
+        self.load_device_handles()
 
         if len(self.db.models) > 0:
             self.load_models()
@@ -482,10 +482,13 @@ class Manager(object):
         self.process_stdout("SetupRsp")
 
     def load_address_handles(self):
-        sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
-        for i, item in enumerate(sortedList):
-
-            assert(i == item["address_handle"])
+        # sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
+        
+        address_handles = self.db.address_handles.copy()
+        self.db.address_handles = []
+        self.db.store()
+        
+        for item in address_handles:
 
             address = item["address"]
             opcode = item["opcode"]
@@ -502,7 +505,17 @@ class Manager(object):
             self.iaci.send(command(address))
             time.sleep(1)
 
-    # TODO load device handles
+    def load_device_handles(self):
+
+        device_handles = self.db.device_handles.copy()
+        self.db.device_handles = []
+        self.db.store()
+        print(device_handles)
+        for item in device_handles:
+            key = bytearray.fromhex(item["key"])
+            command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
+            self.iaci.send(command)
+            time.sleep(1)
 
     def load_models(self):
 
@@ -570,11 +583,14 @@ class Manager(object):
         address = self.db.nodes[node].unicast_address
         address_handle = self.db.find_address_handle(address)
         device_handle = self.db.find_device_handle(address)
-        self.logger.info("Configer {} {}".format(device_handle, address_handle))
+        self.logger.info("Configure {} {}".format(device_handle, address_handle))
 
         self.cc.publish_set(device_handle, address_handle)
-        self.cc.composition_data_get()
-        self.cc.appkey_add(0)
+        try:
+            self.cc.composition_data_get()
+            self.cc.appkey_add(0)
+        except RuntimeError as e:
+            self.logger.error(e)
         
     def compositionDataStatusRsp(self, uuid, compositionData):
         op = "CompositionDataStatus"
@@ -584,7 +600,7 @@ class Manager(object):
         }
         self.process_stdout(op, data)
         
-    def addAppKeys(self, node=0, groupAddrId=0):
+    def addAppKeys(self, uuid, groupAddrId=0):
         """ Used to:
             - subscribes the serial device to the group address
             - add publication address of each element to the serial device
@@ -597,6 +613,7 @@ class Manager(object):
             groupAddrId : index of group address in db
 
         """
+        node = self.uuid_to_node_index(uuid)
         self.addAddress(cmd.AddrSubscriptionAdd , self.db.groups[groupAddrId].address)
 
         for e, element in enumerate(self.db.nodes[node].elements):
@@ -624,10 +641,12 @@ class Manager(object):
                     self.cc.model_app_bind(element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
                     time.sleep(1)
 
-        self.addAppKeysComplete()
+        self.addAppKeysComplete(uuid)
     
-    def addAppKeysComplete(self):
-        self.process_stdout("AddAppKeysComplete")
+    def addAppKeysComplete(self, uuid):
+        self.process_stdout("AddAppKeysComplete", {
+            "uuid": uuid
+        })
 
     def addAddress(self, command, address):
         self.logger.info("Adding address {}".format(address))

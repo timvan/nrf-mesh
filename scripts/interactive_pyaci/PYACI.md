@@ -44,7 +44,7 @@ m = Manager(d[0])
 m.provisionScanStart()
 m.provision("9db77a0526b8734988639509c242d107")
 m.configure("9db77a0526b8734988639509c242d107")
-m.addAppKeys()
+m.addAppKeys("9db77a0526b8734988639509c242d107")
 
 m.configureGPIO(False, 17, "9db77a0526b8734988639509c242d107")
 m.setGPIO(False, 17, "9db77a0526b8734988639509c242d107")  

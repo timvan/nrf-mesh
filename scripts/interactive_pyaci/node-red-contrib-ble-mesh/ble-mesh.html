@@ -149,6 +149,22 @@
                     $.getJSON('__bleMeshProvision', {"uuid": uuid});
                 }
             });
+
+            $('#confgiure-device').click("sumbit", function(e){
+                e.preventDefault();
+                var uuid = $('#node-config-input-unprov')[0].value;
+                if(uuid != "" && uuid != null){
+                    $.getJSON('__bleMeshConfigure', {"uuid": uuid});
+                }
+            });
+
+            $('#addAppKeys-device').click("sumbit", function(e){
+                e.preventDefault();
+                var uuid = $('#node-config-input-unprov')[0].value;
+                if(uuid != "" && uuid != null){
+                    $.getJSON('__bleMeshAddAppKeys', {"uuid": uuid});
+                }
+            });
         }
     });
 </script>
@@ -167,7 +183,9 @@
     <div class="form-row">
         <label for="node-config-input-unprov"><i class="fa fa-random"></i> New Devices
         <select type="text" id="node-config-input-unprov"></select>
-        <button type="submit" id="provision-device" value="Provision">Provision </button
+        <button type="submit" id="provision-device" value="Provision">Provision </button>
+        <button type="submit" id="confgiure-device" value="Configure">Configure </button>
+        <button type="submit" id="addAppKeys-device" value="AddAppKeys">AddAppKeys </button>
     </div>
 
 
