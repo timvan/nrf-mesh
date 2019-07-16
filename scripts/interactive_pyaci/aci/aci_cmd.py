@@ -707,7 +707,6 @@ class DevkeyAdd(CommandPacket):
             Key to add.
     """
     def __init__(self, owner_addr, subnet_handle, key):
-        print("[delete] Devkeyadd {} {} {}".format(owner_addr, subnet_handle, key))
         __data = bytearray()
         __data += struct.pack("<H", owner_addr)
         __data += struct.pack("<H", subnet_handle)

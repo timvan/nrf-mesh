@@ -43,6 +43,8 @@ import time
 import json
 import subprocess
 import struct
+import functools
+import signal
 
 from argparse import ArgumentParser
 import traitlets.config
@@ -208,13 +210,23 @@ class Manager(object):
 
     def __init__(self, interactive_device):
         self.keep_running = True
+        signal.signal(signal.SIGALRM, self.timeout_handler)
+        
         self.db_path = "database/example_database.json"
+        self.db = MeshDB(self.db_path)
+        
         self.iaci = interactive_device
+        self.iaci.event_filter_disable()
+
         self.logger = self.iaci.logger
+
+        self.p = Provisioner(self.iaci, self.db)
+        self.cc = ConfigurationClient(self.db)
+        self.iaci.model_add(self.cc)
+
         self.address_stack = list()
         self.device_handle_stack = list()
-
-        self.iaci.event_filter_disable() 
+        self.message_que = list()
         
         self.iaci.acidev.add_command_recipient(self.cmd_handler)
         self.iaci.acidev.add_packet_recipient(self.__event_handler)
@@ -241,9 +253,7 @@ class Manager(object):
             address = int(event._data["address"])
             node, element = self.src_address_to_node_element_index(address)
             uuid = self.db.nodes[node].UUID.hex()
-            time.sleep(10)
             self.process_stdout("ProvisionComplete", {"uuid": uuid})
-
 
         if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             
@@ -260,7 +270,13 @@ class Manager(object):
 
                 self.compositionDataStatusRsp(uuid, compositionData)
 
-        if event._opcode == evt.Event.CMD_RSP:            
+            if opcode == str(ConfigurationClient._MODEL_PUBLICATION_STATUS) or \
+               opcode == str(ConfigurationClient._MODEL_SUBSCRIPTION_STATUS) or \
+               opcode == str(ConfigurationClient._MODEL_APP_STATUS):
+               
+                self.send_next_message()
+
+        if event._opcode == evt.Event.CMD_RSP:
             
             if event._data["status"] == 0:
 
@@ -291,6 +307,9 @@ class Manager(object):
                             self.db.address_handles.append(address_handle)
                             self.db.store()
                         
+                        self.send_next_message()
+
+
                     except Exception as e:
                         self.logger.error("Error storing address handle: {}".format(e))
                 
@@ -301,10 +320,12 @@ class Manager(object):
                         new_device_address["devkey_handle"] = devkey_handle
                         self.db.device_handles.append(new_device_address)
                         self.db.store()
+
+                        self.send_next_message()
                     
                     except Exception as e:
                         self.logger.error("Error storing device handle: {}".format(e))
-                    
+        
     def cmd_handler(self, cmd):
     
         if cmd._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
@@ -326,6 +347,30 @@ class Manager(object):
 
             })
     
+    def send_next_message(self):
+        try:
+            if len(self.message_que) != 0:
+                self.logger.info("\n")
+                self.logger.info("Sending next message")
+                func = self.message_que.pop(0)
+                self.last_message = func
+                func()
+                signal.setitimer(signal.ITIMER_REAL, 4)
+            else:
+                self.logger.info("No Messages remaining")
+        except Exception as e:
+            self.logger.error("Error trying next message function: {}".format(e))
+
+    def send_last_message(self):
+        if len(self.message_que) != 0:
+            self.last_message()
+            signal.setitimer(signal.ITIMER_REAL, 4)
+
+    def timeout_handler(self, signum, frame):
+        self.logger.info("Timout handler timeout")
+        self.send_last_message()
+    
+
     def process_stdout(self, op, data=None):
         
         msg = {
@@ -465,12 +510,6 @@ class Manager(object):
 
     def setup(self):
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
-        self.db = MeshDB(self.db_path)
-        self.p = Provisioner(self.iaci, self.db)
-        
-        self.cc = ConfigurationClient(self.db)
-        self.iaci.model_add(self.cc)
-
         self.load_address_handles()
         self.load_device_handles()
 
@@ -479,8 +518,9 @@ class Manager(object):
         else:
             self.addModels()
 
-        self.process_stdout("SetupRsp")
-
+        self.message_que.append(functools.partial(self.process_stdout, "SetupRsp"))
+        self.send_next_message()
+        
     def load_address_handles(self):
         # sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
         
@@ -494,16 +534,15 @@ class Manager(object):
             opcode = item["opcode"]
 
             if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAdd":
-                command = cmd.AddrSubscriptionAdd
+                command = cmd.AddrSubscriptionAdd(address)
             if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAddVirtual":
-                command = cmd.AddrSubscriptionAddVirtual
+                command = cmd.AddrSubscriptionAddVirtual(address)
             if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAdd":
-                command = cmd.AddrPublicationAdd
+                command = cmd.AddrPublicationAdd(address)
             if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAddVirtual":
-                command = cmd.AddrPublicationAddVirtual
+                command = cmd.AddrPublicationAddVirtual(address)
             
-            self.iaci.send(command(address))
-            time.sleep(1)
+            self.message_que.append(functools.partial(self.iaci.send, command))
 
     def load_device_handles(self):
 
@@ -514,8 +553,8 @@ class Manager(object):
         for item in device_handles:
             key = bytearray.fromhex(item["key"])
             command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
-            self.iaci.send(command)
-            time.sleep(1)
+            self.message_que.append(functools.partial(self.iaci.send, command))
+
 
     def load_models(self):
 
@@ -614,34 +653,34 @@ class Manager(object):
 
         """
         node = self.uuid_to_node_index(uuid)
-        self.addAddress(cmd.AddrSubscriptionAdd , self.db.groups[groupAddrId].address)
+        command = cmd.AddrSubscriptionAdd(self.db.groups[groupAddrId].address)
+        self.message_que.append(functools.partial(self.iaci.send, command))
 
         for e, element in enumerate(self.db.nodes[node].elements):
             
             # Add each element to the serial device's pubusb list
             element_address = self.db.nodes[node].unicast_address + e
-            self.addAddress(cmd.AddrPublicationAdd, element_address)
+            command = cmd.AddrPublicationAdd(element_address)
+            self.message_que.append(functools.partial(self.iaci.send, command))
 
             for model in element.models:
                 
                 # Generic OnOff Server
                 if str(model.model_id) == "1000":
-                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1000))
-                    time.sleep(1)
+                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x1000)))
                     
                 # Generic OnOff Client
                 if str(model.model_id) == "1001":
-                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x1001))
-                    time.sleep(1)
-                    self.cc.model_publication_set(element_address, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1))
-                    time.sleep(1)
+                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x1001)))
+                    self.message_que.append(functools.partial(self.cc.model_publication_set, element_address, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1)))
 
                 # Simple OnOff Server
                 if str(model.model_id) == "00590000":
-                    self.cc.model_app_bind(element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
-                    time.sleep(1)
+                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x0000, company_id=0x0059)))
 
-        self.addAppKeysComplete(uuid)
+        self.message_que.append(functools.partial(self.addAppKeysComplete, uuid))
+
+        self.send_next_message()
     
     def addAppKeysComplete(self, uuid):
         self.process_stdout("AddAppKeysComplete", {
@@ -650,8 +689,7 @@ class Manager(object):
 
     def addAddress(self, command, address):
         self.logger.info("Adding address {}".format(address))
-        self.iaci.send(command(address))
-        time.sleep(1)
+        self.message_que.append(functools.partial(self.iaci.send, command(address)))
 
     def addGroupSubscriptionAddresses(self, node=0, groupAddrId=0):
         for e, element in enumerate(self.db.nodes[node].elements):
