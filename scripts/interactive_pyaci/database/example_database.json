@@ -91,6 +91,14 @@
       "name": "locks"
     }
   ],
+  "deviceHandles": [
+    {
+      "device_address": 16,
+      "devkey_handle": 8,
+      "key": "616fbfa2a338c8f8137563b3ad3a2097",
+      "subnet_handle": 0
+    }
+  ],
   "groups": [
     {
       "address": 49153,
@@ -105,7 +113,7 @@
   "models": [
     {
       "model": "GenericOnOffClient",
-      "tid": 0
+      "tid": 4
     },
     {
       "model": "GenericOnOffServer",
@@ -113,7 +121,7 @@
     },
     {
       "model": "SimpleOnOffClient",
-      "tid": 1
+      "tid": 0
     }
   ],
   "netKeys": [
@@ -130,8 +138,8 @@
       "UUID": "9db77a0526b8734988639509c242d107",
       "cid": "0059",
       "configComplete": false,
-      "crpl": "0028",
-      "deviceKey": "f85a102fb7aa7a4af93fa9ef97579276",
+      "crpl": 40,
+      "deviceKey": "616fbfa2a338c8f8137563b3ad3a2097",
       "elements": [
         {
           "index": 0,
@@ -635,5 +643,5 @@
       "name": "BT Mesh Provisioner"
     }
   ],
-  "timestamp": "2019-07-16 20:02:26.835373"
+  "timestamp": "2019-07-17 11:49:29.421775"
 }

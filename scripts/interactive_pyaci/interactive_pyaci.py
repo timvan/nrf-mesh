@@ -206,7 +206,7 @@ class Interactive(object):
 class Manager(object):
 
     NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
-    STARTING_ELEMENT_INDEX = 1
+    NRF52_STARTING_ELEMENT_INDEX = 1
 
     def __init__(self, interactive_device):
         self.keep_running = True
@@ -236,6 +236,75 @@ class Manager(object):
     def run(self):
         while self.keep_running:
             self.process_stdin()
+
+    def setup(self):
+        # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
+        self.load_address_handles()
+        self.load_device_handles()
+
+        if len(self.db.models) > 0:
+            self.load_models()
+        else:
+            self.addModels()
+
+        self.message_que.append(functools.partial(self.process_stdout, "SetupRsp"))
+        self.send_next_message()
+        
+    def load_address_handles(self):
+        # sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
+        
+        address_handles = self.db.address_handles.copy()
+        self.db.address_handles = []
+        self.db.store()
+        
+        for item in address_handles:
+
+            address = item["address"]
+            opcode = item["opcode"]
+
+            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAdd":
+                command = cmd.AddrSubscriptionAdd(address)
+            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAddVirtual":
+                command = cmd.AddrSubscriptionAddVirtual(address)
+            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAdd":
+                command = cmd.AddrPublicationAdd(address)
+            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAddVirtual":
+                command = cmd.AddrPublicationAddVirtual(address)
+            
+            self.message_que.append(functools.partial(self.iaci.send, command))
+
+    def load_device_handles(self):
+
+        device_handles = self.db.device_handles.copy()
+        self.db.device_handles = []
+        self.db.store()
+        for item in device_handles:
+            key = bytearray.fromhex(item["key"])
+            command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
+            self.message_que.append(functools.partial(self.iaci.send, command))
+
+    def load_models(self):
+
+        db_models = self.db.models.copy()
+        self.db.models = []
+
+        for model in db_models:
+                
+            if model["model"] == "GenericOnOffClient":
+                self.addGenericClientModel()
+                self.gc.__tid = model["tid"]
+            
+            if model["model"] == "GenericOnOffServer":
+                self.addGenericServerModel()
+                self.gs.__tid = model["tid"]
+                
+            if model["model"] == "SimpleOnOffClient":
+                self.addSimpleClientModel()
+                self.sc.__tid = model["tid"]
+
+    """""""""""""""""""""""""""""""""""""""""""""
+    PYACI EVENTS AND COMMANDS
+    """""""""""""""""""""""""""""""""""""""""""""
 
     def __event_handler(self, event):
 
@@ -370,6 +439,9 @@ class Manager(object):
         self.logger.info("Timout handler timeout")
         self.send_last_message()
     
+    """""""""""""""""""""""""""""""""""""""""""""
+    STD IN / OUT INTERFACE
+    """""""""""""""""""""""""""""""""""""""""""""
 
     def process_stdout(self, op, data=None):
         
@@ -489,91 +561,9 @@ class Manager(object):
         if op =="GetProvisionedDevices":
             self.getProvisionedDevices();
 
-    def check_pin(self, pin):
-        return pin in self.NRF52_DEV_BOARD_GPIO_PINS
-    
-    def check_uuid(self, uuid):
-        if len(self.db.nodes) == 0:
-            return False
-
-        for node in self.db.nodes:
-            if node.UUID.hex() == uuid:
-                return True
-        return False
-    
-    def check_value(self, value):
-        return value == 1 or value == 0
-
     def echo(self, msg):
         op = "EchoRsp"
         self.process_stdout(op, msg["data"])
-
-    def setup(self):
-        # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
-        self.load_address_handles()
-        self.load_device_handles()
-
-        if len(self.db.models) > 0:
-            self.load_models()
-        else:
-            self.addModels()
-
-        self.message_que.append(functools.partial(self.process_stdout, "SetupRsp"))
-        self.send_next_message()
-        
-    def load_address_handles(self):
-        # sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
-        
-        address_handles = self.db.address_handles.copy()
-        self.db.address_handles = []
-        self.db.store()
-        
-        for item in address_handles:
-
-            address = item["address"]
-            opcode = item["opcode"]
-
-            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAdd":
-                command = cmd.AddrSubscriptionAdd(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAddVirtual":
-                command = cmd.AddrSubscriptionAddVirtual(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAdd":
-                command = cmd.AddrPublicationAdd(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAddVirtual":
-                command = cmd.AddrPublicationAddVirtual(address)
-            
-            self.message_que.append(functools.partial(self.iaci.send, command))
-
-    def load_device_handles(self):
-
-        device_handles = self.db.device_handles.copy()
-        self.db.device_handles = []
-        self.db.store()
-        print(device_handles)
-        for item in device_handles:
-            key = bytearray.fromhex(item["key"])
-            command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
-            self.message_que.append(functools.partial(self.iaci.send, command))
-
-
-    def load_models(self):
-
-        db_models = self.db.models.copy()
-        self.db.models = []
-
-        for model in db_models:
-                
-            if model["model"] == "GenericOnOffClient":
-                self.addGenericClientModel()
-                self.gc.__tid = model["tid"]
-            
-            if model["model"] == "GenericOnOffServer":
-                self.addGenericServerModel()
-                self.gs.__tid = model["tid"]
-                
-            if model["model"] == "SimpleOnOffClient":
-                self.addSimpleClientModel()
-                self.sc.__tid = model["tid"]
 
     def exit(self):
         self.p.scan_stop()
@@ -582,6 +572,8 @@ class Manager(object):
     def kill(self):
         self.p.scan_stop()
         raise SystemExit(0)
+
+    """ PROVISIOING """
 
     def provisionScanStart(self):
         self.p.scan_start()
@@ -601,21 +593,16 @@ class Manager(object):
 
         self.p.scan_stop()
         self.p.provision(uuid=uuid, name=name)
+    
+    def getProvisionedDevices(self):
+        for node in self.db.nodes:
+            self.process_stdout("GetProvisionedDevicesRsp", {
+                "uuid" : node.UUID,
+                "compositionData": node
+            })
+    
+    """ CONFIGURATION """
 
-    def remove_node(self, uuid):
-        self.logger.error("Remove node {} from database".format(uuid))
-        self.db.nodes = [n for n in self.db.nodes if n.UUID.hex() != uuid]
-        # TODO need to remove unused address handles
-        # for node in self.db.nodes:
-        #     if node.UUID.hex() == uuid:
-        #         self.remove_address_handle
-        
-    def remove_address_handle(self, opcode, address_handle):
-        index, handle = next((i, d) for (i, d) in enumerate(self.db.address_handles) if d["address_handle"] == address_handle) 
-        if handle["opcode"] == 0xA4:
-            self.iaci.send(cmd.AddrPublicationRemove(address_handle))
-            self.db.address_handles.pop(index)
-        
     def configure(self, uuid):
         
         node = self.uuid_to_node_index(uuid)
@@ -709,6 +696,8 @@ class Manager(object):
                     self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(group_address, index=0, ttl=1))
                 time.sleep(1)
 
+    """  MODELS & PINS """
+
     def addModels(self):
         self.addGenericClientModel()
         self.addGenericServerModel()
@@ -768,12 +757,6 @@ class Manager(object):
         address_handle = self.get_address_handle(pin, uuid)
         self.genericClientSet(value, address_handle=address_handle)
 
-    def getProvisionedDevices(self):
-        for node in self.db.nodes:
-            self.process_stdout("GetProvisionedDevicesRsp", {
-                "uuid" : node.UUID,
-                "compositionData": node
-            })
 
     """""""""""""""""""""""""""""""""""""""""""""
     HELPERS / CONVERTERS
@@ -792,18 +775,17 @@ class Manager(object):
     def pin_to_element_index(self, pin):        
         if pin in self.NRF52_DEV_BOARD_GPIO_PINS:
             element_index = self.NRF52_DEV_BOARD_GPIO_PINS.index(pin)
-            element_index += self.STARTING_ELEMENT_INDEX
+            element_index += self.NRF52_STARTING_ELEMENT_INDEX
             return element_index
         
         return None
 
     def element_index_to_pin(self, element_index):
-        element_index -= self.STARTING_ELEMENT_INDEX
+        element_index -= self.NRF52_STARTING_ELEMENT_INDEX
         if element_index < len(self.NRF52_DEV_BOARD_GPIO_PINS) and element_index >= 0:
             return self.NRF52_DEV_BOARD_GPIO_PINS[element_index]
 
         return None
-
 
     def src_address_to_node_element_index(self, src_address):
         """ Used to find the node and element index in the db from an address
@@ -833,8 +815,40 @@ class Manager(object):
         
         return None
 
+    def check_pin(self, pin):
+        return pin in self.NRF52_DEV_BOARD_GPIO_PINS
+    
+    def check_uuid(self, uuid):
+        if len(self.db.nodes) == 0:
+            return False
 
+        for node in self.db.nodes:
+            if node.UUID.hex() == uuid:
+                return True
+        return False
+    
+    def check_value(self, value):
+        return value == 1 or value == 0
 
+    
+    """""""""""""""""""""""""""""""""""""""""""""
+    UNUSED / EXPERIMENTAL
+    """""""""""""""""""""""""""""""""""""""""""""
+
+    def remove_node(self, uuid):
+        self.logger.error("Remove node {} from database".format(uuid))
+        self.db.nodes = [n for n in self.db.nodes if n.UUID.hex() != uuid]
+        # TODO need to remove unused address handles
+        # for node in self.db.nodes:
+        #     if node.UUID.hex() == uuid:
+        #         self.remove_address_handle
+        
+    def remove_address_handle(self, opcode, address_handle):
+        index, handle = next((i, d) for (i, d) in enumerate(self.db.address_handles) if d["address_handle"] == address_handle) 
+        if handle["opcode"] == 0xA4:
+            self.iaci.send(cmd.AddrPublicationRemove(address_handle))
+            self.db.address_handles.pop(index)
+            
 def start_ipython(options):
     comports = options.devices
     d = list()
