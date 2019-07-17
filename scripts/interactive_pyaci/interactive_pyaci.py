@@ -715,14 +715,11 @@ class Manager(object):
         self.db.store()
         
     def addGenericServerModel(self):
-        self.gs = GenericOnOffServer()
-        self.gs.set_generic_on_off_server_set_unack_cb(self.genericOnOffServerSetUnackEvent)
+        self.gs = GenericOnOffServer(self.genericOnOffServerSetUnackEvent, self.db)
         self.iaci.model_add(self.gs)
         self.db.models.append(self.gs)
 
-    def genericOnOffServerSetUnackEvent(self, message):
-        value = int(message.data.hex()[1])
-        src = message.meta["src"]
+    def genericOnOffServerSetUnackEvent(self, value, src):
         node, element = self.src_address_to_node_element_index(src)
         uuid = self.db.nodes[node].UUID
         self.setEventGPIO(value, self.element_index_to_pin(element), uuid)

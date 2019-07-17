@@ -267,8 +267,7 @@ static void gpiote_input_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t ac
     transition_params.delay_ms = APP_CONFIG_ONOFF_DELAY_MS;
     transition_params.transition_time_ms = APP_CONFIG_ONOFF_TRANSITION_TIME_MS;
     
-    // TODO - this is only unack atm
-    status = generic_onoff_client_set_unack(m_client, &set_params, &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+    status = generic_onoff_client_set(m_client, &set_params, &transition_params);
 
     switch (status)
     {
@@ -379,8 +378,8 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
     int pin_number = p_server->pin_number;
-    *p_present_onoff = nrf_gpio_pin_read(pin_number);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GPIO %d is [%d]\n", pin_number, p_present_onoff)
+    *p_present_onoff = nrf_gpio_pin_out_read(pin_number);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GET GPIO %d is [%d]\n", pin_number, *p_present_onoff)
 }
 
 /***************************************************/

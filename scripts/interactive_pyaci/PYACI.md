@@ -46,8 +46,13 @@ m.provision("9db77a0526b8734988639509c242d107")
 m.configure("9db77a0526b8734988639509c242d107")
 m.addAppKeys("9db77a0526b8734988639509c242d107")
 
-m.configureGPIO(False, 17, "9db77a0526b8734988639509c242d107")
-m.setGPIO(False, 17, "9db77a0526b8734988639509c242d107")  
+<!-- set as output -->
+m.configureGPIO(False, 18, "9db77a0526b8734988639509c242d107")
+m.setGPIO(False, 18, "9db77a0526b8734988639509c242d107")
+m.setGPIO(True, 18, "9db77a0526b8734988639509c242d107")
+
+<!-- set as input -->
+m.configureGPIO(True, 17, "9db77a0526b8734988639509c242d107")
 
 <!-- m.addModels() -->
 m.genericClientSet(True, 0)

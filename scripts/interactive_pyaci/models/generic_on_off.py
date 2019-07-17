@@ -68,9 +68,9 @@ class GenericOnOffClient(Model):
         return tid
 
     def __generic_on_off_status_handler(self, opcode, message):
-        logstr = "Present OnOff: " + "on" if message.data[0] > 0 else "off"
+        logstr = "Present OnOff: " + ("on" if message.data[0] > 0 else "off")
         if len(message.data) > 1:
-            logstr += " Target OnOff: " + "on" if message.data[1] > 0 else "off"
+            logstr += " Target OnOff: " + ("on" if message.data[1] > 0 else "off")
 
         if len(message.data) == 3:
             logstr += " Remaining time: %d ms" % (TransitionTime.decode(message.data[2]))
@@ -90,15 +90,17 @@ class GenericOnOffServer(Model):
     GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
     
-    def __init__(self):
+    def __init__(self, generic_on_off_server_set_unack_cb=None, db=None):
         self.opcodes = [
-            (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_set_unack_event_handler),
+            (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_set_event_handler),
             (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_set_unack_event_handler),
-            (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_event_handler),
-            (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_server_event_handler)]
+            (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_get_event_handler)]
         self.__tid = 0
-        self.__generic_on_off_server_set_unack_cb = None
+        self.__generic_on_off_server_set_unack_cb = generic_on_off_server_set_unack_cb
+        self.db = db
+
         super(GenericOnOffServer, self).__init__(self.opcodes)
+        
     
     @property
     def _tid(self):
@@ -108,18 +110,48 @@ class GenericOnOffServer(Model):
             self.__tid = 0
         return tid
 
-    def __generic_on_off_server_event_handler(self, opcode, message):
-        self.logger.info("Server Event {} {}".format(opcode, message.data))
+
+    def __generic_on_off_server_set_event_handler(self, opcode, message):
+
+        # UNPACK MESSAGE
+        value = int(message.data.hex()[1])
+        src = message.meta["src"]
+        appkey_handle = message.meta["appkey_handle"]
+
+        # SEND STATUS RESPONSE
+        address_handle = self.db.find_address_handle(src)
+        self.publish_set(appkey_handle, address_handle)
+        self.status(value)
+
+        # DO ACTION
+        try:
+            self.__generic_on_off_server_set_unack_cb(value, src)
+        except:
+            self.logger.error("Failed trying generic on off server set callback: ", self.__generic_on_off_server_set_unack_cb)
+
 
     def __generic_on_off_server_set_unack_event_handler(self, opcode, message):
+        # UNPACK MESSAGE
+        onoff = int(message.data.hex()[1])
+        src = message.meta["src"]
+
         try:
-            self.__generic_on_off_server_set_unack_cb(message)
+            self.__generic_on_off_server_set_unack_cb(onoff, src)
         except:
             self.logger.error("Failed trying generic on off server set unack callback: ", self.__generic_on_off_server_set_unack_cb)
 
-    def set_generic_on_off_server_set_unack_cb(self, cb):
-        self.__generic_on_off_server_set_unack_cb = cb
-    
+    def __generic_on_off_server_get_event_handler(self, opcode, message):
+        self.logger.info("Server GET event {} {}".format(opcode, message.data))
+
+
+    def status(self, value):
+        # TODO what are transition_time_ms and delay_ms doing?
+
+        message = bytearray()
+        message += struct.pack("<?", int(value > 0))
+
+        self.send(self.GENERIC_ON_OFF_STATUS, message)
+
     def __str__(self):
         return json.dumps({"model": "GenericOnOffServer", "tid": self.__tid})
 
