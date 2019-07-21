@@ -67,7 +67,8 @@ class Pyaci {
     }
 
     disconnect() {
-        this.send("Disconnect");
+        var op = "Disconnect"
+        this.send(op);
         this.child.kill();
     }
 
@@ -102,13 +103,8 @@ class Pyaci {
         return this.send(op);
     }
 
-    provisionScanStop() {
-        var op = "ProvisionScanStop"
-        return this.send(op);
-    }
-
     getProvisionedDevices() {
-        var op = "GetProvisionedDevices"
+        var op = "GetProvisionedDevices";
         return this.send(op);
     }
 
@@ -131,12 +127,13 @@ class Pyaci {
     }
 
     configure(uuid) {
+        var op = "Configure";
+
         if(uuid == "" || uuid == null){
             this.log(`configure - error uuid cannot be empty `)
             return false;
         }
 
-        var op = "Configure";
         var data = {
             uuid: uuid
         };
@@ -145,12 +142,13 @@ class Pyaci {
     }
 
     addAppKeys(uuid) {
+        var op = "AddAppKeys";
+
         if(uuid == "" || uuid == null){
             this.log(`addAppKeys - error uuid cannot be empty `);
             return false;
         }
 
-        var op = "AddAppKeys";
         var data = {
             uuid: uuid
         };
@@ -159,6 +157,8 @@ class Pyaci {
     }
 
     configureGPIO(asInput, pin, uuid) {
+        var op = "ConfigureGPIO";
+
         if(typeof asInput != 'boolean'|| asInput == null){
             this.log("Input error configureGPIO - asInput");
             return false;
@@ -171,7 +171,6 @@ class Pyaci {
             this.log("Input error configureGPIO - uuid");
             return false; 
         }
-        var op = "ConfigureGPIO";
         var data = {
             pin: pin,
             uuid: uuid,
@@ -181,6 +180,8 @@ class Pyaci {
     }
 
     setGPIO(onoff, pin, uuid) {
+        var op = "SetGPIO";
+
         if(typeof onoff != 'boolean' && typeof onoff != 'number'){
             this.log("Input error setGPIO - onoff");
             return false;
@@ -197,9 +198,8 @@ class Pyaci {
         if(typeof uuid != 'string' || uuid == "" || uuid == null){
             this.log("Input error setGPIO - uuid");
             return false; 
-        }
+        }s
 
-        var op = "SetGPIO";
         var data = {
             value: onoff,
             pin: pin,
@@ -209,12 +209,13 @@ class Pyaci {
     }
 
     setName(uuid, name) {
+        var op = "SetName";
+
         if(typeof uuid != 'string' || uuid == "" || uuid == null){
             this.log("Input error setName - uuid");
             return false; 
         }
 
-        var op = "SetName";
         var data = {
             name: name,
             uuid: uuid
