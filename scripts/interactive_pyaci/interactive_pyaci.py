@@ -570,6 +570,9 @@ class Manager(object):
         if op =="GetProvisionedDevices":
             self.getProvisionedDevices();
 
+        if op == "SetName":
+            self.setName(name=msg["data"]["name"], uuid=msg["data"]["uuid"])
+
     def echo(self, msg):
         op = "EchoRsp"
         self.process_stdout(op, msg["data"])
@@ -704,6 +707,10 @@ class Manager(object):
                 if str(model.model_id) == "1001":
                     self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(group_address, index=0, ttl=1))
                 time.sleep(1)
+
+    def setName(self, name, uuid);
+        node = self.uuid_to_node_index(uuid)
+        self.db.nodes[node].name = name
 
     """  MODELS & PINS """
 

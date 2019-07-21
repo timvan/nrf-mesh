@@ -1,65 +1,43 @@
-var PyAci = require('./PyAci')
+var PyAci = require('./Pyaci.js')
+var BluetoothMesh = require('./Mesh.js')
 var pyaci = new PyAci().getInstance();
+var eventBus = require('./eventBus.js');
 
 var p = require('process')
-p.on('SIGINT', () => {pyaci.kill()});
-p.on('uncaughtException', () => {pyaci.kill()});
+p.on('SIGINT', () => {pyaci.disconnect()});
+p.on('uncaughtException', () => {pyaci.disconnect()});
 
-var bleNodes = {};
-var unProvisionedBleNodes = [];
-
-pyaci.setEventsCbs = bleNodes;
-
-function onAddAppKeysComplete(uuid) {
-    unProvisionedBleNodes = unProvisionedBleNodes.filter(o => {
-        o.uuid != uuid;
-    })
+pyaci.pyscript = {
+    filename: 'pyaci_test.py',
+    working_dir: '/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/node-red-contrib-ble-mesh/',
+    args: []
 }
+pyaci.connect();
 
-function onCompositionDataStatus(data) {
-    console.log(`[ble-mesh.js] Recevied Node composition `, JSON.stringify(data));
-    uuid = data.uuid;
-    bleNodes[uuid] = {};
-};
-
-function onProvisionComplete(uuid) {
-    // setTimeout(() => {
-    //     pyaci.configure(uuid, onCompositionDataStatus);
-    // }, 2000);
-};
-
-function provision() {
-    var uuid = unProvisionedBleNodes.pop().uuid;
-    pyaci.provision(uuid, onProvisionComplete);
-};
-
-function provision_by_uuid(uuid) {
-    pyaci.provision(uuid, onProvisionComplete);
-}
-
-function onDiscover(data) {
-
-    var inList = unProvisionedBleNodes.filter(o => {return o.uuid === data.uuid});
-    if(inList.length === 0){
-        unProvisionedBleNodes.push(data);
-    }
-
-    if(Object.keys(bleNodes).includes(data.uuid)){
-        console.log(`[ble-mesh.js] ERROR Deivce is unprovisioned but in node is provisioned `)
-    }
-    
-    console.log(`[ble-mesh.js] Current Unprovisioned Nodes:`, JSON.stringify(unProvisionedBleNodes));
-};
-
-function getProvisionedDevicesRsp(data) {
-    console.log(`[ble-mesh.js] Recevied provisioned devices:`, JSON.stringify(data.uuid));
-    bleNodes[data.uuid] = {};
-}
+var mesh = new BluetoothMesh.Mesh()
 
 setTimeout(() => {
-    pyaci.provisionScanStart(onDiscover);
-    pyaci.getProvisionedDevices(getProvisionedDevicesRsp);
+    pyaci.getProvisionedDevices();
+    mesh.provisionScanStart();
 }, 1000);
+
+eventBus.on("NewUnProvisionedDevice", (data) => {
+    // TURN ON TO AUTO PROVISION
+    // var device = mesh.getDevice(data.uuid);
+    // device.provision();
+})
+
+eventBus.on("ProvisionComplete", (data) => {
+    var device = mesh.getDevice(data.uuid);
+    device.configure();
+})
+eventBus.on("CompositionDataStatus", (data) => {
+    var device = mesh.getDevice(data.uuid);
+    device.addAppKeys();
+    
+    // TODO - set scanning back on after completion..
+    mesh.provisionScanStart();
+})
 
 /*************************************/
 /*                                   */
@@ -76,26 +54,16 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         var node = this;
-        this.confignode = RED.nodes.getNode(config.confignode);
-        this.uuid = String(this.confignode.uuid);
-        this.pin = config.pin;
+        this.pin = parseInt(config.pin);
+        var confignode = RED.nodes.getNode(config.confignode);
         
-        if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
-            
-            if(this.pin != ""){
-                pyaci.configureGPIO(false, this.pin, this.uuid);
-            }
-        }
+        this.element = confignode.device.getElement(this.pin);
+        this.element.configureGPIOasInput(false);
 
         node.on('input', function(msg) {
-            var value = msg.payload.value;
-            
-            if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
-                pyaci.setGPIO(value, this.pin, this.uuid);
-            }
+            var value = msg.payload;
+            this.element.setGPIO(value);
         });
-        
-        
     }
     RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
 
@@ -108,25 +76,20 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
         
         var node = this;
-        this.confignode = RED.nodes.getNode(config.confignode);
-        this.uuid = String(this.confignode.uuid);
-        this.pin = config.pin;
-        
-        if(this.uuid !== "" && Object.keys(bleNodes).includes(this.uuid)){
-            
-            if(this.pin != ""){
-                pyaci.configureGPIO(true, this.pin, this.uuid);
-                bleNodes[this.uuid][this.pin] = function(value, address) {
-                    node.send({
-                        payload: {
-                            address: address,
-                            value: parseInt(value)
-                        }
-                    });
-                };
-            };
-        };
+        this.pin = parseInt(config.pin);
+        var confignode = RED.nodes.getNode(config.confignode);
 
+        this.element = confignode.device.getElement(this.pin);
+        this.element.configureGPIOasInput(true);
+        
+        var uuid = confignode.device.uuid;
+        eventBus.on("SetEventGPIO_" + uuid, (data) => {
+            if(data.uuid === uuid && data.pin === this.pin){
+                node.send({
+                    payload: parseInt(data.value)
+                });
+            }
+        });
     }
 
     RED.nodes.registerType("ble-mesh-input", BleMeshNodeInput);
@@ -136,11 +99,9 @@ module.exports = function(RED) {
     /*************************************/
 
     function BleMeshNodeConfig(config) {
-
         RED.nodes.createNode(this, config);
         var node = this;
-        this.uuid = String(config.uuid);
-        this.registered_pins = [];
+        this.device = mesh.getDevice(String(config.uuid));
     }
 
     RED.nodes.registerType("ble-mesh-config", BleMeshNodeConfig);
@@ -155,58 +116,73 @@ module.exports = function(RED) {
     });
 
     RED.httpAdmin.get('/__bleMeshUnProveDevList', (req, res) => {
-        var body = unProvisionedBleNodes;
+        var body = mesh.getUnProvisionedDevices();
         RED.log.info(`/__bleMeshUnProveDevList ${JSON.stringify(body)}`);
         res.json(body);
     });
 
     RED.httpAdmin.get('/__bleMeshDevList', (req, res) => {
-        var body = bleNodes;
+        var body = mesh.devices;
         RED.log.info(`/__bleMeshDevList ${JSON.stringify(body)}`);
         res.json(body);
     });
 
-    RED.httpAdmin.get('/__bleMeshAvailableDevices', (req, res) => {
-
-    })
+    RED.httpAdmin.get('/__bleMeshDev', (req, res) => {
+        RED.log.info(`/__bleMeshDev ${JSON.stringify(req.query)}`);
+        var uuid = req.query.uuid;
+        var body = mesh.getDevice(uuid);
+        
+        res.json(body);
+    });
 
     RED.httpAdmin.get('/__bleMeshProvision', (req, res) => {
         
         RED.log.info(`/__bleMeshProvision ${JSON.stringify(req.query)}`);
         
-        var uuid  = req.query.uuid;
+        var uuid = req.query.uuid;
+        var name = req.query.name;
         
         if(uuid != "" && uuid != null){    
-            provision_by_uuid(uuid);
+            var device = mesh.getDevice(uuid);
+            if(!device.provisioned){
+                device.provision(name);
+            }
         }
-
         res.send();
     })
 
     RED.httpAdmin.get('/__bleMeshConfigure', (req, res) => {
-        
         RED.log.info(`/__bleMeshConfigure ${JSON.stringify(req.query)}`);
-        
         var uuid  = req.query.uuid;
-        
-        if(uuid != "" && uuid != null){    
-            pyaci.configure(uuid, onCompositionDataStatus);
-        }
-
+        if(uuid != "" && uuid != null){
+            var device = mesh.getDevice(uuid);
+            if(!device.configured){
+                device.configure();
+            }
+        };
         res.send();
     })
 
-
     RED.httpAdmin.get('/__bleMeshAddAppKeys', (req, res) => {
-        
         RED.log.info(`/__bleMeshAddAppKeys ${JSON.stringify(req.query)}`);
-        
         var uuid  = req.query.uuid;
-        
-        if(uuid != "" && uuid != null){    
-            pyaci.addAppKeys(uuid, onAddAppKeysComplete);
+        if(uuid != "" && uuid != null){
+            var device = mesh.getDevice(uuid);
+            if(!device.appKeysAdded){
+                device.addAppKeys();
+            }
         }
+        res.send();
+    })
 
+    RED.httpAdmin.get('/__bleMeshUpdate', (req, res) => {
+        RED.log.info(`/__bleMeshUpdate ${JSON.stringify(req.query)}`);
+        var uuid  = req.query.uuid;
+        var name = req.query.name;
+        if(uuid != "" && uuid != null){
+            var device = mesh.getDevice(uuid);
+            device.setName(name);
+        }
         res.send();
     })
 }

@@ -31,7 +31,9 @@ class PyaciJsTest:
             "Provision": self.provision,
             "Configure": self.configure,
             "TestSetEventGPIO": self.testSetEventGPIO,
-            "AddAppKeys": self.addAppKeys
+            "AddAppKeys": self.addAppKeys,
+            "ConfigureGPIO": self.configureGPIO,
+            "GetProvisionedDevices": self.getProvisionedDevices
         }
         
         try:
@@ -52,8 +54,22 @@ class PyaciJsTest:
         self.echoRsp(data)
 
     def provisionScanStart(self, data):
+        
         self.newUnprovisionedDevice({
             'uuid': "FOOO"
+        })
+        
+        self.newUnprovisionedDevice({
+            'uuid': "FOOO"
+        })
+        
+        self.newUnprovisionedDevice({
+            'uuid': "FOOO"
+        })
+
+        
+        self.newUnprovisionedDevice({
+            'uuid': "RAAHH"
         })
 
     def provision(self, data):
@@ -67,11 +83,16 @@ class PyaciJsTest:
     
     def testSetEventGPIO(self, data):
         op = "SetEventGPIO"
-        data = {
-            "uuid": "FOOO",
-            "pin": 18,
-            "value": 1
-        }
+
+        if "uuid" not in data:
+            data["uuid"] = "FOOO"
+        
+        if "pin" not in data:
+            data["pin"] = 17
+
+        if "value" not in data:
+            data["value"] = 1
+
         self.send(op, data)
 
     """ STD OUTPUTS """
@@ -106,6 +127,15 @@ class PyaciJsTest:
         op = "AddAppKeysComplete"
         self.send(op, data)
 
+    def configureGPIO(self, data):
+        if data["asInput"]:
+            self.testSetEventGPIO(data)
+
+    def getProvisionedDevices(self, data):
+        self.send("GetProvisionedDevicesRsp", {
+            'uuid': "PROVDEV",
+            'name': "NAME"
+        })
 
 if __name__ == "__main__":
     p = PyaciJsTest()

@@ -43,9 +43,6 @@
         <input type="text" id="node-input-pin" placeholder="Pin Number">
     </div>
 
-    <style>
-    </style>
-
 </script>
 
 <script type="text/x-red" data-help-name="ble-mesh-output">
@@ -102,8 +99,6 @@
     <p>A ble-mesh input node</p>
 </script>
 
-
-
 <!-- CONFIG -->
 
 <script type="text/javascript">
@@ -112,82 +107,172 @@
         color: '#4d94ff',
         defaults: {
             name: {value:"", required: false},
-            uuid: {value:"", required: true}
+            uuid: {value:"", required: false}
         },
         label: function() {
             return this.name || this.uuid || "ble-mesh-config";
         },
-        oneditprepare: function() {
+        oneditprepare: function() {  
+            var ready = false;
 
-            function getProvDevices () {
-                $('#node-config-input-uuid option').remove();
-                $.getJSON('__bleMeshDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', i).attr('provisioned', 'true').text(i);
-                        $('#node-config-input-uuid').append(option)
-                    })
-                })
-            };
+            $('#node-config-input-characteristics-container').css('min-height','250px').css('min-width','450px').editableList({
+                addItem: function(row, index, data) {
+                    $(row).html(data);
+                },
+                sortable: false,
+                removable: false,
+                addButton: false
+            })
+
+            $('#node-config-input-unprov').on("change", (e) => {
+                e.preventDefault();
+                update();
+                var selected = $('#node-config-input-unprov :selected');
+                var name = selected.text();
+                $('#node-config-input-name').val(name);
+            });
+
+            $('#node-config-provision').on("click", (e) => {
+                e.preventDefault();
+                var name = $('#node-config-input-name').val();
+                var uuid = $('#node-config-input-uuid').val();
+                $.getJSON('__bleMeshProvision', {uuid: uuid, name: name});
+                intervalUpdate();
+            })
+
+            $('#node-config-configure').on("click", (e) => {
+                e.preventDefault();
+                                var uuid = $('#node-config-input-uuid').val();
+                $.getJSON('__bleMeshConfigure', {uuid: uuid});
+            })
+
+            $('#node-config-addAppKeys').on("click", (e) => {
+                e.preventDefault();
+                                var uuid = $('#node-config-input-uuid').val();
+                $.getJSON('__bleMeshAddAppKeys', {uuid: uuid});
+            })
+
 
             function getUnProvDevices () {
                 $('#node-config-input-unprov option').remove();
-                $.getJSON('__bleMeshUnProveDevList', function(bleDevices) {
-                    $.each(bleDevices, function(i ,v) {
-                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(v.uuid);
+                
+                var option = $('<option value="" disabled selected>Select device..</option>');
+                $('#node-config-input-unprov').append(option)
+                
+                $.getJSON('__bleMeshDevList', function(devices) {
+                    $.each(devices, function(i ,v) {
+                        console.log(v);
+                        name = v.name;
+                        if(name === null || name === "" || name === undefined){
+                            name = "unamed";
+                        }
+                        var option = $('<option></option>').attr('value', v.uuid).attr('provisioned', 'false').text(name);
                         $('#node-config-input-unprov').append(option)
                     });
                 })
+            }
+
+            function clearCharacteristics() {
+                var children = $('#node-config-input-characteristics-container')[0].children;
+                var len = children.length;
+                for (var i = 0; i < len; i++) {
+                    children[0].remove();
+                }
+                charBuff = [];
+            }
+
+            function update() {
+                if(isAddNewConfig()){
+                    var selected = $('#node-config-input-unprov :selected');
+                    var uuid = selected.val();
+                    $('#node-config-input-uuid').val(uuid);
+                } else {
+                    var uuid = $('#node-config-input-uuid').val();
+                }
+
+                clearCharacteristics();
+                
+                $.getJSON('__bleMeshDev', {"uuid": uuid}, (device) => {
+                    
+                    var prov = "Provisioned: " + device.provisioned;
+                    var conf = "Configured: " + device.configured;
+                    var appkeys = "App Keys Added: " + device.appKeysAdded;
+                    ready = (device.appKeysAdded && device.configured && device.provisioned);
+
+                    $('#node-config-input-characteristics-container').editableList('addItem', prov);
+                    $('#node-config-input-characteristics-container').editableList('addItem', conf);
+                    $('#node-config-input-characteristics-container').editableList('addItem', appkeys);
+                    $('#node-config-input-characteristics-container').editableList('addItem', "Ready: " + ready);
+
+                    if(device.provisioned){$('#node-config-provision').attr("disabled", true)};
+                    if(device.configured){$('#node-config-configure').attr("disabled", true)};
+                    if(device.appKeysAdded){$('#node-config-addAppKeys').attr("disabled", true)};
+                });
             };
 
-            $('#node-config-input-unprov').click(getUnProvDevices);
-            $('#node-config-input-uuid').click(getProvDevices);
-
-            $('#provision-device').click("sumbit", function(e){
-                e.preventDefault();
-                var uuid = $('#node-config-input-unprov')[0].value;
-                if(uuid != "" && uuid != null){
-                    $.getJSON('__bleMeshProvision', {"uuid": uuid});
+            function intervalUpdate () {
+                update();
+                if(!ready){
+                    setTimeout(intervalUpdate, 2000);
                 }
-            });
+            }
 
-            $('#confgiure-device').click("sumbit", function(e){
-                e.preventDefault();
-                var uuid = $('#node-config-input-unprov')[0].value;
-                if(uuid != "" && uuid != null){
-                    $.getJSON('__bleMeshConfigure', {"uuid": uuid});
-                }
-            });
+            function isAddNewConfig() {
+                return $('#node-config-dialog-ok').text() == "Add";
+            }
 
-            $('#addAppKeys-device').click("sumbit", function(e){
-                e.preventDefault();
-                var uuid = $('#node-config-input-unprov')[0].value;
-                if(uuid != "" && uuid != null){
-                    $.getJSON('__bleMeshAddAppKeys', {"uuid": uuid});
-                }
-            });
+            function addConfig() {
+                getUnProvDevices();
+                update();
+            }
+
+            function updateConfig() {
+                $('#node-config-input-unprov').parent().remove();
+                update();
+            }
+
+            if(isAddNewConfig()){
+                addConfig();
+            } else {
+                updateConfig();
+            };
+        },
+        oneditsave: function() {
+            var name = $('#node-config-input-name').val();
+            var uuid = $('#node-config-input-uuid').val();
+            $.getJSON('__bleMeshUpdate', {"uuid": uuid, "name": name});
         }
     });
 </script>
 
 <script type="text/x-red" data-template-name="ble-mesh-config">
+
+    <div class="form-row">
+        <label for="node-config-input-unprov"><i class="fa fa-random"></i> All Devices
+        <select type="text" id="node-config-input-unprov"></select>
+    </div>
+
     <div class="form-row">
         <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="Name">
     </div>
 
     <div class="form-row">
-        <label for="node-config-input-uuid"><i class="fa fa-random"></i> Provisioned Device</label>
-        <select type="text" id="node-config-input-uuid"></select>
+        <label for="node-config-input-uuid"><i class="fa fa-random"></i> UUID</label>
+        <input type="text" id="node-config-input-uuid" disabled></input>
+        
     </div>
 
     <div class="form-row">
-        <label for="node-config-input-unprov"><i class="fa fa-random"></i> New Devices
-        <select type="text" id="node-config-input-unprov"></select>
-        <button type="submit" id="provision-device" value="Provision">Provision </button>
-        <button type="submit" id="confgiure-device" value="Configure">Configure </button>
-        <button type="submit" id="addAppKeys-device" value="AddAppKeys">AddAppKeys </button>
+        <button type="button" id="node-config-provision">Provision</button>
+        <button type="button" id="node-config-configure">Configure</button>
+        <button type="button" id="node-config-addAppKeys">Add App Keys</button>
     </div>
 
+    <div class='form-row ode-config-input-characteristics-container-row'>
+        <label for="node-config-input-config"><i class="fa fa-gear"></i> Config</label>
+        <ol id='node-config-input-characteristics-container'></ol>
+    </div>
 
 </script>
 

@@ -1,4 +1,4 @@
-var Pyaci = require('./Pyaci_n.js');
+var Pyaci = require('./Pyaci.js');
 var assert = require('assert');
 var events = require('events');
 
@@ -7,13 +7,42 @@ var eventBus = require('./eventBus.js');
 NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
 
 class BluetoothMesh {
-    constructor() {
-        this.pyaci = new Pyaci().getInstance();        
+    constructor() {        
         this.devices = [];
 
         eventBus.on("NewUnProvisionedDevice", (data) => {
-            this.addNewDevice(data)
+            if(this.devices.filter(
+                value => {return data.uuid === value.uuid}).length == 0)
+            {   
+                this.addNewDevice(data)
+            };
+            
         });
+
+        eventBus.on("NewProvisionedDevice", (data) => {
+            if(this.devices.filter(
+                value => {return data.uuid === value.uuid}).length == 0)
+            {
+                var device = new Device(data.uuid);
+                if(Object.keys(data).includes("name")){
+                    device.name = data.name;
+                }
+                device.provisioned = true;
+
+                // assumes all NewProvisionedDevices are configured and setup
+                // TODO - add check..
+                device.configured = true;
+                device.appKeysAdded = true;
+
+                this.devices.push(device);
+            };
+            
+        });
+    }
+
+    provisionScanStart() {
+        var pyaci = new Pyaci().getInstance();        
+        pyaci.provisionScanStart()
     }
 
     addNewDevice(data) {
@@ -32,22 +61,28 @@ class BluetoothMesh {
             return !value.provisioned;
         })
     }
+
+    getDevice(uuid){
+        var device = this.devices.filter((value) =>{
+            return value.uuid === uuid;
+        })
+        return device[0];
+    }
 }
 
 class Device {
 
     constructor(uuid) {
-        this.pyaci = new Pyaci().getInstance();
         
         assert(uuid != undefined);
         assert(uuid != null);
         this.uuid = uuid;
-        this.localname = "";
+        this.name = "";
 
         this.elements = [];
         
-        for(var pin in NRF52_DEV_BOARD_GPIO_PINS) {
-            this.elements.push(new Element(pin, this.uuid))
+        for(var i in NRF52_DEV_BOARD_GPIO_PINS) {
+            this.elements.push(new Element(NRF52_DEV_BOARD_GPIO_PINS[i], this.uuid))
         };
 
         this.provisioned = false;
@@ -77,39 +112,48 @@ class Device {
                 this.appKeysAdded = true;
             }
         });
+
     }
 
     provision(name="") {
-        if(name != ""){
-            this.localname = name;
-            this.pyaci.provision(uuid, name);
+        var pyaci = new Pyaci().getInstance();
+        if(name != "" || name != undefined || name != null){
+            this.name = name;
+            pyaci.provision(this.uuid, name);
         } else {
-            this.pyaci.provision(uuid);
+            pyaci.provision(this.uuid);
         }
     }
 
     configure(){
-        this.pyaci.configure(this.uuid);
+        var pyaci = new Pyaci().getInstance();
+        pyaci.configure(this.uuid);
     }
 
     addAppKeys(){
-        this.pyaci.addAppKeys(this.uuid);
+        var pyaci = new Pyaci().getInstance();
+        pyaci.addAppKeys(this.uuid);
     }
 
     getElement(pin){
         if(!NRF52_DEV_BOARD_GPIO_PINS.includes(pin)){
             return null
-        }
-        var element_index = NRF52_DEV_BOARD_GPIO_PINS.indexOf(pin);
-        return this.devices[element_index];
+        };
+        return this.elements.filter(value => {
+            return value.pin === pin;
+        })[0];
+    }
+
+    setName(name){
+        var pyaci = new Pyaci().getInstance();
+        pyaci.setName(this.uuid, name);
+        this.name = name;
     }
 }
 
 class Element {
     constructor(pin, uuid){
-        this.pyaci = new Pyaci().getInstance();
-
-        this.pin = pin;
+        this.pin = parseInt(pin);
         this.uuid = uuid;
         
         // default configuration for pin is output
@@ -118,7 +162,8 @@ class Element {
 
     configureGPIOasInput(asInput){
          // TODO - should this respond to callback
-        if(this.pyaci.configureGPIO(asInput, this.pin, this.uuid)){
+        var pyaci = new Pyaci().getInstance();       
+        if(pyaci.configureGPIO(asInput, this.pin, this.uuid)){
             this.isInput = asInput;
             return true;
         } else {
@@ -127,12 +172,19 @@ class Element {
     }
 
     setGPIO(value){
+        var pyaci = new Pyaci().getInstance();
         if(this.isInput){
             return false;
         }
-        return this.pyaci.setGPIO(value, this.pin, this.uuid);
+        return pyaci.setGPIO(value, this.pin, this.uuid);
     }
 }
+
+module.exports = {
+    Mesh: BluetoothMesh,
+    Device: Device,
+    Element: Element
+};
 
 /**************************************************************/
 /* UNIT TESTING                                               */
@@ -165,6 +217,7 @@ class TestDevice {
         this.device = new Device("TESTDEV");
         this.testInit();
         this.testProvision();
+        this.testGetElement();
 
     }
 
@@ -185,6 +238,11 @@ class TestDevice {
 
     testAddAppKeys() {
         // TODO
+    }
+
+    testGetElement() {
+        assertEquals(this.device.getElement(12).pin, 12);
+        assertEquals(this.device.getElement(16).pin, 16);
     }
 }
 
