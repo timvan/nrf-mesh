@@ -23,7 +23,6 @@ cc.model_publication_set(db.nodes[0].unicast_address + 1, mt.ModelId(0x1001), mt
 cc.model_publication_set(db.nodes[0].unicast_address + 2, mt.ModelId(0x1001), mt.Publish(db.groups[0].address, index=0, ttl=1))
 
 
-
 gs = GenericOnOffServer()
 device.model_add(gs)
 gs.publish_set(0, 1)
@@ -41,18 +40,26 @@ cc.model_publication_set(db.appKeys[0].key, mt.ModelId(0x1001), mt.Publish(db.gr
 
 from interactive_pyaci import Manager
 m = Manager(d[0])
+
+uuids = ["e07f87c0e83ff2418b6e5fd50b58c2cd", "9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c" ,"696fd66b16c91d4ebcc34a36f44920f2"]
+
+uuid = uuids[3]
+
 m.provisionScanStart()
-m.provision("9db77a0526b8734988639509c242d107")
-m.configure("9db77a0526b8734988639509c242d107")
-m.addAppKeys("9db77a0526b8734988639509c242d107")
+m.provision(uuid)
+m.configure(uuid)
+m.addAppKeys(uuid)
+
+
+
 
 <!-- set as output -->
-m.configureGPIO(False, 18, "9db77a0526b8734988639509c242d107")
-m.setGPIO(False, 18, "9db77a0526b8734988639509c242d107")
-m.setGPIO(True, 18, "9db77a0526b8734988639509c242d107")
+m.configureGPIO(False, 18, uuid)
+m.setGPIO(False, 18, uuid)
+m.setGPIO(True, 18, uuid)
 
 <!-- set as input -->
-m.configureGPIO(True, 17, "9db77a0526b8734988639509c242d107")
+m.configureGPIO(True, 17, uuid)
 
 <!-- m.addModels() -->
 m.genericClientSet(True, 0)

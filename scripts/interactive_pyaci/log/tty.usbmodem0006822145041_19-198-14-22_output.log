@@ -2061,3 +2061,6 @@
 2019-07-17 14:29:28,381 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -39, 'actual_length': 3, 'data': bytearray(b'\x82\x04\x00')}}
 2019-07-17 14:29:28,381 - INFO - tty.usbmodem0006822145041.GenericOnOffClient: off
 2019-07-17 14:29:28,381 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -39, 'actual_length': 3, 'data': bytearray(b'\x82\x04\x00')}}
+2019-07-17 14:44:20,924 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-07-17 14:44:20,927 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-17 14:44:20,930 - INFO - tty.usbmodem0006822145041: Device rebooted.

@@ -135,39 +135,6 @@ class PyAci {
         });
     }
 
-    // addGroupSubscriptionAddresses() {
-    //     this.send({
-    //         op: "AddGroupSubscriptionAddresses",
-    //     });
-    // }
-
-    // addGroupPublicationAddresses() {
-    //     this.send({
-    //         op: "AddGroupPublicationAddresses",
-    //     });
-    // }
-
-    // addGenericClientModel() {
-    //     this.send({
-    //         op: "AddGenericClientModel",
-    //     });
-    // }
-
-    // addGenericServerModel(onGenericOnOffServerSetUnackCb) {
-    //     this.onGenericOnOffServerSetUnack = onGenericOnOffServerSetUnackCb;
-    //     this.send({
-    //         op: "AddGenericServerModel",
-    //     });
-    // }
-
-    // genericClientSet(onoff) {
-    //     this.send({
-    //         op: "GenericClientSet",
-    //         data : {
-    //             value: onoff
-    //         }
-    //     });
-    // }
 
     configureGPIO(asInput, pin, uuid) {
         if(pin == "" || pin == null){
@@ -326,7 +293,7 @@ class PyAci {
 
     setEventGPIO(msg) {
         var data = msg.data;
-        console.log(`[pyaci.js] SetEventGPIO: ${data}`);
+        console.log(`[pyaci.js] SetEventGPIO: `, JSON.stringify(data));
 
         if(this.onSetEventGPIO){
             this.onSetEventGPIO(data)
@@ -364,7 +331,43 @@ class Singleton {
         return Singleton.instance;
     }
   
-  }
+}
   
 
 module.exports = Singleton;
+
+
+
+// addGroupSubscriptionAddresses() {
+//     this.send({
+//         op: "AddGroupSubscriptionAddresses",
+//     });
+// }
+
+// addGroupPublicationAddresses() {
+//     this.send({
+//         op: "AddGroupPublicationAddresses",
+//     });
+// }
+
+// addGenericClientModel() {
+//     this.send({
+//         op: "AddGenericClientModel",
+//     });
+// }
+
+// addGenericServerModel(onGenericOnOffServerSetUnackCb) {
+//     this.onGenericOnOffServerSetUnack = onGenericOnOffServerSetUnackCb;
+//     this.send({
+//         op: "AddGenericServerModel",
+//     });
+// }
+
+// genericClientSet(onoff) {
+//     this.send({
+//         op: "GenericClientSet",
+//         data : {
+//             value: onoff
+//         }
+//     });
+// }

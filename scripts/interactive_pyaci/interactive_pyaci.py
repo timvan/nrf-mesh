@@ -495,8 +495,17 @@ class Manager(object):
             self.provisionScanStop()
 
         if op == "Provision":
-            self.provision(msg["data"]["uuid"])
-        
+            
+            if name not in msg["data"] or "uuid" not in msg["data"]:
+                error = "Provision input error"
+                self.logger.error(error)
+                self.process_stdout(error)
+                return
+
+            uuid = msg["data"]["uuid"]
+            name = msg["data"]["name"]
+            self.provision(uuid, name)
+
         if op == "Configure":
             self.configure(msg["data"]["uuid"])
 
@@ -598,7 +607,7 @@ class Manager(object):
         for node in self.db.nodes:
             self.process_stdout("GetProvisionedDevicesRsp", {
                 "uuid" : node.UUID,
-                "compositionData": node
+                "name" : node.name,
             })
     
     """ CONFIGURATION """

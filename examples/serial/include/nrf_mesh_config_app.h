@@ -130,11 +130,10 @@
 /** Maximum number of virtual addresses. */
 #define DSM_VIRTUAL_ADDR_MAX                            (8)
 /** Maximum number of non-virtual addresses. */
-#define DSM_NONVIRTUAL_ADDR_MAX                         (32)
+#define DSM_NONVIRTUAL_ADDR_MAX                         (175)
 /** Number of flash pages reserved for the DSM storage. */
 #define DSM_FLASH_PAGE_COUNT                            (1)
 /** @} end of DSM_CONFIG */
-
 
 /** @} */
 
