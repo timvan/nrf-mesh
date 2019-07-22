@@ -11,7 +11,7 @@ class Pyaci {
         this.output_channel;
 
         this.pyscript = {
-            filename: 'interactive_pyaci.py',
+            filename: 'main.py',
             working_dir: '/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/',
             args: ["--log-level", "3"]
         }
@@ -198,7 +198,7 @@ class Pyaci {
         if(typeof uuid != 'string' || uuid == "" || uuid == null){
             this.log("Input error setGPIO - uuid");
             return false; 
-        }s
+        }
 
         var data = {
             value: onoff,

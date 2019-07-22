@@ -153,7 +153,7 @@
             })
 
 
-            function getUnProvDevices () {
+            function getDevices () {
                 $('#node-config-input-unprov option').remove();
                 
                 var option = $('<option value="" disabled selected>Select device..</option>');
@@ -222,7 +222,8 @@
             }
 
             function addConfig() {
-                getUnProvDevices();
+                $.getJSON('__bleMeshProvisionScanStart')
+                getDevices();
                 update();
             }
 

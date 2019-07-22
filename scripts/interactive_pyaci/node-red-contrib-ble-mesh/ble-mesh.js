@@ -7,11 +7,11 @@ var p = require('process')
 p.on('SIGINT', () => {pyaci.disconnect()});
 p.on('uncaughtException', () => {pyaci.disconnect()});
 
-pyaci.pyscript = {
-    filename: 'pyaci_test.py',
-    working_dir: '/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/node-red-contrib-ble-mesh/',
-    args: []
-}
+// pyaci.pyscript = {
+//     filename: 'pyaci_test.py',
+//     working_dir: '/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/node-red-contrib-ble-mesh/',
+//     args: []
+// }
 pyaci.connect();
 
 var mesh = new BluetoothMesh.Mesh()
@@ -183,6 +183,12 @@ module.exports = function(RED) {
             var device = mesh.getDevice(uuid);
             device.setName(name);
         }
+        res.send();
+    })
+
+    RED.httpAdmin.get('/__bleMeshProvisionScanStart', (req, res) => {
+        RED.log.info(`/__bleMeshProvisionScanStart`);
+        mesh.provisionScanStart()
         res.send();
     })
 }

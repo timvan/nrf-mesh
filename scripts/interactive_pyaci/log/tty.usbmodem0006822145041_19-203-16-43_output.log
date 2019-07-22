@@ -1,0 +1,396 @@
+2019-07-22 16:43:11,012 - DEBUG: Writing: 14 bytearray(b'')
+2019-07-22 16:43:11,012 - DEBUG: TX: 010e
+2019-07-22 16:43:11,431 - DEBUG: RX: 04810200fe
+2019-07-22 16:43:11,431 - DEBUG: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-22 16:43:11,432 - INFO: Device rebooted.
+2019-07-22 16:43:11,501 - DEBUG: Writing: 105 bytearray(b'q\x88C\x91\xbde\x96\x8aP"P\xc7(lLn\xe3\xe1R\x13\x87\x13\xc6\x03h\x01\xef\xfdf\xcc\x9b\xa2;F0\xf4y\xc0\xd0\x8f\x12F\xbe\x05\xe8\xa5\xb8\xc1\xa2\x06\xe9d\xae\x10\xe6\xd3?|\xf7\xde\x80\'\xe2e&\xf2\x84\x81\x869B|\x1d\x88E\x8a\xb1\xf6\n\x81k\x8e\x96@\x91\xa1\x98\x08j\x02\x9fx\x1d\x9cx*')
+2019-07-22 16:43:11,503 - DEBUG: TX: 616971884391bd65968a502250c7286c4c6ee3e152138713c6036801effd66cc9ba23b4630f479c0d08f1246be05e8a5b8c1a206e964ae10e6d33f7cf7de8027e26526f284818639427c1d88458ab1f60a816b8e964091a198086a029f781d9c782a
+2019-07-22 16:43:11,511 - INFO: 
+
+2019-07-22 16:43:11,511 - INFO: Sending next message
+2019-07-22 16:43:11,515 - DEBUG: RX: 03845384
+2019-07-22 16:43:11,515 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,515 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,515 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-22 16:43:11,515 - DEBUG: TX: 059f01000100
+2019-07-22 16:43:11,516 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,516 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,516 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,516 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-22 16:43:11,516 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-22 16:43:11,516 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,517 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,517 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,517 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-22 16:43:11,517 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-22 16:43:11,518 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,518 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,518 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,518 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-22 16:43:11,518 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,519 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-22 16:43:11,519 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,519 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,519 - DEBUG: Writing: 164 bytearray(b'\x10\x00')
+2019-07-22 16:43:11,520 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,520 - DEBUG: TX: 03a41000
+2019-07-22 16:43:11,520 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,520 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,521 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,521 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,521 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,521 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,521 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,521 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,521 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,522 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,522 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,522 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,523 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,523 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,524 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,524 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,524 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,525 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,525 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,525 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,525 - DEBUG: RX: 03840084
+2019-07-22 16:43:11,525 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,525 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:11,525 - DEBUG: RX: 03849f00
+2019-07-22 16:43:11,525 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-07-22 16:43:11,525 - INFO: Success
+2019-07-22 16:43:11,532 - DEBUG: RX: 058492000000
+2019-07-22 16:43:11,532 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:11,532 - INFO: SubnetAdd: {'subnet_handle': 0}
+2019-07-22 16:43:11,533 - DEBUG: RX: 058497000000
+2019-07-22 16:43:11,533 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:11,533 - INFO: AppkeyAdd: {'appkey_handle': 0}
+2019-07-22 16:43:11,533 - DEBUG: RX: 058497000100
+2019-07-22 16:43:11,533 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 16:43:11,533 - INFO: AppkeyAdd: {'appkey_handle': 1}
+2019-07-22 16:43:11,534 - DEBUG: RX: 0584a4000000
+2019-07-22 16:43:11,534 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:11,534 - INFO: AddrPublicationAdd: {'address_handle': 0}
+2019-07-22 16:43:11,538 - INFO: 
+
+2019-07-22 16:43:11,539 - INFO: Sending next message
+2019-07-22 16:43:11,539 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-22 16:43:11,539 - DEBUG: TX: 03a101c0
+2019-07-22 16:43:11,542 - DEBUG: RX: 0584a1000100
+2019-07-22 16:43:11,543 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 16:43:11,543 - INFO: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-22 16:43:11,548 - INFO: 
+
+2019-07-22 16:43:11,548 - INFO: Sending next message
+2019-07-22 16:43:11,548 - DEBUG: Writing: 164 bytearray(b'\x11\x00')
+2019-07-22 16:43:11,548 - DEBUG: TX: 03a41100
+2019-07-22 16:43:11,550 - DEBUG: RX: 0584a4000200
+2019-07-22 16:43:11,551 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-22 16:43:11,551 - INFO: AddrPublicationAdd: {'address_handle': 2}
+2019-07-22 16:43:11,556 - INFO: 
+
+2019-07-22 16:43:11,556 - INFO: Sending next message
+2019-07-22 16:43:11,556 - DEBUG: Writing: 164 bytearray(b'\x12\x00')
+2019-07-22 16:43:11,557 - DEBUG: TX: 03a41200
+2019-07-22 16:43:11,559 - DEBUG: RX: 0584a4000300
+2019-07-22 16:43:11,560 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-07-22 16:43:11,560 - INFO: AddrPublicationAdd: {'address_handle': 3}
+2019-07-22 16:43:11,566 - INFO: 
+
+2019-07-22 16:43:11,566 - INFO: Sending next message
+2019-07-22 16:43:11,566 - DEBUG: Writing: 164 bytearray(b'\x13\x00')
+2019-07-22 16:43:11,566 - DEBUG: TX: 03a41300
+2019-07-22 16:43:11,569 - DEBUG: RX: 0584a4000400
+2019-07-22 16:43:11,569 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-07-22 16:43:11,569 - INFO: AddrPublicationAdd: {'address_handle': 4}
+2019-07-22 16:43:11,573 - INFO: 
+
+2019-07-22 16:43:11,574 - INFO: Sending next message
+2019-07-22 16:43:11,574 - DEBUG: Writing: 164 bytearray(b'\x14\x00')
+2019-07-22 16:43:11,575 - DEBUG: TX: 03a41400
+2019-07-22 16:43:11,577 - DEBUG: RX: 0584a4000500
+2019-07-22 16:43:11,577 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-07-22 16:43:11,577 - INFO: AddrPublicationAdd: {'address_handle': 5}
+2019-07-22 16:43:11,582 - INFO: 
+
+2019-07-22 16:43:11,583 - INFO: Sending next message
+2019-07-22 16:43:11,583 - DEBUG: Writing: 164 bytearray(b'\x15\x00')
+2019-07-22 16:43:11,583 - DEBUG: TX: 03a41500
+2019-07-22 16:43:11,586 - DEBUG: RX: 0584a4000600
+2019-07-22 16:43:11,586 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-07-22 16:43:11,586 - INFO: AddrPublicationAdd: {'address_handle': 6}
+2019-07-22 16:43:11,590 - INFO: 
+
+2019-07-22 16:43:11,590 - INFO: Sending next message
+2019-07-22 16:43:11,591 - DEBUG: Writing: 164 bytearray(b'\x16\x00')
+2019-07-22 16:43:11,591 - DEBUG: TX: 03a41600
+2019-07-22 16:43:11,593 - DEBUG: RX: 0584a4000700
+2019-07-22 16:43:11,593 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-07-22 16:43:11,593 - INFO: AddrPublicationAdd: {'address_handle': 7}
+2019-07-22 16:43:11,599 - INFO: 
+
+2019-07-22 16:43:11,599 - INFO: Sending next message
+2019-07-22 16:43:11,599 - DEBUG: Writing: 164 bytearray(b'\x17\x00')
+2019-07-22 16:43:11,599 - DEBUG: TX: 03a41700
+2019-07-22 16:43:11,601 - DEBUG: RX: 0584a4000800
+2019-07-22 16:43:11,602 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 16:43:11,602 - INFO: AddrPublicationAdd: {'address_handle': 8}
+2019-07-22 16:43:11,607 - INFO: 
+
+2019-07-22 16:43:11,607 - INFO: Sending next message
+2019-07-22 16:43:11,607 - DEBUG: Writing: 164 bytearray(b'\x18\x00')
+2019-07-22 16:43:11,608 - DEBUG: TX: 03a41800
+2019-07-22 16:43:11,611 - DEBUG: RX: 0584a4000900
+2019-07-22 16:43:11,611 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-07-22 16:43:11,611 - INFO: AddrPublicationAdd: {'address_handle': 9}
+2019-07-22 16:43:11,617 - INFO: 
+
+2019-07-22 16:43:11,618 - INFO: Sending next message
+2019-07-22 16:43:11,618 - DEBUG: Writing: 164 bytearray(b'\x19\x00')
+2019-07-22 16:43:11,618 - DEBUG: TX: 03a41900
+2019-07-22 16:43:11,620 - DEBUG: RX: 0584a4000a00
+2019-07-22 16:43:11,620 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-07-22 16:43:11,620 - INFO: AddrPublicationAdd: {'address_handle': 10}
+2019-07-22 16:43:11,625 - INFO: 
+
+2019-07-22 16:43:11,626 - INFO: Sending next message
+2019-07-22 16:43:11,627 - DEBUG: Writing: 164 bytearray(b'\x1a\x00')
+2019-07-22 16:43:11,627 - DEBUG: TX: 03a41a00
+2019-07-22 16:43:11,629 - DEBUG: RX: 0584a4000b00
+2019-07-22 16:43:11,630 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-07-22 16:43:11,630 - INFO: AddrPublicationAdd: {'address_handle': 11}
+2019-07-22 16:43:11,636 - INFO: 
+
+2019-07-22 16:43:11,636 - INFO: Sending next message
+2019-07-22 16:43:11,636 - DEBUG: Writing: 164 bytearray(b'\x1b\x00')
+2019-07-22 16:43:11,636 - DEBUG: TX: 03a41b00
+2019-07-22 16:43:11,639 - DEBUG: RX: 0584a4000c00
+2019-07-22 16:43:11,639 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-07-22 16:43:11,639 - INFO: AddrPublicationAdd: {'address_handle': 12}
+2019-07-22 16:43:11,645 - INFO: 
+
+2019-07-22 16:43:11,645 - INFO: Sending next message
+2019-07-22 16:43:11,645 - DEBUG: Writing: 164 bytearray(b'\x1c\x00')
+2019-07-22 16:43:11,645 - DEBUG: TX: 03a41c00
+2019-07-22 16:43:11,647 - DEBUG: RX: 0584a4000d00
+2019-07-22 16:43:11,648 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-07-22 16:43:11,648 - INFO: AddrPublicationAdd: {'address_handle': 13}
+2019-07-22 16:43:11,654 - INFO: 
+
+2019-07-22 16:43:11,654 - INFO: Sending next message
+2019-07-22 16:43:11,654 - DEBUG: Writing: 164 bytearray(b'\x1d\x00')
+2019-07-22 16:43:11,654 - DEBUG: TX: 03a41d00
+2019-07-22 16:43:11,657 - DEBUG: RX: 0584a4000e00
+2019-07-22 16:43:11,657 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-07-22 16:43:11,657 - INFO: AddrPublicationAdd: {'address_handle': 14}
+2019-07-22 16:43:11,663 - INFO: 
+
+2019-07-22 16:43:11,663 - INFO: Sending next message
+2019-07-22 16:43:11,663 - DEBUG: Writing: 156 bytearray(b'\x10\x00\x00\x00Cl\xab\x18\xf4\x96\xa9\xf6 \x1c\x95g\x03I\x890')
+2019-07-22 16:43:11,663 - DEBUG: TX: 159c10000000436cab18f496a9f6201c956703498930
+2019-07-22 16:43:11,668 - DEBUG: RX: 05849c000800
+2019-07-22 16:43:11,668 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 16:43:11,668 - INFO: DevkeyAdd: {'devkey_handle': 8}
+2019-07-22 16:43:11,673 - INFO: 
+
+2019-07-22 16:43:11,673 - INFO: Sending next message
+2019-07-22 16:43:15,677 - INFO: Timout handler timeout
+2019-07-22 16:43:23,688 - DEBUG: Writing: 14 bytearray(b'')
+2019-07-22 16:43:23,689 - DEBUG: TX: 010e
+2019-07-22 16:43:24,107 - DEBUG: RX: 04810200fe
+2019-07-22 16:43:24,107 - DEBUG: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-22 16:43:24,108 - INFO: Device rebooted.
+2019-07-22 16:43:24,175 - DEBUG: Writing: 105 bytearray(b'j\xa1\xaaG\xbb\xb8\xff\xb3\x98\x1e\x18\x82\xbf\x96\xe8XT\xe3\x92;\xb7\x14\xb4\xdfBI|\xf2\xca\xeb\xfe\xeb\xf6\xa1\xa28\xa2\x00\xa8\xd3Q\xd4V:\t\xf9\x0b!\xb5\x8fy\xaa\x96\xab\xb0\x9c\xa4Wj\xeeoa\xa0D\xbe:\xbc\xca\xd8\x87\xcb0[g\xd3\xec\xf1\xfc\xd6I\x177\x7f\xeam\x0cQ\x85q\x95\x88T\xf8\xcd\x87\x95')
+2019-07-22 16:43:24,178 - DEBUG: TX: 61696aa1aa47bbb8ffb3981e1882bf96e85854e3923bb714b4df42497cf2caebfeebf6a1a238a200a8d351d4563a09f90b21b58f79aa96abb09ca4576aee6f61a044be3abccad887cb305b67d3ecf1fcd64917377fea6d0c518571958854f8cd8795
+2019-07-22 16:43:24,186 - INFO: 
+
+2019-07-22 16:43:24,186 - INFO: Sending next message
+2019-07-22 16:43:24,189 - DEBUG: RX: 03845384
+2019-07-22 16:43:24,189 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,189 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,189 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-22 16:43:24,190 - DEBUG: TX: 059f01000100
+2019-07-22 16:43:24,190 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,190 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,190 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,190 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-22 16:43:24,191 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-22 16:43:24,191 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,191 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,191 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,191 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-22 16:43:24,192 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,192 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,192 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,192 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,192 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-22 16:43:24,193 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,193 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-22 16:43:24,193 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,193 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-22 16:43:24,194 - DEBUG: Writing: 164 bytearray(b'\x10\x00')
+2019-07-22 16:43:24,194 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,194 - DEBUG: TX: 03a41000
+2019-07-22 16:43:24,195 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,196 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,196 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,196 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,202 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,202 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,202 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,203 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,203 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,203 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,204 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,204 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,204 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,204 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,204 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,205 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,205 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,205 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,205 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,205 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,205 - DEBUG: RX: 03840084
+2019-07-22 16:43:24,206 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,206 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 16:43:24,206 - DEBUG: RX: 03849f00
+2019-07-22 16:43:24,206 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-07-22 16:43:24,206 - INFO: Success
+2019-07-22 16:43:24,206 - DEBUG: RX: 058492000000
+2019-07-22 16:43:24,206 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:24,207 - INFO: SubnetAdd: {'subnet_handle': 0}
+2019-07-22 16:43:24,207 - DEBUG: RX: 058497000000
+2019-07-22 16:43:24,207 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:24,207 - INFO: AppkeyAdd: {'appkey_handle': 0}
+2019-07-22 16:43:24,207 - DEBUG: RX: 058497000100
+2019-07-22 16:43:24,207 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 16:43:24,207 - INFO: AppkeyAdd: {'appkey_handle': 1}
+2019-07-22 16:43:24,207 - DEBUG: RX: 0584a4000000
+2019-07-22 16:43:24,208 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 16:43:24,208 - INFO: AddrPublicationAdd: {'address_handle': 0}
+2019-07-22 16:43:24,214 - INFO: 
+
+2019-07-22 16:43:24,214 - INFO: Sending next message
+2019-07-22 16:43:24,214 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-22 16:43:24,214 - DEBUG: TX: 03a101c0
+2019-07-22 16:43:24,217 - DEBUG: RX: 0584a1000100
+2019-07-22 16:43:24,217 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 16:43:24,217 - INFO: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-22 16:43:24,223 - INFO: 
+
+2019-07-22 16:43:24,224 - INFO: Sending next message
+2019-07-22 16:43:24,224 - DEBUG: Writing: 164 bytearray(b'\x11\x00')
+2019-07-22 16:43:24,224 - DEBUG: TX: 03a41100
+2019-07-22 16:43:24,226 - DEBUG: RX: 0584a4000200
+2019-07-22 16:43:24,226 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-22 16:43:24,227 - INFO: AddrPublicationAdd: {'address_handle': 2}
+2019-07-22 16:43:24,232 - INFO: 
+
+2019-07-22 16:43:24,232 - INFO: Sending next message
+2019-07-22 16:43:24,232 - DEBUG: Writing: 164 bytearray(b'\x12\x00')
+2019-07-22 16:43:24,232 - DEBUG: TX: 03a41200
+2019-07-22 16:43:24,235 - DEBUG: RX: 0584a4000300
+2019-07-22 16:43:24,236 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-07-22 16:43:24,236 - INFO: AddrPublicationAdd: {'address_handle': 3}
+2019-07-22 16:43:24,241 - INFO: 
+
+2019-07-22 16:43:24,241 - INFO: Sending next message
+2019-07-22 16:43:24,241 - DEBUG: Writing: 164 bytearray(b'\x13\x00')
+2019-07-22 16:43:24,241 - DEBUG: TX: 03a41300
+2019-07-22 16:43:24,243 - DEBUG: RX: 0584a4000400
+2019-07-22 16:43:24,243 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-07-22 16:43:24,244 - INFO: AddrPublicationAdd: {'address_handle': 4}
+2019-07-22 16:43:24,250 - INFO: 
+
+2019-07-22 16:43:24,251 - INFO: Sending next message
+2019-07-22 16:43:24,251 - DEBUG: Writing: 164 bytearray(b'\x14\x00')
+2019-07-22 16:43:24,252 - DEBUG: TX: 03a41400
+2019-07-22 16:43:24,254 - DEBUG: RX: 0584a4000500
+2019-07-22 16:43:24,254 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-07-22 16:43:24,254 - INFO: AddrPublicationAdd: {'address_handle': 5}
+2019-07-22 16:43:24,260 - INFO: 
+
+2019-07-22 16:43:24,261 - INFO: Sending next message
+2019-07-22 16:43:24,261 - DEBUG: Writing: 164 bytearray(b'\x15\x00')
+2019-07-22 16:43:24,261 - DEBUG: TX: 03a41500
+2019-07-22 16:43:24,263 - DEBUG: RX: 0584a4000600
+2019-07-22 16:43:24,263 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-07-22 16:43:24,263 - INFO: AddrPublicationAdd: {'address_handle': 6}
+2019-07-22 16:43:24,269 - INFO: 
+
+2019-07-22 16:43:24,269 - INFO: Sending next message
+2019-07-22 16:43:24,270 - DEBUG: Writing: 164 bytearray(b'\x16\x00')
+2019-07-22 16:43:24,270 - DEBUG: TX: 03a41600
+2019-07-22 16:43:24,272 - DEBUG: RX: 0584a4000700
+2019-07-22 16:43:24,272 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-07-22 16:43:24,272 - INFO: AddrPublicationAdd: {'address_handle': 7}
+2019-07-22 16:43:24,279 - INFO: 
+
+2019-07-22 16:43:24,279 - INFO: Sending next message
+2019-07-22 16:43:24,279 - DEBUG: Writing: 164 bytearray(b'\x17\x00')
+2019-07-22 16:43:24,279 - DEBUG: TX: 03a41700
+2019-07-22 16:43:24,281 - DEBUG: RX: 0584a4000800
+2019-07-22 16:43:24,281 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 16:43:24,281 - INFO: AddrPublicationAdd: {'address_handle': 8}
+2019-07-22 16:43:24,287 - INFO: 
+
+2019-07-22 16:43:24,288 - INFO: Sending next message
+2019-07-22 16:43:24,288 - DEBUG: Writing: 164 bytearray(b'\x18\x00')
+2019-07-22 16:43:24,288 - DEBUG: TX: 03a41800
+2019-07-22 16:43:24,290 - DEBUG: RX: 0584a4000900
+2019-07-22 16:43:24,290 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-07-22 16:43:24,290 - INFO: AddrPublicationAdd: {'address_handle': 9}
+2019-07-22 16:43:24,296 - INFO: 
+
+2019-07-22 16:43:24,297 - INFO: Sending next message
+2019-07-22 16:43:24,297 - DEBUG: Writing: 164 bytearray(b'\x19\x00')
+2019-07-22 16:43:24,297 - DEBUG: TX: 03a41900
+2019-07-22 16:43:24,299 - DEBUG: RX: 0584a4000a00
+2019-07-22 16:43:24,299 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-07-22 16:43:24,300 - INFO: AddrPublicationAdd: {'address_handle': 10}
+2019-07-22 16:43:24,306 - INFO: 
+
+2019-07-22 16:43:24,306 - INFO: Sending next message
+2019-07-22 16:43:24,306 - DEBUG: Writing: 164 bytearray(b'\x1a\x00')
+2019-07-22 16:43:24,306 - DEBUG: TX: 03a41a00
+2019-07-22 16:43:24,308 - DEBUG: RX: 0584a4000b00
+2019-07-22 16:43:24,308 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-07-22 16:43:24,309 - INFO: AddrPublicationAdd: {'address_handle': 11}
+2019-07-22 16:43:24,314 - INFO: 
+
+2019-07-22 16:43:24,314 - INFO: Sending next message
+2019-07-22 16:43:24,314 - DEBUG: Writing: 164 bytearray(b'\x1b\x00')
+2019-07-22 16:43:24,314 - DEBUG: TX: 03a41b00
+2019-07-22 16:43:24,316 - DEBUG: RX: 0584a4000c00
+2019-07-22 16:43:24,316 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-07-22 16:43:24,317 - INFO: AddrPublicationAdd: {'address_handle': 12}
+2019-07-22 16:43:24,323 - INFO: 
+
+2019-07-22 16:43:24,323 - INFO: Sending next message
+2019-07-22 16:43:24,323 - DEBUG: Writing: 164 bytearray(b'\x1c\x00')
+2019-07-22 16:43:24,324 - DEBUG: TX: 03a41c00
+2019-07-22 16:43:24,326 - DEBUG: RX: 0584a4000d00
+2019-07-22 16:43:24,327 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-07-22 16:43:24,327 - INFO: AddrPublicationAdd: {'address_handle': 13}
+2019-07-22 16:43:24,332 - INFO: 
+
+2019-07-22 16:43:24,332 - INFO: Sending next message
+2019-07-22 16:43:24,333 - DEBUG: Writing: 164 bytearray(b'\x1d\x00')
+2019-07-22 16:43:24,333 - DEBUG: TX: 03a41d00
+2019-07-22 16:43:24,335 - DEBUG: RX: 0584a4000e00
+2019-07-22 16:43:24,335 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-07-22 16:43:24,335 - INFO: AddrPublicationAdd: {'address_handle': 14}
+2019-07-22 16:43:24,341 - INFO: 
+
+2019-07-22 16:43:24,341 - INFO: Sending next message
+2019-07-22 16:43:24,342 - DEBUG: Writing: 156 bytearray(b'\x10\x00\x00\x00Cl\xab\x18\xf4\x96\xa9\xf6 \x1c\x95g\x03I\x890')
+2019-07-22 16:43:24,342 - DEBUG: TX: 159c10000000436cab18f496a9f6201c956703498930
+2019-07-22 16:43:24,347 - DEBUG: RX: 05849c000800
+2019-07-22 16:43:24,347 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 16:43:24,347 - INFO: DevkeyAdd: {'devkey_handle': 8}
+2019-07-22 16:43:24,353 - INFO: 
+
+2019-07-22 16:43:24,354 - INFO: Sending next message
+2019-07-22 16:43:28,358 - INFO: Timout handler timeout

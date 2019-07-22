@@ -1,0 +1,129 @@
+2019-07-22 12:40:49,478 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-07-22 12:40:49,479 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-22 12:40:49,479 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-07-22 12:40:50,560 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'7\xb3\xfa\xe4\xa0V\xcf\xdc\x19\xd5"\xc6vx\xd0G\x18\xd9\xd0\xe5\xa8\xc0*\xcf\xe5\xb9\xe1C\xed\xce\x18\xac\xc3\xf8\x89\xdb\xbfKKe\x13\xb2\xd6\xbd"\x06/T\xd3\xe3-\xa4]C,\xf8=\xd2\x9aZ\x85\x0b\xbe\xfe\xee\x91%\x93 \xccW5\x97\xb50\x0f1\x11Y\x8f)\xa7L\xf1\xd6x\xdb\xd4\xbd\xa1\xf2xr\x8f\xba\xd2')
+2019-07-22 12:40:50,561 - DEBUG - tty.usbmodem0006822145041: TX: 616937b3fae4a056cfdc19d522c67678d04718d9d0e5a8c02acfe5b9e143edce18acc3f889dbbf4b4b6513b2d6bd22062f54d3e32da45d432cf83dd29a5a850bbefeee91259320cc573597b5300f3111598f29a74cf1d678dbd4bda1f278728fbad2
+2019-07-22 12:40:50,561 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-22 12:40:50,562 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-07-22 12:40:50,571 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-07-22 12:40:50,572 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,572 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,572 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-22 12:40:50,573 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,573 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-22 12:40:50,573 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,574 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,574 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-22 12:40:50,574 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,587 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-22 12:40:50,589 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,590 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,590 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-22 12:40:50,591 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-22 12:40:50,591 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,591 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,594 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,594 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,594 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,595 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,595 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,595 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,596 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,596 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,596 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,596 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,597 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,597 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,597 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,598 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,598 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,598 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,598 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,599 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,599 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,600 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,601 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,601 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,602 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,603 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,604 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,623 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:40:50,624 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,624 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:40:50,625 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-07-22 12:40:50,625 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-07-22 12:40:50,625 - INFO - tty.usbmodem0006822145041: Success
+2019-07-22 12:40:50,628 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-07-22 12:40:50,628 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 12:40:50,628 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-07-22 12:40:50,630 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-07-22 12:40:50,630 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 12:40:50,630 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-07-22 12:40:50,630 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-07-22 12:40:50,631 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 12:40:50,631 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-07-22 12:41:40,024 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b"\xa2p\'\xff\xc9^:\xdb\x0b\x9cq\x8a\xb1\xc8\xa0c\xf7\\\x8b\xc6\xac\x06\x02:\xd1\xaa\x11eO[a\x8e\xa9\xaaW\x05K\xe0\xc5\x14\xb7*$\x06\xecj@\x89\xdd\xce\x19jQII\xf2,\xc5V\\\xc9\x81\x9c\xe6\xefk}\x16\x18jB)\xdd\x9e\xa1x\x16\x03\xefF\xa5\xac\xd6]\xc1\xa3\xf1\xf2\xbcXk\xe3\x12\xa0\xde\x8d")
+2019-07-22 12:41:40,026 - DEBUG - tty.usbmodem0006822145041: TX: 6169a27027ffc95e3adb0b9c718ab1c8a063f75c8bc6ac06023ad1aa11654f5b618ea9aa57054be0c514b72a2406ec6a4089ddce196a514949f22cc5565cc9819ce6ef6b7d16186a4229dd9ea1781603ef46a5acd65dc1a3f1f2bc586be312a0de8d
+2019-07-22 12:41:40,028 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-22 12:41:40,029 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-07-22 12:41:40,038 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-07-22 12:41:40,042 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,048 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,048 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-22 12:41:40,049 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-22 12:41:40,049 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,050 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,051 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,051 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-22 12:41:40,055 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-22 12:41:40,056 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,071 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,071 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,071 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-22 12:41:40,072 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-22 12:41:40,072 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,072 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,073 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,073 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,073 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,073 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,073 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,074 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,074 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,074 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,074 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,075 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,075 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,076 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,076 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,076 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,077 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,077 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,077 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,077 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,078 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,078 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,078 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,078 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,079 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,079 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,079 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,080 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-07-22 12:41:40,080 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,081 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-07-22 12:41:40,081 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-07-22 12:41:40,082 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,082 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-07-22 12:41:40,082 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-07-22 12:41:40,082 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,082 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-07-22 12:41:40,082 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-22 12:41:40,083 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,083 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-22 12:41:40,083 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-07-22 12:41:40,083 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-07-22 12:41:40,101 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-07-22 12:41:42,928 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-07-22 12:41:42,929 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-22 12:41:42,929 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-07-22 12:41:44,988 - DEBUG - tty.usbmodem0006822145041: exited read event

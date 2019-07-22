@@ -3,9 +3,17 @@ import json
 
 class Pyaci:
 
-    def __init__(self):
+    def __init__(self, mesh):
         self.keep_running = True
         self.input_channel = sys.stdin
+
+        self.mesh = mesh
+
+        setattr(self.mesh, "onNewUnProvisionedDevice", self.newUnprovisionedDevice)
+        setattr(self.mesh, "onProvisionComplete", self.provisionComplete)
+        setattr(self.mesh, "onCompositionDataStatus", self.compositionDataStatus)
+        setattr(self.mesh, "onAddAppKeysComplete", self.addAppKeysComplete)
+        setattr(self.mesh, "onSetEventGPIO", self.setEventGPIO)
 
     def run(self):
         while self.keep_running:
@@ -14,7 +22,7 @@ class Pyaci:
     """ STD INPUTS """
 
     def log(self, msg):
-        print["[__pyaci.py] " + msg]
+        print("[js_pyaci_interface.py] {}".format(msg))
 
     def process_input(self):
 
@@ -22,9 +30,11 @@ class Pyaci:
         
         try:
             msg = json.loads(msg_in)
-            self.log("Received: " + msg_in)
+            self.log("Received: {}".format(msg_in))
         except Exception as e:
-            self.log("Error parsing: " + e)
+            self.log("Error parsing: {}".format(msg_in))
+            self.log("{}".format(e))
+            return
 
         
         INPUT_LISTNERS = {
@@ -50,9 +60,10 @@ class Pyaci:
             INPUT_LISTNERS[op](data)
 
         except Exception as e:
-            self.log("Error trying func: " + e)
+            self.log("Error trying func: {}".format(e))
 
     def disconnect(self, data):
+        # add exit()
         self.keep_running = False
         # raise SystemExit(0)
 
@@ -60,36 +71,36 @@ class Pyaci:
         self.echoRsp(data)
 
     def provisionScanStart(self, data):
-        # TODO add provisionScanStart
-        pass
+        self.mesh.provisionScanStart()
 
     def provision(self, data):
-        # TODO add provision
-        pass
+        uuid = data["uuid"]
+        if "name" in data:
+            self.mesh.provision(uuid, data["name"])
+        else:
+            self.mesh.provision(uuid)
 
     def getProvisionedDevices(self, data):
-        # TODO add getProvisionedDevices // change to connect???
-        pass
+        devices = self.mesh.getProvisionedDevices()
+        for dev in devices:
+            self.getProvisionedDevicesRsp(dev)
 
     def configure(self, data):
-        # TODO add configure
-        pass
+        uuid = data["uuid"]
+        self.mesh.configure(uuid)
 
     def addAppKeys(self, data):
-        # TODO add addAppKeys
-        pass
+        uuid = data["uuid"]
+        self.mesh.addAppKeys(uuid)
 
-    def configureGPIO(self, data):
-        # TODO add configureGPIO
-        pass
+    def configureGPIO(self, data): 
+        self.mesh.configureGPIO(data["asInput"], data["pin"], data["uuid"])
     
     def setGPIO(self, data):
-        # TODO add setGPIO
-        pass
+        self.mesh.setGPIO(data["value"], data["pin"], data["uuid"])
 
     def setName(self, data):
-        # TODO add setName
-        pass
+        self.mesh.setGPIO(data["name"], data["uuid"])
 
     """ STD OUTPUTS """
 
@@ -107,31 +118,41 @@ class Pyaci:
         op = "EchoRsp"
         self.send(op, data)
     
-    def newUnprovisionedDevice(self, data):
+    def newUnprovisionedDevice(self, device):
         op = "NewUnprovisionedDevice"
-        self.send(op, data)
+        self.send(op, device)
 
-    def provisionComplete(self, data):
+    def provisionComplete(self, uuid):
         op = "ProvisionComplete"
+        data = {
+            "uuid": uuid
+        }
         self.send(op, data)
     
-    def compositionDataStatus(self, data):
+    def compositionDataStatus(self, uuid, compositionData):
         op = "CompositionDataStatus"
+        data = {
+            "uuid": uuid,
+            "compositionData": compositionData
+        }
         self.send(op, data)
 
-    def addAppKeysComplete(self, data):
+    def addAppKeysComplete(self, uuid):
         op = "AddAppKeysComplete"
+        data = {
+            "uuid": uuid,
+        }
         self.send(op, data)
 
-    def setEventGPIO(self, data):
+    def setEventGPIO(self, value, pin, uuid):
         op = "SetEventGPIO"
+        data = {
+            "value": value,
+            "pin": pin,
+            "uuid": uuid
+        }
         self.send(op, data)
 
     def getProvisionedDevicesRsp(self, data):
         op = "GetProvisionedDevicesRsp"
         self.send(op, data)
-
-
-if __name__ == "__main__":
-    p = Pyaci()
-    p.run()

@@ -28,7 +28,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import sys
+
+if sys.version_info < (3, 5):
+    print(("ERROR: To use {} you need at least Python 3.5.\n" +
+           "You are currently using Python {}.{}").format(sys.argv[0], *sys.version_info))
+    sys.exit(1)
+
+import logging
+import IPython
+import DateTime
 import os
+import colorama
 import time
 import json
 import subprocess
@@ -36,8 +46,10 @@ import struct
 import functools
 import signal
 
+from argparse import ArgumentParser
 import traitlets.config
 
+from aci.aci_uart import Uart
 from aci.aci_utils import STATUS_CODE_LUT
 from aci.aci_config import ApplicationConfig
 import aci.aci_cmd as cmd
@@ -53,7 +65,55 @@ from models.generic_on_off import GenericOnOffClient    # NOQA: ignore unused im
 from models.generic_on_off import GenericOnOffServer
 from models.simple_on_off import SimpleOnOffClient
 
+LOG_DIR = os.path.join(os.path.dirname(sys.argv[0]), "log")
 
+USAGE_STRING = \
+    """
+    {c_default}{c_text}To control your device, use {c_highlight}d[x]{c_text}, where x is the device index.
+    Devices are indexed based on the order of the COM ports specified by the -d option.
+    The first device, {c_highlight}d[0]{c_text}, can also be accessed using {c_highlight}device{c_text}.
+
+    Type {c_highlight}d[x].{c_text} and hit tab to see the available methods.
+""" # NOQA: Ignore long line
+USAGE_STRING += colorama.Style.RESET_ALL
+
+FILE_LOG_FORMAT = "%(asctime)s - %(levelname)s: %(message)s"
+STREAM_LOG_FORMAT = "%(asctime)s - %(levelname)s: %(message)s"
+COLOR_LIST = [colorama.Fore.MAGENTA, colorama.Fore.CYAN,
+              colorama.Fore.GREEN, colorama.Fore.YELLOW,
+              colorama.Fore.BLUE, colorama.Fore.RED]
+COLOR_INDEX = 0
+
+
+def configure_logger(device_name):
+    global options
+    global COLOR_INDEX
+
+    logger = logging.getLogger(device_name)
+    logger.setLevel(logging.DEBUG)
+
+    stream_formatter = logging.Formatter(
+        COLOR_LIST[COLOR_INDEX % len(COLOR_LIST)] + colorama.Style.BRIGHT
+        + STREAM_LOG_FORMAT
+        + colorama.Style.RESET_ALL)
+    COLOR_INDEX = (COLOR_INDEX + 1) % len(COLOR_LIST)
+
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setFormatter(stream_formatter)
+    stream_handler.setLevel(options.log_level)
+    logger.addHandler(stream_handler)
+
+    if not options.no_logfile:
+        dt = DateTime.DateTime()
+        logfile = "{}_{}-{}-{}-{}_output.log".format(
+            device_name, dt.yy(), dt.dayOfYear(), dt.hour(), dt.minute())
+        logfile = os.path.join(LOG_DIR, logfile)
+        fh = logging.FileHandler(logfile)
+        fh.setLevel(logging.DEBUG)
+        file_formatter = logging.Formatter(FILE_LOG_FORMAT)
+        fh.setFormatter(file_formatter)
+        logger.addHandler(fh)
+    return logger
 
 class Interactive(object):
     DEFAULT_APP_KEY = bytearray([0xAA] * 16)
@@ -67,13 +127,13 @@ class Interactive(object):
                                   + "nrf_mesh_config_app.h")))
     PRINT_ALL_EVENTS = True
 
-    def __init__(self, acidev, logger):
+    def __init__(self, acidev):
         self.acidev = acidev
         self._event_filter = []
         self._event_filter_enabled = True
         self._other_events = []
 
-        self.logger = logger
+        self.logger = configure_logger(self.acidev.device_name)
         self.send = self.acidev.write_aci_cmd
 
         # Increment the local unicast address range
@@ -143,12 +203,13 @@ class Interactive(object):
             else:
                 self._other_events.append(event)
 
-class Mesh(object):
+class Manager(object):
 
     NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
     NRF52_STARTING_ELEMENT_INDEX = 1
 
     def __init__(self, interactive_device):
+        self.keep_running = True
         signal.signal(signal.SIGALRM, self.timeout_handler)
         
         self.db_path = "database/example_database.json"
@@ -159,35 +220,34 @@ class Mesh(object):
 
         self.logger = self.iaci.logger
 
-        self.address_stack = list()
-        self.device_handle_stack = list()
-        self.message_que = list()
-        
-        self.iaci.acidev.add_packet_recipient(self.deviceStarted)
-        self.iaci.send(cmd.RadioReset())
-
-
-    def setup(self):
         self.p = Provisioner(self.iaci, self.db)
         self.cc = ConfigurationClient(self.db)
         self.iaci.model_add(self.cc)
 
-        self.init_event_handlers()
-        self.iaci.acidev.add_command_recipient(self.cmd_handler)
-
-        # restart serial device to init setup
-        # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
+        self.address_stack = list()
+        self.device_handle_stack = list()
+        self.message_que = list()
         
+        self.iaci.acidev.add_command_recipient(self.cmd_handler)
+        self.iaci.acidev.add_packet_recipient(self.__event_handler)
+
+        self.setup()
+
+    def run(self):
+        while self.keep_running:
+            self.process_stdin()
+
+    def setup(self):
+        # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         self.load_address_handles()
         self.load_device_handles()
 
         if len(self.db.models) > 0:
             self.load_models()
         else:
-            self.add_models()
+            self.addModels()
 
-        # TODO add dummy func to clear steup..?
-        self.message_que.append(print)
+        self.message_que.append(functools.partial(self.process_stdout, "SetupRsp"))
         self.send_next_message()
         
     def load_address_handles(self):
@@ -242,170 +302,99 @@ class Mesh(object):
                 self.addSimpleClientModel()
                 self.sc.__tid = model["tid"]
 
-    def add_models(self):
-        self.addGenericClientModel()
-        self.addGenericServerModel()
-        self.addSimpleClientModel()
-
     """""""""""""""""""""""""""""""""""""""""""""
-    PYACI EVENTS HANDLER
+    PYACI EVENTS AND COMMANDS
     """""""""""""""""""""""""""""""""""""""""""""
 
-    def init_event_handlers(self):
-        add_event = self.iaci.acidev.add_packet_recipient
+    def __event_handler(self, event):
 
-        add_event(self.newUnProvisionedDeviceEventHandler)
-        add_event(self.provisionCompleteEventHandler)
-        add_event(self.compositionDataStatusEventHandler)
-        add_event(self.modelAddressStatusEventHandler)
-        add_event(self.cmdRsp_handler)
+        if event._opcode == evt.Event.PROV_UNPROVISIONED_RECEIVED:
+            uuid = event._data["uuid"]
+            rssi = event._data["rssi"]
+            
+            if uuid in self.p.unprov_list:
+                self.newUnProvisionedDevice({
+                    "uuid": uuid.hex(),
+                    "rssi": rssi
+                    })
 
-    def deviceStarted(self, event):
-        if event._opcode != evt.Event.DEVICE_STARTED:
-            return
+        if event._opcode == evt.Event.PROV_COMPLETE:
+            address = int(event._data["address"])
+            node, element = self.src_address_to_node_element_index(address)
+            uuid = self.db.nodes[node].UUID.hex()
+            self.process_stdout("ProvisionComplete", {"uuid": uuid})
 
-        print("HERE")
-        self.setup()
-
-    def newUnProvisionedDeviceEventHandler(self, event):
-        if event._opcode != evt.Event.PROV_UNPROVISIONED_RECEIVED:
-            return
-
-        uuid = event._data["uuid"]
-        rssi = event._data["rssi"]
-
-        if uuid not in self.p.unprov_list:
-            return
-
-        device = {
-            "uuid": uuid.hex(),
-            "rssi": rssi
-        }
-
-        if hasattr(self, "onNewUnProvisionedDevice"):
-            self.onNewUnProvisionedDevice(device)
-
-    def provisionCompleteEventHandler(self, event):
-        if event._opcode != evt.Event.PROV_COMPLETE:
-            return
-
-        address = int(event._data["address"])
-        node, element = self.src_address_to_node_element_index(address)
-        uuid = self.db.nodes[node].UUID.hex()
+        if event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
+            
+            message = access.AccessMessage(event)
+            opcode = message.opcode_raw.hex()
         
-        if hasattr(self, "onProvisionComplete"):
-            self.onProvisionComplete(uuid)
+            if opcode == str(ConfigurationClient._COMPOSITION_DATA_STATUS):
+                data = message.data[1:]
+                compositionData = mt.CompositionData().unpack(data)
 
-    def compositionDataStatusEventHandler(self, event):
-        if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
-            if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
-                return
-            
-        message = access.AccessMessage(event)
-        opcode = message.opcode_raw.hex()
-    
-        if opcode != str(ConfigurationClient._COMPOSITION_DATA_STATUS):
-            return
+                src = message.meta["src"]
+                node, element = self.src_address_to_node_element_index(src)
+                uuid = self.db.nodes[node].UUID
 
-        data = message.data[1:]
-        compositionData = mt.CompositionData().unpack(data)
+                self.compositionDataStatusRsp(uuid, compositionData)
 
-        src = message.meta["src"]
-        node, element = self.src_address_to_node_element_index(src)
-        uuid = self.db.nodes[node].UUID
-
-        if hasattr(self, "onCompositionDataStatus"):
-            self.onCompositionDataStatus(uuid, compositionData)
-
-    def modelAddressStatusEventHandler(self, event):
-        if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
-            if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
-                return
-            
-        message = access.AccessMessage(event)
-        opcode = message.opcode_raw.hex()
-
-        if opcode == str(ConfigurationClient._MODEL_PUBLICATION_STATUS) or \
-            opcode == str(ConfigurationClient._MODEL_SUBSCRIPTION_STATUS) or \
-            opcode == str(ConfigurationClient._MODEL_APP_STATUS):
-            
+            if opcode == str(ConfigurationClient._MODEL_PUBLICATION_STATUS) or \
+               opcode == str(ConfigurationClient._MODEL_SUBSCRIPTION_STATUS) or \
+               opcode == str(ConfigurationClient._MODEL_APP_STATUS):
+               
                 self.send_next_message()
 
-    def cmdRsp_handler(self, event):
-
-        if event._opcode != evt.Event.CMD_RSP:
-            return
+        if event._opcode == evt.Event.CMD_RSP:
             
-        if event._data["status"] != 0:
-            return
+            if event._data["status"] == 0:
 
-        rsp_packet = cmd.response_deserialize(event)
+                rsp_packet = cmd.response_deserialize(event)
 
-        if rsp_packet is None or isinstance(rsp_packet, str):
-            return
+                if rsp_packet is None or isinstance(rsp_packet, str):
+                    return
                 
-        if rsp_packet._command_name in ["AddrSubscriptionAdd", "AddrSubscriptionAddVirtual", "AddrPublicationAddVirtual", "AddrPublicationAdd"]:
-            self.newAddressHandle(rsp_packet)
+                if rsp_packet._command_name in ["AddrSubscriptionAdd", "AddrSubscriptionAddVirtual", "AddrPublicationAddVirtual", "AddrPublicationAdd"]:
+                    
+                    try:
+                        
+                        new_address = self.address_stack.pop(0)
+                        address_handle = {
+                            "address": new_address["address"]
+                            , "address_handle": rsp_packet._data["address_handle"]
+                            , "opcode": rsp_packet._opcode
+                        }
+                        
+                        dups = [a for a in self.db.address_handles if a["address_handle"] == address_handle["address_handle"]]
+                        if len(dups) > 0:
+                            for dup in dups:
+                                if dup != address_handle:
+                                    raise Exception("Address handle already exists")
 
-        if rsp_packet._command_name in ["DevkeyAdd"]:
-            self.newDeveKeyHandle(rsp_packet)
-
-    def newAddressHandle(self, rsp_packet):
-        try:
-            
-            new_address = self.address_stack.pop(0)
-            address_handle = {
-                "address": new_address["address"]
-                , "address_handle": rsp_packet._data["address_handle"]
-                , "opcode": rsp_packet._opcode
-            }
-            
-            dups = [a for a in self.db.address_handles if a["address_handle"] == address_handle["address_handle"]]
-            if len(dups) > 0:
-                for dup in dups:
-                    if dup != address_handle:
-                        raise Exception("Address handle already exists")
-
-                self.logger.debug("Got duplicate of address handle {}".format(address_handle))
-            else:
-                self.db.address_handles.append(address_handle)
-                self.db.store()
-            
-            self.send_next_message()
+                            self.logger.debug("Got duplicate of address handle {}".format(address_handle))
+                        else:
+                            self.db.address_handles.append(address_handle)
+                            self.db.store()
+                        
+                        self.send_next_message()
 
 
-        except Exception as e:
-            self.logger.error("Error storing address handle: {}".format(e))
-    
-    def newDeveKeyHandle(self, rsp_packet):
-        try:
-            new_device_address = self.device_handle_stack.pop(0)
-            devkey_handle = rsp_packet._data["devkey_handle"]
-            new_device_address["devkey_handle"] = devkey_handle
-            self.db.device_handles.append(new_device_address)
-            self.db.store()
+                    except Exception as e:
+                        self.logger.error("Error storing address handle: {}".format(e))
+                
+                if rsp_packet._command_name in ["DevkeyAdd"]:
+                    try:
+                        new_device_address = self.device_handle_stack.pop(0)
+                        devkey_handle = rsp_packet._data["devkey_handle"]
+                        new_device_address["devkey_handle"] = devkey_handle
+                        self.db.device_handles.append(new_device_address)
+                        self.db.store()
 
-            self.send_next_message()
+                        self.send_next_message()
+                    
+                    except Exception as e:
+                        self.logger.error("Error storing device handle: {}".format(e))
         
-        except Exception as e:
-            self.logger.error("Error storing device handle: {}".format(e))
-
-    """""""""""""""""""""""""""""""""""""""""""""
-     
-    """""""""""""""""""""""""""""""""""""""""""""
-
-    def addAppKeysComplete(self, uuid):
-        if hasattr(self, "onAddAppKeysComplete"):
-            self.onAddAppKeysComplete(uuid)
-
-    def setEventGPIO(self, value, pin, uuid):
-        if hasattr(self, "onSetEventGPIO"):
-            self.onSetEventGPIO(value, pin, uuid)
-
-    """""""""""""""""""""""""""""""""""""""""""""
-    PYACI CMD HANDLER
-    """""""""""""""""""""""""""""""""""""""""""""
-
     def cmd_handler(self, cmd):
     
         if cmd._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
@@ -451,37 +440,183 @@ class Mesh(object):
         self.send_last_message()
     
     """""""""""""""""""""""""""""""""""""""""""""
-     
+    STD IN / OUT INTERFACE
     """""""""""""""""""""""""""""""""""""""""""""
+
+    def process_stdout(self, op, data=None):
+        
+        msg = {
+            'op': op,
+        }
+
+        if data:
+            msg['data'] = data
+
+        print(json.dumps(msg));
+        sys.stdout.flush()
+
+    def process_stdin(self):
+        msg = sys.stdin.readline().strip("\n")
+        self.logger.info("Received from node-red: {}".format(json.dumps(msg)))
+
+        if(msg == "check"):
+            self.process_stdout("running")
+            self.exit()
+            return
+        
+        if(msg == "\n"):
+            return
+
+        try:
+            msg = json.loads(msg)
+        except:
+            print("Error parsing message: ", msg)
+            self.exit()
+            return
+        
+        op = msg["op"]
+        
+        if op == "Echo":
+            self.echo(msg)
+
+        if op == "Setup":
+            self.setup()
+        
+        if op == "Exit":
+            self.exit()
+        
+        if op == "Kill":
+            self.kill()
+
+        if op == "ProvisionScanStart":
+            self.provisionScanStart()
+
+        if op == "ProvisionScanStop":
+            self.provisionScanStop()
+
+        if op == "Provision":
+            
+            if name not in msg["data"] or "uuid" not in msg["data"]:
+                error = "Provision input error"
+                self.logger.error(error)
+                self.process_stdout(error)
+                return
+
+            uuid = msg["data"]["uuid"]
+            name = msg["data"]["name"]
+            self.provision(uuid, name)
+
+        if op == "Configure":
+            self.configure(msg["data"]["uuid"])
+
+        if op == "AddAppKeys":
+            self.addAppKeys(msg["data"]["uuid"])
+
+        if op == "AddGroupSubscriptionAddresses":
+            self.addGroupSubscriptionAddresses()
+
+        if op == "AddGroupPublicationAddresses":
+            self.addGroupPublicationAddresses()
+
+        if op == "AddGenericClientModel":            
+            self.addGenericClientModel()
+        
+        if op == "AddGenericServerModel":            
+            self.addGenericServerModel()
+
+        if op == "GenericClientSet":
+            self.genericClientSet(value = msg["data"]["value"])
+
+        if op == "SetGPIO":
+            try:
+                value = int(msg["data"]["value"])
+                pin = int(msg["data"]["pin"])
+                uuid = msg["data"]["uuid"]
+
+                if not self.check_pin(pin):
+                    self.process_stdout("PinError")
+                    return
+                if not self.check_uuid(uuid):
+                    self.process_stdout("UUIDError")
+                    return
+                if not self.check_value(value):
+                    self.process_stdout("ValueError")
+                    return
+
+                self.setGPIO(value, pin, uuid)
+            except Exception as e:
+                self.logger.error("Error in SetGPIO ", e)
+        
+        if op == "ConfigureGPIO":
+            try:
+                value = int(msg["data"]["value"])
+                pin = int(msg["data"]["pin"])
+                uuid = msg["data"]["uuid"]
+
+                if not self.check_pin(pin):
+                    self.process_stdout("PinError")
+                    return
+                if not self.check_uuid(uuid):
+                    self.process_stdout("UUIDError")
+                    return
+                if not self.check_value(value):
+                    self.process_stdout("ValueError")
+                    return
+
+                self.configureGPIO(value, pin, uuid)
+            except Exception as e:
+                self.logger.error("Error in ConfigureGPIO ", e)
+
+        if op =="GetProvisionedDevices":
+            self.getProvisionedDevices();
+
+        if op == "SetName":
+            self.setName(name=msg["data"]["name"], uuid=msg["data"]["uuid"])
+
+    def echo(self, msg):
+        op = "EchoRsp"
+        self.process_stdout(op, msg["data"])
+
+    def exit(self):
+        self.p.scan_stop()
+        self.keep_running = False
+
+    def kill(self):
+        self.p.scan_stop()
+        raise SystemExit(0)
 
     """ PROVISIOING """
 
     def provisionScanStart(self):
         self.p.scan_start()
 
-    def provision(self, uuid, name="NONAME"):
+    def provisionScanStop(self):
+        self.p.scan_stop()
+
+    def newUnProvisionedDevice(self, data):
+        op = "NewUnProvisionedDevice"
+        self.process_stdout(op, data)
+
+    def provision(self, uuid, name="Server"):
         
         if len([n for n in self.db.nodes if n.UUID.hex() == uuid]) > 0:
             self.logger.error("uuid {} already in database".format(uuid))
-            # TODO - add remove from database and then re-add deivce
-            return
+            self.remove_node(uuid)
 
         self.p.scan_stop()
         self.p.provision(uuid=uuid, name=name)
     
     def getProvisionedDevices(self):
-        devices = []
         for node in self.db.nodes:
-            devices.append({
+            self.process_stdout("GetProvisionedDevicesRsp", {
                 "uuid" : node.UUID,
                 "name" : node.name,
             })
-            # TODO - add configured / provisioned fields...
-        return devices
     
     """ CONFIGURATION """
 
     def configure(self, uuid):
+        
         node = self.uuid_to_node_index(uuid)
         address = self.db.nodes[node].unicast_address
         address_handle = self.db.find_address_handle(address)
@@ -494,7 +629,15 @@ class Mesh(object):
             self.cc.appkey_add(0)
         except RuntimeError as e:
             self.logger.error(e)
-             
+        
+    def compositionDataStatusRsp(self, uuid, compositionData):
+        op = "CompositionDataStatus"
+        data = {
+            "uuid": uuid,
+            "compositionData": compositionData
+        }
+        self.process_stdout(op, data)
+        
     def addAppKeys(self, uuid, groupAddrId=0):
         """ Used to:
             - subscribes the serial device to the group address
@@ -537,54 +680,96 @@ class Mesh(object):
         self.message_que.append(functools.partial(self.addAppKeysComplete, uuid))
 
         self.send_next_message()
+    
+    def addAppKeysComplete(self, uuid):
+        self.process_stdout("AddAppKeysComplete", {
+            "uuid": uuid
+        })
+
+    def addAddress(self, command, address):
+        self.logger.info("Adding address {}".format(address))
+        self.message_que.append(functools.partial(self.iaci.send, command(address)))
+
+    def addGroupSubscriptionAddresses(self, node=0, groupAddrId=0):
+        for e, element in enumerate(self.db.nodes[node].elements):
+            for model in element.models:
+                if str(model.model_id) == "1000":
+                    self.cc.model_subscription_add(self.db.nodes[node].unicast_address + e, self.db.groups[groupAddrId].address, mt.ModelId(0x1000))                
+                    time.sleep(1)
+
+    def addGroupPublicationAddresses(self, node=0, groupAddrId=0):
+        
+        group_address = self.db.groups[groupAddrId].address
+        self.addAddress(cmd.AddrSubscriptionAdd, group_address)
+
+        for e, element in enumerate(self.db.nodes[node].elements):
+            for model in element.models:
+                if str(model.model_id) == "1001":
+                    self.cc.model_publication_set(self.db.nodes[node].unicast_address + e, mt.ModelId(0x1001), mt.Publish(group_address, index=0, ttl=1))
+                time.sleep(1)
+
+    def setName(self, name, uuid);
+        node = self.uuid_to_node_index(uuid)
+        self.db.nodes[node].name = name
 
     """  MODELS & PINS """
 
-    def configureGPIO(self, asInput, pin, uuid):
-        address_handle = self.get_address_handle(pin, uuid)
-        if address_handle is None:
-            self.logger.error("Address handle not valid")
-            return
-        self.sc.publish_set(key_handle=0, address_handle=address_handle) # key_handle is app key
-        self.sc.set(asInput)
-        self.db.store()
-
-    def setGPIO(self, value, pin, uuid):
-        address_handle = self.get_address_handle(pin, uuid)
-        if address_handle is None:
-            self.logger.error("Address handle not valid")
-            return
-
-        self.gc.publish_set(key_handle=0, address_handle=address_handle)
-        self.gc.set(value)
-        self.db.store()
-
-    def setName(self, name, uuid):
-        node = self.uuid_to_node_index(uuid)
-        self.db.nodes[node].name = name
-    
-    def genericOnOffServerSetUnackEvent(self, value, src):
-        node, element = self.src_address_to_node_element_index(src)
-        uuid = self.db.nodes[node].UUID
-        self.setEventGPIO(value, self.element_index_to_pin(element), uuid)
-        self.db.store()
-
-    """  INIT MODELS """
+    def addModels(self):
+        self.addGenericClientModel()
+        self.addGenericServerModel()
+        self.addSimpleClientModel()
 
     def addGenericClientModel(self):
         self.gc = GenericOnOffClient()
         self.iaci.model_add(self.gc)
         self.db.models.append(self.gc)
     
+    def genericClientSet(self, value, key_handle=0, address_handle=0):
+        # key_handle is app key 
+        self.gc.publish_set(key_handle, address_handle)
+        self.gc.set(value)
+        self.db.store()
+        
     def addGenericServerModel(self):
         self.gs = GenericOnOffServer(self.genericOnOffServerSetUnackEvent, self.db)
         self.iaci.model_add(self.gs)
         self.db.models.append(self.gs)
 
+    def genericOnOffServerSetUnackEvent(self, value, src):
+        node, element = self.src_address_to_node_element_index(src)
+        uuid = self.db.nodes[node].UUID
+        self.setEventGPIO(value, self.element_index_to_pin(element), uuid)
+        self.db.store()
+
+    def setEventGPIO(self, value, pin, uuid):
+        self.logger.info("Sending value:{} uuid:{} pin:{}".format(value, uuid, pin))
+        data = {
+            "value": value,
+            "uuid": uuid,
+            "pin": pin
+        }
+        self.process_stdout("SetEventGPIO", data)
+
     def addSimpleClientModel(self):
         self.sc = SimpleOnOffClient()
         self.iaci.model_add(self.sc)
         self.db.models.append(self.sc)
+
+    def simpleClientSet(self, value, key_handle=0, address_handle=0):
+        # key_handle is app key
+        # False is output
+        self.sc.publish_set(key_handle, address_handle)
+        self.sc.set(value)
+        self.db.store()
+
+    def configureGPIO(self, asInput, pin, uuid):
+        address_handle = self.get_address_handle(pin, uuid)
+        self.simpleClientSet(asInput, address_handle=address_handle)
+
+    def setGPIO(self, value, pin, uuid):
+        address_handle = self.get_address_handle(pin, uuid)
+        self.genericClientSet(value, address_handle=address_handle)
+
 
     """""""""""""""""""""""""""""""""""""""""""""
     HELPERS / CONVERTERS
@@ -658,6 +843,7 @@ class Mesh(object):
     def check_value(self, value):
         return value == 1 or value == 0
 
+    
     """""""""""""""""""""""""""""""""""""""""""""
     UNUSED / EXPERIMENTAL
     """""""""""""""""""""""""""""""""""""""""""""
@@ -675,3 +861,71 @@ class Mesh(object):
         if handle["opcode"] == 0xA4:
             self.iaci.send(cmd.AddrPublicationRemove(address_handle))
             self.db.address_handles.pop(index)
+            
+def start_ipython(options):
+    comports = options.devices
+    d = list()
+
+    if not options.no_logfile and not os.path.exists(LOG_DIR):
+        print("Creating log directory: {}".format(os.path.abspath(LOG_DIR)))
+        os.mkdir(LOG_DIR)
+
+    for dev_com in comports:
+        d.append(Interactive(Uart(port=dev_com,
+                                baudrate=options.baudrate,
+                                device_name=dev_com.split("/")[-1])))
+
+    device = d[0]
+    send = device.acidev.write_aci_cmd  # NOQA: Ignore unused variable
+
+    m = Manager(device)
+    m.run()
+
+    for dev in d:
+        dev.close()
+    raise SystemExit(0)
+
+if __name__ == '__main__':
+    parser = ArgumentParser(
+        description="nRF5 SDK for Mesh Interactive PyACI")
+    parser.add_argument("-d", "--device",
+                        dest="devices",
+                        nargs="+",
+                        required=False,
+                        default=["/dev/tty.usbmodem0006822145041"],
+                        help=("Device Communication port, e.g., COM216 or "
+                              + "/dev/ttyACM0. You may connect to multiple "
+                              + "devices. Separate devices by spaces, e.g., "
+                              + "\"-d COM123 COM234\""))
+    parser.add_argument("-b", "--baudrate",
+                        dest="baudrate",
+                        required=False,
+                        default='115200',
+                        help="Baud rate. Default: 115200")
+    parser.add_argument("--no-logfile",
+                        dest="no_logfile",
+                        action="store_true",
+                        required=False,
+                        default=False,
+                        help="Disables logging to file.")
+    parser.add_argument("-l", "--log-level",
+                        dest="log_level",
+                        type=int,
+                        required=False,
+                        default=4,
+                        help=("Set default logging level: "
+                              + "0=Critical Only, 1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
+    options = parser.parse_args()
+
+    if options.log_level == 0:
+        options.log_level = logging.CRITICAL
+    elif options.log_level == 1:
+        options.log_level = logging.ERROR
+    elif options.log_level == 2:
+        options.log_level = logging.WARNING
+    elif options.log_level == 3:
+        options.log_level = logging.INFO
+    else:
+        options.log_level = logging.DEBUG
+
+    start_ipython(options)

@@ -1,0 +1,653 @@
+2019-07-22 17:16:41,405 - DEBUG: Writing: 14 bytearray(b'')
+2019-07-22 17:16:41,405 - DEBUG: TX: 010e
+2019-07-22 17:16:41,823 - DEBUG: RX: 04810200fe
+2019-07-22 17:16:41,824 - DEBUG: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-07-22 17:16:41,824 - INFO: Device rebooted.
+2019-07-22 17:16:41,992 - DEBUG: Writing: 105 bytearray(b"\xf3.\xf4W\xa1\xae_)?U\x15\x03B<2SN\xdc\xe2\xca\x82\x8aE8\x87\xb8m\x84\xc6.\x82a\x12\x1f\xd5\x81,\x91\xfe^\x0c\x10\xf4\xaa\xc7\xd5\xad\xd7\x89\xea\xdb\x90\n\xf6\'\x84\x1fb6\xc6\x94\x01t\xde\xbc\x94c\xf0\xc5\x988\x8bxIE\x1f\xe7|\x8fc\xd8K4$\x04f\xceyo\xe1\xa5U.\xdbp\xf3")
+2019-07-22 17:16:41,995 - DEBUG: TX: 6169f32ef457a1ae5f293f551503423c32534edce2ca828a453887b86d84c62e8261121fd5812c91fe5e0c10f4aac7d5add789eadb900af627841f6236c6940174debc9463f0c598388b7849451fe77c8f63d84b34240466ce796fe1a5552edb70f3
+2019-07-22 17:16:42,001 - INFO: 
+
+2019-07-22 17:16:42,001 - INFO: Sending next message
+2019-07-22 17:16:42,006 - DEBUG: RX: 03845384
+2019-07-22 17:16:42,007 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,007 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,007 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-07-22 17:16:42,007 - DEBUG: TX: 059f01000100
+2019-07-22 17:16:42,007 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,008 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,008 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,008 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-07-22 17:16:42,008 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-07-22 17:16:42,008 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,009 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,009 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-07-22 17:16:42,009 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,009 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-07-22 17:16:42,010 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,010 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,010 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-07-22 17:16:42,010 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,010 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-07-22 17:16:42,011 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,011 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,011 - DEBUG: Writing: 164 bytearray(b'\x10\x00')
+2019-07-22 17:16:42,011 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,011 - DEBUG: TX: 03a41000
+2019-07-22 17:16:42,012 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,012 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,012 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,012 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,012 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,013 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,013 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,013 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,013 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,013 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,014 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,014 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,014 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,015 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,015 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,015 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,015 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,015 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,016 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,016 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,016 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,016 - DEBUG: RX: 03840084
+2019-07-22 17:16:42,016 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,016 - ERROR: None: ERROR_INVALID_LENGTH
+2019-07-22 17:16:42,016 - DEBUG: RX: 03849f00
+2019-07-22 17:16:42,016 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,017 - INFO: Success
+2019-07-22 17:16:42,017 - DEBUG: RX: 058492000000
+2019-07-22 17:16:42,017 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 17:16:42,017 - INFO: SubnetAdd: {'subnet_handle': 0}
+2019-07-22 17:16:42,017 - DEBUG: RX: 058497000000
+2019-07-22 17:16:42,017 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 17:16:42,017 - INFO: AppkeyAdd: {'appkey_handle': 0}
+2019-07-22 17:16:42,018 - DEBUG: RX: 058497000100
+2019-07-22 17:16:42,018 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 17:16:42,018 - INFO: AppkeyAdd: {'appkey_handle': 1}
+2019-07-22 17:16:42,018 - DEBUG: RX: 0584a4000000
+2019-07-22 17:16:42,018 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-07-22 17:16:42,018 - INFO: AddrPublicationAdd: {'address_handle': 0}
+2019-07-22 17:16:42,023 - INFO: 
+
+2019-07-22 17:16:42,023 - INFO: Sending next message
+2019-07-22 17:16:42,023 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-07-22 17:16:42,023 - DEBUG: TX: 03a101c0
+2019-07-22 17:16:42,025 - DEBUG: RX: 0584a1000100
+2019-07-22 17:16:42,025 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-07-22 17:16:42,025 - INFO: AddrSubscriptionAdd: {'address_handle': 1}
+2019-07-22 17:16:42,037 - INFO: 
+
+2019-07-22 17:16:42,037 - INFO: Sending next message
+2019-07-22 17:16:42,037 - DEBUG: Writing: 164 bytearray(b'\x11\x00')
+2019-07-22 17:16:42,038 - DEBUG: TX: 03a41100
+2019-07-22 17:16:42,039 - DEBUG: Writing: 97 bytearray(b'')
+2019-07-22 17:16:42,039 - DEBUG: TX: 0161
+2019-07-22 17:16:42,040 - DEBUG: RX: 0584a4000200
+2019-07-22 17:16:42,040 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-07-22 17:16:42,040 - INFO: AddrPublicationAdd: {'address_handle': 2}
+2019-07-22 17:16:42,051 - INFO: 
+
+2019-07-22 17:16:42,051 - INFO: Sending next message
+2019-07-22 17:16:42,051 - DEBUG: Writing: 164 bytearray(b'\x12\x00')
+2019-07-22 17:16:42,052 - DEBUG: TX: 03a41200
+2019-07-22 17:16:42,052 - DEBUG: RX: 03846100
+2019-07-22 17:16:42,052 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-07-22 17:16:42,052 - INFO: Success
+2019-07-22 17:16:42,053 - DEBUG: RX: 0584a4000300
+2019-07-22 17:16:42,054 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-07-22 17:16:42,054 - INFO: AddrPublicationAdd: {'address_handle': 3}
+2019-07-22 17:16:42,058 - INFO: 
+
+2019-07-22 17:16:42,058 - INFO: Sending next message
+2019-07-22 17:16:42,058 - DEBUG: Writing: 164 bytearray(b'\x13\x00')
+2019-07-22 17:16:42,059 - DEBUG: TX: 03a41300
+2019-07-22 17:16:42,060 - DEBUG: RX: 0584a4000400
+2019-07-22 17:16:42,061 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-07-22 17:16:42,061 - INFO: AddrPublicationAdd: {'address_handle': 4}
+2019-07-22 17:16:42,067 - INFO: 
+
+2019-07-22 17:16:42,067 - INFO: Sending next message
+2019-07-22 17:16:42,068 - DEBUG: Writing: 164 bytearray(b'\x14\x00')
+2019-07-22 17:16:42,068 - DEBUG: TX: 03a41400
+2019-07-22 17:16:42,069 - DEBUG: RX: 0584a4000500
+2019-07-22 17:16:42,070 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-07-22 17:16:42,070 - INFO: AddrPublicationAdd: {'address_handle': 5}
+2019-07-22 17:16:42,074 - INFO: 
+
+2019-07-22 17:16:42,074 - INFO: Sending next message
+2019-07-22 17:16:42,074 - DEBUG: Writing: 164 bytearray(b'\x15\x00')
+2019-07-22 17:16:42,075 - DEBUG: TX: 03a41500
+2019-07-22 17:16:42,077 - DEBUG: RX: 0584a4000600
+2019-07-22 17:16:42,077 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-07-22 17:16:42,078 - INFO: AddrPublicationAdd: {'address_handle': 6}
+2019-07-22 17:16:42,087 - INFO: 
+
+2019-07-22 17:16:42,088 - INFO: Sending next message
+2019-07-22 17:16:42,088 - DEBUG: Writing: 164 bytearray(b'\x16\x00')
+2019-07-22 17:16:42,088 - DEBUG: TX: 03a41600
+2019-07-22 17:16:42,090 - DEBUG: RX: 0584a4000700
+2019-07-22 17:16:42,091 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-07-22 17:16:42,091 - INFO: AddrPublicationAdd: {'address_handle': 7}
+2019-07-22 17:16:42,096 - INFO: 
+
+2019-07-22 17:16:42,096 - INFO: Sending next message
+2019-07-22 17:16:42,097 - DEBUG: Writing: 164 bytearray(b'\x17\x00')
+2019-07-22 17:16:42,097 - DEBUG: TX: 03a41700
+2019-07-22 17:16:42,099 - DEBUG: RX: 0584a4000800
+2019-07-22 17:16:42,099 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 17:16:42,099 - INFO: AddrPublicationAdd: {'address_handle': 8}
+2019-07-22 17:16:42,106 - INFO: 
+
+2019-07-22 17:16:42,106 - INFO: Sending next message
+2019-07-22 17:16:42,106 - DEBUG: Writing: 164 bytearray(b'\x18\x00')
+2019-07-22 17:16:42,106 - DEBUG: TX: 03a41800
+2019-07-22 17:16:42,109 - DEBUG: RX: 0584a4000900
+2019-07-22 17:16:42,109 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-07-22 17:16:42,109 - INFO: AddrPublicationAdd: {'address_handle': 9}
+2019-07-22 17:16:42,117 - INFO: 
+
+2019-07-22 17:16:42,117 - INFO: Sending next message
+2019-07-22 17:16:42,117 - DEBUG: Writing: 164 bytearray(b'\x19\x00')
+2019-07-22 17:16:42,118 - DEBUG: TX: 03a41900
+2019-07-22 17:16:42,119 - DEBUG: RX: 0584a4000a00
+2019-07-22 17:16:42,120 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-07-22 17:16:42,120 - INFO: AddrPublicationAdd: {'address_handle': 10}
+2019-07-22 17:16:42,124 - INFO: 
+
+2019-07-22 17:16:42,124 - INFO: Sending next message
+2019-07-22 17:16:42,125 - DEBUG: Writing: 164 bytearray(b'\x1a\x00')
+2019-07-22 17:16:42,125 - DEBUG: TX: 03a41a00
+2019-07-22 17:16:42,126 - DEBUG: RX: 0584a4000b00
+2019-07-22 17:16:42,127 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-07-22 17:16:42,127 - INFO: AddrPublicationAdd: {'address_handle': 11}
+2019-07-22 17:16:42,133 - INFO: 
+
+2019-07-22 17:16:42,134 - INFO: Sending next message
+2019-07-22 17:16:42,134 - DEBUG: Writing: 164 bytearray(b'\x1b\x00')
+2019-07-22 17:16:42,134 - DEBUG: TX: 03a41b00
+2019-07-22 17:16:42,136 - DEBUG: RX: 0584a4000c00
+2019-07-22 17:16:42,137 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-07-22 17:16:42,137 - INFO: AddrPublicationAdd: {'address_handle': 12}
+2019-07-22 17:16:42,141 - INFO: 
+
+2019-07-22 17:16:42,141 - INFO: Sending next message
+2019-07-22 17:16:42,142 - DEBUG: Writing: 164 bytearray(b'\x1c\x00')
+2019-07-22 17:16:42,142 - DEBUG: TX: 03a41c00
+2019-07-22 17:16:42,144 - DEBUG: RX: 0584a4000d00
+2019-07-22 17:16:42,145 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-07-22 17:16:42,145 - INFO: AddrPublicationAdd: {'address_handle': 13}
+2019-07-22 17:16:42,154 - INFO: 
+
+2019-07-22 17:16:42,155 - INFO: Sending next message
+2019-07-22 17:16:42,155 - DEBUG: Writing: 164 bytearray(b'\x1d\x00')
+2019-07-22 17:16:42,155 - DEBUG: TX: 03a41d00
+2019-07-22 17:16:42,158 - DEBUG: RX: 0584a4000e00
+2019-07-22 17:16:42,158 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-07-22 17:16:42,158 - INFO: AddrPublicationAdd: {'address_handle': 14}
+2019-07-22 17:16:42,167 - INFO: 
+
+2019-07-22 17:16:42,167 - INFO: Sending next message
+2019-07-22 17:16:42,167 - DEBUG: Writing: 156 bytearray(b'\x10\x00\x00\x00Cl\xab\x18\xf4\x96\xa9\xf6 \x1c\x95g\x03I\x890')
+2019-07-22 17:16:42,168 - DEBUG: TX: 159c10000000436cab18f496a9f6201c956703498930
+2019-07-22 17:16:42,171 - DEBUG: RX: 05849c000800
+2019-07-22 17:16:42,172 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-07-22 17:16:42,172 - INFO: DevkeyAdd: {'devkey_handle': 8}
+2019-07-22 17:16:42,183 - INFO: 
+
+2019-07-22 17:16:42,184 - INFO: Sending next message
+2019-07-22 17:16:46,185 - INFO: Timout handler timeout
+2019-07-22 17:18:12,473 - DEBUG: Sending opcode: c15900, data: 0100
+2019-07-22 17:18:12,480 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x00')
+2019-07-22 17:18:12,481 - DEBUG: TX: 10ab00000100070008000000c159000100
+2019-07-22 17:18:12,501 - DEBUG: RX: 0784ab0001000000
+2019-07-22 17:18:12,501 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x01\x00\x00\x00')}}
+2019-07-22 17:18:12,510 - INFO: PacketSend: {'token': 1}
+2019-07-22 17:18:12,512 - DEBUG: Sending opcode: c15900, data: 0001
+2019-07-22 17:18:12,513 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x01')
+2019-07-22 17:18:12,513 - DEBUG: TX: 10ab00000100080008000000c159000001
+2019-07-22 17:18:12,519 - DEBUG: RX: 05d201000000
+2019-07-22 17:18:12,519 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 1}}
+2019-07-22 17:18:12,520 - INFO: {event: MeshTxComplete, data: {'token': 1}}
+2019-07-22 17:18:12,521 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d60400c4590001
+2019-07-22 17:18:12,521 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:18:12,522 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:18:12,523 - DEBUG: RX: 0784ab0002000000
+2019-07-22 17:18:12,523 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x02\x00\x00\x00')}}
+2019-07-22 17:18:12,523 - INFO: PacketSend: {'token': 2}
+2019-07-22 17:18:12,525 - DEBUG: RX: 05d202000000
+2019-07-22 17:18:12,526 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 2}}
+2019-07-22 17:18:12,526 - INFO: {event: MeshTxComplete, data: {'token': 2}}
+2019-07-22 17:18:12,536 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d70400c4590000
+2019-07-22 17:18:12,537 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -41, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:18:12,537 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -41, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:19:54,916 - DEBUG: Sending opcode: c15900, data: 0102
+2019-07-22 17:19:54,949 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x02')
+2019-07-22 17:19:54,950 - DEBUG: TX: 10ab00000100070008000000c159000102
+2019-07-22 17:19:54,956 - DEBUG: Sending opcode: c15900, data: 0003
+2019-07-22 17:19:54,960 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x03')
+2019-07-22 17:19:54,968 - DEBUG: TX: 10ab00000100080008000000c159000003
+2019-07-22 17:19:54,971 - DEBUG: RX: 0784ab0003000000
+2019-07-22 17:19:54,971 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x03\x00\x00\x00')}}
+2019-07-22 17:19:54,972 - INFO: PacketSend: {'token': 3}
+2019-07-22 17:19:54,988 - DEBUG: RX: 0784ab0004000000
+2019-07-22 17:19:54,990 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x04\x00\x00\x00')}}
+2019-07-22 17:19:54,991 - INFO: PacketSend: {'token': 4}
+2019-07-22 17:19:54,992 - DEBUG: RX: 05d203000000
+2019-07-22 17:19:54,992 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 3}}
+2019-07-22 17:19:54,993 - INFO: {event: MeshTxComplete, data: {'token': 3}}
+2019-07-22 17:19:54,994 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d50400c4590001
+2019-07-22 17:19:54,995 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -43, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:19:54,995 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -43, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:19:55,001 - DEBUG: RX: 05d204000000
+2019-07-22 17:19:55,001 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 4}}
+2019-07-22 17:19:55,003 - INFO: {event: MeshTxComplete, data: {'token': 4}}
+2019-07-22 17:19:55,013 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d60400c4590000
+2019-07-22 17:19:55,013 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:19:55,013 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:20:20,973 - DEBUG: Sending opcode: c15900, data: 0104
+2019-07-22 17:20:21,013 - DEBUG: Sending opcode: c15900, data: 0005
+2019-07-22 17:20:21,036 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x04')
+2019-07-22 17:20:21,036 - DEBUG: TX: 10ab00000100070008000000c159000104
+2019-07-22 17:20:21,038 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x05')
+2019-07-22 17:20:21,038 - DEBUG: TX: 10ab00000100080008000000c159000005
+2019-07-22 17:20:21,042 - DEBUG: RX: 0784ab0005000000
+2019-07-22 17:20:21,042 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x05\x00\x00\x00')}}
+2019-07-22 17:20:21,043 - INFO: PacketSend: {'token': 5}
+2019-07-22 17:20:21,043 - DEBUG: RX: 0784ab0006000000
+2019-07-22 17:20:21,044 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x06\x00\x00\x00')}}
+2019-07-22 17:20:21,044 - INFO: PacketSend: {'token': 6}
+2019-07-22 17:20:21,046 - DEBUG: RX: 05d205000000
+2019-07-22 17:20:21,046 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 5}}
+2019-07-22 17:20:21,047 - INFO: {event: MeshTxComplete, data: {'token': 5}}
+2019-07-22 17:20:21,054 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2ce0400c4590001
+2019-07-22 17:20:21,057 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:20:21,058 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:20:21,073 - DEBUG: RX: 05d206000000
+2019-07-22 17:20:21,074 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 6}}
+2019-07-22 17:20:21,075 - INFO: {event: MeshTxComplete, data: {'token': 6}}
+2019-07-22 17:20:21,082 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2ce0400c4590000
+2019-07-22 17:20:21,082 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:20:21,082 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -50, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:20:44,575 - DEBUG: Sending opcode: c15900, data: 0106
+2019-07-22 17:20:44,612 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x06')
+2019-07-22 17:20:44,613 - DEBUG: TX: 10ab00000100070008000000c159000106
+2019-07-22 17:20:44,623 - DEBUG: RX: 0784ab0007000000
+2019-07-22 17:20:44,624 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x07\x00\x00\x00')}}
+2019-07-22 17:20:44,625 - INFO: PacketSend: {'token': 7}
+2019-07-22 17:20:44,626 - DEBUG: Sending opcode: c15900, data: 0007
+2019-07-22 17:20:44,626 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x07')
+2019-07-22 17:20:44,634 - DEBUG: TX: 10ab00000100080008000000c159000007
+2019-07-22 17:20:44,638 - DEBUG: RX: 05d207000000
+2019-07-22 17:20:44,640 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 7}}
+2019-07-22 17:20:44,642 - INFO: {event: MeshTxComplete, data: {'token': 7}}
+2019-07-22 17:20:44,644 - DEBUG: RX: 0784ab0008000000
+2019-07-22 17:20:44,644 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x08\x00\x00\x00')}}
+2019-07-22 17:20:44,645 - INFO: PacketSend: {'token': 8}
+2019-07-22 17:20:44,653 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d10400c4590001
+2019-07-22 17:20:44,653 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:20:44,653 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:20:44,656 - DEBUG: RX: 05d208000000
+2019-07-22 17:20:44,656 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 8}}
+2019-07-22 17:20:44,657 - INFO: {event: MeshTxComplete, data: {'token': 8}}
+2019-07-22 17:20:44,675 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d10400c4590000
+2019-07-22 17:20:44,676 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:20:44,677 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:21:04,308 - DEBUG: Sending opcode: c15900, data: 0108
+2019-07-22 17:21:04,318 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x08')
+2019-07-22 17:21:04,319 - DEBUG: TX: 10ab00000100070008000000c159000108
+2019-07-22 17:21:04,331 - DEBUG: Sending opcode: c15900, data: 0009
+2019-07-22 17:21:04,355 - DEBUG: RX: 0784ab0009000000
+2019-07-22 17:21:04,355 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\t\x00\x00\x00')}}
+2019-07-22 17:21:04,356 - INFO: PacketSend: {'token': 9}
+2019-07-22 17:21:04,357 - DEBUG: RX: 05d209000000
+2019-07-22 17:21:04,358 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 9}}
+2019-07-22 17:21:04,358 - INFO: {event: MeshTxComplete, data: {'token': 9}}
+2019-07-22 17:21:04,359 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\t')
+2019-07-22 17:21:04,360 - DEBUG: TX: 10ab00000100080008000000c159000009
+2019-07-22 17:21:04,370 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d10400c4590001
+2019-07-22 17:21:04,370 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:21:04,370 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:21:04,371 - DEBUG: RX: 0784ab000a000000
+2019-07-22 17:21:04,371 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\n\x00\x00\x00')}}
+2019-07-22 17:21:04,371 - INFO: PacketSend: {'token': 10}
+2019-07-22 17:21:04,384 - DEBUG: RX: 05d20a000000
+2019-07-22 17:21:04,384 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 10}}
+2019-07-22 17:21:04,384 - INFO: {event: MeshTxComplete, data: {'token': 10}}
+2019-07-22 17:21:04,392 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d50400c4590000
+2019-07-22 17:21:04,393 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -43, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:21:04,393 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -43, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:21:11,835 - DEBUG: Sending opcode: c15900, data: 010a
+2019-07-22 17:21:11,864 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\n')
+2019-07-22 17:21:11,865 - DEBUG: TX: 10ab00000100070008000000c15900010a
+2019-07-22 17:21:11,884 - DEBUG: Sending opcode: c15900, data: 000b
+2019-07-22 17:21:11,894 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x0b')
+2019-07-22 17:21:11,894 - DEBUG: TX: 10ab00000100080008000000c15900000b
+2019-07-22 17:21:11,895 - DEBUG: RX: 0784ab000b000000
+2019-07-22 17:21:11,909 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x0b\x00\x00\x00')}}
+2019-07-22 17:21:11,912 - INFO: PacketSend: {'token': 11}
+2019-07-22 17:21:11,912 - DEBUG: RX: 0784ab000c000000
+2019-07-22 17:21:11,912 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x0c\x00\x00\x00')}}
+2019-07-22 17:21:11,913 - INFO: PacketSend: {'token': 12}
+2019-07-22 17:21:11,913 - DEBUG: RX: 05d20b000000
+2019-07-22 17:21:11,914 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 11}}
+2019-07-22 17:21:11,914 - INFO: {event: MeshTxComplete, data: {'token': 11}}
+2019-07-22 17:21:11,941 - DEBUG: RX: 05d20c000000
+2019-07-22 17:21:11,942 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 12}}
+2019-07-22 17:21:11,943 - INFO: {event: MeshTxComplete, data: {'token': 12}}
+2019-07-22 17:21:11,958 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d70400c4590000
+2019-07-22 17:21:11,959 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -41, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:21:11,959 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -41, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:21:33,819 - DEBUG: Sending opcode: c15900, data: 010c
+2019-07-22 17:21:33,820 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x0c')
+2019-07-22 17:21:33,821 - DEBUG: TX: 10ab00000100070008000000c15900010c
+2019-07-22 17:21:33,849 - DEBUG: RX: 0784ab000d000000
+2019-07-22 17:21:33,850 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\r\x00\x00\x00')}}
+2019-07-22 17:21:33,852 - INFO: PacketSend: {'token': 13}
+2019-07-22 17:21:33,856 - DEBUG: RX: 05d20d000000
+2019-07-22 17:21:33,858 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 13}}
+2019-07-22 17:21:33,859 - INFO: {event: MeshTxComplete, data: {'token': 13}}
+2019-07-22 17:21:33,883 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d00400c4590001
+2019-07-22 17:21:33,884 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:21:33,884 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:21:33,886 - DEBUG: Sending opcode: c15900, data: 000d
+2019-07-22 17:21:33,894 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\r')
+2019-07-22 17:21:33,895 - DEBUG: TX: 10ab00000100080008000000c15900000d
+2019-07-22 17:21:33,902 - DEBUG: RX: 0784ab000e000000
+2019-07-22 17:21:33,903 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x0e\x00\x00\x00')}}
+2019-07-22 17:21:33,904 - INFO: PacketSend: {'token': 14}
+2019-07-22 17:21:33,914 - DEBUG: RX: 05d20e000000
+2019-07-22 17:21:33,914 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 14}}
+2019-07-22 17:21:33,915 - INFO: {event: MeshTxComplete, data: {'token': 14}}
+2019-07-22 17:21:33,918 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d60400c4590000
+2019-07-22 17:21:33,919 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:21:33,919 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:21:46,592 - DEBUG: Sending opcode: c15900, data: 010e
+2019-07-22 17:21:46,610 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x0e')
+2019-07-22 17:21:46,611 - DEBUG: TX: 10ab00000100070008000000c15900010e
+2019-07-22 17:21:46,639 - DEBUG: RX: 0784ab000f000000
+2019-07-22 17:21:46,639 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x0f\x00\x00\x00')}}
+2019-07-22 17:21:46,639 - INFO: PacketSend: {'token': 15}
+2019-07-22 17:21:46,639 - DEBUG: RX: 05d20f000000
+2019-07-22 17:21:46,640 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 15}}
+2019-07-22 17:21:46,640 - INFO: {event: MeshTxComplete, data: {'token': 15}}
+2019-07-22 17:21:46,642 - DEBUG: Sending opcode: c15900, data: 000f
+2019-07-22 17:21:46,662 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d20400c4590001
+2019-07-22 17:21:46,662 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:21:46,662 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:21:46,670 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x0f')
+2019-07-22 17:21:46,670 - DEBUG: TX: 10ab00000100080008000000c15900000f
+2019-07-22 17:21:46,675 - DEBUG: RX: 0784ab0010000000
+2019-07-22 17:21:46,676 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x10\x00\x00\x00')}}
+2019-07-22 17:21:46,677 - INFO: PacketSend: {'token': 16}
+2019-07-22 17:21:46,692 - DEBUG: RX: 05d210000000
+2019-07-22 17:21:46,692 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 16}}
+2019-07-22 17:21:46,692 - INFO: {event: MeshTxComplete, data: {'token': 16}}
+2019-07-22 17:21:46,708 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d20400c4590000
+2019-07-22 17:21:46,708 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:21:46,709 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -46, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:21:55,902 - DEBUG: Sending opcode: c15900, data: 0110
+2019-07-22 17:21:55,905 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x10')
+2019-07-22 17:21:55,905 - DEBUG: TX: 10ab00000100070008000000c159000110
+2019-07-22 17:21:55,934 - DEBUG: Sending opcode: c15900, data: 0011
+2019-07-22 17:21:55,965 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x11')
+2019-07-22 17:21:55,965 - DEBUG: TX: 10ab00000100080008000000c159000011
+2019-07-22 17:21:55,973 - DEBUG: RX: 0784ab0011000000
+2019-07-22 17:21:55,973 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x11\x00\x00\x00')}}
+2019-07-22 17:21:55,973 - INFO: PacketSend: {'token': 17}
+2019-07-22 17:21:55,975 - DEBUG: RX: 05d211000000
+2019-07-22 17:21:55,976 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 17}}
+2019-07-22 17:21:55,976 - INFO: {event: MeshTxComplete, data: {'token': 17}}
+2019-07-22 17:21:55,977 - DEBUG: RX: 0784ab0012000000
+2019-07-22 17:21:55,977 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x12\x00\x00\x00')}}
+2019-07-22 17:21:55,977 - INFO: PacketSend: {'token': 18}
+2019-07-22 17:21:55,988 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d00400c4590001
+2019-07-22 17:21:55,990 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:21:55,994 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:21:55,997 - DEBUG: RX: 05d212000000
+2019-07-22 17:21:55,997 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 18}}
+2019-07-22 17:21:55,997 - INFO: {event: MeshTxComplete, data: {'token': 18}}
+2019-07-22 17:21:56,014 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d00400c4590000
+2019-07-22 17:21:56,014 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:21:56,014 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:22:12,482 - DEBUG: Sending opcode: c15900, data: 0112
+2019-07-22 17:22:12,513 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x12')
+2019-07-22 17:22:12,514 - DEBUG: TX: 10ab00000100070008000000c159000112
+2019-07-22 17:22:12,527 - DEBUG: RX: 0784ab0013000000
+2019-07-22 17:22:12,528 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x13\x00\x00\x00')}}
+2019-07-22 17:22:12,528 - INFO: PacketSend: {'token': 19}
+2019-07-22 17:22:12,529 - DEBUG: RX: 05d213000000
+2019-07-22 17:22:12,529 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 19}}
+2019-07-22 17:22:12,529 - INFO: {event: MeshTxComplete, data: {'token': 19}}
+2019-07-22 17:22:12,530 - DEBUG: Sending opcode: c15900, data: 0013
+2019-07-22 17:22:12,545 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x13')
+2019-07-22 17:22:12,545 - DEBUG: TX: 10ab00000100080008000000c159000013
+2019-07-22 17:22:12,546 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d60400c4590001
+2019-07-22 17:22:12,546 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:22:12,547 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:22:12,549 - DEBUG: RX: 0784ab0014000000
+2019-07-22 17:22:12,551 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x14\x00\x00\x00')}}
+2019-07-22 17:22:12,551 - INFO: PacketSend: {'token': 20}
+2019-07-22 17:22:12,561 - DEBUG: RX: 05d214000000
+2019-07-22 17:22:12,564 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 20}}
+2019-07-22 17:22:12,566 - INFO: {event: MeshTxComplete, data: {'token': 20}}
+2019-07-22 17:22:12,570 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d60400c4590000
+2019-07-22 17:22:12,571 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:22:12,571 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:22:24,076 - DEBUG: Sending opcode: c15900, data: 0114
+2019-07-22 17:22:24,080 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x14')
+2019-07-22 17:22:24,080 - DEBUG: TX: 10ab00000100070008000000c159000114
+2019-07-22 17:22:24,126 - DEBUG: RX: 0784ab0015000000
+2019-07-22 17:22:24,127 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x15\x00\x00\x00')}}
+2019-07-22 17:22:24,129 - INFO: PacketSend: {'token': 21}
+2019-07-22 17:22:24,132 - DEBUG: RX: 05d215000000
+2019-07-22 17:22:24,132 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 21}}
+2019-07-22 17:22:24,132 - INFO: {event: MeshTxComplete, data: {'token': 21}}
+2019-07-22 17:22:24,133 - DEBUG: Sending opcode: c15900, data: 0015
+2019-07-22 17:22:24,133 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x15')
+2019-07-22 17:22:24,134 - DEBUG: TX: 10ab00000100080008000000c159000015
+2019-07-22 17:22:24,141 - DEBUG: RX: 0784ab0016000000
+2019-07-22 17:22:24,142 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x16\x00\x00\x00')}}
+2019-07-22 17:22:24,142 - INFO: PacketSend: {'token': 22}
+2019-07-22 17:22:24,144 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d60400c4590001
+2019-07-22 17:22:24,145 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:22:24,146 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:22:24,147 - DEBUG: RX: 05d216000000
+2019-07-22 17:22:24,148 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 22}}
+2019-07-22 17:22:24,148 - INFO: {event: MeshTxComplete, data: {'token': 22}}
+2019-07-22 17:22:24,164 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d60400c4590000
+2019-07-22 17:22:24,165 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:22:24,165 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:23:06,830 - DEBUG: Sending opcode: c15900, data: 0116
+2019-07-22 17:23:06,848 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x16')
+2019-07-22 17:23:06,848 - DEBUG: TX: 10ab00000100070008000000c159000116
+2019-07-22 17:23:06,859 - DEBUG: RX: 0784ab0017000000
+2019-07-22 17:23:06,859 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x17\x00\x00\x00')}}
+2019-07-22 17:23:06,859 - INFO: PacketSend: {'token': 23}
+2019-07-22 17:23:06,860 - DEBUG: RX: 05d217000000
+2019-07-22 17:23:06,860 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 23}}
+2019-07-22 17:23:06,860 - INFO: {event: MeshTxComplete, data: {'token': 23}}
+2019-07-22 17:23:06,861 - DEBUG: Sending opcode: c15900, data: 0017
+2019-07-22 17:23:06,877 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d60400c4590001
+2019-07-22 17:23:06,878 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:23:06,878 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:23:06,879 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x17')
+2019-07-22 17:23:06,879 - DEBUG: TX: 10ab00000100080008000000c159000017
+2019-07-22 17:23:06,884 - DEBUG: RX: 0784ab0018000000
+2019-07-22 17:23:06,885 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x18\x00\x00\x00')}}
+2019-07-22 17:23:06,885 - INFO: PacketSend: {'token': 24}
+2019-07-22 17:23:06,911 - DEBUG: RX: 05d218000000
+2019-07-22 17:23:06,914 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 24}}
+2019-07-22 17:23:06,914 - INFO: {event: MeshTxComplete, data: {'token': 24}}
+2019-07-22 17:23:06,915 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d60400c4590000
+2019-07-22 17:23:06,915 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:23:06,915 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -42, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:23:10,841 - DEBUG: Sending opcode: c15900, data: 0118
+2019-07-22 17:23:10,849 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x18')
+2019-07-22 17:23:10,850 - DEBUG: TX: 10ab00000100070008000000c159000118
+2019-07-22 17:23:10,873 - DEBUG: RX: 0784ab0019000000
+2019-07-22 17:23:10,874 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x19\x00\x00\x00')}}
+2019-07-22 17:23:10,876 - INFO: PacketSend: {'token': 25}
+2019-07-22 17:23:10,878 - DEBUG: Sending opcode: c15900, data: 0019
+2019-07-22 17:23:10,881 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x19')
+2019-07-22 17:23:10,881 - DEBUG: TX: 10ab00000100080008000000c159000019
+2019-07-22 17:23:10,882 - DEBUG: RX: 05d219000000
+2019-07-22 17:23:10,882 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 25}}
+2019-07-22 17:23:10,882 - INFO: {event: MeshTxComplete, data: {'token': 25}}
+2019-07-22 17:23:10,883 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d40400c4590001
+2019-07-22 17:23:10,883 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:23:10,884 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:23:10,884 - DEBUG: RX: 0784ab001a000000
+2019-07-22 17:23:10,885 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1a\x00\x00\x00')}}
+2019-07-22 17:23:10,885 - INFO: PacketSend: {'token': 26}
+2019-07-22 17:23:10,899 - DEBUG: RX: 05d21a000000
+2019-07-22 17:23:10,899 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 26}}
+2019-07-22 17:23:10,900 - INFO: {event: MeshTxComplete, data: {'token': 26}}
+2019-07-22 17:24:05,544 - DEBUG: Sending opcode: c15900, data: 011a
+2019-07-22 17:24:05,548 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x1a')
+2019-07-22 17:24:05,548 - DEBUG: TX: 10ab00000100070008000000c15900011a
+2019-07-22 17:24:05,563 - DEBUG: Sending opcode: c15900, data: 001b
+2019-07-22 17:24:05,570 - DEBUG: RX: 0784ab001b000000
+2019-07-22 17:24:05,603 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1b\x00\x00\x00')}}
+2019-07-22 17:24:05,607 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x1b')
+2019-07-22 17:24:05,615 - DEBUG: TX: 10ab00000100080008000000c15900001b
+2019-07-22 17:24:05,613 - INFO: PacketSend: {'token': 27}
+2019-07-22 17:24:05,615 - DEBUG: RX: 05d21b000000
+2019-07-22 17:24:05,615 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 27}}
+2019-07-22 17:24:05,616 - INFO: {event: MeshTxComplete, data: {'token': 27}}
+2019-07-22 17:24:05,616 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d10400c4590001
+2019-07-22 17:24:05,616 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:24:05,617 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:24:05,618 - DEBUG: RX: 0784ab001c000000
+2019-07-22 17:24:05,619 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1c\x00\x00\x00')}}
+2019-07-22 17:24:05,619 - INFO: PacketSend: {'token': 28}
+2019-07-22 17:24:05,637 - DEBUG: RX: 05d21c000000
+2019-07-22 17:24:05,637 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 28}}
+2019-07-22 17:24:05,638 - INFO: {event: MeshTxComplete, data: {'token': 28}}
+2019-07-22 17:24:05,647 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d10400c4590000
+2019-07-22 17:24:05,648 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:24:05,648 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:24:43,917 - DEBUG: Sending opcode: c15900, data: 011c
+2019-07-22 17:24:43,927 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x1c')
+2019-07-22 17:24:43,938 - DEBUG: TX: 10ab00000100070008000000c15900011c
+2019-07-22 17:24:43,980 - DEBUG: Sending opcode: c15900, data: 001d
+2019-07-22 17:24:43,981 - DEBUG: RX: 0784ab001d000000
+2019-07-22 17:24:43,996 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1d\x00\x00\x00')}}
+2019-07-22 17:24:43,981 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x1d')
+2019-07-22 17:24:43,997 - INFO: PacketSend: {'token': 29}
+2019-07-22 17:24:43,997 - DEBUG: TX: 10ab00000100080008000000c15900001d
+2019-07-22 17:24:44,029 - DEBUG: RX: 05d21d000000
+2019-07-22 17:24:44,029 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 29}}
+2019-07-22 17:24:44,030 - INFO: {event: MeshTxComplete, data: {'token': 29}}
+2019-07-22 17:24:44,039 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d00400c4590001
+2019-07-22 17:24:44,042 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:24:44,042 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -48, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:24:44,042 - DEBUG: RX: 0784ab001e000000
+2019-07-22 17:24:44,043 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1e\x00\x00\x00')}}
+2019-07-22 17:24:44,043 - INFO: PacketSend: {'token': 30}
+2019-07-22 17:24:44,048 - DEBUG: RX: 05d21e000000
+2019-07-22 17:24:44,048 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 30}}
+2019-07-22 17:24:44,049 - INFO: {event: MeshTxComplete, data: {'token': 30}}
+2019-07-22 17:24:44,074 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2cf0400c4590000
+2019-07-22 17:24:44,074 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:24:44,074 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -49, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:26:14,451 - DEBUG: Sending opcode: c15900, data: 011e
+2019-07-22 17:26:14,466 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01\x1e')
+2019-07-22 17:26:14,494 - DEBUG: TX: 10ab00000100070008000000c15900011e
+2019-07-22 17:26:14,482 - DEBUG: Sending opcode: c15900, data: 001f
+2019-07-22 17:26:14,505 - DEBUG: RX: 0784ab001f000000
+2019-07-22 17:26:14,516 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x1f\x00\x00\x00')}}
+2019-07-22 17:26:14,519 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00\x1f')
+2019-07-22 17:26:14,519 - DEBUG: TX: 10ab00000100080008000000c15900001f
+2019-07-22 17:26:14,516 - INFO: PacketSend: {'token': 31}
+2019-07-22 17:26:14,521 - DEBUG: RX: 05d21f000000
+2019-07-22 17:26:14,522 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 31}}
+2019-07-22 17:26:14,522 - INFO: {event: MeshTxComplete, data: {'token': 31}}
+2019-07-22 17:26:14,524 - DEBUG: RX: 0784ab0020000000
+2019-07-22 17:26:14,525 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b' \x00\x00\x00')}}
+2019-07-22 17:26:14,527 - INFO: PacketSend: {'token': 32}
+2019-07-22 17:26:14,531 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d10400c4590001
+2019-07-22 17:26:14,532 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:26:14,539 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:26:14,544 - DEBUG: RX: 05d220000000
+2019-07-22 17:26:14,544 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 32}}
+2019-07-22 17:26:14,544 - INFO: {event: MeshTxComplete, data: {'token': 32}}
+2019-07-22 17:26:14,552 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d10400c4590000
+2019-07-22 17:26:14,553 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:26:14,553 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -47, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:27:46,040 - DEBUG: Sending opcode: c15900, data: 0120
+2019-07-22 17:27:46,053 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01 ')
+2019-07-22 17:27:46,054 - DEBUG: TX: 10ab00000100070008000000c159000120
+2019-07-22 17:27:46,067 - DEBUG: Sending opcode: c15900, data: 0021
+2019-07-22 17:27:46,076 - DEBUG: RX: 0784ab0021000000
+2019-07-22 17:27:46,076 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'!\x00\x00\x00')}}
+2019-07-22 17:27:46,077 - INFO: PacketSend: {'token': 33}
+2019-07-22 17:27:46,117 - DEBUG: RX: 05d221000000
+2019-07-22 17:27:46,118 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 33}}
+2019-07-22 17:27:46,129 - INFO: {event: MeshTxComplete, data: {'token': 33}}
+2019-07-22 17:27:46,130 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d40400c4590001
+2019-07-22 17:27:46,130 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:27:46,130 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:27:46,132 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00!')
+2019-07-22 17:27:46,132 - DEBUG: TX: 10ab00000100080008000000c159000021
+2019-07-22 17:27:46,138 - DEBUG: RX: 0784ab0022000000
+2019-07-22 17:27:46,138 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'"\x00\x00\x00')}}
+2019-07-22 17:27:46,138 - INFO: PacketSend: {'token': 34}
+2019-07-22 17:27:46,139 - DEBUG: RX: 05d222000000
+2019-07-22 17:27:46,139 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 34}}
+2019-07-22 17:27:46,139 - INFO: {event: MeshTxComplete, data: {'token': 34}}
+2019-07-22 17:27:46,155 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d40400c4590000
+2019-07-22 17:27:46,156 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:27:46,157 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:28:49,778 - DEBUG: Sending opcode: c15900, data: 0122
+2019-07-22 17:28:49,781 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01"')
+2019-07-22 17:28:49,781 - DEBUG: TX: 10ab00000100070008000000c159000122
+2019-07-22 17:28:49,808 - DEBUG: Sending opcode: c15900, data: 0023
+2019-07-22 17:28:49,824 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00#')
+2019-07-22 17:28:49,825 - DEBUG: TX: 10ab00000100080008000000c159000023
+2019-07-22 17:28:49,827 - DEBUG: RX: 0784ab0023000000
+2019-07-22 17:28:49,827 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'#\x00\x00\x00')}}
+2019-07-22 17:28:49,828 - INFO: PacketSend: {'token': 35}
+2019-07-22 17:28:49,829 - DEBUG: RX: 05d223000000
+2019-07-22 17:28:49,829 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 35}}
+2019-07-22 17:28:49,829 - INFO: {event: MeshTxComplete, data: {'token': 35}}
+2019-07-22 17:28:49,831 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d30400c4590001
+2019-07-22 17:28:49,831 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:28:49,831 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:28:49,832 - DEBUG: RX: 0784ab0024000000
+2019-07-22 17:28:49,832 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'$\x00\x00\x00')}}
+2019-07-22 17:28:49,832 - INFO: PacketSend: {'token': 36}
+2019-07-22 17:28:49,855 - DEBUG: RX: 05d224000000
+2019-07-22 17:28:49,855 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 36}}
+2019-07-22 17:28:49,856 - INFO: {event: MeshTxComplete, data: {'token': 36}}
+2019-07-22 17:28:49,857 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d30400c4590000
+2019-07-22 17:28:49,857 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:28:49,857 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -45, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
+2019-07-22 17:29:55,018 - DEBUG: Sending opcode: c15900, data: 0124
+2019-07-22 17:29:55,024 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x07\x00\x08\x00\x00\x00\xc1Y\x00\x01$')
+2019-07-22 17:29:55,024 - DEBUG: TX: 10ab00000100070008000000c159000124
+2019-07-22 17:29:55,059 - DEBUG: RX: 0784ab0025000000
+2019-07-22 17:29:55,060 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'%\x00\x00\x00')}}
+2019-07-22 17:29:55,064 - INFO: PacketSend: {'token': 37}
+2019-07-22 17:29:55,083 - DEBUG: RX: 05d225000000
+2019-07-22 17:29:55,083 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 37}}
+2019-07-22 17:29:55,083 - INFO: {event: MeshTxComplete, data: {'token': 37}}
+2019-07-22 17:29:55,084 - DEBUG: RX: 18d016000100000000007f01c8639509c2c2d40400c4590001
+2019-07-22 17:29:55,084 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x01')}}
+2019-07-22 17:29:55,084 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 22, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x01')}}
+2019-07-22 17:29:55,104 - DEBUG: Sending opcode: c15900, data: 0025
+2019-07-22 17:29:55,175 - DEBUG: Writing: 171 bytearray(b'\x00\x00\x01\x00\x08\x00\x08\x00\x00\x00\xc1Y\x00\x00%')
+2019-07-22 17:29:55,175 - DEBUG: TX: 10ab00000100080008000000c159000025
+2019-07-22 17:29:55,187 - DEBUG: RX: 0784ab0026000000
+2019-07-22 17:29:55,188 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'&\x00\x00\x00')}}
+2019-07-22 17:29:55,189 - INFO: PacketSend: {'token': 38}
+2019-07-22 17:29:55,203 - DEBUG: RX: 05d226000000
+2019-07-22 17:29:55,204 - DEBUG: parsed_packet {event: MeshTxComplete, data: {'token': 38}}
+2019-07-22 17:29:55,204 - INFO: {event: MeshTxComplete, data: {'token': 38}}
+2019-07-22 17:29:55,212 - DEBUG: RX: 18d017000100000000007f01c8639509c2c2d40400c4590000
+2019-07-22 17:29:55,213 - DEBUG: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4Y\x00\x00')}}
+2019-07-22 17:29:55,213 - INFO: {event: MeshMessageReceivedUnicast, data: {'src': 23, 'dst': 1, 'appkey_handle': 0, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xc8c\x95\t\xc2\xc2'), 'rssi': -44, 'actual_length': 4, 'data': bytearray(b'\xc4\x00Y\x00')}}
