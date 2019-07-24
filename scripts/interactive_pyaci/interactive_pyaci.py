@@ -187,7 +187,6 @@ class Mesh(object):
             self.add_models()
 
         # TODO add dummy func to clear steup..?
-        self.message_que.append(print)
         self.send_next_message()
         
     def load_address_handles(self):
@@ -229,18 +228,24 @@ class Mesh(object):
         self.db.models = []
 
         for model in db_models:
+
+            tid = model["tid"]
                 
             if model["model"] == "GenericOnOffClient":
                 self.addGenericClientModel()
-                self.gc.__tid = model["tid"]
+                setattr(self.gc, "_GenericOnOffClient__tid", tid)
+                # self.gc.__tid = model["tid"]
             
             if model["model"] == "GenericOnOffServer":
                 self.addGenericServerModel()
-                self.gs.__tid = model["tid"]
+                setattr(self.gs, "_GenericOnOffServer__tid", tid)
+                # self.gs.__tid = model["tid"]
                 
             if model["model"] == "SimpleOnOffClient":
                 self.addSimpleClientModel()
-                self.sc.__tid = model["tid"]
+                
+                setattr(self.sc, "_SimpleOnOffClient__tid", tid)
+                # self.sc.__tid = model["tid"]
 
     def add_models(self):
         self.addGenericClientModel()
@@ -391,16 +396,21 @@ class Mesh(object):
             self.logger.error("Error storing device handle: {}".format(e))
 
     """""""""""""""""""""""""""""""""""""""""""""
-     
+    MESH EVENTS
     """""""""""""""""""""""""""""""""""""""""""""
 
     def addAppKeysComplete(self, uuid):
+        self.send_next_message()
         if hasattr(self, "onAddAppKeysComplete"):
             self.onAddAppKeysComplete(uuid)
 
     def setEventGPIO(self, value, pin, uuid):
         if hasattr(self, "onSetEventGPIO"):
             self.onSetEventGPIO(value, pin, uuid)
+
+    def statusEventGPIO(self, value, pin, uuid):
+        if hasattr(self, "onStatusEventGPIO"):
+            self.onStatusEventGPIO(value, pin, uuid)
 
     """""""""""""""""""""""""""""""""""""""""""""
     PYACI CMD HANDLER
@@ -559,6 +569,15 @@ class Mesh(object):
         self.gc.set(value)
         self.db.store()
 
+    def getGPIO(self, pin, uuid):
+        address_handle = self.get_address_handle(pin, uuid)
+        if address_handle is None:
+            self.logger.error("Address handle not valid")
+            return
+
+        self.gc.publish_set(key_handle=0, address_handle=address_handle)
+        self.gc.get()
+
     def setName(self, name, uuid):
         node = self.uuid_to_node_index(uuid)
         self.db.nodes[node].name = name
@@ -569,10 +588,15 @@ class Mesh(object):
         self.setEventGPIO(value, self.element_index_to_pin(element), uuid)
         self.db.store()
 
+    def genericOnOffClientStatusEvent(self, value, src):
+        node, element = self.src_address_to_node_element_index(src)
+        uuid = self.db.nodes[node].UUID
+        self.statusEventGPIO(value, self.element_index_to_pin(element), uuid)
+
     """  INIT MODELS """
 
     def addGenericClientModel(self):
-        self.gc = GenericOnOffClient()
+        self.gc = GenericOnOffClient(self.genericOnOffClientStatusEvent, self.db)
         self.iaci.model_add(self.gc)
         self.db.models.append(self.gc)
     

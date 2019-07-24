@@ -275,7 +275,7 @@ if __name__ == '__main__':
                         dest="log_level",
                         type=int,
                         required=False,
-                        default=4,
+                        default=3,
                         help=("Set default logging level: "
                               + "0=Critical Only, 1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
     options = parser.parse_args()

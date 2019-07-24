@@ -40,12 +40,11 @@ cc.model_publication_set(db.appKeys[0].key, mt.ModelId(0x1001), mt.Publish(db.gr
 
 from interactive_pyaci import Mesh
 m = Mesh(d[0])
+uuid = "9db77a0526b8734988639509c242d107"
 
 uuids = ["e07f87c0e83ff2418b6e5fd50b58c2cd", "9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c" ,"696fd66b16c91d4ebcc34a36f44920f2"]
 
 uuid = uuids[3]
-
-uuid = "9db77a0526b8734988639509c242d107"
 
 m.provisionScanStart()
 m.provision(uuid, "device")
@@ -58,9 +57,11 @@ m.configureGPIO(False, 18, uuid)
 m.setGPIO(True, 18, uuid)
 m.setGPIO(False, 18, uuid)
 
-
 <!-- set as input -->
-m.configureGPIO(True, 17, uuid)
+m.configureGPIO(False, 18, uuid)
+
+<!-- get -->
+m.getGPIO(18, uuid)
 
 <!-- m.addModels() -->
 m.genericClientSet(True, 0)
@@ -74,10 +75,14 @@ m.addGenericServerModel()
 m.addGenericClientModel()
 m.addSimpleServer()
 
+m.p.scan_stop()
+
 # 2 is 12
 m.genericClientSet(True, 0, 2)
 m.simpleServerSet(True, 0, 2)
 
-{"op": "ConfigureGPIO", "data": {"value": "0", "uuid": "9db77a0526b8734988639509c242d107", "pin": 12}}
+{"op": "ConfigureGPIO", "data": {"asInput": 0, "uuid": "e07f87c0e83ff2418b6e5fd50b58c2cd", "pin": 18}}
 
-{"op": "SetGPIO", "data": {"value": "1", "uuid": "9db77a0526b8734988639509c242d107", "pin": 12}}
+{"op": "SetGPIO", "data": {"value": 1, "uuid": "e07f87c0e83ff2418b6e5fd50b58c2cd", "pin": 18}}
+
+{"op": "GetGPIO", "data": {"value": 1, "uuid": "e07f87c0e83ff2418b6e5fd50b58c2cd", "pin": 18}}

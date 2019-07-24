@@ -13,7 +13,7 @@ from argparse import ArgumentParser
 
 from aci.aci_uart import Uart
 
-from js_pyaci_interface import Pyaci
+from node_pyaci_interface import Pyaci
 from interactive_pyaci import Mesh, Interactive
 
 LOG_DIR = os.path.join(os.path.dirname(sys.argv[0]), "log")

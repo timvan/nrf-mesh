@@ -1,0 +1,16 @@
+import threading
+
+def hello(i):
+	print(i)
+
+def cancel():
+	print("cancel thread")
+	t1.cancel()
+	t1 = threading.Timer(2, hello, args=("Thread timedouti again",))
+	t1.start()
+
+t1 = threading.Timer(2, hello, args=("Thread timedout",))
+t2 = threading.Timer(1, cancel)
+
+t1.start()
+t2.start()

@@ -217,6 +217,9 @@ static void gpio_init_input(uint8_t pin_number)
     in_config.pull = NRF_GPIO_PIN_PULLUP;
     ERROR_CHECK(nrfx_gpiote_in_init(pin_number, &in_config, gpiote_input_handler));
     nrfx_gpiote_in_event_enable(pin_number, true);
+
+    uint8_t element_index = pin_to_index(pin_number);
+    u_apps[element_index].pin_purpose = P_INPUT;
 }
 
 static void gpio_init_output(uint8_t pin_number)
@@ -225,6 +228,9 @@ static void gpio_init_output(uint8_t pin_number)
     nrfx_gpiote_in_uninit(pin_number);
     nrfx_gpiote_out_config_t out_config = NRFX_GPIOTE_CONFIG_OUT_SIMPLE(false); // << TODO WHAT IS THIS TRUE
     ERROR_CHECK(nrfx_gpiote_out_init(pin_number, &out_config));
+
+    uint8_t element_index = pin_to_index(pin_number);
+    u_apps[element_index].pin_purpose = P_OUTPUT;
 }
 
 static void unprovision_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
@@ -378,8 +384,16 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff)
 {
     int pin_number = p_server->pin_number;
-    *p_present_onoff = nrf_gpio_pin_out_read(pin_number);
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GET GPIO %d is [%d]\n", pin_number, *p_present_onoff)
+    uint8_t element_index = pin_to_index(pin_number);
+
+    if(u_apps[element_index].pin_purpose == P_INPUT){
+        *p_present_onoff = nrf_gpio_pin_read(pin_number);
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GET GPIO %d is nrf_gpio_pin_read [%d]\n", pin_number, *p_present_onoff);
+        
+    } else {
+        *p_present_onoff = nrf_gpio_pin_out_read(pin_number);
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Server - GET GPIO %d is nrf_gpio_pin_out_read [%d]\n", pin_number, *p_present_onoff)
+    }
 }
 
 /***************************************************/

@@ -32,16 +32,27 @@ from models.common import TransitionTime
 import struct
 import json
 
+import threading
+
 class GenericOnOffClient(Model):
     GENERIC_ON_OFF_SET = Opcode(0x8202, None, "Generic OnOff Set")
     GENERIC_ON_OFF_SET_UNACKNOWLEDGED = Opcode(0x8203, None, "Generic OnOff Set Unacknowledged")
     GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
 
-    def __init__(self):
+    ACK_TIMER_TIMEOUT = 2
+    RETRIES = 2
+
+    def __init__(self, generic_on_off_client_status_cb=None, db=None):
+        self.db = db
         self.opcodes = [
             (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_status_handler)]
         self.__tid = 0
+
+        self.__generic_on_off_client_status_cb = generic_on_off_client_status_cb
+
+        self.timers = {}
+
         super(GenericOnOffClient, self).__init__(self.opcodes)
 
     def set(self, value, transition_time_ms=0, delay_ms=0, ack=True):
@@ -53,11 +64,30 @@ class GenericOnOffClient(Model):
 
         if ack:
             self.send(self.GENERIC_ON_OFF_SET, message)
+            
+            if self.address_handle not in self.timers:
+                self.timers[self.address_handle] = {"attempts": 0}
+            
+            self.timers[self.address_handle]["timer"] = threading.Timer(self.ACK_TIMER_TIMEOUT, self.set_ack_failed, args=(value, self.address_handle,))
+            self.timers[self.address_handle]["timer"].start()
+
         else:
             self.send(self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, message)
 
+    def set_ack_failed(self, value, address_handle):
+
+        if(self.timers[address_handle]["attempts"] < self.RETRIES):
+            self.publish_set(0, address_handle)
+            self.set(value)
+            self.timers[address_handle]["attempts"] += 1
+
+        else:
+            self.timers[address_handle]["attempts"] = 0
+            self.logger.info("Set ACK {} Failed".format(address_handle))
+
     def get(self):
         self.send(self.GENERIC_ON_OFF_GET)
+
 
     @property
     def _tid(self):
@@ -68,14 +98,29 @@ class GenericOnOffClient(Model):
         return tid
 
     def __generic_on_off_status_handler(self, opcode, message):
-        logstr = "Present OnOff: " + ("on" if message.data[0] > 0 else "off")
-        if len(message.data) > 1:
-            logstr += " Target OnOff: " + ("on" if message.data[1] > 0 else "off")
+        value = int(message.data.hex()[1])
+        src = message.meta["src"]
 
-        if len(message.data) == 3:
-            logstr += " Remaining time: %d ms" % (TransitionTime.decode(message.data[2]))
+        logstr = "Status Present OnOff: " + ("on" if value > 0 else "off")
+        # Propreitary code - not neccesarily used
+        # if len(message.data) > 1:
+        #     logstr += "Status Target OnOff: " + ("on" if message.data[1] > 0 else "off")
+
+        # if len(message.data) == 3:
+        #     logstr += "Status Remaining time: %d ms" % (TransitionTime.decode(message.data[2]))
+
+        # stop timer..
+        address_handle = self.db.find_address_handle(src)
+        if(hasattr(self.timers[address_handle]["timer"], "cancel")):
+            self.timers[address_handle]["timer"].cancel()
+            self.timers[address_handle]["attempts"] = 0
 
         self.logger.info(logstr)
+
+        try:
+            self.__generic_on_off_client_status_cb(value, src)
+        except:
+            self.logger.error("Failed trying generic onoff client status callback: ", self.__generic_on_off_client_status_cb)
 
     
     def __str__(self):
@@ -90,13 +135,13 @@ class GenericOnOffServer(Model):
     GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
     
-    def __init__(self, generic_on_off_server_set_unack_cb=None, db=None):
+    def __init__(self, generic_on_off_server_set_cb=None, db=None):
         self.opcodes = [
             (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_set_event_handler),
             (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_set_unack_event_handler),
             (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_get_event_handler)]
         self.__tid = 0
-        self.__generic_on_off_server_set_unack_cb = generic_on_off_server_set_unack_cb
+        self.__generic_on_off_server_set_cb = generic_on_off_server_set_cb
         self.db = db
 
         super(GenericOnOffServer, self).__init__(self.opcodes)
@@ -118,6 +163,9 @@ class GenericOnOffServer(Model):
         src = message.meta["src"]
         appkey_handle = message.meta["appkey_handle"]
 
+        logstr = " Set ack OnOff: " + ("on" if value > 0 else "off")
+        self.logger.info(logstr)
+
         # SEND STATUS RESPONSE
         address_handle = self.db.find_address_handle(src)
         self.publish_set(appkey_handle, address_handle)
@@ -125,18 +173,21 @@ class GenericOnOffServer(Model):
 
         # DO ACTION
         try:
-            self.__generic_on_off_server_set_unack_cb(value, src)
+            self.__generic_on_off_server_set_cb(value, src)
         except:
             self.logger.error("Failed trying generic on off server set callback: ", self.__generic_on_off_server_set_unack_cb)
 
 
     def __generic_on_off_server_set_unack_event_handler(self, opcode, message):
         # UNPACK MESSAGE
-        onoff = int(message.data.hex()[1])
+        value = int(message.data.hex()[1])
         src = message.meta["src"]
+        
+        logstr = " Set unack OnOff: " + ("on" if value > 0 else "off")
+        self.logger.info(logstr)
 
         try:
-            self.__generic_on_off_server_set_unack_cb(onoff, src)
+            self.__generic_on_off_server_set_cb(value, src)
         except:
             self.logger.error("Failed trying generic on off server set unack callback: ", self.__generic_on_off_server_set_unack_cb)
 

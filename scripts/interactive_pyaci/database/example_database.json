@@ -165,13 +165,13 @@
     {
       "device_address": 16,
       "devkey_handle": 8,
-      "key": "436cab18f496a9f6201c956703498930",
+      "key": "d8a991050a0cf2fc718d18271b38b89b",
       "subnet_handle": 0
     },
     {
       "device_address": 30,
       "devkey_handle": 9,
-      "key": "914b0142ca5c340732312eaac654a4ce",
+      "key": "06393e4d3459fcc1aa2042264d7b1473",
       "subnet_handle": 0
     }
   ],
@@ -189,7 +189,7 @@
   "models": [
     {
       "model": "GenericOnOffClient",
-      "tid": 1
+      "tid": 138
     },
     {
       "model": "GenericOnOffServer",
@@ -197,7 +197,7 @@
     },
     {
       "model": "SimpleOnOffClient",
-      "tid": 40
+      "tid": 46
     }
   ],
   "netKeys": [
@@ -211,11 +211,501 @@
   ],
   "nodes": [
     {
+      "UUID": "e07f87c0e83ff2418b6e5fd50b58c2cd",
+      "cid": "0059",
+      "configComplete": false,
+      "crpl": "0028",
+      "deviceKey": "d8a991050a0cf2fc718d18271b38b89b",
+      "elements": [
+        {
+          "index": 0,
+          "location": "0000",
+          "models": [
+            {
+              "modelId": "0000"
+            },
+            {
+              "modelId": "0002"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "location": "0000",
+          "models": [
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1000"
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "1001",
+              "publish": {
+                "address": 49153,
+                "credentials": 0,
+                "index": 0,
+                "period": 0,
+                "retransmit": {
+                  "count": 0,
+                  "interval": 50
+                },
+                "ttl": 1
+              }
+            },
+            {
+              "bind": [
+                0
+              ],
+              "modelId": "00590000"
+            }
+          ]
+        }
+      ],
+      "features": {
+        "friend": 2,
+        "lowPower": 2,
+        "proxy": 0,
+        "relay": 0
+      },
+      "name": "Dev2",
+      "netKeys": [
+        0
+      ],
+      "pid": "0000",
+      "security": "low",
+      "unicastAddress": 16,
+      "vid": "0000"
+    },
+    {
       "UUID": "9db77a0526b8734988639509c242d107",
       "cid": "0059",
       "configComplete": false,
       "crpl": "0028",
-      "deviceKey": "436cab18f496a9f6201c956703498930",
+      "deviceKey": "06393e4d3459fcc1aa2042264d7b1473",
       "elements": [
         {
           "index": 0,
@@ -697,493 +1187,6 @@
       ],
       "pid": "0000",
       "security": "low",
-      "unicastAddress": 16,
-      "vid": "0000"
-    },
-    {
-      "UUID": "8d875f5b77f9534d86aa7ce47836497c",
-      "cid": "0059",
-      "configComplete": false,
-      "crpl": "0028",
-      "deviceKey": "914b0142ca5c340732312eaac654a4ce",
-      "elements": [
-        {
-          "index": 0,
-          "location": "0000",
-          "models": [
-            {
-              "modelId": "0000"
-            },
-            {
-              "modelId": "0002"
-            }
-          ]
-        },
-        {
-          "index": 1,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 2,
-          "location": "0000",
-          "models": [
-            {
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 3,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 4,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 5,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 6,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 7,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 8,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 9,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 10,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 11,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 12,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        },
-        {
-          "index": 13,
-          "location": "0000",
-          "models": [
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1000"
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "1001",
-              "publish": {
-                "address": 49153,
-                "credentials": 0,
-                "index": 0,
-                "period": 0,
-                "retransmit": {
-                  "count": 0,
-                  "interval": 50
-                },
-                "ttl": 1
-              }
-            },
-            {
-              "bind": [
-                0
-              ],
-              "modelId": "00590000"
-            }
-          ]
-        }
-      ],
-      "features": {
-        "friend": 2,
-        "lowPower": 2,
-        "proxy": 0,
-        "relay": 0
-      },
-      "name": "Device3",
-      "netKeys": [
-        0
-      ],
-      "pid": "0000",
-      "security": "low",
       "unicastAddress": 30,
       "vid": "0000"
     }
@@ -1206,5 +1209,5 @@
       "name": "BT Mesh Provisioner"
     }
   ],
-  "timestamp": "2019-07-22 18:29:36.856568"
+  "timestamp": "2019-07-24 21:07:59.061621"
 }
