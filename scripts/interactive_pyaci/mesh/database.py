@@ -72,7 +72,7 @@ class MeshDB(object):
         self.iv_update = 0
 
         self.address_handles = []
-        self.device_handles = []
+        self.devkey_handles = []
         self.models = []
 
         self.load()
@@ -105,8 +105,8 @@ class MeshDB(object):
         
         if "address_handles" in data:
             self.address_handles = data["address_handles"]
-        if "device_handles" in data:
-            self.device_handles = data["device_handles"]
+        if "devkey_handles" in data:
+            self.devkey_handles = data["devkey_handles"]
 
         if "models" in data:
             self.models = data["models"]
@@ -135,16 +135,16 @@ class MeshDB(object):
 
         return None
 
-    def find_address_handle(self, address):
+    def find_address_handle(self, src):
         
         for item in self.address_handles:
-            if item["address"] == address:
+            if item["address"] == src:
                 return item["address_handle"]
 
         return None
     
-    def find_device_handle(self, address):
-        for item in self.device_handles:
+    def find_devkey_handle(self, address):
+        for item in self.devkey_handles:
             if item["device_address"] == address:
                 return item["devkey_handle"]
 
@@ -154,5 +154,18 @@ class MeshDB(object):
         for item in self.address_handles:
             if item["address_handle"] == address:
                 return item["address"]
+
+
+    def get_node(self, uuid):
+        nodes = [n for n in self.nodes if n.UUID.hex() == uuid]
+        if len(nodes) > 1:
+            raise Exception("Error multiple instances on node with uuid: {}".format(uuid))
+
+        return nodes[0]
         
+    def remove_address_handle(self, address_handle):
+        self.address_handles = [x for x in self.address_handles if x["address_handle"] != address_handle]
+
+    def remove_devkey_handle(self, devkey_handle):
+        self.devkey_handles = [x for x in self.devkey_handles if x["devkey_handle"] != devkey_handle]
 

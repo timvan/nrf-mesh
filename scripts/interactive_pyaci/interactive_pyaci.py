@@ -36,8 +36,6 @@ import struct
 import functools
 import signal
 
-import traitlets.config
-
 from aci.aci_utils import STATUS_CODE_LUT
 from aci.aci_config import ApplicationConfig
 import aci.aci_cmd as cmd
@@ -160,7 +158,7 @@ class Mesh(object):
         self.logger = self.iaci.logger
 
         self.address_stack = list()
-        self.device_handle_stack = list()
+        self.devkey_handle_stack = list()
         self.message_que = list()
         
         self.iaci.acidev.add_packet_recipient(self.deviceStarted)
@@ -179,7 +177,7 @@ class Mesh(object):
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         
         self.load_address_handles()
-        self.load_device_handles()
+        self.load_devkey_handles()
 
         if len(self.db.models) > 0:
             self.load_models()
@@ -212,12 +210,12 @@ class Mesh(object):
             
             self.message_que.append(functools.partial(self.iaci.send, command))
 
-    def load_device_handles(self):
+    def load_devkey_handles(self):
 
-        device_handles = self.db.device_handles.copy()
-        self.db.device_handles = []
+        devkey_handles = self.db.devkey_handles.copy()
+        self.db.devkey_handles = []
         self.db.store()
-        for item in device_handles:
+        for item in devkey_handles:
             key = bytearray.fromhex(item["key"])
             command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
             self.message_que.append(functools.partial(self.iaci.send, command))
@@ -269,7 +267,6 @@ class Mesh(object):
         if event._opcode != evt.Event.DEVICE_STARTED:
             return
 
-        print("HERE")
         self.setup()
 
     def newUnProvisionedDeviceEventHandler(self, event):
@@ -350,12 +347,18 @@ class Mesh(object):
             return
                 
         if rsp_packet._command_name in ["AddrSubscriptionAdd", "AddrSubscriptionAddVirtual", "AddrPublicationAddVirtual", "AddrPublicationAdd"]:
-            self.newAddressHandle(rsp_packet)
+            self.addrAdd(rsp_packet)
 
         if rsp_packet._command_name in ["DevkeyAdd"]:
-            self.newDeveKeyHandle(rsp_packet)
+            self.devkeyAdd(rsp_packet)
+        
+        if rsp_packet._command_name in ["AddrPublicationRemove"]:
+            self.addrRemove(rsp_packet)
+        
+        if rsp_packet._command_name in ["DevkeyDelete"]:
+            self.devKeyDelete(rsp_packet)
 
-    def newAddressHandle(self, rsp_packet):
+    def addrAdd(self, rsp_packet):
         try:
             
             new_address = self.address_stack.pop(0)
@@ -375,25 +378,36 @@ class Mesh(object):
             else:
                 self.db.address_handles.append(address_handle)
                 self.db.store()
-            
-            self.send_next_message()
 
+            self.send_next_message()
 
         except Exception as e:
             self.logger.error("Error storing address handle: {}".format(e))
     
-    def newDeveKeyHandle(self, rsp_packet):
+    def devkeyAdd(self, rsp_packet):
         try:
-            new_device_address = self.device_handle_stack.pop(0)
+            new_device_address = self.devkey_handle_stack.pop(0)
             devkey_handle = rsp_packet._data["devkey_handle"]
             new_device_address["devkey_handle"] = devkey_handle
-            self.db.device_handles.append(new_device_address)
+            self.db.devkey_handles.append(new_device_address)
             self.db.store()
-
             self.send_next_message()
         
         except Exception as e:
             self.logger.error("Error storing device handle: {}".format(e))
+
+    def addrRemove(self, rsp_packet):
+        address_handle = rsp_packet._data["address_handle"]
+        self.db.remove_address_handle(address_handle)
+        self.db.store()
+        self.send_next_message()
+
+
+    def devKeyDelete(self, rsp_packet):
+        devkey_handle = rsp_packet._data["devkey_handle"]
+        self.db.remove_devkey_handle(devkey_handle)
+        self.db.store()
+        self.send_next_message()
 
     """""""""""""""""""""""""""""""""""""""""""""
     MESH EVENTS
@@ -411,6 +425,10 @@ class Mesh(object):
     def statusEventGPIO(self, value, pin, uuid):
         if hasattr(self, "onStatusEventGPIO"):
             self.onStatusEventGPIO(value, pin, uuid)
+
+    def setAckFailedEventGPIO(self, pin, uuid):
+        if hasattr(self, "onSetAckFailedEventGPIO"):
+            self.onSetAckFailedEventGPIO(pin, uuid)
 
     """""""""""""""""""""""""""""""""""""""""""""
     PYACI CMD HANDLER
@@ -430,7 +448,7 @@ class Mesh(object):
         if cmd._opcode == 0x9C:
             # self.logger.info("Adding device key {}".format(cmd._data))
 
-            self.device_handle_stack.append({
+            self.devkey_handle_stack.append({
                 "device_address": struct.unpack("<H", cmd._data[0:2])[0]
                 , "subnet_handle": struct.unpack("<H", cmd._data[2:4])[0]
                 , "key": cmd._data[4:].hex()
@@ -495,10 +513,10 @@ class Mesh(object):
         node = self.uuid_to_node_index(uuid)
         address = self.db.nodes[node].unicast_address
         address_handle = self.db.find_address_handle(address)
-        device_handle = self.db.find_device_handle(address)
-        self.logger.info("Configure {} {}".format(device_handle, address_handle))
+        devkey_handle = self.db.find_devkey_handle(address)
+        self.logger.info("Configure {} {}".format(devkey_handle, address_handle))
 
-        self.cc.publish_set(device_handle, address_handle)
+        self.cc.publish_set(devkey_handle, address_handle)
         try:
             self.cc.composition_data_get()
             self.cc.appkey_add(0)
@@ -555,6 +573,7 @@ class Mesh(object):
         if address_handle is None:
             self.logger.error("Address handle not valid")
             return
+            
         self.sc.publish_set(key_handle=0, address_handle=address_handle) # key_handle is app key
         self.sc.set(asInput)
         self.db.store()
@@ -593,10 +612,16 @@ class Mesh(object):
         uuid = self.db.nodes[node].UUID
         self.statusEventGPIO(value, self.element_index_to_pin(element), uuid)
 
+    def setAckFailed(self, address_handle):
+        src = self.db.address_handle_to_src(address_handle)
+        node, element = self.src_address_to_node_element_index(src)
+        uuid = self.db.nodes[node].UUID
+        self.setAckFailedEventGPIO(self.element_index_to_pin(element), uuid)
+
     """  INIT MODELS """
 
     def addGenericClientModel(self):
-        self.gc = GenericOnOffClient(self.genericOnOffClientStatusEvent, self.db)
+        self.gc = GenericOnOffClient(self.db, self.genericOnOffClientStatusEvent, self.setAckFailed)
         self.iaci.model_add(self.gc)
         self.db.models.append(self.gc)
     
@@ -688,14 +713,30 @@ class Mesh(object):
 
     def remove_node(self, uuid):
         self.logger.error("Remove node {} from database".format(uuid))
-        self.db.nodes = [n for n in self.db.nodes if n.UUID.hex() != uuid]
-        # TODO need to remove unused address handles
-        # for node in self.db.nodes:
-        #     if node.UUID.hex() == uuid:
-        #         self.remove_address_handle
+        node = self.db.get_node(uuid)
         
-    def remove_address_handle(self, opcode, address_handle):
-        index, handle = next((i, d) for (i, d) in enumerate(self.db.address_handles) if d["address_handle"] == address_handle) 
-        if handle["opcode"] == 0xA4:
-            self.iaci.send(cmd.AddrPublicationRemove(address_handle))
-            self.db.address_handles.pop(index)
+        for element in node.elements: 
+            unicast_address = node.unicast_address + element.index
+            address_handle = self.db.find_address_handle(unicast_address)
+
+            # delete each address handle from serial device
+            # if address["opcode"] == 0xA4:
+            command = cmd.AddrPublicationRemove(address_handle)
+            self.message_que.append(functools.partial(self.iaci.send, command))
+            # else:
+                # raise Exception("Did not remove the address_hanlde {}".format(address["address_handle"]))
+
+            # delete each address handle from db
+            # TODO in response delete address_handle and send next message()
+            # self.db.address_handles.remove(handle)
+            # might need to remove subscription of device form serial..
+            
+        # remove device handle
+        devkey_handle = self.db.find_devkey_handle(node.unicast_address)
+        command = cmd.DevkeyDelete(devkey_handle)
+        self.message_que.append(functools.partial(self.iaci.send, command))
+
+        # ADD a function that waps this function and adds send next message
+        self.message_que.append(functools.partial(self.db.nodes.remove, node))
+
+        self.send_next_message()

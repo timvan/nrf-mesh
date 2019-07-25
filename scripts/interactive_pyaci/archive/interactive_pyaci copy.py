@@ -225,7 +225,7 @@ class Manager(object):
         self.iaci.model_add(self.cc)
 
         self.address_stack = list()
-        self.device_handle_stack = list()
+        self.devkey_handle_stack = list()
         self.message_que = list()
         
         self.iaci.acidev.add_command_recipient(self.cmd_handler)
@@ -240,7 +240,7 @@ class Manager(object):
     def setup(self):
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         self.load_address_handles()
-        self.load_device_handles()
+        self.load_devkey_handles()
 
         if len(self.db.models) > 0:
             self.load_models()
@@ -273,12 +273,12 @@ class Manager(object):
             
             self.message_que.append(functools.partial(self.iaci.send, command))
 
-    def load_device_handles(self):
+    def load_devkey_handles(self):
 
-        device_handles = self.db.device_handles.copy()
-        self.db.device_handles = []
+        devkey_handles = self.db.devkey_handles.copy()
+        self.db.devkey_handles = []
         self.db.store()
-        for item in device_handles:
+        for item in devkey_handles:
             key = bytearray.fromhex(item["key"])
             command = cmd.DevkeyAdd(item["device_address"], item["subnet_handle"], key)
             self.message_que.append(functools.partial(self.iaci.send, command))
@@ -384,10 +384,10 @@ class Manager(object):
                 
                 if rsp_packet._command_name in ["DevkeyAdd"]:
                     try:
-                        new_device_address = self.device_handle_stack.pop(0)
+                        new_device_address = self.devkey_handle_stack.pop(0)
                         devkey_handle = rsp_packet._data["devkey_handle"]
                         new_device_address["devkey_handle"] = devkey_handle
-                        self.db.device_handles.append(new_device_address)
+                        self.db.devkey_handles.append(new_device_address)
                         self.db.store()
 
                         self.send_next_message()
@@ -409,7 +409,7 @@ class Manager(object):
         if cmd._opcode == 0x9C:
             # self.logger.info("Adding device key {}".format(cmd._data))
 
-            self.device_handle_stack.append({
+            self.devkey_handle_stack.append({
                 "device_address": struct.unpack("<H", cmd._data[0:2])[0]
                 , "subnet_handle": struct.unpack("<H", cmd._data[2:4])[0]
                 , "key": cmd._data[4:].hex()
@@ -620,10 +620,10 @@ class Manager(object):
         node = self.uuid_to_node_index(uuid)
         address = self.db.nodes[node].unicast_address
         address_handle = self.db.find_address_handle(address)
-        device_handle = self.db.find_device_handle(address)
-        self.logger.info("Configure {} {}".format(device_handle, address_handle))
+        devkey_handle = self.db.find_devkey_handle(address)
+        self.logger.info("Configure {} {}".format(devkey_handle, address_handle))
 
-        self.cc.publish_set(device_handle, address_handle)
+        self.cc.publish_set(devkey_handle, address_handle)
         try:
             self.cc.composition_data_get()
             self.cc.appkey_add(0)

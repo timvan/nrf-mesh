@@ -15,6 +15,7 @@ class Pyaci:
         setattr(self.mesh, "onAddAppKeysComplete", self.addAppKeysComplete)
         setattr(self.mesh, "onSetEventGPIO", self.setEventGPIO)
         setattr(self.mesh, "onStatusEventGPIO", self.statusEventGPIO)
+        setattr(self.mesh, "onSetAckFailedEventGPIO", self.setAckFailedEventGPIO)
 
     def run(self):
         while self.keep_running:
@@ -162,6 +163,14 @@ class Pyaci:
         op = "StatusEventGPIO"
         data = {
             "value": value,
+            "pin": pin,
+            "uuid": uuid
+        }
+        self.send(op, data)
+    
+    def setAckFailedEventGPIO(self, pin, uuid):
+        op = "SetAckFailedEventGPIO"
+        data = {
             "pin": pin,
             "uuid": uuid
         }

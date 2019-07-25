@@ -24,7 +24,8 @@ class Pyaci {
             "CompositionDataStatus": this.compositionDataStatus,
             "AddAppKeysComplete": this.addAppKeysComplete,
             "SetEventGPIO": this.setEventGPIO,
-            "StatusEventGPIO": this.setEventGPIO,
+            "StatusEventGPIO": this.statusEventGPIO,
+            "SetAckFailedEventGPIO": this.setAckFailedEventGPIO,
             "GetProvisionedDevicesRsp": this.getProvisionedDevicesRsp
         }
 
@@ -192,7 +193,7 @@ class Pyaci {
         }
 
         if(typeof pin != 'number' || pin < 0 || pin == null){
-            this.log("Input error setGPIO - pin");
+            this.log(`Input error setGPIO - pin: ${pin}`);
             return false;
         }
         if(typeof uuid != 'string' || uuid == "" || uuid == null){
@@ -212,7 +213,7 @@ class Pyaci {
         var op = "GetGPIO";
 
         if(typeof pin != 'number' || pin < 0 || pin == null){
-            this.log("Input error getGPIO - pin");
+            this.log(`Input error getGPIO - pin: ${pin}`);
             return false;
         }
         if(typeof uuid != 'string' || uuid == "" || uuid == null){
@@ -300,6 +301,11 @@ class Pyaci {
     statusEventGPIO(data) {
         var uuid = data.uuid;
         eventBus.emit("StatusEventGPIO_" + uuid, data);
+    }
+
+    setAckFailedEventGPIO(data){
+        var uuid = data.uuid;
+        eventBus.emit("SetAckFailedEventGPIO_" + uuid, data);
     }
 
 }

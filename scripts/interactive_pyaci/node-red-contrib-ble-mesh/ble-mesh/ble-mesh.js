@@ -64,6 +64,18 @@ module.exports = function(RED) {
             var value = msg.payload;
             this.element.setGPIO(value);
         });
+
+        var uuid = confignode.device.uuid;
+        eventBus.on("SetAckFailedEventGPIO_" + uuid, (data) => {
+            if(data.uuid === uuid && data.pin === this.pin){
+                node.send({
+                    payload: {
+                        "error": "Set Ack Failed"
+                    }
+                });
+            }
+        });
+
     }
     RED.nodes.registerType("ble-mesh-output", BleMeshNodeOutput);
 
@@ -83,10 +95,11 @@ module.exports = function(RED) {
         this.element.configureGPIOasInput(true);
         
         if(config.getInitialState){
-            this.element.getGPIO()
+            setTimeout(() =>{
+                this.element.getGPIO()
+            }, 1000);
         }
         
-
         var uuid = confignode.device.uuid;
         eventBus.on("SetEventGPIO_" + uuid, (data) => {
             if(data.uuid === uuid && data.pin === this.pin){

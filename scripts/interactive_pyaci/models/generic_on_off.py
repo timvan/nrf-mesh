@@ -43,13 +43,14 @@ class GenericOnOffClient(Model):
     ACK_TIMER_TIMEOUT = 2
     RETRIES = 2
 
-    def __init__(self, generic_on_off_client_status_cb=None, db=None):
+    def __init__(self, db=None, generic_on_off_client_status_cb=None, set_ack_failed_cb=None):
         self.db = db
         self.opcodes = [
             (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_status_handler)]
         self.__tid = 0
 
         self.__generic_on_off_client_status_cb = generic_on_off_client_status_cb
+        self.__client_set_ack_failed_cb = set_ack_failed_cb
 
         self.timers = {}
 
@@ -80,10 +81,15 @@ class GenericOnOffClient(Model):
             self.publish_set(0, address_handle)
             self.set(value)
             self.timers[address_handle]["attempts"] += 1
+            return
 
-        else:
-            self.timers[address_handle]["attempts"] = 0
-            self.logger.info("Set ACK {} Failed".format(address_handle))
+
+        self.timers[address_handle]["attempts"] = 0
+        self.logger.info("Set ACK {} Failed".format(address_handle))
+        try:
+            self.__client_set_ack_failed_cb(address_handle)
+        except:
+            self.logger.error
 
     def get(self):
         self.send(self.GENERIC_ON_OFF_GET)
