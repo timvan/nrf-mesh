@@ -40,11 +40,13 @@ cc.model_publication_set(db.appKeys[0].key, mt.ModelId(0x1001), mt.Publish(db.gr
 
 from interactive_pyaci import Mesh
 m = Mesh(d[0])
-uuid = "9db77a0526b8734988639509c242d107"
+uuid = "e07f87c0e83ff2418b6e5fd50b58c2cd"
 
 uuids = ["e07f87c0e83ff2418b6e5fd50b58c2cd", "9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c" ,"696fd66b16c91d4ebcc34a36f44920f2"]
 
 uuid = uuids[3]
+
+uuid = "8d875f5b77f9534d86aa7ce47836497c"
 
 m.provisionScanStart()
 m.provision(uuid, "device")
@@ -86,3 +88,50 @@ m.simpleServerSet(True, 0, 2)
 {"op": "SetGPIO", "data": {"value": 1, "uuid": "e07f87c0e83ff2418b6e5fd50b58c2cd", "pin": 18}}
 
 {"op": "GetGPIO", "data": {"value": 1, "uuid": "e07f87c0e83ff2418b6e5fd50b58c2cd", "pin": 18}}
+
+
+<!-- TEST -->
+from interactive_pyaci import Mesh
+m = Mesh(d[0])
+uuids = ["e07f87c0e83ff2418b6e5fd50b58c2cd", "9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c" ,"696fd66b16c91d4ebcc34a36f44920f2"]
+pins = [12, 13, 14 , 15]
+from tester.tester import Tester
+t = Tester(pins, uuids, m, 6, 0)
+
+t.run2(100, [0], 1)
+t.setup(False)
+t.reset(False)
+t.standup_standdown(x_send=3, delay_between_messages=0, interval_between_group_set=2)
+
+setattr(m.gc, "ACK_TIMER_TIMEOUT", 0.05)
+setattr(m.gc, "RETRIES", 2)
+
+
+uuid = "e07f87c0e83ff2418b6e5fd50b58c2cd"
+pin = 12
+value = False
+
+
+for i in range(2):
+    value = not value
+    m.setGPIO(not value, pin, uuid)
+
+
+value = not value
+m.setGPIO(not value, pin, uuid)
+
+m.gc.timers
+
+
+
+
+def set_all(m, uuids, pins, value, TIMEOUT, threading):
+    for pin in pins: 
+        for uuid in uuids: 
+            m.setGPIO(value, pin, uuid)
+    
+    threading.Timer(TIMEOUT, set_all, (m, uuids, pins, value, TIMEOUT, threading)).start()
+
+TIMEOUT = 1
+threading.Timer(TIMEOUT, set_all, (m, uuids, pins, value, TIMEOUT, threading)).start()
+

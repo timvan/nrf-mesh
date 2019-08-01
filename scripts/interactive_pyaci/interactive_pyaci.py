@@ -35,6 +35,7 @@ import subprocess
 import struct
 import functools
 import signal
+import threading
 
 from aci.aci_utils import STATUS_CODE_LUT
 from aci.aci_config import ApplicationConfig
@@ -146,10 +147,12 @@ class Mesh(object):
     NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
     NRF52_STARTING_ELEMENT_INDEX = 1
 
-    def __init__(self, interactive_device):
+    QUICK_SETUP = True
+
+    def __init__(self, interactive_device, db="database/example_database.json"):
         signal.signal(signal.SIGALRM, self.timeout_handler)
         
-        self.db_path = "database/example_database.json"
+        self.db_path = db
         self.db = MeshDB(self.db_path)
         
         self.iaci = interactive_device
@@ -164,6 +167,11 @@ class Mesh(object):
         self.iaci.acidev.add_packet_recipient(self.deviceStarted)
         self.iaci.send(cmd.RadioReset())
 
+        if self.QUICK_SETUP:
+            self.onNewUnProvisionedDevice = lambda device : self.provision(device["uuid"])
+            self.onProvisionComplete = lambda uuid : threading.Timer(10, self.configure, args=(uuid,)).start() 
+            self.onCompositionDataStatus = lambda uuid, compositionData : self.addAppKeys(uuid.hex())
+            self.addAppKeysComplete = lambda uuid : self.provisionScanStart()
 
     def setup(self):
         self.p = Provisioner(self.iaci, self.db)

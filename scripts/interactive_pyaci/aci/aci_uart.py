@@ -27,6 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import time
 import logging
 import traceback
 import threading
@@ -38,6 +39,7 @@ import queue
 
 EVT_Q_BUF = 128
 
+WRITE_DELAY_INTERVAL_SECONDS = 0.02
 
 class Device(object):
     def __init__(self, device_name):
@@ -109,6 +111,7 @@ class Device(object):
             retval = self.__wait()
             if retval == None:
                 self.logger.info('cmd %s, timeout waiting for event' % (cmd.__class__.__name__))
+            time.sleep(WRITE_DELAY_INTERVAL_SECONDS)
 
     def write_aci_cmd(self, cmd):
         if isinstance(cmd, CommandPacket):

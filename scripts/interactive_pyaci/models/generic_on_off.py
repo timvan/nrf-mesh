@@ -40,8 +40,8 @@ class GenericOnOffClient(Model):
     GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
 
-    ACK_TIMER_TIMEOUT = 2
-    RETRIES = 2
+    ACK_TIMER_TIMEOUT = 0.3
+    RETRANSMISSIONS_LIMIT = 5
 
     def __init__(self, db=None, generic_on_off_client_status_cb=None, set_ack_failed_cb=None):
         self.db = db
@@ -65,31 +65,48 @@ class GenericOnOffClient(Model):
 
         if ack:
             self.send(self.GENERIC_ON_OFF_SET, message)
-            
-            if self.address_handle not in self.timers:
-                self.timers[self.address_handle] = {"attempts": 0}
-            
-            self.timers[self.address_handle]["timer"] = threading.Timer(self.ACK_TIMER_TIMEOUT, self.set_ack_failed, args=(value, self.address_handle,))
-            self.timers[self.address_handle]["timer"].start()
+            self.start_timer(self.address_handle, value)
 
         else:
             self.send(self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, message)
 
-    def set_ack_failed(self, value, address_handle):
+    def start_timer(self, address_handle, value):
+        
+        if address_handle not in self.timers:
+            self.timers[address_handle] = {"attempt": 0, "value": value}
+        else:
+            self.cancel_timer(address_handle)
 
-        if(self.timers[address_handle]["attempts"] < self.RETRIES):
+        if value is not self.timers[address_handle]["value"]:
+            self.timers[address_handle]["attempt"] = 0
+
+        self.timers[address_handle]["value"] = value
+        self.timers[address_handle]["timer"] = threading.Timer(self.ACK_TIMER_TIMEOUT, self.set_ack_timedout, args=(address_handle, value,))
+        self.timers[address_handle]["timer"].start()
+        
+
+    def cancel_timer(self, address_handle):
+        if hasattr(self.timers[address_handle]["timer"], "cancel"):
+            self.timers[address_handle]["timer"].cancel()
+
+
+    def set_ack_timedout(self, address_handle, value):
+        # SET ACK FAILED - RESET AND DO CB
+        self.logger.info("Set ACK {} Timedout".format(address_handle))
+
+        if self.timers[address_handle]["attempt"] < self.RETRANSMISSIONS_LIMIT:
             self.publish_set(0, address_handle)
+            self.timers[address_handle]["attempt"] += 1
             self.set(value)
-            self.timers[address_handle]["attempts"] += 1
+            self.logger.info("Resending SET {} attempts: {}".format(address_handle, self.timers[address_handle]["attempt"]))
             return
 
 
-        self.timers[address_handle]["attempts"] = 0
-        self.logger.info("Set ACK {} Failed".format(address_handle))
+        self.timers[address_handle]["attempt"] = 0
         try:
             self.__client_set_ack_failed_cb(address_handle)
-        except:
-            self.logger.error
+        except Exception as e:
+            self.logger.error("Set ACK callback {} failed: {}".format(self.__client_set_ack_failed_cb, e))
 
     def get(self):
         self.send(self.GENERIC_ON_OFF_GET)
@@ -107,22 +124,14 @@ class GenericOnOffClient(Model):
         value = int(message.data.hex()[1])
         src = message.meta["src"]
 
-        logstr = "Status Present OnOff: " + ("on" if value > 0 else "off")
-        # Propreitary code - not neccesarily used
-        # if len(message.data) > 1:
-        #     logstr += "Status Target OnOff: " + ("on" if message.data[1] > 0 else "off")
-
-        # if len(message.data) == 3:
-        #     logstr += "Status Remaining time: %d ms" % (TransitionTime.decode(message.data[2]))
+        self.logger.info("Status Present OnOff: " + ("on" if value > 0 else "off"))
 
         # stop timer..
         address_handle = self.db.find_address_handle(src)
-        if(hasattr(self.timers[address_handle]["timer"], "cancel")):
-            self.timers[address_handle]["timer"].cancel()
-            self.timers[address_handle]["attempts"] = 0
-
-        self.logger.info(logstr)
-
+        self.logger.info("Got set from ah: {} | src: {} and canceling timer".format(address_handle, src))
+        self.cancel_timer(address_handle)
+        self.timers[address_handle]["attempt"] = 0
+        
         try:
             self.__generic_on_off_client_status_cb(value, src)
         except:
