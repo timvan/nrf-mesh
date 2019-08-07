@@ -3,6 +3,7 @@ import sys
 import json
 import os
 import threading
+import datetime
 
 class Tester(object):
     
@@ -168,10 +169,26 @@ class Tester(object):
         x = 50
     
 
-    def run4(self, timeout, value):
-        if self.keeprunning:
+    def run4(self, timeout=2, run_times=10, value=True):
+        if self.keeprunning and run_times > 0:
+            print(datetime.datetime.now().isoformat())
             for pin in self.pins: 
                 for uuid in self.uuids: 
                     self.mesh.setGPIO(value, pin, uuid)
             
-            threading.Timer(timeout, self.run4, (timeout, not value)).start()
+            threading.Timer(timeout, self.run4, (timeout, run_times-1, not value)).start()
+
+
+    def run5(self, timeout=2, run_times=10, value=True, downtime_mulitplyer=1):
+        if self.keeprunning and run_times > 0:
+            print(datetime.datetime.now().isoformat())
+            for pin in self.pins: 
+                for uuid in self.uuids: 
+                    self.mesh.setGPIO(value, pin, uuid)
+        
+            if value:
+                threading.Timer(timeout, self.run4, (timeout, run_times-1, not value)).start()
+            else:
+                threading.Timer(timeout, self.run4, (downtime_mulitplyer * timeout, run_times-1, not value)).start()
+            
+            

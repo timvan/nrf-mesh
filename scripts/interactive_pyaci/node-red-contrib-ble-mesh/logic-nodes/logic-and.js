@@ -16,7 +16,7 @@ module.exports = function(RED) {
         }
 
         node.on('input', function(msg) {
-            var address = String(msg.payload.address);
+            // var address = String(msg);
             var value = msg.payload.value;
 
             if(Object.keys(this.states).includes(address)){

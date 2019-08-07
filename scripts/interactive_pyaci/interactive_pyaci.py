@@ -52,8 +52,6 @@ from models.generic_on_off import GenericOnOffClient    # NOQA: ignore unused im
 from models.generic_on_off import GenericOnOffServer
 from models.simple_on_off import SimpleOnOffClient
 
-
-
 class Interactive(object):
     DEFAULT_APP_KEY = bytearray([0xAA] * 16)
     DEFAULT_SUBNET_KEY = bytearray([0xBB] * 16)
@@ -169,11 +167,12 @@ class Mesh(object):
 
         if self.QUICK_SETUP:
             self.onNewUnProvisionedDevice = lambda device : self.provision(device["uuid"])
-            self.onProvisionComplete = lambda uuid : threading.Timer(10, self.configure, args=(uuid,)).start() 
+            self.onProvisionComplete = lambda uuid : self.configure(uuid) 
             self.onCompositionDataStatus = lambda uuid, compositionData : self.addAppKeys(uuid.hex())
-            self.addAppKeysComplete = lambda uuid : self.provisionScanStart()
+            self.onAddAppKeysComplete = lambda uuid : self.provisionScanStart()
 
     def setup(self):
+        # setup is called when the serial device is booted
         self.p = Provisioner(self.iaci, self.db)
         self.cc = ConfigurationClient(self.db)
         self.iaci.model_add(self.cc)
@@ -181,7 +180,6 @@ class Mesh(object):
         self.init_event_handlers()
         self.iaci.acidev.add_command_recipient(self.cmd_handler)
 
-        # restart serial device to init setup
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         
         self.load_address_handles()
@@ -195,9 +193,7 @@ class Mesh(object):
         # TODO add dummy func to clear steup..?
         self.send_next_message()
         
-    def load_address_handles(self):
-        # sortedList = sorted(self.db.address_handles, key = lambda k: k["address_handle"])
-        
+    def load_address_handles(self):        
         address_handles = self.db.address_handles.copy()
         self.db.address_handles = []
         self.db.store()
@@ -240,18 +236,14 @@ class Mesh(object):
             if model["model"] == "GenericOnOffClient":
                 self.addGenericClientModel()
                 setattr(self.gc, "_GenericOnOffClient__tid", tid)
-                # self.gc.__tid = model["tid"]
             
             if model["model"] == "GenericOnOffServer":
                 self.addGenericServerModel()
                 setattr(self.gs, "_GenericOnOffServer__tid", tid)
-                # self.gs.__tid = model["tid"]
                 
             if model["model"] == "SimpleOnOffClient":
                 self.addSimpleClientModel()
-                
                 setattr(self.sc, "_SimpleOnOffClient__tid", tid)
-                # self.sc.__tid = model["tid"]
 
     def add_models(self):
         self.addGenericClientModel()
@@ -304,7 +296,7 @@ class Mesh(object):
         uuid = self.db.nodes[node].UUID.hex()
         
         if hasattr(self, "onProvisionComplete"):
-            self.onProvisionComplete(uuid)
+            threading.Timer(10, self.onProvisionComplete, args=(uuid,)).start()
 
     def compositionDataStatusEventHandler(self, event):
         if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
@@ -722,6 +714,13 @@ class Mesh(object):
     def remove_node(self, uuid):
         self.logger.error("Remove node {} from database".format(uuid))
         node = self.db.get_node(uuid)
+
+        # unprovision node
+        address_handle = self.db.find_address_handle(node.unicast_address)
+        self.cc.publish_set(0, address_handle)
+        self.cc.node_reset();
+
+        # TODO - should this all occur after node_reset_status occurs..?
         
         for element in node.elements: 
             unicast_address = node.unicast_address + element.index

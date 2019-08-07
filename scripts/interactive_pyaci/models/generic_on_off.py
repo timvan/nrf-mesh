@@ -41,7 +41,9 @@ class GenericOnOffClient(Model):
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
 
     ACK_TIMER_TIMEOUT = 0.3
-    RETRANSMISSIONS_LIMIT = 5
+    RETRANSMISSIONS_LIMIT = 10
+
+    retry_log = []
 
     def __init__(self, db=None, generic_on_off_client_status_cb=None, set_ack_failed_cb=None):
         self.db = db
@@ -81,7 +83,9 @@ class GenericOnOffClient(Model):
             self.timers[address_handle]["attempt"] = 0
 
         self.timers[address_handle]["value"] = value
-        self.timers[address_handle]["timer"] = threading.Timer(self.ACK_TIMER_TIMEOUT, self.set_ack_timedout, args=(address_handle, value,))
+
+        timeout = (self.timers[address_handle]["attempt"] + 1) * self.ACK_TIMER_TIMEOUT
+        self.timers[address_handle]["timer"] = threading.Timer(timeout, self.set_ack_timedout, args=(address_handle, value,))
         self.timers[address_handle]["timer"].start()
         
 
@@ -99,8 +103,17 @@ class GenericOnOffClient(Model):
             self.timers[address_handle]["attempt"] += 1
             self.set(value)
             self.logger.info("Resending SET {} attempts: {}".format(address_handle, self.timers[address_handle]["attempt"]))
+            self.retry_log.append({
+                "attempt": self.timers[address_handle]["attempt"],
+                "address_handle": address_handle
+            })
             return
 
+
+        self.retry_log.append({
+            "attempt": "FAILED",
+            "address_handle": address_handle
+        })
 
         self.timers[address_handle]["attempt"] = 0
         try:
@@ -110,7 +123,6 @@ class GenericOnOffClient(Model):
 
     def get(self):
         self.send(self.GENERIC_ON_OFF_GET)
-
 
     @property
     def _tid(self):
@@ -128,16 +140,16 @@ class GenericOnOffClient(Model):
 
         # stop timer..
         address_handle = self.db.find_address_handle(src)
-        self.logger.info("Got set from ah: {} | src: {} and canceling timer".format(address_handle, src))
-        self.cancel_timer(address_handle)
-        self.timers[address_handle]["attempt"] = 0
-        
-        try:
+        if address_handle in self.timers:
+            self.logger.info("Got status from src: {} - canceling timer".format(src))
+            self.cancel_timer(address_handle)
+            self.timers[address_handle]["attempt"] = 0
+
+        try:    
             self.__generic_on_off_client_status_cb(value, src)
         except:
             self.logger.error("Failed trying generic onoff client status callback: ", self.__generic_on_off_client_status_cb)
-
-    
+  
     def __str__(self):
         return json.dumps({"model": "GenericOnOffClient", "tid": self.__tid})
 

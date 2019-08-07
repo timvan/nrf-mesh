@@ -212,6 +212,10 @@ class Access(object):
         if event._opcode == Event.MESH_MESSAGE_RECEIVED_UNICAST or event._opcode == Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
             message = AccessMessage(event)
             element_index = event._data["dst"] - self.elements[0].address
+            self.aci.logger.debug(element_index)
+            self.aci.logger.debug("{}".format(self.elements))
+            self.aci.logger.debug("{}".format(self.elements[0]))
+            self.aci.logger.debug("{}".format(self.elements[0].address))
             assert(element_index < len(self.elements) and element_index >= 0)
             for model in self.elements[element_index].models:
                 try:

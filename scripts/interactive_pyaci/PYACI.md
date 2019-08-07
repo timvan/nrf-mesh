@@ -135,3 +135,31 @@ def set_all(m, uuids, pins, value, TIMEOUT, threading):
 TIMEOUT = 1
 threading.Timer(TIMEOUT, set_all, (m, uuids, pins, value, TIMEOUT, threading)).start()
 
+
+t.run4(1, True)
+
+t.keeprunning = False
+
+def retries(m):
+
+    for i in range(10):
+        print(i, len([x for x in m.gc.retry_log if x['attempt'] == i ]))
+
+    m.gc.retry_log = []
+
+
+
+
+<!-- LG STACKS -->
+
+from interactive_pyaci import Mesh
+m = Mesh(d[0])
+uuids = ["9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c"]
+pins = [12, 13, 14 , 15]
+
+
+for pin in pins:
+    for uuid in uuids:
+        m.configureGPIO(False, pin, uuid)
+        m.setGPIO(True, pin, uuid)
+    

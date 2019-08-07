@@ -26,13 +26,17 @@ class Pyaci:
     def log(self, msg):
         print("[js_pyaci_interface.py] {}".format(msg))
 
+    def logio(self, msg):
+        # print("[js_pyaci_interface.py] {}".format(msg))
+        pass
+
     def process_input(self):
 
         msg_in = self.input_channel.readline().strip("\n")
         
         try:
             msg = json.loads(msg_in)
-            self.log("Received: {}".format(msg_in))
+            self.logio("Received: {}".format(msg_in))
         except Exception as e:
             self.log("Error parsing: {}".format(msg_in))
             self.log("{}".format(e))
@@ -51,6 +55,7 @@ class Pyaci:
             "SetGPIO": self.setGPIO,
             "GetGPIO": self.getGPIO,
             "SetName": self.setName,
+            "RemoveNode": self.removeNode
         }
         
         try:
@@ -108,6 +113,9 @@ class Pyaci:
     def setName(self, data):
         self.mesh.setName(data["name"], data["uuid"])
 
+    def removeNode(self, data):
+        self.mesh.remove_node(data["uuid"])
+
     """ STD OUTPUTS """
 
     def send(self, op, data=None):
@@ -115,7 +123,7 @@ class Pyaci:
             'op': op,
             'data': data
         }
-        self.log("Sending {}".format(json.dumps(msg)))
+        self.logio("Sending {}".format(json.dumps(msg)))
         print(json.dumps(msg))
         sys.stdout.flush()
         return True
