@@ -71,7 +71,6 @@ class MeshDB(object):
         self.iv_index = 0
         self.iv_update = 0
 
-        self.address_handles = []
         self.devkey_handles = []
         self.models = []
 
@@ -102,9 +101,7 @@ class MeshDB(object):
             self.iv_index = data["iv_index"]
         if "iv_update" in data:
             self.iv_update = data["iv_update"]
-        
-        if "address_handles" in data:
-            self.address_handles = data["address_handles"]
+
         if "devkey_handles" in data:
             self.devkey_handles = data["devkey_handles"]
 
@@ -135,13 +132,18 @@ class MeshDB(object):
 
         return None
 
-    def find_address_handle(self, src):
-        
-        for item in self.address_handles:
-            if item["address"] == src:
-                return item["address_handle"]
+    def src_to_address_handle(self, src):
+        for node in self.nodes:
+            for element in node.elements:
+                if node.unicast_address + element.index == src:
+                    return element.address_handle
 
-        return None
+    def address_handle_to_src(self, address_handle):
+        for node in self.nodes:
+            for element in node.elements:
+                if element.address_handle == address_handle:
+                    return element.unicast_address
+
     
     def find_devkey_handle(self, address):
         for item in self.devkey_handles:
@@ -150,12 +152,6 @@ class MeshDB(object):
 
         return None
 
-    def address_handle_to_src(self, address):
-        for item in self.address_handles:
-            if item["address_handle"] == address:
-                return item["address"]
-
-
     def get_node(self, uuid):
         nodes = [n for n in self.nodes if n.UUID.hex() == uuid]
         if len(nodes) > 1:
@@ -163,11 +159,11 @@ class MeshDB(object):
 
         return nodes[0]
         
-    def remove_address_handle(self, address_handle):
-        self.address_handles = [x for x in self.address_handles if x["address_handle"] != address_handle]
+    # def remove_address_handle(self, address_handle):
+    #     self.address_handles = [x for x in self.address_handles if x["address_handle"] != address_handle]
 
-    def remove_devkey_handle(self, devkey_handle):
-        self.devkey_handles = [x for x in self.devkey_handles if x["devkey_handle"] != devkey_handle]
+    # def remove_devkey_handle(self, devkey_handle):
+    #     self.devkey_handles = [x for x in self.devkey_handles if x["devkey_handle"] != devkey_handle]
 
     
     def uuid_to_node_index(self, uuid):

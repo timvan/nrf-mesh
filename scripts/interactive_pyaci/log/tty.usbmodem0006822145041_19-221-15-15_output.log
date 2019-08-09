@@ -1,0 +1,303 @@
+2019-08-09 15:15:51,473 - DEBUG - tty.usbmodem0006822145041: Writing: 14 bytearray(b'')
+2019-08-09 15:15:51,479 - DEBUG - tty.usbmodem0006822145041: TX: 010e
+2019-08-09 15:15:51,899 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-08-09 15:15:51,899 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-08-09 15:15:51,899 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-08-09 15:15:52,060 - INFO - tty.usbmodem0006822145041.MeshConfigurer: 
+
+2019-08-09 15:15:52,061 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xba\xc1\xef\xac\xb6:\x064\xbaY\xe9\xfc3}\xacb(\x85\x896\x8d\xb0\x9e\xe6\xf5H\xe3m\xde|\xf4\x88\x07\xd7h\xe6t\x8f\x1e/\xa7\x83Gx\x14^\xd9\x10\xa5\x01\x83n\xd6n\x1a\x1eq\xa0\xaf\x01\xd16@\xc6S\x15\xf5/\xf5+\x84$\xaa\xe4\xe8\xd5\xd7\xa0\x97\xeb\x82\xfb\xde\xb2\xe7p\xbe 6i\xd3\xebW\xb5\xba\xc3')
+2019-08-09 15:15:52,061 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Sending next message
+2019-08-09 15:15:52,061 - DEBUG - tty.usbmodem0006822145041: TX: 6169bac1efacb63a0634ba59e9fc337dac62288589368db09ee6f548e36dde7cf48807d768e6748f1e2fa7834778145ed910a501836ed66e1a1e71a0af01d13640c65315f52ff52b8424aae4e8d5d7a097eb82fbdeb2e770be203669d3eb57b5bac3
+2019-08-09 15:15:52,062 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmd_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:15:52,064 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 98, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 379, in cmd_handler
+    if cmd.RESPONSE_LUT[command._opcode]["name"] == "AddrPublicationAdd":
+KeyError: 105
+
+2019-08-09 15:15:52,073 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-08-09 15:15:52,074 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,074 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,075 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,075 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,075 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,075 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,076 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,076 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,089 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,089 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,089 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,090 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,090 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,090 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,091 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,091 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,091 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,092 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,092 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,093 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,094 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,094 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,094 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,094 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,095 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,095 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,095 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,095 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,096 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,096 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,096 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,096 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,096 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,097 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,097 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,097 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-09 15:15:52,097 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-09 15:15:52,097 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmd_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:15:52,098 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 15:15:52,098 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,098 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 98, in process_command
+    fun(command)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 379, in cmd_handler
+    if cmd.RESPONSE_LUT[command._opcode]["name"] == "AddrPublicationAdd":
+KeyError: 159
+
+2019-08-09 15:15:52,098 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 15:15:52,099 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-08-09 15:15:52,099 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 15:15:52,099 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 15:15:52,120 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-09 15:15:52,120 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 15:15:52,124 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-08-09 15:15:52,124 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 15:15:52,128 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-08-09 15:15:52,142 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 15:15:52,142 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 15:15:52,146 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-08-09 15:15:52,146 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 15:15:52,147 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-08-09 15:15:52,165 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-09 15:15:52,165 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-09 15:15:52,169 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-08-09 15:15:52,170 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:15:52,170 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-08-09 15:15:52,190 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-09 15:15:52,190 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-09 15:15:52,193 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000000
+2019-08-09 15:15:52,193 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 15:15:52,193 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 0}
+2019-08-09 15:15:52,199 - INFO - tty.usbmodem0006822145041.MeshConfigurer: 
+
+2019-08-09 15:15:52,199 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Sending next message
+2019-08-09 15:15:52,213 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:15:52,213 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:15:52,215 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:15:52,215 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:15:52,216 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:15:52,216 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:15:52,216 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:15:56,204 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:15:56,205 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:15:56,207 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:15:56,209 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:15:56,209 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:15:56,210 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:15:56,210 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:15:56,211 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:00,210 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:00,210 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:00,210 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:00,212 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:00,212 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:00,213 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:00,213 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:00,213 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:04,214 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:04,214 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:04,214 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:04,216 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:04,217 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:04,217 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:04,217 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:04,217 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:08,219 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:08,220 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:08,220 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:08,223 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:08,224 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:08,224 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:08,224 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:08,224 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:12,223 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:12,223 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:12,224 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:12,226 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:12,227 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:12,227 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:12,228 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:12,228 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:16,226 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:16,227 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:16,228 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:16,231 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:16,231 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:16,231 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:16,231 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:16,232 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:20,229 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:20,229 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:20,230 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:20,232 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:20,232 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:20,233 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:20,233 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:20,234 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:24,235 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:24,236 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:24,237 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:24,241 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:24,241 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:24,241 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:24,242 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:24,242 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:28,237 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:28,238 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:28,239 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:28,241 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:28,241 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:28,241 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:28,242 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:28,242 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:32,241 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:32,242 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:32,243 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:32,245 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:32,245 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:32,245 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:32,246 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:32,246 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:36,246 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:36,247 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:36,248 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:36,250 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:36,250 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:36,251 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:36,251 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:36,251 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:40,249 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:40,250 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:40,250 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:40,252 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:40,253 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:40,253 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:40,253 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:40,253 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element]["address_handle"] = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:44,255 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:44,257 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:44,258 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:44,260 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:44,261 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:44,261 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:44,262 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:44,263 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element].address_handle = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:48,258 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-09 15:16:48,260 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 15:16:48,260 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 15:16:48,262 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000100
+2019-08-09 15:16:48,265 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 15:16:48,265 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 1}
+2019-08-09 15:16:48,266 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.cmdRsp_handler of <interactive_pyaci.Mesh object at 0x109c7a3c8>>
+2019-08-09 15:16:48,266 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 282, in cmdRsp_handler
+    node.elements[element].address_handle = rsp_packet._data["address_handle"]
+TypeError: 'Element' object does not support item assignment
+
+2019-08-09 15:16:50,018 - DEBUG - tty.usbmodem0006822145041: exited read event

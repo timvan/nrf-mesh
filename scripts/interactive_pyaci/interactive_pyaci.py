@@ -181,40 +181,22 @@ class Mesh(object):
 
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         
-        # self.load_address_handles()
+        if len(self.db.nodes) > 0:
+            self.load_address_handles()
         # self.load_devkey_handles()
 
-        # if len(self.db.models) > 0:
-        #     self.load_models()
-        # else:
-        #     self.add_models()
+        if len(self.db.models) > 0:
+            self.load_models()
+        else:
+            self.add_models()
 
-        # TODO add dummy func to clear steup..?
-        # self.send_next_command()
+        self.cc.send_next_command()
         
-    def load_address_handles(self):        
-        address_handles = self.db.address_handles.copy()
-        self.db.address_handles = []
-        self.db.store()
+    def load_address_handles(self):
+        for node in self.db.nodes:
+            self.cc.add_node_addresses_to_serial(node)
         
-        for item in address_handles:
-
-            address = item["address"]
-            opcode = item["opcode"]
-
-            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAdd":
-                command = cmd.AddrSubscriptionAdd(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrSubscriptionAddVirtual":
-                command = cmd.AddrSubscriptionAddVirtual(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAdd":
-                command = cmd.AddrPublicationAdd(address)
-            if RESPONSE_LUT[opcode]["name"] == "AddrPublicationAddVirtual":
-                command = cmd.AddrPublicationAddVirtual(address)
-            
-            self.message_que.append(functools.partial(self.iaci.send, command))
-
     def load_devkey_handles(self):
-
         devkey_handles = self.db.devkey_handles.copy()
         self.db.devkey_handles = []
         self.db.store()
@@ -224,12 +206,10 @@ class Mesh(object):
             self.message_que.append(functools.partial(self.iaci.send, command))
 
     def load_models(self):
-
         db_models = self.db.models.copy()
         self.db.models = []
 
         for model in db_models:
-
             tid = model["tid"]
                 
             if model["model"] == "GenericOnOffClient":
@@ -282,27 +262,6 @@ class Mesh(object):
         if hasattr(self, "onNewUnProvisionedDevice"):
             self.onNewUnProvisionedDevice(device)
 
-    # def composition_data_status(self, event):
-    #     if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
-    #         if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
-    #             return
-            
-    #     message = access.AccessMessage(event)
-    #     opcode = message.opcode_raw.hex()
-    
-    #     if opcode != str(ConfigurationClient._COMPOSITION_DATA_STATUS):
-    #         return
-
-    #     data = message.data[1:]
-    #     compositionData = mt.CompositionData().unpack(data)
-
-    #     src = message.meta["src"]
-    #     node, element = self.src_address_to_node_element_index(src)
-    #     uuid = self.db.nodes[node].UUID
-
-    #     if hasattr(self, "onCompositionDataStatus"):
-    #         self.onCompositionDataStatus(uuid, compositionData)
-
     def cmdRsp_handler(self, event):
 
         if event._opcode != evt.Event.CMD_RSP:
@@ -315,9 +274,15 @@ class Mesh(object):
 
         if rsp_packet is None or isinstance(rsp_packet, str):
             return
-                
-        if rsp_packet._command_name in ["AddrSubscriptionAdd", "AddrSubscriptionAddVirtual", "AddrPublicationAddVirtual", "AddrPublicationAdd"]:
-            self.addrAdd(rsp_packet)
+
+        if rsp_packet._command_name == "AddrPublicationAdd":
+            node, element = self.src_address_to_node_element_index(self._temp_address)
+            node = self.db.nodes[node]
+            node.elements[element].address_handle = rsp_packet._data["address_handle"]
+            self.cc.send_next_command()
+
+        if rsp_packet._command_name == "AddrSubscriptionAdd":
+            self.cc.send_next_command()
 
         if rsp_packet._command_name in ["DevkeyAdd"]:
             self.devkeyAdd(rsp_packet)
@@ -328,32 +293,6 @@ class Mesh(object):
         # if rsp_packet._command_name in ["DevkeyDelete"]:
         #     self.devKeyDelete(rsp_packet)
 
-    def addrAdd(self, rsp_packet):
-        try:
-            
-            new_address = self.address_stack.pop(0)
-            address_handle = {
-                "address": new_address["address"]
-                , "address_handle": rsp_packet._data["address_handle"]
-                , "opcode": rsp_packet._opcode
-            }
-            
-            dups = [a for a in self.db.address_handles if a["address_handle"] == address_handle["address_handle"]]
-            if len(dups) > 0:
-                for dup in dups:
-                    if dup != address_handle:
-                        raise Exception("Address handle already exists")
-
-                self.logger.debug("Got duplicate of address handle {}".format(address_handle))
-            else:
-                self.db.address_handles.append(address_handle)
-                self.db.store()
-
-            self.cc.send_next_command()
-
-        except Exception as e:
-            self.logger.error("Error storing address handle: {}".format(e))
-    
     def devkeyAdd(self, rsp_packet):
         try:
             new_device_address = self.devkey_handle_stack.pop(0)
@@ -383,10 +322,6 @@ class Mesh(object):
     MESH EVENTS
     """""""""""""""""""""""""""""""""""""""""""""
 
-    def add_app_keys_complete(self, uuid):
-        if hasattr(self, "onAddAppKeysComplete"):
-            self.onAddAppKeysComplete(uuid)
-
     def setEventGPIO(self, value, pin, uuid):
         if hasattr(self, "onSetEventGPIO"):
             self.onSetEventGPIO(value, pin, uuid)
@@ -403,24 +338,30 @@ class Mesh(object):
     PYACI CMD HANDLER
     """""""""""""""""""""""""""""""""""""""""""""
 
-    def cmd_handler(self, cmd):
+    def cmd_handler(self, command):
     
-        if cmd._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
+        #  ADDRESS HANDLE ADD
+        if command._opcode in [0xA1, 0xA2, 0xA4, 0xA5]:
             # self.logger.info("CMD Address Handle Handler {}".format(cmd._data.hex()))
 
-            address = struct.unpack("<H", cmd._data[0:2])[0]
+            address = struct.unpack("<H", command._data[0:2])[0]
             self.address_stack.append({
                 "address": address,
-                "opcode": cmd._opcode
+                "opcode": command._opcode
             })
         
-        if cmd._opcode == 0x9C:
+        if command._opcode == 0xA4:
+            address = struct.unpack("<H", command._data[0:2])[0]
+            self._temp_address = address
+        
+        #  DEVKEY ADD
+        if command._opcode == 0x9C:
             # self.logger.info("Adding device key {}".format(cmd._data))
 
             self.devkey_handle_stack.append({
-                "device_address": struct.unpack("<H", cmd._data[0:2])[0]
-                , "subnet_handle": struct.unpack("<H", cmd._data[2:4])[0]
-                , "key": cmd._data[4:].hex()
+                "device_address": struct.unpack("<H", command._data[0:2])[0]
+                , "subnet_handle": struct.unpack("<H", command._data[2:4])[0]
+                , "key": command._data[4:].hex()
 
             })
     
@@ -469,7 +410,10 @@ class Mesh(object):
     def composition_data_status(self, uuid, compositionData={}):
         if hasattr(self, "onCompositionDataStatus"):
             self.onCompositionDataStatus(uuid, compositionData)
-
+    
+    def add_app_keys_complete(self, uuid):
+        if hasattr(self, "onAddAppKeysComplete"):
+            self.onAddAppKeysComplete(uuid)
 
     """  MODELS & PINS """
 
@@ -550,7 +494,7 @@ class Mesh(object):
 
         if node != None and element != None:
             address = self.db.nodes[node].unicast_address + element
-            return self.db.find_address_handle(address)
+            return self.db.src_to_address_handle(address)
         
         return None
 
@@ -608,7 +552,7 @@ class Mesh(object):
     #     node = self.db.get_node(uuid)
 
     #     # unprovision node
-    #     address_handle = self.db.find_address_handle(node.unicast_address)
+    #     address_handle = self.db.src_to_address_handle(node.unicast_address)
     #     self.cc.publish_set(0, address_handle)
     #     self.cc.node_reset();
 
@@ -616,7 +560,7 @@ class Mesh(object):
         
     #     for element in node.elements: 
     #         unicast_address = node.unicast_address + element.index
-    #         address_handle = self.db.find_address_handle(unicast_address)
+    #         address_handle = self.db.src_to_address_handle(unicast_address)
 
     #         # delete each address handle from serial device
     #         # if address["opcode"] == 0xA4:
@@ -664,7 +608,6 @@ class MeshConfigurer(ConfigurationClient):
         self.timer = None
         
     def que_command(self, command, *args):
-        self.logger.info("que command {} {}".format(command, args))
         self.command_que.append(
             functools.partial(command, *args)
         )
@@ -699,7 +642,7 @@ class MeshConfigurer(ConfigurationClient):
     def configure(self, uuid):
         node = self.prov_db.uuid_to_node_index(uuid)
         address = self.prov_db.nodes[node].unicast_address
-        address_handle = self.prov_db.find_address_handle(address)
+        address_handle = self.prov_db.src_to_address_handle(address)
         devkey_handle = self.prov_db.find_devkey_handle(address)
         self.logger.info("Configure {} {}".format(devkey_handle, address_handle))
 
@@ -710,15 +653,11 @@ class MeshConfigurer(ConfigurationClient):
              
     def add_app_keys(self, uuid, groupAddrId=0):
         node = self.prov_db.uuid_to_node_index(uuid)
-        command = cmd.AddrSubscriptionAdd(self.prov_db.groups[groupAddrId].address)
-        self.que_command(self.iaci.send, command)
+        
+        self.add_node_addresses_to_serial(self.prov_db.nodes[node])
 
         for e, element in enumerate(self.prov_db.nodes[node].elements):
-            
-            # Add each element to the serial device's pubusb list
             element_address = self.prov_db.nodes[node].unicast_address + e
-            command = cmd.AddrPublicationAdd(element_address)
-            self.que_command(self.iaci.send, command)
 
             for model in element.models:
                 
@@ -740,6 +679,18 @@ class MeshConfigurer(ConfigurationClient):
         self.que_command(self.__add_app_keys_complete, uuid)
 
         self.send_next_command()
+    
+    def add_node_addresses_to_serial(self, node, groupAddrId=0):
+
+        command = cmd.AddrSubscriptionAdd(self.prov_db.groups[groupAddrId].address)
+        self.que_command(self.iaci.send, command)
+
+        for e, element in enumerate(node.elements):
+            # Add each element to the serial device's pubusb list
+            element_address = node.unicast_address + e
+            command = cmd.AddrPublicationAdd(element_address)
+            self.que_command(self.iaci.send, command)
+        
 
     # -----------------------------------
     def update_opcode_handlers(self):
@@ -768,5 +719,6 @@ class MeshConfigurer(ConfigurationClient):
         self.send_next_command()
 
     def __add_app_keys_complete(self, uuid):
+        self.logger.info("Adding app keys complete")
         self.timer.cancel()
         self._add_app_keys_complete_cb(uuid)

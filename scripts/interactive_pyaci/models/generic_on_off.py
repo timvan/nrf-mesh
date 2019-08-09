@@ -139,7 +139,7 @@ class GenericOnOffClient(Model):
         self.logger.info("Status Present OnOff: " + ("on" if value > 0 else "off"))
 
         # stop timer..
-        address_handle = self.db.find_address_handle(src)
+        address_handle = self.db.src_to_address_handle(src)
         if address_handle in self.timers:
             self.logger.info("Got status from src: {} - canceling timer".format(src))
             self.cancel_timer(address_handle)
@@ -194,7 +194,7 @@ class GenericOnOffServer(Model):
         self.logger.info(logstr)
 
         # SEND STATUS RESPONSE
-        address_handle = self.db.find_address_handle(src)
+        address_handle = self.db.src_to_address_handle(src)
         self.publish_set(appkey_handle, address_handle)
         self.status(value)
 

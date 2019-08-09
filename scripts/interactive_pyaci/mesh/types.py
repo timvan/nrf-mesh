@@ -610,13 +610,14 @@ class Model(object):
 
 
 class Element(object):
-    def __init__(self, index, location=0, models=[], unicast_address=None, name=""):
+    def __init__(self, index, location=0, models=[], unicast_address=None, name="", address_handle=None):
         self.index = index
         self.location = Identifier(location)
         self.models = [unpack(Model, m) for m in models]
         if unicast_address:
             self.unicast_address = UnicastAddress(unicast_address)
         self.name = name
+        self.address_handle = address_handle
 
     def __repr__(self):
         return str(self.__dict__)

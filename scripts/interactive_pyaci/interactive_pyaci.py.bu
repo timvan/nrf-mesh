@@ -50,6 +50,8 @@ from aci.aci_config import ApplicationConfig
 import aci.aci_cmd as cmd
 import aci.aci_evt as evt
 
+from interactive_pyaci import Mesh
+
 from mesh import access
 from mesh.provisioning import Provisioner, Provisionee  # NOQA: ignore unused import
 from mesh import types as mt                            # NOQA: ignore unused import
@@ -242,6 +244,12 @@ def start_ipython(options):
     ipython_config.InteractiveShellApp.multiline_history = True
     ipython_config.InteractiveShellApp.log_level = logging.DEBUG
 
+
+
+    m = Mesh(d[0])
+
+
+
     IPython.embed(config=ipython_config)
     for dev in d:
         dev.close()
@@ -275,7 +283,7 @@ if __name__ == '__main__':
                         dest="log_level",
                         type=int,
                         required=False,
-                        default=3,
+                        default=4,
                         help=("Set default logging level: "
                               + "0=Critical Only, 1=Errors only, 2=Warnings, 3=Info, 4=Debug"))
     options = parser.parse_args()
