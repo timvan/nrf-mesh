@@ -1,0 +1,15 @@
+2019-08-08 12:20:27,981 - DEBUG: Writing: 14 bytearray(b'')
+2019-08-08 12:20:27,981 - DEBUG: TX: 010e
+2019-08-08 12:20:28,556 - DEBUG: RX: 020003
+2019-08-08 12:20:28,557 - ERROR: Unable to deserialize 020003
+2019-08-08 12:20:28,557 - DEBUG: RX: 03008484
+2019-08-08 12:20:28,557 - ERROR: Unable to deserialize 03008484
+2019-08-08 12:20:28,558 - DEBUG: RX: 03008484
+2019-08-08 12:20:28,558 - ERROR: Unable to deserialize 03008484
+2019-08-08 12:20:28,559 - DEBUG: RX: 00
+2019-08-08 12:20:28,559 - ERROR: Invalid packet: bytearray(b'\x00')
+2019-08-08 12:20:28,560 - DEBUG: RX: 03840084
+2019-08-08 12:20:28,561 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-08 12:20:28,561 - ERROR: None: ERROR_INVALID_LENGTH
+2019-08-08 12:20:28,561 - DEBUG: RX: 00
+2019-08-08 12:20:28,561 - ERROR: Invalid packet: bytearray(b'\x00')

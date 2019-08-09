@@ -3,16 +3,8 @@ var assert = require('assert');
 // var events = require('events');
 
 var eventBus = require('./eventBus.js');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const csvWriter = createCsvWriter({
-    path: 'path/to/file.csv',
-    header: [
-        {id: 'op', title: 'op'},
-        {id: 'data.value', title: 'value'},
-        {id: 'data.pin', title: 'pin'},
-        {id: 'data.uuid', title: 'uuid'},
-    ]
-});
+const fs = require('fs');
+
 
 
 class Pyaci {
@@ -20,6 +12,7 @@ class Pyaci {
     constructor() {
         this.child;
         this.output_channel;
+        this.stream = fs.createWriteStream("/Users/Tim-Mac/.node-red/node-red-log.txt", {flags:'a'});
 
         this.pyscript = {
             filename: 'main.py',
@@ -50,11 +43,11 @@ class Pyaci {
     }
 
     log(msg) {
-        console.log(`[pyaci.js] ${msg}`);
-    }
-
-    logmsg(msg){
-        console.log()
+        var d = new Date()
+        var timestamp = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}.${d.getMilliseconds()}`
+        var out = `[pyaci.js] ${timestamp} ${msg}`
+        this.stream.write(out + '\n');
+        console.log(out);
     }
 
     connect() {
@@ -83,6 +76,7 @@ class Pyaci {
     }
 
     disconnect() {
+        this.stream.end();
         var op = "Disconnect"
         this.send(op);
         this.child.kill();
@@ -103,9 +97,10 @@ class Pyaci {
         }
         
         var msg_out = JSON.stringify(msg)
-
-        this.log(`TX: ${msg_out}`);
         this.output_channel.write(msg_out + '\n');
+        var log = `TX ${msg_out}`;
+        this.log(log);
+
         return true;
     }
 
@@ -287,7 +282,10 @@ class Pyaci {
             var msg = JSON.parse(msg_in);
             var op = msg.op;
             var data = msg.data;
-            this.log(`RX: ${msg_in}`);
+            
+            var log = `RX ${JSON.stringify(msg)}`;
+            this.log(log);
+
         } catch(err) {
             this.log(`Parse Failed: ${msg_in}`)
             return;

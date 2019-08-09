@@ -75,7 +75,7 @@ module.exports = function(RED) {
             if(data.uuid === uuid && data.pin === this.pin){
                 // node.send({
                 //     payload: {
-                //         "error": "Set Ack Failed"
+                //         "error": "Set Ack Failed",
                 //     }
                 // });
 
@@ -112,6 +112,8 @@ module.exports = function(RED) {
         var node = this;
         this.pin = parseInt(config.pin);
         var confignode = RED.nodes.getNode(config.confignode);
+        var uuid = confignode.device.uuid;
+        var topic = config.name || `${uuid}_${pin}`;
 
         this.element = confignode.device.getElement(this.pin);
         this.element.configureGPIOasInput(true);
@@ -129,14 +131,15 @@ module.exports = function(RED) {
             }
         });
 
-        var uuid = confignode.device.uuid;
+        
         
         
         // Set event
         this.setListener = (data) => {
             if(data.uuid === uuid && data.pin === this.pin){
                 node.send({
-                    payload: parseInt(data.value)
+                    payload: parseInt(data.value),
+                    topic: topic
                 });
                 this.status({fill:"green",shape:"dot",text:data.value});
             }
@@ -148,7 +151,8 @@ module.exports = function(RED) {
         this.statusListener = (data) => {
             if(data.uuid === uuid && data.pin === this.pin){
                 node.send({
-                    payload: parseInt(data.value)
+                    payload: parseInt(data.value),
+                    topic: topic
                 });
                 this.status({fill:"green",shape:"dot",text:data.value});
             }
