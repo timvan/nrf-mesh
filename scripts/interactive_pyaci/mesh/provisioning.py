@@ -205,7 +205,8 @@ class Provisioner(ProvDevice):
     def __init__(self, interactive_device, prov_db,
                  context_id=0,
                  auth_data=[0]*16,
-                 enable_event_filter=True):
+                 enable_event_filter=True,
+                 provisioning_complete_cb=None):
         super(Provisioner, self).__init__(
             interactive_device, context_id, auth_data, self.__event_handler,
             enable_event_filter)
@@ -215,6 +216,9 @@ class Provisioner(ProvDevice):
         self.__session_data = {}
         self.__next_free_address = None
         self.load(prov_db)
+
+        self._provisioning_complete = False
+        self._provisioning_complete_cb = provisioning_complete_cb
 
     def load(self, prov_db):
         """Loads the keys from the provisioning datase and sets the local unicast address.
@@ -339,6 +343,16 @@ class Provisioner(ProvDevice):
             # Update address to the next in range
             self.__next_free_address += num_elements
 
+            self._provisioning_complete = True
+
+        elif event._opcode == Event.PROV_LINK_CLOSED:
+            self.logger.info("Provisioning link closed")
+            
+            if self._provisioning_complete:
+                if callable(self._provisioning_complete_cb):
+                    self._provisioning_complete_cb()
+                self._provisioning_complete = False
+            
         else:
             self.default_handler(event)
 
