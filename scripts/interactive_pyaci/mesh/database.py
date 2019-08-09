@@ -71,7 +71,6 @@ class MeshDB(object):
         self.iv_index = 0
         self.iv_update = 0
 
-        self.devkey_handles = []
         self.models = []
 
         self.load()
@@ -101,9 +100,6 @@ class MeshDB(object):
             self.iv_index = data["iv_index"]
         if "iv_update" in data:
             self.iv_update = data["iv_update"]
-
-        if "devkey_handles" in data:
-            self.devkey_handles = data["devkey_handles"]
 
         if "models" in data:
             self.models = data["models"]
@@ -146,10 +142,10 @@ class MeshDB(object):
 
     
     def find_devkey_handle(self, address):
-        for item in self.devkey_handles:
-            if item["device_address"] == address:
-                return item["devkey_handle"]
-
+        for node in self.nodes:
+            if node.unicast_address == address:
+                return node.devkey_handle
+        
         return None
 
     def get_node(self, uuid):
@@ -172,3 +168,14 @@ class MeshDB(object):
                 return n
         
         return None
+
+
+    def src_address_to_node_element_index(self, src_address):
+        for node_index, node in enumerate(self.nodes):
+            for element_index, element in enumerate(node.elements):
+                
+                if int(node.unicast_address + element_index) == src_address:
+                    return node_index, element_index
+
+
+

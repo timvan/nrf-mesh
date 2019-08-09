@@ -644,7 +644,7 @@ class Node(object):
     def __init__(self, UUID, device_key, unicast_address, net_keys, config_complete, security, name="",
                  cid=None, vid=None, pid=None, crpl=None, network_transmit=None, relay_retransmit=None,
                  features=None, elements=[], app_keys=[], secure_network_beacon=None,
-                 default_TTL=None):
+                 default_TTL=None, devkey_handle=None):
         self.UUID = _UUID(UUID)
         self.device_key = Key(device_key)
         self.unicast_address = unpack(UnicastAddress, unicast_address)
@@ -663,6 +663,7 @@ class Node(object):
         self.network_transmit = unpack(NetworkTransmit, network_transmit)
         self.relay_retransmit = unpack(RelayRetransmit, relay_retransmit)
         self.default_TTL = default_TTL
+        self.devkey_handle = devkey_handle
 
     def __repr__(self):
         return str(self.__dict__)

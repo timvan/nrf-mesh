@@ -152,13 +152,16 @@ class ProvDevice(object):
                                                      default_backend())
         self.__public_key = self.__private_key.public_key()
 
-        private_key_raw = private_key_to_raw(self.__private_key)
-        public_key_raw = public_key_to_raw(self.__public_key)
+        self.__private_key_raw = private_key_to_raw(self.__private_key)
+        self.__public_key_raw = public_key_to_raw(self.__public_key)
 
-        assert(len(private_key_raw) == 32)
-        assert(len(public_key_raw) == 64)
+        assert(len(self.__private_key_raw) == 32)
+        assert(len(self.__public_key_raw) == 64)
 
-        self.iaci.send(cmd.KeypairSet(private_key_raw, public_key_raw))
+        self.iaci.send(cmd.KeypairSet(self.__private_key_raw, self.__public_key_raw))
+
+    def resend_key_pair(self):
+        self.iaci.send(cmd.KeypairSet(self.__private_key_raw, self.__public_key_raw))
 
     def default_handler(self, event):
         if event._opcode == Event.PROV_ECDH_REQUEST:
