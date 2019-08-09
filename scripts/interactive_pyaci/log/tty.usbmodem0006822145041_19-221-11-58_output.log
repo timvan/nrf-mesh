@@ -1,0 +1,821 @@
+2019-08-09 11:58:10,512 - DEBUG - tty.usbmodem0006822145041: Writing: 14 bytearray(b'')
+2019-08-09 11:58:10,512 - DEBUG - tty.usbmodem0006822145041: TX: 010e
+2019-08-09 11:58:10,936 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-08-09 11:58:10,936 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-08-09 11:58:10,936 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-08-09 11:58:11,048 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\x92R*\x1a\x05\xa1BI|W\xc7\xf6\xe6\x8cW\xda\\r?p8\xabOY5]\xdbP\xb3"\xbb\xe0\x91\\\x10C&\xa2\x85/\xfeC;r\xb1\xdfq\'t\x82X\xa4\xbcr20C\n\xd1\xa9%\xe9\x81\xea\x90\xdc\x0bTp\x90\xb8JWB\xb8\xea\x1e\x9e\xb7e|\x1c~\x04\xf3\x17n\x0b\xf2\n\x8f[\xa0\xa8\x8b\x03')
+2019-08-09 11:58:11,048 - DEBUG - tty.usbmodem0006822145041: TX: 616992522a1a05a142497c57c7f6e68c57da5c723f7038ab4f59355ddb50b322bbe0915c104326a2852ffe433b72b1df7127748258a4bc723230430ad1a925e981ea90dc0b547090b84a5742b8ea1e9eb7657c1c7e04f3176e0bf20a8f5ba0a88b03
+2019-08-09 11:58:11,050 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 11:58:11,058 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-08-09 11:58:11,059 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,059 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,059 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,060 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,060 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,060 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,060 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,061 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,061 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,061 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,061 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,062 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,062 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,062 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,062 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,062 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,063 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,063 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,063 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,063 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,063 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,064 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,064 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,064 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,064 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,064 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,064 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,064 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,065 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,065 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,065 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,065 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,065 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,065 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,065 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,066 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:58:11,066 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,066 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:58:11,083 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-09 11:58:11,083 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-09 11:58:11,085 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-08-09 11:58:11,085 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:58:11,085 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:58:11,108 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-09 11:58:11,108 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 11:58:11,112 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-08-09 11:58:11,112 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:58:11,112 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-08-09 11:58:11,133 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 11:58:11,133 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 11:58:11,137 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-08-09 11:58:11,137 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:58:11,138 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-08-09 11:58:11,157 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-09 11:58:11,158 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-09 11:58:11,161 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-08-09 11:58:11,162 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 11:58:11,162 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-08-09 11:58:18,173 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-08-09 11:58:18,177 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-08-09 11:58:18,179 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-08-09 11:58:18,179 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:58:18,180 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:58:19,506 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdca0001cb6e5fd50bd8
+2019-08-09 11:58:19,507 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -54, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:58:19,507 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -54, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:58:19,507 - INFO - tty.usbmodem0006822145041: Received UUID e07f87c0e83ff2418b6e5fd50b58c2cd with RSSI: -54 dB
+2019-08-09 11:58:19,507 - DEBUG - tty.usbmodem0006822145041: Writing: 98 bytearray(b'')
+2019-08-09 11:58:19,507 - DEBUG - tty.usbmodem0006822145041: TX: 0162
+2019-08-09 11:58:19,509 - DEBUG - tty.usbmodem0006822145041: RX: 03846200
+2019-08-09 11:58:19,510 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 98, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:58:19,510 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:58:19,531 - DEBUG - tty.usbmodem0006822145041: Writing: 99 bytearray(b'\x00\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12\x00\x00\x00\x00\x00\x00\x10\x00\x00\x00\x00')
+2019-08-09 11:58:19,531 - DEBUG - tty.usbmodem0006822145041: TX: 2d6300e07f87c0e83ff2418b6e5fd50b58c2cd18eed9c2a56add85049ffc3c59ad0e120000000000001000000000
+2019-08-09 11:58:19,537 - DEBUG - tty.usbmodem0006822145041: RX: 0484630000
+2019-08-09 11:58:19,538 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 99, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-08-09 11:58:19,538 - INFO - tty.usbmodem0006822145041: Provision: {'context': 0}
+2019-08-09 11:58:19,584 - DEBUG - tty.usbmodem0006822145041: RX: 02c100
+2019-08-09 11:58:19,584 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkEstablished, data: {'context_id': 0}}
+2019-08-09 11:58:19,585 - INFO - tty.usbmodem0006822145041: {event: ProvLinkEstablished, data: {'context_id': 0}}
+2019-08-09 11:58:19,585 - INFO - tty.usbmodem0006822145041: Link established
+2019-08-09 11:58:19,642 - DEBUG - tty.usbmodem0006822145041: RX: 0bc3000e0001000000000000
+2019-08-09 11:58:19,643 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvCapsReceived, data: {'context_id': 0, 'num_elements': 14, 'public_key_type': 0, 'static_oob_types': 1, 'output_oob_size': 0, 'output_oob_actions': 0, 'input_oob_size': 0, 'input_oob_actions': 0}}
+2019-08-09 11:58:19,644 - INFO - tty.usbmodem0006822145041: {event: ProvCapsReceived, data: {'context_id': 0, 'num_elements': 14, 'public_key_type': 0, 'static_oob_types': 1, 'output_oob_size': 0, 'output_oob_actions': 0, 'input_oob_size': 0, 'input_oob_actions': 0}}
+2019-08-09 11:58:19,645 - INFO - tty.usbmodem0006822145041: Received capabilities
+2019-08-09 11:58:19,646 - INFO - tty.usbmodem0006822145041: Number of elements: 14
+2019-08-09 11:58:19,647 - DEBUG - tty.usbmodem0006822145041: Writing: 102 bytearray(b'\x00\x00\x00\x00')
+2019-08-09 11:58:19,647 - DEBUG - tty.usbmodem0006822145041: TX: 056600000000
+2019-08-09 11:58:19,650 - DEBUG - tty.usbmodem0006822145041: RX: 0484660000
+2019-08-09 11:58:19,651 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 102, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-08-09 11:58:19,651 - INFO - tty.usbmodem0006822145041: OobUse: {'context': 0}
+2019-08-09 11:58:19,844 - DEBUG - tty.usbmodem0006822145041: RX: 62c7004d50bb823927a7b7131e0c6901bb02297df8fe2f5d630b79480c0d786e67c0e6f77a8430549d7700781c4fd70372c693a9e6a5ffc6fc8704975984f79a7e50ee6ff86f4e3deb30439212645c61bb6354535e122fcef9e140bde12775723adca1
+2019-08-09 11:58:19,845 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvEcdhRequest, data: {'context_id': 0, 'peer_public': bytearray(b"MP\xbb\x829\'\xa7\xb7\x13\x1e\x0ci\x01\xbb\x02)}\xf8\xfe/]c\x0byH\x0c\rxng\xc0\xe6\xf7z\x840T\x9dw\x00x\x1cO\xd7\x03r\xc6\x93\xa9\xe6\xa5\xff\xc6\xfc\x87\x04\x97Y\x84\xf7\x9a~P\xee"), 'node_private': bytearray(b"o\xf8oN=\xeb0C\x92\x12d\\a\xbbcTS^\x12/\xce\xf9\xe1@\xbd\xe1\'ur:\xdc\xa1")}}
+2019-08-09 11:58:19,846 - INFO - tty.usbmodem0006822145041: {event: ProvEcdhRequest, data: {'context_id': 0, 'peer_public': bytearray(b"MP\xbb\x829\'\xa7\xb7\x13\x1e\x0ci\x01\xbb\x02)}\xf8\xfe/]c\x0byH\x0c\rxng\xc0\xe6\xf7z\x840T\x9dw\x00x\x1cO\xd7\x03r\xc6\x93\xa9\xe6\xa5\xff\xc6\xfc\x87\x04\x97Y\x84\xf7\x9a~P\xee"), 'node_private': bytearray(b"o\xf8oN=\xeb0C\x92\x12d\\a\xbbcTS^\x12/\xce\xf9\xe1@\xbd\xe1\'ur:\xdc\xa1")}}
+2019-08-09 11:58:19,847 - INFO - tty.usbmodem0006822145041: ECDH request received
+2019-08-09 11:58:19,848 - DEBUG - tty.usbmodem0006822145041: Writing: 104 bytearray(b'\x00\x1f\xfe\xb4\xfbq\xcc\xf9\xc8\x7f\xd7\xe4\xfe\xf1f\xf7\xebw\x05\x1f\x17O\xc2A\xea\x85A4\x19XK\xda\xb1')
+2019-08-09 11:58:19,848 - DEBUG - tty.usbmodem0006822145041: TX: 2268001ffeb4fb71ccf9c87fd7e4fef166f7eb77051f174fc241ea85413419584bdab1
+2019-08-09 11:58:19,853 - DEBUG - tty.usbmodem0006822145041: RX: 0484680000
+2019-08-09 11:58:19,853 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 104, 'status': 0, 'data': bytearray(b'\x00')}}
+2019-08-09 11:58:19,854 - INFO - tty.usbmodem0006822145041: EcdhSecret: {'context': 0}
+2019-08-09 11:58:20,180 - DEBUG - tty.usbmodem0006822145041: RX: 2cc50000000000000010000000c8c6d5b285fa0523b1cf877d1893131318eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 11:58:20,181 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvComplete, data: {'context_id': 0, 'iv_index': 0, 'net_key_index': 0, 'address': 16, 'iv_update_flag': 0, 'key_refresh_flag': 0, 'device_key': bytearray(b'\xc8\xc6\xd5\xb2\x85\xfa\x05#\xb1\xcf\x87}\x18\x93\x13\x13'), 'net_key': bytearray(b'\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')}}
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: {event: ProvComplete, data: {'context_id': 0, 'iv_index': 0, 'net_key_index': 0, 'address': 16, 'iv_update_flag': 0, 'key_refresh_flag': 0, 'device_key': bytearray(b'\xc8\xc6\xd5\xb2\x85\xfa\x05#\xb1\xcf\x87}\x18\x93\x13\x13'), 'net_key': bytearray(b'\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')}}
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: Provisioning complete
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: 	Address(es): 0x10-0x1d
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: 	Device key: c8c6d5b285fa0523b1cf877d18931313
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: 	Network key: 18eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: Adding device key to subnet 0
+2019-08-09 11:58:20,182 - DEBUG - tty.usbmodem0006822145041: Writing: 156 bytearray(b'\x10\x00\x00\x00\xc8\xc6\xd5\xb2\x85\xfa\x05#\xb1\xcf\x87}\x18\x93\x13\x13')
+2019-08-09 11:58:20,182 - INFO - tty.usbmodem0006822145041: Adding publication address of root element
+2019-08-09 11:58:20,183 - DEBUG - tty.usbmodem0006822145041: TX: 159c10000000c8c6d5b285fa0523b1cf877d18931313
+2019-08-09 11:58:20,186 - DEBUG - tty.usbmodem0006822145041: RX: 05849c000800
+2019-08-09 11:58:20,187 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-08-09 11:58:20,187 - INFO - tty.usbmodem0006822145041: DevkeyAdd: {'devkey_handle': 8}
+2019-08-09 11:58:20,189 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 11:58:20,204 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 11:58:20,205 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 11:58:20,206 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-08-09 11:58:20,206 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:58:20,207 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-08-09 11:58:20,208 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 11:58:20,299 - DEBUG - tty.usbmodem0006822145041: RX: 03c20000
+2019-08-09 11:58:20,299 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvLinkClosed, data: {'context_id': 0, 'close_reason': 0}}
+2019-08-09 11:58:20,299 - INFO - tty.usbmodem0006822145041: {event: ProvLinkClosed, data: {'context_id': 0, 'close_reason': 0}}
+2019-08-09 11:58:20,299 - INFO - tty.usbmodem0006822145041: Provisioning link closed
+2019-08-09 11:58:30,304 - INFO - tty.usbmodem0006822145041: Configure 8 0
+2019-08-09 11:58:30,305 - DEBUG - tty.usbmodem0006822145041.MeshConfigurationClient: Sending opcode: 8008, data: 00
+2019-08-09 11:58:30,306 - DEBUG - tty.usbmodem0006822145041.MeshConfigurationClient: Sending opcode: 00, data: 0000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 11:58:30,306 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x80\x08\x00')
+2019-08-09 11:58:30,306 - DEBUG - tty.usbmodem0006822145041: TX: 0eab08000100000008000000800800
+2019-08-09 11:58:30,309 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0001000000
+2019-08-09 11:58:30,310 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x01\x00\x00\x00')}}
+2019-08-09 11:58:30,310 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 1}
+2019-08-09 11:58:30,329 - DEBUG - tty.usbmodem0006822145041: Writing: 171 bytearray(b'\x08\x00\x01\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 11:58:30,330 - DEBUG - tty.usbmodem0006822145041: TX: 1fab08000100000008000000000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 11:58:30,331 - DEBUG - tty.usbmodem0006822145041: RX: 05d201000000
+2019-08-09 11:58:30,332 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 1}}
+2019-08-09 11:58:30,333 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 1}}
+2019-08-09 11:58:30,336 - DEBUG - tty.usbmodem0006822145041: RX: 0784ab0002000000
+2019-08-09 11:58:30,336 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 171, 'status': 0, 'data': bytearray(b'\x02\x00\x00\x00')}}
+2019-08-09 11:58:30,336 - INFO - tty.usbmodem0006822145041: PacketSend: {'token': 2}
+2019-08-09 11:58:30,546 - DEBUG - tty.usbmodem0006822145041: RX: 05d202000000
+2019-08-09 11:58:30,546 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshTxComplete, data: {'token': 2}}
+2019-08-09 11:58:30,546 - INFO - tty.usbmodem0006822145041: {event: MeshTxComplete, data: {'token': 2}}
+2019-08-09 11:58:30,760 - DEBUG - tty.usbmodem0006822145041: RX: c4d010000100080000007f01cb6e5fd50bd8d1b0000200590000000000280003000000020000000200000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000000002010010011059000000
+2019-08-09 11:58:30,760 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8'), 'rssi': -47, 'actual_length': 176, 'data': bytearray(b'\x02\x00Y\x00\x00\x00\x00\x00(\x00\x03\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00')}}
+2019-08-09 11:58:30,761 - DEBUG - tty.usbmodem0006822145041: 0
+2019-08-09 11:58:30,761 - DEBUG - tty.usbmodem0006822145041: [<mesh.access.Element object at 0x1112e01d0>]
+2019-08-09 11:58:30,761 - DEBUG - tty.usbmodem0006822145041: <mesh.access.Element object at 0x1112e01d0>
+2019-08-09 11:58:30,761 - DEBUG - tty.usbmodem0006822145041: 1
+2019-08-09 11:58:30,761 - INFO - tty.usbmodem0006822145041.MeshConfigurationClient: __composition_data_status_handler_mesh
+2019-08-09 11:58:30,761 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Access.__event_handler of <mesh.access.Access object at 0x1112e0198>>
+2019-08-09 11:58:30,765 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 225, in __event_handler
+    handler(opcode, message)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 767, in __composition_data_status_handler_mesh
+    self.__composition_data_status_handler(opcode, message)
+AttributeError: 'MeshConfigurationClient' object has no attribute '_MeshConfigurationClient__composition_data_status_handler'
+
+2019-08-09 11:58:30,766 - INFO - tty.usbmodem0006822145041: {event: MeshMessageReceivedUnicast, data: {'src': 16, 'dst': 1, 'appkey_handle': 8, 'subnet_handle': 0, 'ttl': 127, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8'), 'rssi': -47, 'actual_length': 176, 'data': bytearray(b'\x02\x00Y\x00\x00\x00\x00\x00(\x00\x03\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00\x00\x00\x02\x01\x00\x10\x01\x10Y\x00\x00\x00')}}
+2019-08-09 11:58:30,767 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,767 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,767 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-09 11:58:30,767 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-09 11:58:30,769 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-08-09 11:58:30,770 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 11:58:30,770 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-08-09 11:58:30,771 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,772 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,791 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 11:58:30,791 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 11:58:30,793 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-08-09 11:58:30,793 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:58:30,793 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-08-09 11:58:30,793 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 16, 'address_handle': 0, 'opcode': 164}
+2019-08-09 11:58:30,793 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,793 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,816 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x11\x00')
+2019-08-09 11:58:30,816 - DEBUG - tty.usbmodem0006822145041: TX: 03a41100
+2019-08-09 11:58:30,819 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-08-09 11:58:30,819 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-08-09 11:58:30,819 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-08-09 11:58:30,823 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,823 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,841 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x12\x00')
+2019-08-09 11:58:30,842 - DEBUG - tty.usbmodem0006822145041: TX: 03a41200
+2019-08-09 11:58:30,844 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-08-09 11:58:30,844 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-08-09 11:58:30,844 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-08-09 11:58:30,847 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,847 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,863 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x13\x00')
+2019-08-09 11:58:30,863 - DEBUG - tty.usbmodem0006822145041: TX: 03a41300
+2019-08-09 11:58:30,865 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000400
+2019-08-09 11:58:30,865 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-08-09 11:58:30,865 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 4}
+2019-08-09 11:58:30,867 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,868 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,884 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x14\x00')
+2019-08-09 11:58:30,884 - DEBUG - tty.usbmodem0006822145041: TX: 03a41400
+2019-08-09 11:58:30,887 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000500
+2019-08-09 11:58:30,887 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-08-09 11:58:30,887 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 5}
+2019-08-09 11:58:30,890 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,890 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,907 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x15\x00')
+2019-08-09 11:58:30,908 - DEBUG - tty.usbmodem0006822145041: TX: 03a41500
+2019-08-09 11:58:30,911 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000600
+2019-08-09 11:58:30,911 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-08-09 11:58:30,911 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 6}
+2019-08-09 11:58:30,913 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,913 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,932 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x16\x00')
+2019-08-09 11:58:30,932 - DEBUG - tty.usbmodem0006822145041: TX: 03a41600
+2019-08-09 11:58:30,935 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000700
+2019-08-09 11:58:30,936 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-08-09 11:58:30,936 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 7}
+2019-08-09 11:58:30,939 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,939 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,956 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x17\x00')
+2019-08-09 11:58:30,956 - DEBUG - tty.usbmodem0006822145041: TX: 03a41700
+2019-08-09 11:58:30,960 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000800
+2019-08-09 11:58:30,960 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-08-09 11:58:30,960 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 8}
+2019-08-09 11:58:30,962 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,962 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:30,980 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x18\x00')
+2019-08-09 11:58:30,981 - DEBUG - tty.usbmodem0006822145041: TX: 03a41800
+2019-08-09 11:58:30,983 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000900
+2019-08-09 11:58:30,983 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-08-09 11:58:30,983 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 9}
+2019-08-09 11:58:30,986 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:30,987 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,005 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x19\x00')
+2019-08-09 11:58:31,005 - DEBUG - tty.usbmodem0006822145041: TX: 03a41900
+2019-08-09 11:58:31,007 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000a00
+2019-08-09 11:58:31,007 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-08-09 11:58:31,009 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 10}
+2019-08-09 11:58:31,012 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:31,012 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,030 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1a\x00')
+2019-08-09 11:58:31,030 - DEBUG - tty.usbmodem0006822145041: TX: 03a41a00
+2019-08-09 11:58:31,032 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000b00
+2019-08-09 11:58:31,032 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-08-09 11:58:31,032 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 11}
+2019-08-09 11:58:31,034 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:31,034 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,051 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1b\x00')
+2019-08-09 11:58:31,051 - DEBUG - tty.usbmodem0006822145041: TX: 03a41b00
+2019-08-09 11:58:31,054 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000c00
+2019-08-09 11:58:31,054 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-08-09 11:58:31,054 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 12}
+2019-08-09 11:58:31,056 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:31,056 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,075 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1c\x00')
+2019-08-09 11:58:31,075 - DEBUG - tty.usbmodem0006822145041: TX: 03a41c00
+2019-08-09 11:58:31,077 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000d00
+2019-08-09 11:58:31,077 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-08-09 11:58:31,077 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 13}
+2019-08-09 11:58:31,078 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:31,079 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,100 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1d\x00')
+2019-08-09 11:58:31,100 - DEBUG - tty.usbmodem0006822145041: TX: 03a41d00
+2019-08-09 11:58:31,103 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000e00
+2019-08-09 11:58:31,103 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-08-09 11:58:31,103 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 14}
+2019-08-09 11:58:31,106 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 11:58:31,106 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 11:58:31,106 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 11:58:31,126 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-08-09 11:58:31,126 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-08-09 11:58:31,127 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-08-09 11:58:31,128 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:58:31,128 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:58:35,111 - INFO - tty.usbmodem0006822145041: Timout handler timeout
+2019-08-09 12:03:56,763 - DEBUG - tty.usbmodem0006822145041: Writing: 14 bytearray(b'')
+2019-08-09 12:03:56,768 - DEBUG - tty.usbmodem0006822145041: TX: 010e
+2019-08-09 12:03:57,187 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-08-09 12:03:57,187 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-08-09 12:03:57,187 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-08-09 12:03:57,188 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\xf1\xadf\xfbA\x90\xf7\xabu\x93\x96\xcf\xd3\xdb+\xcb\x90%\xda\xc2\xaeF_\xf6fO\xe3]\x10L\x9f\x08\x95A\x9c\x8fhQ\xd7\xb0E\x1b\x1e\x9f\xc8(r\x05\xbc:\t[\x9f\xc5GZ\x87\x82\x92\xfa\xc7\x7fE -kNKP\xa9@"\xd9\xe5\x948D\xd3\xfd\xf6V\xaft\xc2/\xcb\x98uB\xab\xf8*\xc8 \xfe\xbc')
+2019-08-09 12:03:57,189 - DEBUG - tty.usbmodem0006822145041: TX: 6169f1ad66fb4190f7ab759396cfd3db2bcb9025dac2ae465ff6664fe35d104c9f0895419c8f6851d7b0451b1e9fc8287205bc3a095b9fc5475a878292fac77f45202d6b4e4b50a94022d9e5943844d3fdf656af74c22fcb987542abf82ac820febc
+2019-08-09 12:03:57,192 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.deviceStarted of <interactive_pyaci.Mesh object at 0x1116b5908>>
+2019-08-09 12:03:57,192 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 269, in deviceStarted
+    self.setup()
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 189, in setup
+    self.load_models()
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 234, in load_models
+    tid = model["tid"]
+TypeError: 'GenericOnOffClient' object is not subscriptable
+
+2019-08-09 12:03:57,201 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,202 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,203 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-08-09 12:03:57,203 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,203 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,203 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,204 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,204 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,204 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,205 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,205 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,205 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,205 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,205 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,206 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,206 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,206 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,206 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,207 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,207 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,207 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,207 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,207 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,211 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,212 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,212 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,212 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,213 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,213 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,213 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,213 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,213 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,214 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,214 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,215 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,215 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-09 12:03:57,215 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-09 12:03:57,218 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-08-09 12:03:57,218 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,219 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 12:03:57,238 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-09 12:03:57,238 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 12:03:57,242 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-08-09 12:03:57,242 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 12:03:57,242 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-08-09 12:03:57,263 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 12:03:57,264 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 12:03:57,269 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-08-09 12:03:57,269 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 12:03:57,270 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-08-09 12:03:57,289 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-09 12:03:57,289 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-09 12:03:57,294 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-08-09 12:03:57,294 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 12:03:57,294 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-08-09 12:03:57,315 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'\x01\x17E8\x8c\x8b\xc9K-\xb2\xa2\xdc\xbf\x87\xe1v\\"\xd7z\xa9l8A\x98\x17;\x12\xb4\x07<\xaf\xd6\x10\x9d\x92\x8e\xa7m{Pq\xb6\xcdyy\xdd\xb8\x94\xf4*j\x84\xd9\xbb\x97p\xf4\xcf\xae\xb7\x834*\xb71a\xb3\x80\x03\xed>\xe5L#y\x97\xf2\x1fWb\xa6\x9d\xfe\xa2\xa0\xfb\xba*\x01C\x18\x93:\xe7_')
+2019-08-09 12:03:57,315 - DEBUG - tty.usbmodem0006822145041: TX: 6169011745388c8bc94b2db2a2dcbf87e1765c22d77aa96c384198173b12b4073cafd6109d928ea76d7b5071b6cd7979ddb894f42a6a84d9bb9770f4cfaeb783342ab73161b38003ed3ee54c237997f21f5762a69dfea2a0fbba2a014318933ae75f
+2019-08-09 12:03:57,325 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-08-09 12:03:57,325 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,325 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,325 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,326 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,326 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,326 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,326 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,326 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,326 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,326 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,326 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,327 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,327 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,327 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,327 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,328 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,328 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,328 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,328 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,328 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,329 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,329 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,329 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,329 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,329 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,329 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,330 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,330 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,330 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,330 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,330 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,330 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,331 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,331 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,331 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,332 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 12:03:57,332 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,332 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 12:03:57,336 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-09 12:03:57,336 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-09 12:03:57,338 - DEBUG - tty.usbmodem0006822145041: RX: 03849f8e
+2019-08-09 12:03:57,338 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,338 - ERROR - tty.usbmodem0006822145041: None: ERROR_REJECTED
+2019-08-09 12:03:57,360 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-09 12:03:57,362 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 12:03:57,365 - DEBUG - tty.usbmodem0006822145041: RX: 03849281
+2019-08-09 12:03:57,365 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,366 - ERROR - tty.usbmodem0006822145041: SubnetAdd: ERROR_INTERNAL
+2019-08-09 12:03:57,386 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 12:03:57,387 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 12:03:57,390 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-08-09 12:03:57,390 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,390 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-08-09 12:03:57,411 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-09 12:03:57,412 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-09 12:03:57,416 - DEBUG - tty.usbmodem0006822145041: RX: 03849781
+2019-08-09 12:03:57,416 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': bytearray(b'')}}
+2019-08-09 12:03:57,418 - ERROR - tty.usbmodem0006822145041: AppkeyAdd: ERROR_INTERNAL
+2019-08-09 12:03:57,432 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 12:03:57,433 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 12:03:57,435 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-08-09 12:03:57,435 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 12:03:57,435 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-08-09 12:03:57,437 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,437 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,438 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 16, 'address_handle': 0, 'opcode': 164}
+2019-08-09 12:03:57,438 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,438 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,439 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,440 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,456 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x10\x00')
+2019-08-09 12:03:57,456 - DEBUG - tty.usbmodem0006822145041: TX: 03a41000
+2019-08-09 12:03:57,458 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000000
+2019-08-09 12:03:57,458 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 12:03:57,458 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 0}
+2019-08-09 12:03:57,459 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 16, 'address_handle': 0, 'opcode': 164}
+2019-08-09 12:03:57,460 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,461 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,461 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 16, 'address_handle': 0, 'opcode': 164}
+2019-08-09 12:03:57,461 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,461 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,462 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 16, 'address_handle': 0, 'opcode': 164}
+2019-08-09 12:03:57,462 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,462 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,481 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-09 12:03:57,482 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-09 12:03:57,485 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-08-09 12:03:57,485 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 12:03:57,485 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-08-09 12:03:57,487 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,487 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,487 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 49153, 'address_handle': 1, 'opcode': 161}
+2019-08-09 12:03:57,487 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,487 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,489 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,489 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,506 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-09 12:03:57,506 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-09 12:03:57,509 - DEBUG - tty.usbmodem0006822145041: RX: 0584a1000100
+2019-08-09 12:03:57,510 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 161, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 12:03:57,510 - INFO - tty.usbmodem0006822145041: AddrSubscriptionAdd: {'address_handle': 1}
+2019-08-09 12:03:57,510 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 49153, 'address_handle': 1, 'opcode': 161}
+2019-08-09 12:03:57,510 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,510 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,511 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 49153, 'address_handle': 1, 'opcode': 161}
+2019-08-09 12:03:57,511 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,511 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,511 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 49153, 'address_handle': 1, 'opcode': 161}
+2019-08-09 12:03:57,511 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,511 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,531 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x11\x00')
+2019-08-09 12:03:57,531 - DEBUG - tty.usbmodem0006822145041: TX: 03a41100
+2019-08-09 12:03:57,534 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-08-09 12:03:57,535 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-08-09 12:03:57,535 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-08-09 12:03:57,537 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,537 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,538 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 17, 'address_handle': 2, 'opcode': 164}
+2019-08-09 12:03:57,538 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,538 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,539 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,539 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,556 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x12\x00')
+2019-08-09 12:03:57,556 - DEBUG - tty.usbmodem0006822145041: TX: 03a41200
+2019-08-09 12:03:57,559 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-08-09 12:03:57,562 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-08-09 12:03:57,562 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-08-09 12:03:57,564 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,564 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,564 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 18, 'address_handle': 3, 'opcode': 164}
+2019-08-09 12:03:57,565 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,565 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,569 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,570 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,581 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x11\x00')
+2019-08-09 12:03:57,582 - DEBUG - tty.usbmodem0006822145041: TX: 03a41100
+2019-08-09 12:03:57,584 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000200
+2019-08-09 12:03:57,585 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x02\x00')}}
+2019-08-09 12:03:57,586 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 2}
+2019-08-09 12:03:57,586 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 17, 'address_handle': 2, 'opcode': 164}
+2019-08-09 12:03:57,586 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,586 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,586 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 17, 'address_handle': 2, 'opcode': 164}
+2019-08-09 12:03:57,586 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,586 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,586 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 17, 'address_handle': 2, 'opcode': 164}
+2019-08-09 12:03:57,587 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,587 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,606 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x13\x00')
+2019-08-09 12:03:57,606 - DEBUG - tty.usbmodem0006822145041: TX: 03a41300
+2019-08-09 12:03:57,609 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000400
+2019-08-09 12:03:57,610 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-08-09 12:03:57,610 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 4}
+2019-08-09 12:03:57,612 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,612 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,612 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 19, 'address_handle': 4, 'opcode': 164}
+2019-08-09 12:03:57,612 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,612 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,614 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,615 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,631 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x14\x00')
+2019-08-09 12:03:57,631 - DEBUG - tty.usbmodem0006822145041: TX: 03a41400
+2019-08-09 12:03:57,634 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000500
+2019-08-09 12:03:57,635 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-08-09 12:03:57,636 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 5}
+2019-08-09 12:03:57,638 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,639 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 20, 'address_handle': 5, 'opcode': 164}
+2019-08-09 12:03:57,639 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,640 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,640 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,655 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x12\x00')
+2019-08-09 12:03:57,655 - DEBUG - tty.usbmodem0006822145041: TX: 03a41200
+2019-08-09 12:03:57,657 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000300
+2019-08-09 12:03:57,657 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x03\x00')}}
+2019-08-09 12:03:57,657 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 3}
+2019-08-09 12:03:57,657 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 18, 'address_handle': 3, 'opcode': 164}
+2019-08-09 12:03:57,657 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,657 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 18, 'address_handle': 3, 'opcode': 164}
+2019-08-09 12:03:57,657 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,658 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 18, 'address_handle': 3, 'opcode': 164}
+2019-08-09 12:03:57,658 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,658 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,679 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x15\x00')
+2019-08-09 12:03:57,679 - DEBUG - tty.usbmodem0006822145041: TX: 03a41500
+2019-08-09 12:03:57,682 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000600
+2019-08-09 12:03:57,682 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-08-09 12:03:57,683 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 6}
+2019-08-09 12:03:57,687 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,688 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 21, 'address_handle': 6, 'opcode': 164}
+2019-08-09 12:03:57,688 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,689 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,689 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,701 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x16\x00')
+2019-08-09 12:03:57,702 - DEBUG - tty.usbmodem0006822145041: TX: 03a41600
+2019-08-09 12:03:57,705 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000700
+2019-08-09 12:03:57,705 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-08-09 12:03:57,705 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 7}
+2019-08-09 12:03:57,708 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,708 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 22, 'address_handle': 7, 'opcode': 164}
+2019-08-09 12:03:57,708 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,710 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,710 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,726 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x13\x00')
+2019-08-09 12:03:57,727 - DEBUG - tty.usbmodem0006822145041: TX: 03a41300
+2019-08-09 12:03:57,729 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000400
+2019-08-09 12:03:57,729 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x04\x00')}}
+2019-08-09 12:03:57,730 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 4}
+2019-08-09 12:03:57,732 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 19, 'address_handle': 4, 'opcode': 164}
+2019-08-09 12:03:57,732 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,732 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 19, 'address_handle': 4, 'opcode': 164}
+2019-08-09 12:03:57,733 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,733 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 19, 'address_handle': 4, 'opcode': 164}
+2019-08-09 12:03:57,733 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,733 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,749 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x17\x00')
+2019-08-09 12:03:57,750 - DEBUG - tty.usbmodem0006822145041: TX: 03a41700
+2019-08-09 12:03:57,753 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000800
+2019-08-09 12:03:57,754 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-08-09 12:03:57,755 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 8}
+2019-08-09 12:03:57,757 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,757 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 23, 'address_handle': 8, 'opcode': 164}
+2019-08-09 12:03:57,757 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,760 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,760 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,771 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x18\x00')
+2019-08-09 12:03:57,771 - DEBUG - tty.usbmodem0006822145041: TX: 03a41800
+2019-08-09 12:03:57,773 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000900
+2019-08-09 12:03:57,773 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-08-09 12:03:57,773 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 9}
+2019-08-09 12:03:57,774 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,775 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 24, 'address_handle': 9, 'opcode': 164}
+2019-08-09 12:03:57,775 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,779 - INFO - tty.usbmodem0006822145041: 
+
+2019-08-09 12:03:57,779 - INFO - tty.usbmodem0006822145041: Sending next message
+2019-08-09 12:03:57,794 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x14\x00')
+2019-08-09 12:03:57,794 - DEBUG - tty.usbmodem0006822145041: TX: 03a41400
+2019-08-09 12:03:57,796 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000500
+2019-08-09 12:03:57,796 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x05\x00')}}
+2019-08-09 12:03:57,796 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 5}
+2019-08-09 12:03:57,796 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 20, 'address_handle': 5, 'opcode': 164}
+2019-08-09 12:03:57,796 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,797 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 20, 'address_handle': 5, 'opcode': 164}
+2019-08-09 12:03:57,797 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,797 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 20, 'address_handle': 5, 'opcode': 164}
+2019-08-09 12:03:57,797 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,815 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x19\x00')
+2019-08-09 12:03:57,815 - DEBUG - tty.usbmodem0006822145041: TX: 03a41900
+2019-08-09 12:03:57,817 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000a00
+2019-08-09 12:03:57,817 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-08-09 12:03:57,817 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 10}
+2019-08-09 12:03:57,819 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,819 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 25, 'address_handle': 10, 'opcode': 164}
+2019-08-09 12:03:57,819 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,821 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,836 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1a\x00')
+2019-08-09 12:03:57,836 - DEBUG - tty.usbmodem0006822145041: TX: 03a41a00
+2019-08-09 12:03:57,838 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000b00
+2019-08-09 12:03:57,838 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-08-09 12:03:57,838 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 11}
+2019-08-09 12:03:57,840 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,840 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 26, 'address_handle': 11, 'opcode': 164}
+2019-08-09 12:03:57,840 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,842 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,860 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x15\x00')
+2019-08-09 12:03:57,860 - DEBUG - tty.usbmodem0006822145041: TX: 03a41500
+2019-08-09 12:03:57,862 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000600
+2019-08-09 12:03:57,862 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x06\x00')}}
+2019-08-09 12:03:57,862 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 6}
+2019-08-09 12:03:57,862 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 21, 'address_handle': 6, 'opcode': 164}
+2019-08-09 12:03:57,862 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,862 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 21, 'address_handle': 6, 'opcode': 164}
+2019-08-09 12:03:57,862 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,863 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 21, 'address_handle': 6, 'opcode': 164}
+2019-08-09 12:03:57,863 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,882 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1b\x00')
+2019-08-09 12:03:57,882 - DEBUG - tty.usbmodem0006822145041: TX: 03a41b00
+2019-08-09 12:03:57,885 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000c00
+2019-08-09 12:03:57,885 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-08-09 12:03:57,885 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 12}
+2019-08-09 12:03:57,887 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,887 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 27, 'address_handle': 12, 'opcode': 164}
+2019-08-09 12:03:57,888 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,889 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,908 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1c\x00')
+2019-08-09 12:03:57,908 - DEBUG - tty.usbmodem0006822145041: TX: 03a41c00
+2019-08-09 12:03:57,912 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000d00
+2019-08-09 12:03:57,912 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-08-09 12:03:57,912 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 13}
+2019-08-09 12:03:57,914 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,914 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 28, 'address_handle': 13, 'opcode': 164}
+2019-08-09 12:03:57,914 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,919 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,931 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x16\x00')
+2019-08-09 12:03:57,931 - DEBUG - tty.usbmodem0006822145041: TX: 03a41600
+2019-08-09 12:03:57,933 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000700
+2019-08-09 12:03:57,933 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x07\x00')}}
+2019-08-09 12:03:57,933 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 7}
+2019-08-09 12:03:57,933 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 22, 'address_handle': 7, 'opcode': 164}
+2019-08-09 12:03:57,933 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,934 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 22, 'address_handle': 7, 'opcode': 164}
+2019-08-09 12:03:57,934 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,934 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 22, 'address_handle': 7, 'opcode': 164}
+2019-08-09 12:03:57,934 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,952 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1d\x00')
+2019-08-09 12:03:57,952 - DEBUG - tty.usbmodem0006822145041: TX: 03a41d00
+2019-08-09 12:03:57,954 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000e00
+2019-08-09 12:03:57,954 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-08-09 12:03:57,954 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 14}
+2019-08-09 12:03:57,957 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,957 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 29, 'address_handle': 14, 'opcode': 164}
+2019-08-09 12:03:57,957 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,959 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,977 - DEBUG - tty.usbmodem0006822145041: Writing: 156 bytearray(b'\x10\x00\x00\x00\xc8\xc6\xd5\xb2\x85\xfa\x05#\xb1\xcf\x87}\x18\x93\x13\x13')
+2019-08-09 12:03:57,977 - DEBUG - tty.usbmodem0006822145041: TX: 159c10000000c8c6d5b285fa0523b1cf877d18931313
+2019-08-09 12:03:57,981 - DEBUG - tty.usbmodem0006822145041: RX: 05849c000800
+2019-08-09 12:03:57,981 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-08-09 12:03:57,981 - INFO - tty.usbmodem0006822145041: DevkeyAdd: {'devkey_handle': 8}
+2019-08-09 12:03:57,987 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,991 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:57,994 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,002 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x17\x00')
+2019-08-09 12:03:58,002 - DEBUG - tty.usbmodem0006822145041: TX: 03a41700
+2019-08-09 12:03:58,004 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000800
+2019-08-09 12:03:58,004 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x08\x00')}}
+2019-08-09 12:03:58,004 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 8}
+2019-08-09 12:03:58,005 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 23, 'address_handle': 8, 'opcode': 164}
+2019-08-09 12:03:58,005 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,005 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 23, 'address_handle': 8, 'opcode': 164}
+2019-08-09 12:03:58,005 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,005 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 23, 'address_handle': 8, 'opcode': 164}
+2019-08-09 12:03:58,005 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,027 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x18\x00')
+2019-08-09 12:03:58,027 - DEBUG - tty.usbmodem0006822145041: TX: 03a41800
+2019-08-09 12:03:58,029 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000900
+2019-08-09 12:03:58,029 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\t\x00')}}
+2019-08-09 12:03:58,029 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 9}
+2019-08-09 12:03:58,030 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 24, 'address_handle': 9, 'opcode': 164}
+2019-08-09 12:03:58,030 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,030 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 24, 'address_handle': 9, 'opcode': 164}
+2019-08-09 12:03:58,030 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,030 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 24, 'address_handle': 9, 'opcode': 164}
+2019-08-09 12:03:58,030 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,052 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x19\x00')
+2019-08-09 12:03:58,052 - DEBUG - tty.usbmodem0006822145041: TX: 03a41900
+2019-08-09 12:03:58,055 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000a00
+2019-08-09 12:03:58,055 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\n\x00')}}
+2019-08-09 12:03:58,055 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 10}
+2019-08-09 12:03:58,055 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 25, 'address_handle': 10, 'opcode': 164}
+2019-08-09 12:03:58,056 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,056 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 25, 'address_handle': 10, 'opcode': 164}
+2019-08-09 12:03:58,056 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,056 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 25, 'address_handle': 10, 'opcode': 164}
+2019-08-09 12:03:58,056 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,076 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1a\x00')
+2019-08-09 12:03:58,077 - DEBUG - tty.usbmodem0006822145041: TX: 03a41a00
+2019-08-09 12:03:58,079 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000b00
+2019-08-09 12:03:58,079 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0b\x00')}}
+2019-08-09 12:03:58,079 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 11}
+2019-08-09 12:03:58,079 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 26, 'address_handle': 11, 'opcode': 164}
+2019-08-09 12:03:58,079 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,080 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 26, 'address_handle': 11, 'opcode': 164}
+2019-08-09 12:03:58,080 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,080 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 26, 'address_handle': 11, 'opcode': 164}
+2019-08-09 12:03:58,080 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,101 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1b\x00')
+2019-08-09 12:03:58,101 - DEBUG - tty.usbmodem0006822145041: TX: 03a41b00
+2019-08-09 12:03:58,103 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000c00
+2019-08-09 12:03:58,103 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0c\x00')}}
+2019-08-09 12:03:58,103 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 12}
+2019-08-09 12:03:58,103 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 27, 'address_handle': 12, 'opcode': 164}
+2019-08-09 12:03:58,103 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,103 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 27, 'address_handle': 12, 'opcode': 164}
+2019-08-09 12:03:58,104 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,104 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 27, 'address_handle': 12, 'opcode': 164}
+2019-08-09 12:03:58,104 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,122 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1c\x00')
+2019-08-09 12:03:58,122 - DEBUG - tty.usbmodem0006822145041: TX: 03a41c00
+2019-08-09 12:03:58,124 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000d00
+2019-08-09 12:03:58,124 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\r\x00')}}
+2019-08-09 12:03:58,124 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 13}
+2019-08-09 12:03:58,124 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 28, 'address_handle': 13, 'opcode': 164}
+2019-08-09 12:03:58,125 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,125 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 28, 'address_handle': 13, 'opcode': 164}
+2019-08-09 12:03:58,125 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,125 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 28, 'address_handle': 13, 'opcode': 164}
+2019-08-09 12:03:58,125 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,147 - DEBUG - tty.usbmodem0006822145041: Writing: 164 bytearray(b'\x1d\x00')
+2019-08-09 12:03:58,147 - DEBUG - tty.usbmodem0006822145041: TX: 03a41d00
+2019-08-09 12:03:58,149 - DEBUG - tty.usbmodem0006822145041: RX: 0584a4000e00
+2019-08-09 12:03:58,149 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 164, 'status': 0, 'data': bytearray(b'\x0e\x00')}}
+2019-08-09 12:03:58,149 - INFO - tty.usbmodem0006822145041: AddrPublicationAdd: {'address_handle': 14}
+2019-08-09 12:03:58,149 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 29, 'address_handle': 14, 'opcode': 164}
+2019-08-09 12:03:58,149 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,150 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 29, 'address_handle': 14, 'opcode': 164}
+2019-08-09 12:03:58,150 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,150 - DEBUG - tty.usbmodem0006822145041: Got duplicate of address handle {'address': 29, 'address_handle': 14, 'opcode': 164}
+2019-08-09 12:03:58,150 - INFO - tty.usbmodem0006822145041: No Messages remaining
+2019-08-09 12:03:58,170 - DEBUG - tty.usbmodem0006822145041: Writing: 156 bytearray(b'\x10\x00\x00\x00\xc8\xc6\xd5\xb2\x85\xfa\x05#\xb1\xcf\x87}\x18\x93\x13\x13')
+2019-08-09 12:03:58,170 - DEBUG - tty.usbmodem0006822145041: TX: 159c10000000c8c6d5b285fa0523b1cf877d18931313
+2019-08-09 12:03:58,174 - DEBUG - tty.usbmodem0006822145041: RX: 03849c8e
+2019-08-09 12:03:58,174 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 156, 'status': 142, 'data': bytearray(b'')}}
+2019-08-09 12:03:58,174 - ERROR - tty.usbmodem0006822145041: DevkeyAdd: ERROR_REJECTED
+2019-08-09 12:04:01,780 - INFO - tty.usbmodem0006822145041: Timout handler timeout
+2019-08-09 12:04:04,858 - DEBUG - tty.usbmodem0006822145041: exited read event

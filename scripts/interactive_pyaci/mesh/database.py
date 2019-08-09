@@ -169,3 +169,10 @@ class MeshDB(object):
     def remove_devkey_handle(self, devkey_handle):
         self.devkey_handles = [x for x in self.devkey_handles if x["devkey_handle"] != devkey_handle]
 
+    
+    def uuid_to_node_index(self, uuid):
+        for n, node in enumerate(self.nodes):
+            if uuid == node.UUID.hex():
+                return n
+        
+        return None

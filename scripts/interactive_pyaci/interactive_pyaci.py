@@ -148,7 +148,6 @@ class Mesh(object):
     QUICK_SETUP = True
 
     def __init__(self, interactive_device, db="database/example_database.json"):
-        signal.signal(signal.SIGALRM, self.timeout_handler)
         
         self.db_path = db
         self.db = MeshDB(self.db_path)
@@ -168,13 +167,13 @@ class Mesh(object):
         if self.QUICK_SETUP:
             self.onNewUnProvisionedDevice = lambda device : self.provision(device["uuid"])
             self.onProvisionComplete = lambda uuid : self.configure(uuid) 
-            self.onCompositionDataStatus = lambda uuid, compositionData : self.addAppKeys(uuid.hex())
+            self.onCompositionDataStatus = lambda uuid, compositionData : self.add_app_keys(uuid)
             self.onAddAppKeysComplete = lambda uuid : self.provisionScanStart()
 
     def setup(self):
         # setup is called when the serial device is booted
-        self.p = Provisioner(self.iaci, self.db)
-        self.cc = ConfigurationClient(self.db)
+        self.p = Provisioner(self.iaci, self.db, provisioning_complete_cb=self.provisioning_complete)
+        self.cc = MeshConfigurer(self.db, self.iaci, self.composition_data_status, self.add_app_keys_complete)
         self.iaci.model_add(self.cc)
 
         self.init_event_handlers()
@@ -182,16 +181,16 @@ class Mesh(object):
 
         # subprocess.call(["cp", "database/example_database.json.backup", "database/example_database.json"])
         
-        self.load_address_handles()
-        self.load_devkey_handles()
+        # self.load_address_handles()
+        # self.load_devkey_handles()
 
-        if len(self.db.models) > 0:
-            self.load_models()
-        else:
-            self.add_models()
+        # if len(self.db.models) > 0:
+        #     self.load_models()
+        # else:
+        #     self.add_models()
 
         # TODO add dummy func to clear steup..?
-        self.send_next_message()
+        # self.send_next_command()
         
     def load_address_handles(self):        
         address_handles = self.db.address_handles.copy()
@@ -256,11 +255,7 @@ class Mesh(object):
 
     def init_event_handlers(self):
         add_event = self.iaci.acidev.add_packet_recipient
-
         add_event(self.newUnProvisionedDeviceEventHandler)
-        add_event(self.provisionCompleteEventHandler)
-        add_event(self.compositionDataStatusEventHandler)
-        add_event(self.modelAddressStatusEventHandler)
         add_event(self.cmdRsp_handler)
 
     def deviceStarted(self, event):
@@ -287,51 +282,26 @@ class Mesh(object):
         if hasattr(self, "onNewUnProvisionedDevice"):
             self.onNewUnProvisionedDevice(device)
 
-    def provisionCompleteEventHandler(self, event):
-        if event._opcode != evt.Event.PROV_COMPLETE:
-            return
-
-        address = int(event._data["address"])
-        node, element = self.src_address_to_node_element_index(address)
-        uuid = self.db.nodes[node].UUID.hex()
-        
-        if hasattr(self, "onProvisionComplete"):
-            threading.Timer(10, self.onProvisionComplete, args=(uuid,)).start()
-
-    def compositionDataStatusEventHandler(self, event):
-        if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
-            if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
-                return
+    # def composition_data_status(self, event):
+    #     if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
+    #         if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
+    #             return
             
-        message = access.AccessMessage(event)
-        opcode = message.opcode_raw.hex()
+    #     message = access.AccessMessage(event)
+    #     opcode = message.opcode_raw.hex()
     
-        if opcode != str(ConfigurationClient._COMPOSITION_DATA_STATUS):
-            return
+    #     if opcode != str(ConfigurationClient._COMPOSITION_DATA_STATUS):
+    #         return
 
-        data = message.data[1:]
-        compositionData = mt.CompositionData().unpack(data)
+    #     data = message.data[1:]
+    #     compositionData = mt.CompositionData().unpack(data)
 
-        src = message.meta["src"]
-        node, element = self.src_address_to_node_element_index(src)
-        uuid = self.db.nodes[node].UUID
+    #     src = message.meta["src"]
+    #     node, element = self.src_address_to_node_element_index(src)
+    #     uuid = self.db.nodes[node].UUID
 
-        if hasattr(self, "onCompositionDataStatus"):
-            self.onCompositionDataStatus(uuid, compositionData)
-
-    def modelAddressStatusEventHandler(self, event):
-        if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_UNICAST:
-            if event._opcode != evt.Event.MESH_MESSAGE_RECEIVED_SUBSCRIPTION:
-                return
-            
-        message = access.AccessMessage(event)
-        opcode = message.opcode_raw.hex()
-
-        if opcode == str(ConfigurationClient._MODEL_PUBLICATION_STATUS) or \
-            opcode == str(ConfigurationClient._MODEL_SUBSCRIPTION_STATUS) or \
-            opcode == str(ConfigurationClient._MODEL_APP_STATUS):
-            
-                self.send_next_message()
+    #     if hasattr(self, "onCompositionDataStatus"):
+    #         self.onCompositionDataStatus(uuid, compositionData)
 
     def cmdRsp_handler(self, event):
 
@@ -352,11 +322,11 @@ class Mesh(object):
         if rsp_packet._command_name in ["DevkeyAdd"]:
             self.devkeyAdd(rsp_packet)
         
-        if rsp_packet._command_name in ["AddrPublicationRemove"]:
-            self.addrRemove(rsp_packet)
+        # if rsp_packet._command_name in ["AddrPublicationRemove"]:
+        #     self.addrRemove(rsp_packet)
         
-        if rsp_packet._command_name in ["DevkeyDelete"]:
-            self.devKeyDelete(rsp_packet)
+        # if rsp_packet._command_name in ["DevkeyDelete"]:
+        #     self.devKeyDelete(rsp_packet)
 
     def addrAdd(self, rsp_packet):
         try:
@@ -379,7 +349,7 @@ class Mesh(object):
                 self.db.address_handles.append(address_handle)
                 self.db.store()
 
-            self.send_next_message()
+            self.cc.send_next_command()
 
         except Exception as e:
             self.logger.error("Error storing address handle: {}".format(e))
@@ -391,30 +361,29 @@ class Mesh(object):
             new_device_address["devkey_handle"] = devkey_handle
             self.db.devkey_handles.append(new_device_address)
             self.db.store()
-            self.send_next_message()
+            self.cc.send_next_command()
         
         except Exception as e:
             self.logger.error("Error storing device handle: {}".format(e))
 
-    def addrRemove(self, rsp_packet):
-        address_handle = rsp_packet._data["address_handle"]
-        self.db.remove_address_handle(address_handle)
-        self.db.store()
-        self.send_next_message()
+    # def addrRemove(self, rsp_packet):
+    #     address_handle = rsp_packet._data["address_handle"]
+    #     self.db.remove_address_handle(address_handle)
+    #     self.db.store()
+    #     self.send_next_command()
 
 
-    def devKeyDelete(self, rsp_packet):
-        devkey_handle = rsp_packet._data["devkey_handle"]
-        self.db.remove_devkey_handle(devkey_handle)
-        self.db.store()
-        self.send_next_message()
+    # def devKeyDelete(self, rsp_packet):
+    #     devkey_handle = rsp_packet._data["devkey_handle"]
+    #     self.db.remove_devkey_handle(devkey_handle)
+    #     self.db.store()
+    #     self.send_next_command()
 
     """""""""""""""""""""""""""""""""""""""""""""
     MESH EVENTS
     """""""""""""""""""""""""""""""""""""""""""""
 
-    def addAppKeysComplete(self, uuid):
-        self.send_next_message()
+    def add_app_keys_complete(self, uuid):
         if hasattr(self, "onAddAppKeysComplete"):
             self.onAddAppKeysComplete(uuid)
 
@@ -455,31 +424,8 @@ class Mesh(object):
 
             })
     
-    def send_next_message(self):
-        try:
-            if len(self.message_que) != 0:
-                self.logger.info("\n")
-                self.logger.info("Sending next message")
-                func = self.message_que.pop(0)
-                self.last_message = func
-                func()
-                signal.setitimer(signal.ITIMER_REAL, 4)
-            else:
-                self.logger.info("No Messages remaining")
-        except Exception as e:
-            self.logger.error("Error trying next message function: {}".format(e))
-
-    def send_last_message(self):
-        if len(self.message_que) != 0:
-            self.last_message()
-            signal.setitimer(signal.ITIMER_REAL, 4)
-
-    def timeout_handler(self, signum, frame):
-        self.logger.info("Timout handler timeout")
-        self.send_last_message()
-    
     """""""""""""""""""""""""""""""""""""""""""""
-     
+
     """""""""""""""""""""""""""""""""""""""""""""
 
     """ PROVISIOING """
@@ -507,64 +453,23 @@ class Mesh(object):
             # TODO - add configured / provisioned fields...
         return devices
     
+    def provisioning_complete(self):
+        if hasattr(self, "onProvisionComplete"):
+            uuid = self.db.nodes[-1].UUID.hex()
+            threading.Timer(10, self.onProvisionComplete, args=(uuid,)).start()
+
     """ CONFIGURATION """
 
     def configure(self, uuid):
-        node = self.uuid_to_node_index(uuid)
-        address = self.db.nodes[node].unicast_address
-        address_handle = self.db.find_address_handle(address)
-        devkey_handle = self.db.find_devkey_handle(address)
-        self.logger.info("Configure {} {}".format(devkey_handle, address_handle))
+        self.cc.configure(uuid)
+    
+    def add_app_keys(self, uuid, groupAddrId=0):
+        self.cc.add_app_keys(uuid)
 
-        self.cc.publish_set(devkey_handle, address_handle)
-        try:
-            self.cc.composition_data_get()
-            self.cc.appkey_add(0)
-        except RuntimeError as e:
-            self.logger.error(e)
-             
-    def addAppKeys(self, uuid, groupAddrId=0):
-        """ Used to:
-            - subscribes the serial device to the group address
-            - add publication address of each element to the serial device
-            - bind app_key to each model on each element
-            - set the client to publish to the group address
-        
-        Parameters
-        ----------
-            node : index of node in db
-            groupAddrId : index of group address in db
+    def composition_data_status(self, uuid, compositionData={}):
+        if hasattr(self, "onCompositionDataStatus"):
+            self.onCompositionDataStatus(uuid, compositionData)
 
-        """
-        node = self.uuid_to_node_index(uuid)
-        command = cmd.AddrSubscriptionAdd(self.db.groups[groupAddrId].address)
-        self.message_que.append(functools.partial(self.iaci.send, command))
-
-        for e, element in enumerate(self.db.nodes[node].elements):
-            
-            # Add each element to the serial device's pubusb list
-            element_address = self.db.nodes[node].unicast_address + e
-            command = cmd.AddrPublicationAdd(element_address)
-            self.message_que.append(functools.partial(self.iaci.send, command))
-
-            for model in element.models:
-                
-                # Generic OnOff Server
-                if str(model.model_id) == "1000":
-                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x1000)))
-                    
-                # Generic OnOff Client
-                if str(model.model_id) == "1001":
-                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x1001)))
-                    self.message_que.append(functools.partial(self.cc.model_publication_set, element_address, mt.ModelId(0x1001), mt.Publish(self.db.groups[groupAddrId].address, index=0, ttl=1)))
-
-                # Simple OnOff Server
-                if str(model.model_id) == "00590000":
-                    self.message_que.append(functools.partial(self.cc.model_app_bind, element_address, 0, mt.ModelId(0x0000, company_id=0x0059)))
-
-        self.message_que.append(functools.partial(self.addAppKeysComplete, uuid))
-
-        self.send_next_message()
 
     """  MODELS & PINS """
 
@@ -598,7 +503,7 @@ class Mesh(object):
         self.gc.get()
 
     def setName(self, name, uuid):
-        node = self.uuid_to_node_index(uuid)
+        node = self.db.uuid_to_node_index(uuid)
         self.db.nodes[node].name = name
     
     def genericOnOffServerSetUnackEvent(self, value, src):
@@ -641,7 +546,7 @@ class Mesh(object):
 
     def get_address_handle(self, pin, uuid):
         element = self.pin_to_element_index(pin)
-        node = self.uuid_to_node_index(uuid)
+        node = self.db.uuid_to_node_index(uuid)
 
         if node != None and element != None:
             address = self.db.nodes[node].unicast_address + element
@@ -678,19 +583,6 @@ class Mesh(object):
                 if int(node.unicast_address + element_index) == src_address:
                     return node_index, element_index
 
-    def uuid_to_node_index(self, uuid):
-        """ Uses to find the index of the device in the db from it's uuid
-
-        Parameters
-        ----------
-            uuid : device uuid
-
-        """
-        for n, node in enumerate(self.db.nodes):
-            if uuid == node.UUID.hex():
-                return n
-        
-        return None
 
     def check_pin(self, pin):
         return pin in self.NRF52_DEV_BOARD_GPIO_PINS
@@ -711,39 +603,170 @@ class Mesh(object):
     UNUSED / EXPERIMENTAL
     """""""""""""""""""""""""""""""""""""""""""""
 
-    def remove_node(self, uuid):
-        self.logger.error("Remove node {} from database".format(uuid))
-        node = self.db.get_node(uuid)
+    # def remove_node(self, uuid):
+    #     self.logger.error("Remove node {} from database".format(uuid))
+    #     node = self.db.get_node(uuid)
 
-        # unprovision node
-        address_handle = self.db.find_address_handle(node.unicast_address)
-        self.cc.publish_set(0, address_handle)
-        self.cc.node_reset();
+    #     # unprovision node
+    #     address_handle = self.db.find_address_handle(node.unicast_address)
+    #     self.cc.publish_set(0, address_handle)
+    #     self.cc.node_reset();
 
-        # TODO - should this all occur after node_reset_status occurs..?
+    #     # TODO - should this all occur after node_reset_status occurs..?
         
-        for element in node.elements: 
-            unicast_address = node.unicast_address + element.index
-            address_handle = self.db.find_address_handle(unicast_address)
+    #     for element in node.elements: 
+    #         unicast_address = node.unicast_address + element.index
+    #         address_handle = self.db.find_address_handle(unicast_address)
 
-            # delete each address handle from serial device
-            # if address["opcode"] == 0xA4:
-            command = cmd.AddrPublicationRemove(address_handle)
-            self.message_que.append(functools.partial(self.iaci.send, command))
-            # else:
-                # raise Exception("Did not remove the address_hanlde {}".format(address["address_handle"]))
+    #         # delete each address handle from serial device
+    #         # if address["opcode"] == 0xA4:
+    #         command = cmd.AddrPublicationRemove(address_handle)
+    #         self.message_que.append(functools.partial(self.iaci.send, command))
+    #         # else:
+    #             # raise Exception("Did not remove the address_hanlde {}".format(address["address_handle"]))
 
-            # delete each address handle from db
-            # TODO in response delete address_handle and send next message()
-            # self.db.address_handles.remove(handle)
-            # might need to remove subscription of device form serial..
+    #         # delete each address handle from db
+    #         # TODO in response delete address_handle and send next message()
+    #         # self.db.address_handles.remove(handle)
+    #         # might need to remove subscription of device form serial..
             
-        # remove device handle
-        devkey_handle = self.db.find_devkey_handle(node.unicast_address)
-        command = cmd.DevkeyDelete(devkey_handle)
-        self.message_que.append(functools.partial(self.iaci.send, command))
+    #     # remove device handle
+    #     devkey_handle = self.db.find_devkey_handle(node.unicast_address)
+    #     command = cmd.DevkeyDelete(devkey_handle)
+    #     self.message_que.append(functools.partial(self.iaci.send, command))
 
-        # ADD a function that waps this function and adds send next message
-        self.message_que.append(functools.partial(self.db.nodes.remove, node))
+    #     # ADD a function that waps this function and adds send next message
+    #     self.message_que.append(functools.partial(self.db.nodes.remove, node))
 
-        self.send_next_message()
+    #     self.send_next_command()
+
+
+class MeshConfigurer(ConfigurationClient):
+
+    def __init__(self, prov_db, iaci, configure_complete_cb, add_app_keys_complete_cb):
+        super(MeshConfigurer, self).__init__(prov_db)
+        
+        self.opcode_update_list = [
+            (self._COMPOSITION_DATA_STATUS          , self.__composition_data_status_handler_mesh),
+            (self._APPKEY_STATUS                    , self.__appkey_status_handler_mesh),
+            (self._MODEL_PUBLICATION_STATUS         , self.__model_publication_status_handler_mesh),
+            (self._MODEL_SUBSCRIPTION_STATUS        , self.__model_subscription_status_handler_mesh),
+            (self._MODEL_APP_STATUS                 , self.__model_app_status_handler_mesh)
+        ]
+        self.update_opcode_handlers()
+
+        self.iaci = iaci
+
+        self.command_que = list()
+        self.last_message = None
+        self._add_app_keys_complete_cb = add_app_keys_complete_cb
+        self._configure_complete_cb = configure_complete_cb
+        self.timer = None
+        
+    def que_command(self, command, *args):
+        self.logger.info("que command {} {}".format(command, args))
+        self.command_que.append(
+            functools.partial(command, *args)
+        )
+    
+    def send_next_command(self):
+        try:
+            if hasattr(self.timer, "cancel"):
+                self.timer.cancel()
+
+            if len(self.command_que) != 0:
+                self.logger.info("\n")
+                self.logger.info("Sending next message")
+                func = self.command_que.pop(0)
+                self.last_message = func
+                func()
+                
+                self.timer = threading.Timer(4, self.send_last_message)
+                self.timer.start()
+            else:
+                self.logger.info("No Messages remaining")
+        except Exception as e:
+            self.logger.error("Error trying next message function: {}".format(e))
+    
+    def send_last_message(self):
+        self.logger.info("Timout handler timeout")
+        if len(self.command_que) != 0:
+            self.last_message()
+            self.timer = threading.Timer(4, self.send_last_message)
+            self.timer.start()
+
+
+    def configure(self, uuid):
+        node = self.prov_db.uuid_to_node_index(uuid)
+        address = self.prov_db.nodes[node].unicast_address
+        address_handle = self.prov_db.find_address_handle(address)
+        devkey_handle = self.prov_db.find_devkey_handle(address)
+        self.logger.info("Configure {} {}".format(devkey_handle, address_handle))
+
+        self.publish_set(devkey_handle, address_handle)
+        self.que_command(self.composition_data_get)
+        self.que_command(self.appkey_add, 0)
+        self.send_next_command()
+             
+    def add_app_keys(self, uuid, groupAddrId=0):
+        node = self.prov_db.uuid_to_node_index(uuid)
+        command = cmd.AddrSubscriptionAdd(self.prov_db.groups[groupAddrId].address)
+        self.que_command(self.iaci.send, command)
+
+        for e, element in enumerate(self.prov_db.nodes[node].elements):
+            
+            # Add each element to the serial device's pubusb list
+            element_address = self.prov_db.nodes[node].unicast_address + e
+            command = cmd.AddrPublicationAdd(element_address)
+            self.que_command(self.iaci.send, command)
+
+            for model in element.models:
+                
+                # Generic OnOff Server
+                if str(model.model_id) == "1000":
+                    self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x1000))
+                    
+                # Generic OnOff Client
+                if str(model.model_id) == "1001":
+                    self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x1001))
+                    publish = mt.Publish(self.prov_db.groups[groupAddrId].address, index=0, ttl=1)
+                    self.que_command(self.model_publication_set, element_address, mt.ModelId(0x1001), publish)
+
+                # Simple OnOff Server
+                if str(model.model_id) == "00590000":
+                    self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
+
+        # self.que_command(self.addAppKeysComplete, uuid)
+        self.que_command(self.__add_app_keys_complete, uuid)
+
+        self.send_next_command()
+
+    # -----------------------------------
+    def update_opcode_handlers(self):
+        for opcode, handler in self.opcode_update_list:
+            self.handlers[str(opcode)] = handler
+
+    def __composition_data_status_handler_mesh(self, opcode, message):
+        self._ConfigurationClient__composition_data_status_handler(opcode, message)
+        node = self.node_get(message.meta["src"])
+        self._configure_complete_cb(node.UUID.hex())
+
+    def __appkey_status_handler_mesh(self, opcode, message):
+        self._ConfigurationClient__appkey_status_handler(opcode, message)
+        self.send_next_command()
+
+    def __model_publication_status_handler_mesh(self, opcode, message):
+        self._ConfigurationClient__model_publication_status_handler(opcode, message)
+        self.send_next_command()
+
+    def __model_subscription_status_handler_mesh(self, opcode, message):
+        self._ConfigurationClient__model_subscription_status_handler(opcode, message)
+        self.send_next_command()
+
+    def __model_app_status_handler_mesh(self, opcode, message):
+        self._ConfigurationClient__model_app_status_handler(opcode, message)
+        self.send_next_command()
+
+    def __add_app_keys_complete(self, uuid):
+        self.timer.cancel()
+        self._add_app_keys_complete_cb(uuid)

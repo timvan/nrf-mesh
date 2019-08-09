@@ -1,0 +1,150 @@
+2019-08-09 11:35:57,877 - DEBUG - tty.usbmodem0006822145041: Writing: 14 bytearray(b'')
+2019-08-09 11:35:57,878 - DEBUG - tty.usbmodem0006822145041: TX: 010e
+2019-08-09 11:35:58,296 - DEBUG - tty.usbmodem0006822145041: RX: 04810200fe
+2019-08-09 11:35:58,296 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2019-08-09 11:35:58,296 - INFO - tty.usbmodem0006822145041: Device rebooted.
+2019-08-09 11:35:58,406 - ERROR - tty.usbmodem0006822145041: Exception in pkt handler <bound method Mesh.deviceStarted of <interactive_pyaci.Mesh object at 0x10bdcb470>>
+2019-08-09 11:35:58,407 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'.\x1f2\xe2@r\xdb\x03<\x15\xae\xc4\xfbk\n\xaf\x8d\xd2 \x11T/\xb0\xc4\xa1\x0cz\x8c\x14C\xfe \xad\x9du\xeb\xfc\xcf<\xce\x0c^\x94\x16X\x05\x15\x19%\x07Y\xf8(3w*\xfe"\xa3\x97\x051QP\x8fC\x12u\x06\x13\xce\xbd\x89\x11F\n\x10\xf4\x15P\xb0\x8b\xd4\x89\xd8yT3\xeb*\xfe\xe3\xa2\xb5Bl')
+2019-08-09 11:35:58,407 - DEBUG - tty.usbmodem0006822145041: TX: 61692e1f32e24072db033c15aec4fb6b0aaf8dd22011542fb0c4a10c7a8c1443fe20ad9d75ebfccf3cce0c5e941658051519250759f82833772afe22a397053151508f4312750613cebd8911460a10f41550b08bd489d8795433eb2afee3a2b5426c
+2019-08-09 11:35:58,408 - ERROR - tty.usbmodem0006822145041: traceback: Traceback (most recent call last):
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/aci/aci_uart.py", line 90, in process_packet
+    fun(packet)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 269, in deviceStarted
+    self.setup()
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 177, in setup
+    self.cc = MeshConfigurationClient(self.db)
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 758, in __init__
+    self._update_opcode_handlers()
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 762, in _update_opcode_handlers
+    index = [i for i, v in enumerate(self.opcodes) if v[1] == turple[0]][0]
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/interactive_pyaci.py", line 762, in <listcomp>
+    index = [i for i, v in enumerate(self.opcodes) if v[1] == turple[0]][0]
+  File "/Users/Tim-Mac/msc/bm-control/dev/nrf5SDKforMeshv310src/scripts/interactive_pyaci/mesh/access.py", line 94, in __eq__
+    return (self.serialize == other.serialize())
+AttributeError: 'function' object has no attribute 'serialize'
+
+2019-08-09 11:35:58,417 - DEBUG - tty.usbmodem0006822145041: RX: 03845384
+2019-08-09 11:35:58,417 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 83, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,418 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,418 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,418 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,418 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,419 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,419 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,419 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,419 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,420 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,420 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,420 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,420 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,420 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,420 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,420 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,420 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,421 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,421 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,421 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,421 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,421 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,421 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,421 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,422 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,422 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,422 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,422 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,423 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,423 - DEBUG - tty.usbmodem0006822145041: RX: 03840084
+2019-08-09 11:35:58,423 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 0, 'status': 132, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,423 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-09 11:35:58,441 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-09 11:35:58,441 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-09 11:35:58,443 - DEBUG - tty.usbmodem0006822145041: RX: 03849f00
+2019-08-09 11:35:58,443 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:35:58,443 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:35:58,462 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-09 11:35:58,462 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-09 11:35:58,466 - DEBUG - tty.usbmodem0006822145041: RX: 058492000000
+2019-08-09 11:35:58,466 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:35:58,466 - INFO - tty.usbmodem0006822145041: SubnetAdd: {'subnet_handle': 0}
+2019-08-09 11:35:58,485 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-09 11:35:58,485 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-09 11:35:58,489 - DEBUG - tty.usbmodem0006822145041: RX: 058497000000
+2019-08-09 11:35:58,489 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x00\x00')}}
+2019-08-09 11:35:58,489 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 0}
+2019-08-09 11:35:58,508 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-09 11:35:58,508 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-09 11:35:58,513 - DEBUG - tty.usbmodem0006822145041: RX: 058497000100
+2019-08-09 11:35:58,513 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 0, 'data': bytearray(b'\x01\x00')}}
+2019-08-09 11:35:58,513 - INFO - tty.usbmodem0006822145041: AppkeyAdd: {'appkey_handle': 1}
+2019-08-09 11:36:02,906 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-08-09 11:36:02,909 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-08-09 11:36:02,915 - DEBUG - tty.usbmodem0006822145041: RX: 03846100
+2019-08-09 11:36:02,915 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': bytearray(b'')}}
+2019-08-09 11:36:02,915 - INFO - tty.usbmodem0006822145041: Success
+2019-08-09 11:36:03,858 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd30001cb6e5fd50bd8
+2019-08-09 11:36:03,858 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:03,858 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:03,859 - INFO - tty.usbmodem0006822145041: Received UUID e07f87c0e83ff2418b6e5fd50b58c2cd with RSSI: -45 dB
+2019-08-09 11:36:05,866 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:05,866 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:05,866 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:07,895 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd10001cb6e5fd50bd8
+2019-08-09 11:36:07,895 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -47, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:07,895 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -47, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:09,876 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd20001cb6e5fd50bd8
+2019-08-09 11:36:09,876 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -46, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:09,876 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -46, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:11,881 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:11,881 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:11,881 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:13,886 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:13,886 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:13,887 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:15,907 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd40001cb6e5fd50bd8
+2019-08-09 11:36:15,907 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -44, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:15,908 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -44, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:17,890 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdcf0001cb6e5fd50bd8
+2019-08-09 11:36:17,891 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -49, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:17,891 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -49, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:19,901 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:19,901 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:19,902 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:21,651 - DEBUG - tty.usbmodem0006822145041: Writing: 97 bytearray(b'')
+2019-08-09 11:36:21,653 - DEBUG - tty.usbmodem0006822145041: TX: 0161
+2019-08-09 11:36:21,659 - DEBUG - tty.usbmodem0006822145041: RX: 03846183
+2019-08-09 11:36:21,659 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 131, 'data': bytearray(b'')}}
+2019-08-09 11:36:21,660 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_STATE
+2019-08-09 11:36:21,904 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd30001cb6e5fd50bd8
+2019-08-09 11:36:21,905 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:21,905 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:23,909 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdcf0001cb6e5fd50bd8
+2019-08-09 11:36:23,910 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -49, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:23,910 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -49, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:25,917 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdce0001cb6e5fd50bd8
+2019-08-09 11:36:25,917 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -50, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:25,917 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -50, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:27,920 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd80001cb6e5fd50bd8
+2019-08-09 11:36:27,920 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -40, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:27,920 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -40, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:29,922 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:29,922 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:29,922 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:31,924 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd00001cb6e5fd50bd8
+2019-08-09 11:36:31,925 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:31,925 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -48, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:33,932 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd40001cb6e5fd50bd8
+2019-08-09 11:36:33,932 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -44, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:33,932 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -44, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:35,944 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd30001cb6e5fd50bd8
+2019-08-09 11:36:35,944 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:35,944 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -45, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:37,951 - DEBUG - tty.usbmodem0006822145041: RX: 1ac0e07f87c0e83ff2418b6e5fd50b58c2cdd10001cb6e5fd50bd8
+2019-08-09 11:36:37,951 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -47, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:37,952 - INFO - tty.usbmodem0006822145041: {event: ProvUnprovisionedReceived, data: {'uuid': bytearray(b'\xe0\x7f\x87\xc0\xe8?\xf2A\x8bn_\xd5\x0bX\xc2\xcd'), 'rssi': -47, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': bytearray(b'\xcbn_\xd5\x0b\xd8')}}
+2019-08-09 11:36:38,570 - DEBUG - tty.usbmodem0006822145041: exited read event
