@@ -165,6 +165,7 @@ class Mesh(object):
         self.cc = MeshConfigurer(self.db, self.iaci, self.composition_data_status, self.add_app_keys_complete)
         self.iaci.model_add(self.cc)
         self.add_event_handlers()
+        self.tid_found = True
 
         if len(self.db.models) > 0:
             self.load_models()
@@ -190,7 +191,8 @@ class Mesh(object):
             self.add_address_handles_to_serial()
             self.add_devkey_handles_to_serial()
             self.cc.send_next_command()
-
+        
+        # self.find_tid()
 
     def add_address_handles_to_serial(self):
         for node in self.db.nodes:
@@ -231,6 +233,7 @@ class Mesh(object):
     def add_event_handlers(self):
         add_event = self.iaci.acidev.add_packet_recipient
         add_event(self.newUnProvisionedDeviceEventHandler)
+        add_event(self.cmd_rsp_handler)
 
     def deviceStarted(self, event):
         if event._opcode != evt.Event.DEVICE_STARTED:
@@ -256,6 +259,25 @@ class Mesh(object):
         if hasattr(self, "onNewUnProvisionedDevice"):
             self.onNewUnProvisionedDevice(device)
 
+
+    def cmd_rsp_handler(self, event):
+        if self.tid_found:
+            return
+
+        if event._opcode != evt.Event.CMD_RSP:
+            return
+            
+        if event._data["status"] != 0:
+            return
+
+        rsp_packet = cmd.response_deserialize(event)
+
+        if rsp_packet is None or isinstance(rsp_packet, str):
+            return
+    
+        if rsp_packet._opcode == 0x8201:
+            self.tid_found = True
+        
     """""""""""""""""""""""""""""""""""""""""""""
     MESH EVENTS
     """""""""""""""""""""""""""""""""""""""""""""
@@ -391,6 +413,22 @@ class Mesh(object):
         self.iaci.model_add(self.sc)
         self.db.models.append(self.sc)
 
+
+    """""""""""""""""""""""""""""""""""""""""""""
+    EXPERIMENTAL
+    """""""""""""""""""""""""""""""""""""""""""""
+
+    def find_tid(self):
+        self.tid_found = False
+        self.find_again()
+    
+    def find_again(self):
+        address_handle = self.db.nodes[0].elements[0].address_handle
+        self.gc.publish_set(0, address_handle)
+        if not self.tid_found:
+            self.gc.get()
+            threading.Timer(0.1, self.find_again).start()
+
     """""""""""""""""""""""""""""""""""""""""""""
     HELPERS / CONVERTERS
     """""""""""""""""""""""""""""""""""""""""""""
@@ -434,10 +472,6 @@ class Mesh(object):
     
     def check_value(self, value):
         return value == 1 or value == 0
-
-    """""""""""""""""""""""""""""""""""""""""""""
-    UNUSED / EXPERIMENTAL
-    """""""""""""""""""""""""""""""""""""""""""""
 
 class MeshConfigurer(ConfigurationClient):
 
@@ -591,24 +625,10 @@ class MeshConfigurer(ConfigurationClient):
             self._temp_device_addres = None
             self.send_next_command()
 
-        # if rsp_packet._command_name in ["AddrPublicationRemove"]:
-        #     self.addrRemove(rsp_packet)
-        
-        # if rsp_packet._command_name in ["DevkeyDelete"]:
-        #     self.devKeyDelete(rsp_packet)
+        if rsp_packet._command_name in ["AddrSubscriptionRemove", "AddrPublicationRemove", "DevkeyDelete"]:
+            self.prov_db.store()
+            self.send_next_command()
 
-    # def addrRemove(self, rsp_packet):
-    #     address_handle = rsp_packet._data["address_handle"]
-    #     self.db.remove_address_handle(address_handle)
-    #     self.db.store()
-    #     self.send_next_command()
-
-
-    # def devKeyDelete(self, rsp_packet):
-    #     devkey_handle = rsp_packet._data["devkey_handle"]
-    #     self.db.remove_devkey_handle(devkey_handle)
-    #     self.db.store()
-    #     self.send_next_command()
 
     # -----------------------------------
     def update_opcode_handlers(self):
@@ -642,40 +662,31 @@ class MeshConfigurer(ConfigurationClient):
         self._add_app_keys_complete_cb(uuid)
 
 
-    # def remove_node(self, uuid):
-    #     self.logger.error("Remove node {} from database".format(uuid))
-    #     node = self.db.get_node(uuid)
+    def remove_node(self, uuid):
+        self.logger.error("Remove node {} from database".format(uuid))
+        node = self.prov_db.get_node(uuid)
 
-    #     # unprovision node
-    #     address_handle = self.db.src_to_address_handle(node.unicast_address)
-    #     self.cc.publish_set(0, address_handle)
-    #     self.cc.node_reset();
+        # unprovision node
+        address_handle = node.elements[0].address_handle
+        devkey_handle = node.devkey_handle
+        self.publish_set(devkey_handle, address_handle)
+        self.node_reset()
 
-    #     # TODO - should this all occur after node_reset_status occurs..?
         
-    #     for element in node.elements: 
-    #         unicast_address = node.unicast_address + element.index
-    #         address_handle = self.db.src_to_address_handle(unicast_address)
+        # TODO - subscription list lost...
+        # command = cmd.AddrSubscriptionRemove(node.elements[0].address_handle)
+        # self.que_command(self.iaci.send, command)
+        
+        for element in node.elements: 
+            command = cmd.AddrPublicationRemove(element.address_handle)
+            self.que_command(self.iaci.send, command)
 
-    #         # delete each address handle from serial device
-    #         # if address["opcode"] == 0xA4:
-    #         command = cmd.AddrPublicationRemove(address_handle)
-    #         self.message_que.append(functools.partial(self.iaci.send, command))
-    #         # else:
-    #             # raise Exception("Did not remove the address_hanlde {}".format(address["address_handle"]))
+        # remove device handle
+        command = cmd.DevkeyDelete(devkey_handle)
+        self.que_command(self.iaci.send, command)
 
-    #         # delete each address handle from db
-    #         # TODO in response delete address_handle and send next message()
-    #         # self.db.address_handles.remove(handle)
-    #         # might need to remove subscription of device form serial..
-            
-    #     # remove device handle
-    #     devkey_handle = self.db.find_devkey_handle(node.unicast_address)
-    #     command = cmd.DevkeyDelete(devkey_handle)
-    #     self.message_que.append(functools.partial(self.iaci.send, command))
-
-    #     # ADD a function that waps this function and adds send next message
-    #     self.message_que.append(functools.partial(self.db.nodes.remove, node))
-
-    #     self.send_next_command()
+        # ADD a function that waps this function and adds send next message
+        self.que_command(self.prov_db.nodes.remove, node)
+        
+        self.send_next_command()
 

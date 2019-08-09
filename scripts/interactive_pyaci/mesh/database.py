@@ -155,12 +155,6 @@ class MeshDB(object):
 
         return nodes[0]
         
-    # def remove_address_handle(self, address_handle):
-    #     self.address_handles = [x for x in self.address_handles if x["address_handle"] != address_handle]
-
-    # def remove_devkey_handle(self, devkey_handle):
-    #     self.devkey_handles = [x for x in self.devkey_handles if x["devkey_handle"] != devkey_handle]
-
     
     def uuid_to_node_index(self, uuid):
         for n, node in enumerate(self.nodes):
