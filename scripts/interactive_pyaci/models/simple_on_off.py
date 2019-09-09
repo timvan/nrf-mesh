@@ -37,10 +37,10 @@ class SimpleOnOffClient(Model):
     SIMPLE_ON_OFF_GET = Opcode(0xc2, 0x59, "Simple OnOff Get")
     SIMPLE_ON_OFF_SET_UNACKNOWLEDGED = Opcode(0xc3, 0x59, "Simple OnOff Set Unacknowledged")
 
-    def __init__(self):
+    def __init__(self, tid=0):
         self.opcodes = [
             (self.SIMPLE_ON_OFF_STATUS, self.__simple_on_off_status_handler)]
-        self.__tid = 0
+        self.__tid = tid
         super(SimpleOnOffClient, self).__init__(self.opcodes)
 
     def set(self, state):

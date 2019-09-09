@@ -1,0 +1,309 @@
+2019-08-15 23:59:22,485 - INFO: 
+
+2019-08-15 23:59:22,485 - DEBUG: Writing: 105 bytearray(b'K\xa9\x81\xcaZ%\xd1\xc0\xd5\xc6!\xb6\xa3\x03M\xe3\x1b]\x97\x02\x02\xdb X|\xa0\xdbf\xab\x0f\x86\x04\xf8M1\n\xca\xa0P\xe5\x00\xbd0\x1c\x11\xf1\xa1\x85\xb4\xad\xd4\xb9#15~\x19\x14\x0ey\x96\xef\xc3\xbf\xac\xfd\x1b\x93\xda\x95\xc9\xbe\x0c\xb8\xfc\x8b\x1e\xaa]\xac_.\xf7F\x8a\xf1\xfe1}\x82LeD\xe00\x99')
+2019-08-15 23:59:22,485 - DEBUG: TX: 61694ba981ca5a25d1c0d5c621b6a3034de31b5d970202db20587ca0db66ab0f8604f84d310acaa050e500bd301c11f1a185b4add4b92331357e19140e7996efc3bfacfd1b93da95c9be0cb8fc8b1eaa5dac5f2ef7468af1fe317d824c6544e03099
+2019-08-15 23:59:22,485 - INFO: Sending next message
+2019-08-15 23:59:22,495 - DEBUG: RX: 03848400
+2019-08-15 23:59:22,495 - DEBUG: parsed_packet {event: CmdRsp, data: {'opcode': 132, 'status': 0, 'data': bytearray(b'')}}
+2019-08-15 23:59:22,495 - INFO: Success
+2019-08-15 23:59:22,517 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-15 23:59:22,518 - DEBUG: TX: 059f01000100
+2019-08-15 23:59:24,521 - INFO: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-15 23:59:24,548 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-15 23:59:24,548 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-15 23:59:26,488 - INFO: Timout handler timeout
+2019-08-15 23:59:26,550 - INFO: cmd SubnetAdd, timeout waiting for event
+2019-08-15 23:59:26,575 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-15 23:59:26,575 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-15 23:59:28,579 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-15 23:59:28,604 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-15 23:59:28,604 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-15 23:59:30,493 - INFO: Timout handler timeout
+2019-08-15 23:59:30,610 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-15 23:59:30,639 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-15 23:59:30,639 - DEBUG: TX: 059f01000100
+2019-08-15 23:59:32,645 - INFO: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-15 23:59:32,669 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-15 23:59:32,669 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-15 23:59:34,496 - INFO: Timout handler timeout
+2019-08-15 23:59:34,673 - INFO: cmd SubnetAdd, timeout waiting for event
+2019-08-15 23:59:34,696 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-15 23:59:34,696 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-15 23:59:36,702 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-15 23:59:36,723 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-15 23:59:36,723 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-15 23:59:38,498 - INFO: Timout handler timeout
+2019-08-15 23:59:38,724 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-15 23:59:38,745 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:38,746 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:40,750 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:40,775 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:40,775 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:42,504 - INFO: Timout handler timeout
+2019-08-15 23:59:42,780 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:42,804 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:42,804 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:44,808 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:44,830 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:44,830 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:46,508 - INFO: Timout handler timeout
+2019-08-15 23:59:46,834 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:46,858 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:46,858 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:48,860 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:48,884 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:48,884 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:50,515 - INFO: Timout handler timeout
+2019-08-15 23:59:50,888 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:50,909 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:50,909 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:52,911 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:52,935 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:52,936 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:54,518 - INFO: Timout handler timeout
+2019-08-15 23:59:54,941 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:54,965 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:54,965 - DEBUG: TX: 03a101c0
+2019-08-15 23:59:56,967 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-15 23:59:58,522 - INFO: Timout handler timeout
+2019-08-15 23:59:58,522 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-15 23:59:58,522 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:00,527 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:02,525 - INFO: Timout handler timeout
+2019-08-16 00:00:02,525 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:02,525 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:04,530 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:06,530 - INFO: Timout handler timeout
+2019-08-16 00:00:06,531 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:06,531 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:08,534 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:10,536 - INFO: Timout handler timeout
+2019-08-16 00:00:10,537 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:10,538 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:12,543 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:14,543 - INFO: Timout handler timeout
+2019-08-16 00:00:14,544 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:14,544 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:16,548 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:18,546 - INFO: Timout handler timeout
+2019-08-16 00:00:18,547 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:18,547 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:20,552 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:22,547 - INFO: Timout handler timeout
+2019-08-16 00:00:22,548 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:22,548 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:24,552 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:26,550 - INFO: Timout handler timeout
+2019-08-16 00:00:26,551 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:26,551 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:28,551 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:30,551 - INFO: Timout handler timeout
+2019-08-16 00:00:30,551 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:30,552 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:32,556 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:34,553 - INFO: Timout handler timeout
+2019-08-16 00:00:34,553 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:34,554 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:36,556 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:36,581 - DEBUG: Writing: 97 bytearray(b'')
+2019-08-16 00:00:36,581 - DEBUG: TX: 0161
+2019-08-16 00:00:38,558 - INFO: Timout handler timeout
+2019-08-16 00:00:38,586 - INFO: cmd ScanStart, timeout waiting for event
+2019-08-16 00:00:38,611 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:38,612 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:40,617 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:40,918 - DEBUG: Writing: 97 bytearray(b'')
+2019-08-16 00:00:40,919 - DEBUG: TX: 0161
+2019-08-16 00:00:42,561 - INFO: Timout handler timeout
+2019-08-16 00:00:42,924 - INFO: cmd ScanStart, timeout waiting for event
+2019-08-16 00:00:42,947 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:42,947 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:44,948 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:46,564 - INFO: Timout handler timeout
+2019-08-16 00:00:46,564 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:46,564 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:48,568 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:50,565 - INFO: Timout handler timeout
+2019-08-16 00:00:50,566 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:50,566 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:52,570 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:54,569 - INFO: Timout handler timeout
+2019-08-16 00:00:54,570 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:54,570 - DEBUG: TX: 03a101c0
+2019-08-16 00:00:56,574 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:00:56,597 - DEBUG: Writing: 97 bytearray(b'')
+2019-08-16 00:00:56,597 - DEBUG: TX: 0161
+2019-08-16 00:00:58,572 - INFO: Timout handler timeout
+2019-08-16 00:00:58,602 - INFO: cmd ScanStart, timeout waiting for event
+2019-08-16 00:00:58,624 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:00:58,624 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:00,629 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:02,576 - INFO: Timout handler timeout
+2019-08-16 00:01:02,578 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:02,578 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:04,581 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:06,581 - INFO: Timout handler timeout
+2019-08-16 00:01:06,581 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:06,581 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:08,585 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:10,586 - INFO: Timout handler timeout
+2019-08-16 00:01:10,587 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:10,587 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:12,592 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:14,591 - INFO: Timout handler timeout
+2019-08-16 00:01:14,591 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:14,591 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:16,596 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:16,617 - DEBUG: Writing: 97 bytearray(b'')
+2019-08-16 00:01:16,618 - DEBUG: TX: 0161
+2019-08-16 00:01:18,595 - INFO: Timout handler timeout
+2019-08-16 00:01:18,619 - INFO: cmd ScanStart, timeout waiting for event
+2019-08-16 00:01:18,640 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:18,640 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:20,643 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:22,599 - INFO: Timout handler timeout
+2019-08-16 00:01:22,600 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:22,600 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:24,605 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:24,628 - DEBUG: Writing: 97 bytearray(b'')
+2019-08-16 00:01:24,629 - DEBUG: TX: 0161
+2019-08-16 00:01:26,603 - INFO: Timout handler timeout
+2019-08-16 00:01:26,634 - INFO: cmd ScanStart, timeout waiting for event
+2019-08-16 00:01:26,655 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:26,655 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:28,657 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:30,605 - INFO: Timout handler timeout
+2019-08-16 00:01:30,605 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:30,606 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:32,607 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:34,611 - INFO: Timout handler timeout
+2019-08-16 00:01:34,611 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:34,612 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:36,614 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:38,615 - INFO: Timout handler timeout
+2019-08-16 00:01:38,615 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:38,616 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:40,618 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:42,618 - INFO: Timout handler timeout
+2019-08-16 00:01:42,618 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:42,618 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:44,623 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:46,623 - INFO: Timout handler timeout
+2019-08-16 00:01:46,624 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:46,624 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:48,626 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:50,628 - INFO: Timout handler timeout
+2019-08-16 00:01:50,629 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:50,629 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:52,634 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:54,633 - INFO: Timout handler timeout
+2019-08-16 00:01:54,634 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:54,634 - DEBUG: TX: 03a101c0
+2019-08-16 00:01:56,640 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:01:58,637 - INFO: Timout handler timeout
+2019-08-16 00:01:58,638 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:01:58,638 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:00,643 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:02,642 - INFO: Timout handler timeout
+2019-08-16 00:02:02,642 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:02,642 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:04,647 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:06,658 - INFO: Timout handler timeout
+2019-08-16 00:02:06,671 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:06,672 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:08,676 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:10,669 - INFO: Timout handler timeout
+2019-08-16 00:02:10,670 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:10,671 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:12,676 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:14,675 - INFO: Timout handler timeout
+2019-08-16 00:02:14,676 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:14,676 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:16,680 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:18,681 - INFO: Timout handler timeout
+2019-08-16 00:02:18,682 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:18,683 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:20,688 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:22,685 - INFO: Timout handler timeout
+2019-08-16 00:02:22,686 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:22,686 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:24,690 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:26,690 - INFO: Timout handler timeout
+2019-08-16 00:02:26,690 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:26,691 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:28,694 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:30,695 - INFO: Timout handler timeout
+2019-08-16 00:02:30,696 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:30,696 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:32,701 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:34,701 - INFO: Timout handler timeout
+2019-08-16 00:02:34,701 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:34,701 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:36,706 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:38,703 - INFO: Timout handler timeout
+2019-08-16 00:02:38,705 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:38,707 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:40,712 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:42,710 - INFO: Timout handler timeout
+2019-08-16 00:02:42,711 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:42,711 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:44,716 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:46,715 - INFO: Timout handler timeout
+2019-08-16 00:02:46,716 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:46,716 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:48,719 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:50,721 - INFO: Timout handler timeout
+2019-08-16 00:02:50,721 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:50,722 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:52,726 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:54,725 - INFO: Timout handler timeout
+2019-08-16 00:02:54,725 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:54,726 - DEBUG: TX: 03a101c0
+2019-08-16 00:02:56,727 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:02:58,728 - INFO: Timout handler timeout
+2019-08-16 00:02:58,730 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:02:58,730 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:00,734 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:02,734 - INFO: Timout handler timeout
+2019-08-16 00:03:02,734 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:02,734 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:04,738 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:06,735 - INFO: Timout handler timeout
+2019-08-16 00:03:06,737 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:06,737 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:08,738 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:10,739 - INFO: Timout handler timeout
+2019-08-16 00:03:10,740 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:10,740 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:12,745 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:14,743 - INFO: Timout handler timeout
+2019-08-16 00:03:14,743 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:14,743 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:16,749 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:18,746 - INFO: Timout handler timeout
+2019-08-16 00:03:18,746 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:18,746 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:20,752 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:22,751 - INFO: Timout handler timeout
+2019-08-16 00:03:22,751 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:22,751 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:24,756 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:26,754 - INFO: Timout handler timeout
+2019-08-16 00:03:26,755 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:26,755 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:28,760 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:30,755 - INFO: Timout handler timeout
+2019-08-16 00:03:30,756 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:30,756 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:32,759 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:34,756 - INFO: Timout handler timeout
+2019-08-16 00:03:34,756 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:34,757 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:36,760 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:38,759 - INFO: Timout handler timeout
+2019-08-16 00:03:38,760 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:38,760 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:40,761 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:42,765 - INFO: Timout handler timeout
+2019-08-16 00:03:42,765 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:42,766 - DEBUG: TX: 03a101c0

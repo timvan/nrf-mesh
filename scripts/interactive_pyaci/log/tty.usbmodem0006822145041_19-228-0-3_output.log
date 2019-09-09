@@ -1,0 +1,62 @@
+2019-08-16 00:03:10,699 - INFO: 
+
+2019-08-16 00:03:10,699 - DEBUG: Writing: 105 bytearray(b'\x1f\xf4\xc7y,\x93\xf77\x13\x88M\x1f\xad\x1bd\xc3\x05\x00\xbe.jM\x80\xf4\xc1\xf2\xb3\x81z\xe3g\xb1e\xcf5\x0f\x00n`\x92\x92\xbb\x02\xd3\xb9+zC\xd7\xa7\xf9 \x933\xdf>_\xc0\x17\xec6\x80\x9b\x12N\xe33\xa1\x86i2a\x0e nX\xdc\xaf+\x83\x98\xf4\xa8\xf4m\xcd\xd4F+\x91\xa9\xf9\xc8\xb9\x8eo')
+2019-08-16 00:03:10,699 - INFO: Sending next message
+2019-08-16 00:03:10,699 - DEBUG: TX: 61691ff4c7792c93f73713884d1fad1b64c30500be2e6a4d80f4c1f2b3817ae367b165cf350f006e609292bb02d3b92b7a43d7a7f9209333df3e5fc017ec36809b124ee333a1866932610e206e58dcaf2b8398f4a8f46dcdd4462b91a9f9c8b98e6f
+2019-08-16 00:03:10,709 - DEBUG: RX: 03530384
+2019-08-16 00:03:10,709 - ERROR: Unable to deserialize 03530384
+2019-08-16 00:03:10,710 - DEBUG: RX: 03008484
+2019-08-16 00:03:10,710 - ERROR: Unable to deserialize 03008484
+2019-08-16 00:03:10,711 - DEBUG: RX: 00
+2019-08-16 00:03:10,711 - ERROR: Invalid packet: bytearray(b'\x00')
+2019-08-16 00:03:12,703 - INFO: cmd KeypairSet, timeout waiting for event
+2019-08-16 00:03:12,727 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-16 00:03:12,740 - DEBUG: TX: 059f01000100
+2019-08-16 00:03:14,701 - INFO: Timout handler timeout
+2019-08-16 00:03:14,743 - INFO: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-16 00:03:14,768 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-16 00:03:14,769 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-16 00:03:16,773 - INFO: cmd SubnetAdd, timeout waiting for event
+2019-08-16 00:03:16,798 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-16 00:03:16,798 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-16 00:03:17,587 - DEBUG: RX: 8400038484840300030084840084001a87e8f28b6e5fd50b58c2cde30001cb6e5fd50bd803849f8e0584a10000001ac0e07f87c0e83ff2418b6e5fd50b58c2cde30001cb6e5fd50bd80584a1000000038492811ac0e07f87c0e83ff2418b6e5fd50b58c2cde40001cb6e5fd50bd8038497810584a10000001ac0e07f87c0e83ff2418b6e5f
+2019-08-16 00:03:17,587 - ERROR: Unable to deserialize 8400038484840300030084840084001a87e8f28b6e5fd50b58c2cde30001cb6e5fd50bd803849f8e0584a10000001ac0e07f87c0e83ff2418b6e5fd50b58c2cde30001cb6e5fd50bd80584a1000000038492811ac0e07f87c0e83ff2418b6e5fd50b58c2cde40001cb6e5fd50bd8038497810584a10000001ac0e07f87c0e83ff2418b6e5f
+2019-08-16 00:03:18,703 - INFO: Timout handler timeout
+2019-08-16 00:03:18,803 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-16 00:03:18,829 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-16 00:03:18,829 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-16 00:03:20,835 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-16 00:03:20,859 - DEBUG: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-16 00:03:20,859 - DEBUG: TX: 059f01000100
+2019-08-16 00:03:22,709 - INFO: Timout handler timeout
+2019-08-16 00:03:22,861 - INFO: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-16 00:03:22,886 - DEBUG: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-16 00:03:22,886 - DEBUG: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-16 00:03:24,890 - INFO: cmd SubnetAdd, timeout waiting for event
+2019-08-16 00:03:24,913 - DEBUG: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-16 00:03:24,913 - DEBUG: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-16 00:03:26,710 - INFO: Timout handler timeout
+2019-08-16 00:03:26,915 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-16 00:03:26,935 - DEBUG: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-16 00:03:26,936 - DEBUG: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-16 00:03:28,941 - INFO: cmd AppkeyAdd, timeout waiting for event
+2019-08-16 00:03:28,963 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:28,963 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:30,714 - INFO: Timout handler timeout
+2019-08-16 00:03:30,967 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:30,993 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:30,993 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:32,996 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:33,020 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:33,021 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:34,719 - INFO: Timout handler timeout
+2019-08-16 00:03:35,026 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:35,047 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:35,047 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:37,052 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:37,077 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:37,077 - DEBUG: TX: 03a101c0
+2019-08-16 00:03:38,723 - INFO: Timout handler timeout
+2019-08-16 00:03:39,079 - INFO: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-16 00:03:39,101 - DEBUG: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-16 00:03:39,101 - DEBUG: TX: 03a101c0

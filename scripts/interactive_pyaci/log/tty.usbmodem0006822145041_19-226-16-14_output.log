@@ -1,0 +1,45 @@
+2019-08-14 16:14:03,279 - INFO - tty.usbmodem0006822145041.MeshConfigurer: 
+
+2019-08-14 16:14:03,279 - DEBUG - tty.usbmodem0006822145041: Writing: 105 bytearray(b'|\x8a\x91\x19\xe5\xcc0\xfa\x9c\xbfa\xfcL\x0f{\x8f3b\xe4\xa8\xb61\xe2\xfe\x8e\xaf".\x1f\xf1\x823(YJ;o\xc4\xd5\x949\x83\xe5\xa0\x07Y$\xa5\'m\xc5\xccf\xe5\x03a\xf1\x8b\xa2T\xb2\xd8\xae"\x16DmSz\xf7\xdac\xd3\x18\xb3x\xef\xd1\x1a\x02]\x9aQd\xea\xb3\x07O\x0e\xfa\xfa@\xf9b\xa6W')
+2019-08-14 16:14:03,279 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Sending next message
+2019-08-14 16:14:03,279 - DEBUG - tty.usbmodem0006822145041: TX: 61697c8a9119e5cc30fa9cbf61fc4c0f7b8f3362e4a8b631e2fe8eaf222e1ff1823328594a3b6fc4d5943983e5a0075924a5276dc5cc66e50361f18ba254b2d8ae2216446d537af7da63d318b378efd11a025d9a5164eab3074f0efafa40f962a657
+2019-08-14 16:14:03,290 - DEBUG - tty.usbmodem0006822145041: RX: 03848484
+2019-08-14 16:14:03,291 - DEBUG - tty.usbmodem0006822145041: parsed_packet {event: CmdRsp, data: {'opcode': 132, 'status': 132, 'data': bytearray(b'')}}
+2019-08-14 16:14:03,291 - ERROR - tty.usbmodem0006822145041: None: ERROR_INVALID_LENGTH
+2019-08-14 16:14:03,293 - DEBUG - tty.usbmodem0006822145041: RX: 03000300
+2019-08-14 16:14:03,293 - ERROR - tty.usbmodem0006822145041: Unable to deserialize 03000300
+2019-08-14 16:14:03,316 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-14 16:14:03,316 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-14 16:14:05,323 - INFO - tty.usbmodem0006822145041: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-14 16:14:05,344 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-14 16:14:05,345 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-14 16:14:07,283 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-14 16:14:07,350 - INFO - tty.usbmodem0006822145041: cmd SubnetAdd, timeout waiting for event
+2019-08-14 16:14:07,375 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-14 16:14:07,375 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-14 16:14:09,380 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-08-14 16:14:09,403 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-14 16:14:09,404 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-14 16:14:11,287 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-14 16:14:11,407 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-08-14 16:14:11,432 - DEBUG - tty.usbmodem0006822145041: Writing: 159 bytearray(b'\x01\x00\x01\x00')
+2019-08-14 16:14:11,432 - DEBUG - tty.usbmodem0006822145041: TX: 059f01000100
+2019-08-14 16:14:13,436 - INFO - tty.usbmodem0006822145041: cmd AddrLocalUnicastSet, timeout waiting for event
+2019-08-14 16:14:13,460 - DEBUG - tty.usbmodem0006822145041: Writing: 146 bytearray(b'\x00\x00\x18\xee\xd9\xc2\xa5j\xdd\x85\x04\x9f\xfc<Y\xad\x0e\x12')
+2019-08-14 16:14:13,460 - DEBUG - tty.usbmodem0006822145041: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2019-08-14 16:14:15,289 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-14 16:14:15,463 - INFO - tty.usbmodem0006822145041: cmd SubnetAdd, timeout waiting for event
+2019-08-14 16:14:15,489 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x00\x00\x00\x00Oh\xad\x85\xd9\xf4\x8a\xc8X\x9d\xf6e\xb6\xb4\x9b\x8a')
+2019-08-14 16:14:15,490 - DEBUG - tty.usbmodem0006822145041: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2019-08-14 16:14:17,495 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-08-14 16:14:17,516 - DEBUG - tty.usbmodem0006822145041: Writing: 151 bytearray(b'\x01\x00\x00\x00*\xa2\xa6\xde\xd5\xa0y\x8c\xea\xb5x|\xa3\xae9\xfc')
+2019-08-14 16:14:17,516 - DEBUG - tty.usbmodem0006822145041: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2019-08-14 16:14:19,294 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-14 16:14:19,520 - INFO - tty.usbmodem0006822145041: cmd AppkeyAdd, timeout waiting for event
+2019-08-14 16:14:19,541 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-14 16:14:19,542 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-14 16:14:21,547 - INFO - tty.usbmodem0006822145041: cmd AddrSubscriptionAdd, timeout waiting for event
+2019-08-14 16:14:21,568 - DEBUG - tty.usbmodem0006822145041: Writing: 161 bytearray(b'\x01\xc0')
+2019-08-14 16:14:21,569 - DEBUG - tty.usbmodem0006822145041: TX: 03a101c0
+2019-08-14 16:14:23,298 - INFO - tty.usbmodem0006822145041.MeshConfigurer: Timout handler timeout
+2019-08-14 16:14:23,574 - INFO - tty.usbmodem0006822145041: cmd AddrSubscriptionAdd, timeout waiting for event

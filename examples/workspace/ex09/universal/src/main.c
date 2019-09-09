@@ -63,24 +63,9 @@ CHECK HOW LEDS AFFECT THE PINS - should we remove the hal and leds
 #define P_OUTPUT false
 #define P_STARTING_STATE P_OUTPUT
 
-// #define NEW_TIMER(_name, timer_id) APP_TIMER_DEF( _name ## timer_id ## _timer);
-
-// TODO sort this temp
-#define TEMP_PIN 12
-
 static bool m_device_provisioned;
 
-// OLD START
-// APP_TIMER_DEF(m_onoff_server_0_timer);
-// static app_onoff_server_t m_onoff_server_0;
-
-// static generic_onoff_client_t m_client; 
-
-// static simple_on_off_server_t m_simple_on_off_server;
-
 static bool pin_state;
-// static int pin_number;
-// OLD END
 
 typedef enum {Output, Input} io;
 
@@ -95,7 +80,6 @@ typedef struct
 
 static uint8_t gpio_pins[] = PINS;
 static universal_app u_apps[N_ELEMS(gpio_pins)];
-int temp = TEMP_PIN;
 
 APP_TIMER_DEF(m_onoff_server_12_timer);
 APP_TIMER_DEF(m_onoff_server_13_timer);
@@ -159,7 +143,6 @@ int main(void)
 {
     initialise();
     start();
-
     for (;;)
     {
         (void)sd_app_evt_wait();
@@ -173,7 +156,6 @@ static void initialise(void)
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----------------------------------------------------------------------------------- -\n");
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- ex09 Multi Universal - GClients, GServers and Simple Server for each pin -----\n");
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "------------------------------------------------------------------------------------\n");
-
 
     ERROR_CHECK(nrfx_gpiote_init());
     gpiote_init();
@@ -190,7 +172,6 @@ static void initialise(void)
     mesh_init();
 
 }
-
 /***************************************************/
 /* GPIOTE INIT                                     */
 /***************************************************/

@@ -13,7 +13,7 @@ from argparse import ArgumentParser
 
 from aci.aci_uart import Uart
 
-from node_pyaci_interface import Pyaci
+from pyaci_message_parser import Pyaci
 from interactive_pyaci import Mesh, Interactive
 
 LOG_DIR = os.path.join(os.path.dirname(sys.argv[0]), "log")
@@ -90,6 +90,7 @@ def start_ipython(options):
 
     for dev in d:
         dev.close()
+        
     raise SystemExit(0)
 
 if __name__ == '__main__':

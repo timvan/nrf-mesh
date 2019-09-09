@@ -138,7 +138,7 @@ class MeshDB(object):
         for node in self.nodes:
             for element in node.elements:
                 if element.address_handle == address_handle:
-                    return element.unicast_address
+                    return node.unicast_address + element.index
 
     
     def find_devkey_handle(self, address):

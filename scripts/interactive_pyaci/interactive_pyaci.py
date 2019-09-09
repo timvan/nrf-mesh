@@ -51,6 +51,7 @@ from models.config import ConfigurationClient           # NOQA: ignore unused im
 from models.generic_on_off import GenericOnOffClient    # NOQA: ignore unused import
 from models.generic_on_off import GenericOnOffServer
 from models.simple_on_off import SimpleOnOffClient
+from models.health import Health
 
 class Interactive(object):
     DEFAULT_APP_KEY = bytearray([0xAA] * 16)
@@ -145,7 +146,7 @@ class Mesh(object):
     NRF52_DEV_BOARD_GPIO_PINS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25]
     NRF52_STARTING_ELEMENT_INDEX = 1
 
-    QUICK_SETUP = True
+    QUICK_SETUP = False
 
     def __init__(self, interactive_device, db="database/example_database.json"):
         
@@ -162,7 +163,7 @@ class Mesh(object):
         self.message_que = list()
         
         self.p = Provisioner(self.iaci, self.db, provisioning_complete_cb=self.provisioning_complete)
-        self.cc = MeshConfigurer(self.db, self.iaci, self.composition_data_status, self.add_app_keys_complete)
+        self.cc = MeshConfigurer(self.db, self.iaci, self.configuration_complete)
         self.iaci.model_add(self.cc)
         self.add_event_handlers()
         self.tid_found = True
@@ -174,14 +175,12 @@ class Mesh(object):
 
 
         self.iaci.acidev.add_packet_recipient(self.deviceStarted)
-        # self.iaci.send(cmd.RadioReset())
-        self.setup()
+        self.iaci.send(cmd.RadioReset())
+        # self.setup()
 
         if self.QUICK_SETUP:
             self.onNewUnProvisionedDevice = lambda device : self.provision(device["uuid"])
             self.onProvisionComplete = lambda uuid : self.configure(uuid) 
-            self.onCompositionDataStatus = lambda uuid, compositionData : self.add_app_keys(uuid)
-            self.onAddAppKeysComplete = lambda uuid : self.provisionScanStart()
 
     def setup(self):
         # setup is called when the serial device is booted
@@ -210,21 +209,22 @@ class Mesh(object):
             tid = model["tid"]
                 
             if model["model"] == "GenericOnOffClient":
-                self.addGenericClientModel()
-                setattr(self.gc, "_GenericOnOffClient__tid", tid)
+                self.addGenericClientModel(tid)
             
             if model["model"] == "GenericOnOffServer":
-                self.addGenericServerModel()
-                setattr(self.gs, "_GenericOnOffServer__tid", tid)
+                self.addGenericServerModel(tid)
                 
             if model["model"] == "SimpleOnOffClient":
-                self.addSimpleClientModel()
-                setattr(self.sc, "_SimpleOnOffClient__tid", tid)
+                self.addSimpleClientModel(tid)
+            
+            if model["model"] == "Health":
+                self.addHealthModel(tid)
 
     def add_models(self):
         self.addGenericClientModel()
         self.addGenericServerModel()
         self.addSimpleClientModel()
+        self.addHealthModel()
 
     """""""""""""""""""""""""""""""""""""""""""""
     PYACI EVENTS HANDLER
@@ -258,7 +258,6 @@ class Mesh(object):
 
         if hasattr(self, "onNewUnProvisionedDevice"):
             self.onNewUnProvisionedDevice(device)
-
 
     def cmd_rsp_handler(self, event):
         if self.tid_found:
@@ -336,13 +335,12 @@ class Mesh(object):
     def add_app_keys(self, uuid, groupAddrId=0):
         self.cc.add_app_keys(uuid)
 
-    def composition_data_status(self, uuid, compositionData={}):
-        if hasattr(self, "onCompositionDataStatus"):
-            self.onCompositionDataStatus(uuid, compositionData)
+    def configuration_complete(self, uuid, composition_data={}):
+        if hasattr(self, "onConfigurationComplete"):
+            self.onConfigurationComplete(uuid, composition_data)
     
-    def add_app_keys_complete(self, uuid):
-        if hasattr(self, "onAddAppKeysComplete"):
-            self.onAddAppKeysComplete(uuid)
+    def remove_node(self, uuid):
+        self.cc.remove_node(uuid)
 
     """  MODELS & PINS """
 
@@ -393,26 +391,30 @@ class Mesh(object):
     def setAckFailed(self, address_handle):
         src = self.db.address_handle_to_src(address_handle)
         node, element = self.db.src_address_to_node_element_index(src)
-        uuid = self.db.nodes[node].UUID
+        uuid = self.db.nodes[node].UUID.hex()
         self.setAckFailedEventGPIO(self.element_index_to_pin(element), uuid)
 
     """  INIT MODELS """
 
-    def addGenericClientModel(self):
-        self.gc = GenericOnOffClient(self.db, self.genericOnOffClientStatusEvent, self.setAckFailed)
+    def addGenericClientModel(self, tid=0):
+        self.gc = GenericOnOffClient(self.db, tid, self.genericOnOffClientStatusEvent, self.setAckFailed)
         self.iaci.model_add(self.gc)
         self.db.models.append(self.gc)
     
-    def addGenericServerModel(self):
-        self.gs = GenericOnOffServer(self.genericOnOffServerSetUnackEvent, self.db)
+    def addGenericServerModel(self, tid=0):
+        self.gs = GenericOnOffServer(tid, self.genericOnOffServerSetUnackEvent, self.db)
         self.iaci.model_add(self.gs)
         self.db.models.append(self.gs)
 
-    def addSimpleClientModel(self):
-        self.sc = SimpleOnOffClient()
+    def addSimpleClientModel(self, tid=0):
+        self.sc = SimpleOnOffClient(tid)
         self.iaci.model_add(self.sc)
         self.db.models.append(self.sc)
 
+    def addHealthModel(self, tid=0):
+        self.h = Health(tid)
+        self.iaci.model_add(self.h)
+        self.db.models.append(self.h)
 
     """""""""""""""""""""""""""""""""""""""""""""
     EXPERIMENTAL
@@ -475,7 +477,7 @@ class Mesh(object):
 
 class MeshConfigurer(ConfigurationClient):
 
-    def __init__(self, prov_db, iaci, configure_complete_cb, add_app_keys_complete_cb):
+    def __init__(self, prov_db, iaci, configuration_complete_cb):
         super(MeshConfigurer, self).__init__(prov_db)
         
         self.opcode_update_list = [
@@ -491,8 +493,7 @@ class MeshConfigurer(ConfigurationClient):
 
         self.command_que = list()
         self.last_message = None
-        self._add_app_keys_complete_cb = add_app_keys_complete_cb
-        self._configure_complete_cb = configure_complete_cb
+        self._configuration_complete_cb = configuration_complete_cb
         self.timer = None
         
         self.iaci.acidev.add_command_recipient(self.cmd_handler)
@@ -541,6 +542,7 @@ class MeshConfigurer(ConfigurationClient):
         self.publish_set(devkey_handle, address_handle)
         self.que_command(self.composition_data_get)
         self.que_command(self.appkey_add, 0)
+        self.que_command(self.add_app_keys, uuid)
         self.send_next_command()
              
     def add_app_keys(self, uuid, groupAddrId=0):
@@ -553,6 +555,11 @@ class MeshConfigurer(ConfigurationClient):
 
             for model in element.models:
                 
+                if str(model.model_id) == "0002":
+                    self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x0002))
+                    publish = mt.Publish(self.prov_db.groups[groupAddrId].address, index=0, ttl=1)
+                    self.que_command(self.model_publication_set, element_address, mt.ModelId(0x0002), publish)
+
                 # Generic OnOff Server
                 if str(model.model_id) == "1000":
                     self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x1000))
@@ -568,7 +575,7 @@ class MeshConfigurer(ConfigurationClient):
                     self.que_command(self.model_app_bind, element_address, 0, mt.ModelId(0x0000, company_id=0x0059))
 
         # self.que_command(self.addAppKeysComplete, uuid)
-        self.que_command(self.__add_app_keys_complete, uuid)
+        self.que_command(self.__add_keys_complete, uuid)
 
         self.send_next_command()
     
@@ -637,8 +644,9 @@ class MeshConfigurer(ConfigurationClient):
 
     def __composition_data_status_handler_mesh(self, opcode, message):
         self._ConfigurationClient__composition_data_status_handler(opcode, message)
-        node = self.node_get(message.meta["src"])
-        self._configure_complete_cb(node.UUID.hex())
+        # node = self.node_get(message.meta["src"])
+        # # self._configure_complete_cb(node.UUID.hex())
+        self.send_next_command()
 
     def __appkey_status_handler_mesh(self, opcode, message):
         self._ConfigurationClient__appkey_status_handler(opcode, message)
@@ -656,11 +664,11 @@ class MeshConfigurer(ConfigurationClient):
         self._ConfigurationClient__model_app_status_handler(opcode, message)
         self.send_next_command()
 
-    def __add_app_keys_complete(self, uuid):
-        self.logger.info("Adding app keys complete")
+    def __add_keys_complete(self, uuid):
+        self.logger.info("Finished adding keys")
+        self.logger.info("Configuration complete")
         self.timer.cancel()
-        self._add_app_keys_complete_cb(uuid)
-
+        self._configuration_complete_cb(uuid)
 
     def remove_node(self, uuid):
         self.logger.error("Remove node {} from database".format(uuid))
@@ -686,7 +694,7 @@ class MeshConfigurer(ConfigurationClient):
         self.que_command(self.iaci.send, command)
 
         # ADD a function that waps this function and adds send next message
-        self.que_command(self.prov_db.nodes.remove, node)
+        self.prov_db.nodes.remove(node)
         
         self.send_next_command()
 

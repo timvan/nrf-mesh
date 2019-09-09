@@ -93,10 +93,13 @@ m.simpleServerSet(True, 0, 2)
 <!-- TEST -->
 from interactive_pyaci import Mesh
 m = Mesh(d[0])
+
 uuids = ["e07f87c0e83ff2418b6e5fd50b58c2cd", "9db77a0526b8734988639509c242d107", "8d875f5b77f9534d86aa7ce47836497c" ,"696fd66b16c91d4ebcc34a36f44920f2"]
 pins = [12, 13, 14 , 15]
 from tester.tester import Tester
 t = Tester(pins, uuids, m, 6, 0)
+
+t.run4(timeout=1, run_times=1000, value=True)
 
 t.run2(100, [0], 1)
 t.setup(False)
@@ -124,7 +127,7 @@ m.gc.timers
 
 
 
-
+ 10
 def set_all(m, uuids, pins, value, TIMEOUT, threading):
     for pin in pins: 
         for uuid in uuids: 
@@ -136,7 +139,7 @@ TIMEOUT = 1
 threading.Timer(TIMEOUT, set_all, (m, uuids, pins, value, TIMEOUT, threading)).start()
 
 
-t.run4(1, True)
+t.run4(1, 10, True)
 
 t.keeprunning = False
 

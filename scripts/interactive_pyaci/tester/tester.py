@@ -4,6 +4,9 @@ import json
 import os
 import threading
 import datetime
+import serial
+
+
 
 class Tester(object):
     
@@ -170,6 +173,9 @@ class Tester(object):
     
 
     def run4(self, timeout=2, run_times=10, value=True):
+        # sends on and off set signals on timed intervals to all devices for run_times
+        # value is starting signal
+
         if self.keeprunning and run_times > 0:
             print(datetime.datetime.now().isoformat())
             for pin in self.pins: 
@@ -180,6 +186,8 @@ class Tester(object):
 
 
     def run5(self, timeout=2, run_times=10, value=True, downtime_mulitplyer=1):
+        # test4 however differences between on and off timer
+
         if self.keeprunning and run_times > 0:
             print(datetime.datetime.now().isoformat())
             for pin in self.pins: 
@@ -191,4 +199,19 @@ class Tester(object):
             else:
                 threading.Timer(timeout, self.run4, (downtime_mulitplyer * timeout, run_times-1, not value)).start()
             
-            
+
+
+    def run6(self, timeout=2, run_times=10, value=True):
+        # run4 with serial reading - i.e full loop
+
+        thread = threading.Thread(target=self.read_from_port, args=(None,))
+        thread.start()
+        self.run4(timeout, run_times, value)
+
+
+    def read_from_port(self, args):
+        port = '/dev/cu.usbmodem14201'
+        arduino = serial.Serial(port, 96000)
+        while self.keeprunning:
+            msg = arduino.readline().decode()
+            print(">>>>>>>>>>>> {}".format(msg))

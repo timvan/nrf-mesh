@@ -18,7 +18,8 @@
             },
             getInitialState: {
                 value: false
-            }
+            },
+            topic: {value:""}
         },
         inputs:1,
         outputs:1,
@@ -92,6 +93,11 @@
         <input type="text" id="node-input-pin" placeholder="Pin Number">
     </div>
 
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tag"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+
     <div class="form-row"">
         <label for="node-input-getInitialState"><i class="fa fa-random"></i> Get Initial State</label>
         <input type="checkbox" id="node-input-getInitialState" placeholder="Pin Number">
@@ -140,7 +146,8 @@
                 value: null, 
                 required: true,
                 validate: RED.validators.number()
-            }
+            },
+            topic: {value:""}
         },
         inputs:1,
         outputs:1,
@@ -218,6 +225,12 @@
         <input type="text" id="node-input-pin" placeholder="Pin Number">
     </div>
 
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tag"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+
+
     <div class="form-tip" id="pin-tip">
         <b>Pins currently in use</b>
         <ul>
@@ -289,12 +302,6 @@
                 $.getJSON('__bleMeshConfigure', {uuid: uuid});
             })
 
-            $('#node-config-addAppKeys').on("click", (e) => {
-                e.preventDefault();
-                var uuid = $('#node-config-input-uuid').val();
-                $.getJSON('__bleMeshAddAppKeys', {uuid: uuid});
-            })
-
             function getDevices () {
                 $('#node-config-input-unprov option').remove();
                 
@@ -338,17 +345,14 @@
                     
                     var prov = "Provisioned: " + device.provisioned;
                     var conf = "Configured: " + device.configured;
-                    var appkeys = "App Keys Added: " + device.appKeysAdded;
-                    ready = (device.appKeysAdded && device.configured && device.provisioned);
+                    ready = (device.provisioned && device.configured);
 
                     $('#node-config-input-characteristics-container').editableList('addItem', prov);
                     $('#node-config-input-characteristics-container').editableList('addItem', conf);
-                    $('#node-config-input-characteristics-container').editableList('addItem', appkeys);
                     $('#node-config-input-characteristics-container').editableList('addItem', "Ready: " + ready);
 
                     if(device.provisioned){$('#node-config-provision').attr("disabled", true)}else{$('#node-config-provision').attr("disabled", false)};
                     if(device.configured){$('#node-config-configure').attr("disabled", true)}else{$('#node-config-configure').attr("disabled", false)};
-                    if(device.appKeysAdded){$('#node-config-addAppKeys').attr("disabled", true)}else{$('#node-config-addAppKeys').attr("disabled", false)};
                 });
             };
 
@@ -412,7 +416,6 @@
     <div class="form-row">
         <button type="button" id="node-config-provision">Provision</button>
         <button type="button" id="node-config-configure">Configure</button>
-        <button type="button" id="node-config-addAppKeys">Add App Keys</button>
     </div>
 
     <div class='form-row ode-config-input-characteristics-container-row'>

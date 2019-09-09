@@ -45,11 +45,11 @@ class GenericOnOffClient(Model):
 
     retry_log = []
 
-    def __init__(self, db=None, generic_on_off_client_status_cb=None, set_ack_failed_cb=None):
+    def __init__(self, db=None, tid=0, generic_on_off_client_status_cb=None, set_ack_failed_cb=None):
         self.db = db
         self.opcodes = [
             (self.GENERIC_ON_OFF_STATUS, self.__generic_on_off_status_handler)]
-        self.__tid = 0
+        self.__tid = tid
 
         self.__generic_on_off_client_status_cb = generic_on_off_client_status_cb
         self.__client_set_ack_failed_cb = set_ack_failed_cb
@@ -162,12 +162,12 @@ class GenericOnOffServer(Model):
     GENERIC_ON_OFF_GET = Opcode(0x8201, None, "Generic OnOff Get")
     GENERIC_ON_OFF_STATUS = Opcode(0x8204, None, "Generic OnOff Status")
     
-    def __init__(self, generic_on_off_server_set_cb=None, db=None):
+    def __init__(self, tid=0, generic_on_off_server_set_cb=None, db=None):
         self.opcodes = [
             (self.GENERIC_ON_OFF_SET, self.__generic_on_off_server_set_event_handler),
             (self.GENERIC_ON_OFF_SET_UNACKNOWLEDGED, self.__generic_on_off_server_set_unack_event_handler),
             (self.GENERIC_ON_OFF_GET, self.__generic_on_off_server_get_event_handler)]
-        self.__tid = 0
+        self.__tid = tid
         self.__generic_on_off_server_set_cb = generic_on_off_server_set_cb
         self.db = db
 

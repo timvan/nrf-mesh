@@ -28,12 +28,12 @@ class BluetoothMesh {
                 if(Object.keys(data).includes("name")){
                     device.name = data.name;
                 }
+
                 device.provisioned = true;
 
                 // assumes all NewProvisionedDevices are configured and setup
                 // TODO - add check..
                 device.configured = true;
-                device.appKeysAdded = true;
 
                 this.devices.push(device);
             }; 
@@ -47,6 +47,7 @@ class BluetoothMesh {
 
     addNewDevice(data) {
         var device = new Device(data.uuid);
+        device.name = data.uuid;
         this.devices.push(device);
     }
 
@@ -96,7 +97,6 @@ class Device {
 
         this.provisioned = false;
         this.configured = false;
-        this.appKeysAdded = false;
 
         // TODO - need name from provision scan data  
         // this.name = name
@@ -110,15 +110,9 @@ class Device {
             }
         });
 
-        eventBus.on("CompositionDataStatus", (data) => {
+        eventBus.on("ConfigurationComplete", (data) => {
             if(data.uuid === this.uuid){
                 this.configured = true;
-            }
-        });
-
-        eventBus.on("AddAppKeysComplete", (data) => {
-            if(data.uuid === this.uuid){
-                this.appKeysAdded = true;
             }
         });
 
@@ -140,11 +134,6 @@ class Device {
     configure(){
         var pyaci = new Pyaci().getInstance();
         pyaci.configure(this.uuid);
-    }
-
-    addAppKeys(){
-        var pyaci = new Pyaci().getInstance();
-        pyaci.addAppKeys(this.uuid);
     }
 
     getElement(pin){
@@ -253,9 +242,6 @@ class TestDevice {
         // TODO
     }
 
-    testAddAppKeys() {
-        // TODO
-    }
 
     testGetElement() {
         assertEquals(this.device.getElement(12).pin, 12);

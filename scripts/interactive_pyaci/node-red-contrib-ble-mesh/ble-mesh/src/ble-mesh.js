@@ -19,26 +19,8 @@ var mesh = new BluetoothMesh.Mesh()
 
 setTimeout(() => {
     pyaci.getProvisionedDevices();
-    // mesh.provisionScanStart();
+    mesh.provisionScanStart();
 }, 1000);
-
-// eventBus.on("NewUnProvisionedDevice", (data) => {
-    // // TURN ON TO AUTO PROVISION
-    // var device = mesh.getDevice(data.uuid);
-    // device.provision();
-// })
-
-// eventBus.on("ProvisionComplete", (data) => {
-//     var device = mesh.getDevice(data.uuid);
-//     device.configure();
-// })
-// eventBus.on("CompositionDataStatus", (data) => {
-//     var device = mesh.getDevice(data.uuid);
-//     device.addAppKeys();
-    
-//     // TODO - set scanning back on after completion..
-//     mesh.provisionScanStart();
-// })
 
 /*************************************/
 /*                                   */
@@ -51,44 +33,44 @@ module.exports = function(RED) {
     /*************************************/
 
     function BleMeshNodeOutput(config) {
-
         RED.nodes.createNode(this, config);
 
         var node = this;
-        this.pin = parseInt(config.pin);
         var confignode = RED.nodes.getNode(config.confignode);
+
+        this.pin = parseInt(config.pin);
+        var uuid = confignode.device.uuid;
         
         this.element = confignode.device.getElement(this.pin);
         this.element.configureGPIOasInput(false);
 
+        this.topic = config.topic || config.name || `${confignode.name}_${this.pin}`;
+
         node.on('input', function(msg) {
             var value = msg.payload;
-            this.status({fill:"green",shape:"dot",text:value});
             this.element.setGPIO(value);
         });
 
-        var uuid = confignode.device.uuid;
-
-        // Set Failed
+        // Set Failed Event
         
         this.setAckFailedListener = (data) => {
             if(data.uuid === uuid && data.pin === this.pin){
-                // node.send({
-                //     payload: {
-                //         "error": "Set Ack Failed",
-                //     }
-                // });
-
                 this.status({fill:"red",shape:"dot",text:"Set Ack Failed"});
             }
         };
         eventBus.on("SetAckFailedEventGPIO_" + uuid, this.setAckFailedListener);
 
 
+        // Status Event
+
         this.statusListener = (data) => {
             if(data.uuid === uuid && data.pin === this.pin){
                 this.status({fill:"green",shape:"dot",text:data.value});
-            }
+            };
+            node.send({
+                payload: parseInt(data.value),
+                topic: this.topic
+            });
         }
 
         eventBus.on("StatusEventGPIO_" + uuid, this.statusListener);
@@ -106,14 +88,15 @@ module.exports = function(RED) {
     /*************************************/
 
     function BleMeshNodeInput(config) {
-
         RED.nodes.createNode(this, config);
-        
+
         var node = this;
-        this.pin = parseInt(config.pin);
         var confignode = RED.nodes.getNode(config.confignode);
+
+        this.pin = parseInt(config.pin);
         var uuid = confignode.device.uuid;
-        var topic = config.name || `${uuid}_${pin}`;
+        
+        this.topic = config.topic || config.name || `${confignode.name}_${this.pin}`;
 
         this.element = confignode.device.getElement(this.pin);
         this.element.configureGPIOasInput(true);
@@ -131,15 +114,12 @@ module.exports = function(RED) {
             }
         });
 
-        
-        
-        
         // Set event
         this.setListener = (data) => {
             if(data.uuid === uuid && data.pin === this.pin){
                 node.send({
                     payload: parseInt(data.value),
-                    topic: topic
+                    topic: this.topic
                 });
                 this.status({fill:"green",shape:"dot",text:data.value});
             }
@@ -152,7 +132,7 @@ module.exports = function(RED) {
             if(data.uuid === uuid && data.pin === this.pin){
                 node.send({
                     payload: parseInt(data.value),
-                    topic: topic
+                    topic: this.topic
                 });
                 this.status({fill:"green",shape:"dot",text:data.value});
             }
@@ -178,6 +158,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
         var node = this;
         this.device = mesh.getDevice(String(config.uuid));
+        this.name = config.name;
     }
 
     RED.nodes.registerType("ble-mesh-config", BleMeshNodeConfig);
@@ -236,18 +217,6 @@ module.exports = function(RED) {
                 device.configure();
             }
         };
-        res.send();
-    })
-
-    RED.httpAdmin.get('/__bleMeshAddAppKeys', (req, res) => {
-        RED.log.info(`/__bleMeshAddAppKeys ${JSON.stringify(req.query)}`);
-        var uuid  = req.query.uuid;
-        if(uuid != "" && uuid != null){
-            var device = mesh.getDevice(uuid);
-            if(!device.appKeysAdded){
-                device.addAppKeys();
-            }
-        }
         res.send();
     })
 
